@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/root_head_title_height"
+        android:background="#ffffff">
+
+        <ImageView
+            android:id="@+id/root_head_back"
+            android:layout_width="@dimen/root_head_title_image_size"
+            android:layout_height="@dimen/root_head_title_image_size"
+            android:padding="@dimen/root_head_title_image_padding"
+            android:src="@mipmap/icon_back" />
+
+        <TextView
+            android:id="@+id/root_head_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
+            android:singleLine="true"
+            android:text="平安银行"
+            android:textColor="@color/colorHome"
+            android:textSize="@dimen/text_size_18" />
+
+
+        </RelativeLayout>
+
+
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/webView"
+        />
+</LinearLayout>
