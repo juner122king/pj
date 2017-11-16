@@ -147,15 +147,15 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
     @Override
     public void onResume() {
         super.onResume();
-        if (PersonMessagePreferencesUtils.getUid() == null) {
-            getActivity().finish();
-        } else {
-            presenter.getMemberCenter();
-        }
-        if (PreferencesUtils.getBoolean(GETHINTIMAGECLICK)) {
-            imageHeadHint.setVisibility(View.GONE);
-        } else {
-            imageHeadHint.setVisibility(View.VISIBLE);
-        }
+//        if (PersonMessagePreferencesUtils.getUid() == null) {
+//            getActivity().finish();
+//        } else {
+//            presenter.getMemberCenter();
+//        }
+//        if (PreferencesUtils.getBoolean(GETHINTIMAGECLICK)) {
+//            imageHeadHint.setVisibility(View.GONE);
+//        } else {
+//            imageHeadHint.setVisibility(View.VISIBLE);
+//        }
     }
 }
