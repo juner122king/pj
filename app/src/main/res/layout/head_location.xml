@@ -35,7 +35,7 @@
         android:textColor="#999999"
         android:textSize="@dimen/text_size_14" />
 
-    <com.weisj.fx.view.NoScrollGridView
+    <com.weisj.pj.view.NoScrollGridView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"

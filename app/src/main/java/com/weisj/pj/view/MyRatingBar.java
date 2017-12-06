@@ -1,5 +1,6 @@
 package com.weisj.pj.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
@@ -20,6 +21,7 @@ public class MyRatingBar extends LinearLayout {
         initView();
     }
 
+    @SuppressLint("ResourceType")
     public MyRatingBar(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray a = context.obtainStyledAttributes(attrs,

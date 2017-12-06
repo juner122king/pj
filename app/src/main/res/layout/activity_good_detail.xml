@@ -5,7 +5,7 @@
     android:orientation="vertical">
 
 
-    <com.weisj.fx.view.abpullrefresh.AbPullToRefreshView
+    <com.weisj.pj.view.abpullrefresh.AbPullToRefreshView
         android:id="@+id/refresh_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -26,7 +26,7 @@
             </LinearLayout>
         </ScrollView>
 
-    </com.weisj.fx.view.abpullrefresh.AbPullToRefreshView>
+    </com.weisj.pj.view.abpullrefresh.AbPullToRefreshView>
 
 
     <LinearLayout

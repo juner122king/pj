@@ -4,8 +4,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="colorHome">#86a127</color>
+    <color name="colorHome">#621d6e</color>
     <color name="colore6e6e6">#e6e6e6</color>
+    <color name="colorf4f4f4">#f4f4f4</color>
     <color name="colorWhite">#ffffff</color>
     <color name="color999999">#999999</color>
     <color name="color666666">#666666</color>
@@ -21,4 +22,6 @@
     <color name="keyboard_other">#E0E0E0</color>
     <color name="RoseGold">#b05e39</color>
 	<color name="colorHomeGood">#b7ce2a</color>
+	<color name="color14">#959595</color>
+
 </resources>

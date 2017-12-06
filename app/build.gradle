@@ -7,8 +7,8 @@ android {
         applicationId 'com.weisj.pj'
         minSdkVersion 11
         targetSdkVersion 21
-        versionCode 1
-        versionName "1.0"
+        versionCode 41
+        versionName '1.4.1'
         multiDexEnabled true
     }
     buildTypes {
@@ -35,6 +35,7 @@ dependencies {
     compile 'com.google.zxing:core:3.2.1'
     compile 'com.umeng.analytics:analytics:latest.integration'
     compile 'com.google.android.gms:play-services-appindexing:8.4.0'
+
     compile files('libs/mta-sdk-1.6.2.jar')
     compile files('libs/open_sdk_r5756.jar')
     compile files('libs/SocialSDK_QQZone_3.jar')
@@ -45,4 +46,6 @@ dependencies {
     compile files('libs/SocialSDK_Sina.jar')
     compile files('libs/weiboSDKCore_3.1.4.jar')
     compile files('libs/BaiduLBS_Android.jar')
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    compile 'com.github.bumptech.glide:glide:3.7.0'
 }

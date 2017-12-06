@@ -16,7 +16,7 @@
         android:background="#EEEEEE"
         android:textSize="@dimen/text_size_14" />
 
-    <com.weisj.fx.view.MyListView
+    <com.weisj.pj.view.MyListView
         android:id="@+id/listview"
         android:layout_width="match_parent"
         android:scrollbars="none"
@@ -24,6 +24,6 @@
         android:layout_height="match_parent"
         android:background="#FFFFFF"
         android:dividerHeight="0dp"
-        ></com.weisj.fx.view.MyListView>
+        ></com.weisj.pj.view.MyListView>
 
 </LinearLayout>

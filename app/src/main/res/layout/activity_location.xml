@@ -24,7 +24,7 @@
         android:textSize="30.0dip"
         android:visibility="invisible" />
 
-    <com.weisj.fx.view.SideBar
+    <com.weisj.pj.view.SideBar
         android:id="@+id/sidrbar"
         android:layout_width="30.0dip"
         android:layout_height="wrap_content"

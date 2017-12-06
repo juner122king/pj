@@ -85,7 +85,7 @@
             </LinearLayout>
         </LinearLayout>
 
-        <com.weisj.fx.view.abpullrefresh.AbPullToRefreshView
+        <com.weisj.pj.view.abpullrefresh.AbPullToRefreshView
             android:id="@+id/refresh_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -97,7 +97,7 @@
                 android:divider="@null"
                 android:dividerHeight="0dp"
                 android:scrollbars="none"></ListView>
-        </com.weisj.fx.view.abpullrefresh.AbPullToRefreshView>
+        </com.weisj.pj.view.abpullrefresh.AbPullToRefreshView>
 
     </LinearLayout>
 

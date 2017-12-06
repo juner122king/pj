@@ -1,4 +1,9 @@
 <resources>
-    <string name="app_name">顺丰大当家</string>
+    <string name="app_name">菲尔南多</string>
+    <string name="fragment_category_title">品类</string>
     <string name="action_settings">Settings</string>
+
+    <string name="im_tv_button0">包月换戴</string>
+    <string name="im_tv_button1">玩法秒懂</string>
+    <string name="im_tv_button2">邀请有礼</string>
 </resources>

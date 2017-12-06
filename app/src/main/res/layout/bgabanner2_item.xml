@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:background="#fff"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv"
+        android:background="@drawable/white_0radio"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="match_parent" />
+    <TextView
+        android:id="@+id/tv_title"
+        android:text="这是标题这是标题这是标题这是标题这是标题这是标题这这是标题这是标题"
+        android:lines="1"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_width="wrap_content"
+        android:paddingTop="15dp"
+        android:paddingBottom="5dp"
+        android:textColor="#1b1b1b"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tv_content"
+        android:text="这是标题这是标题这是标题这是标题这是标题这是标题这这是标题这是标题"
+        android:lines="1"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:textSize="11sp"
+        android:textColor="#707070"
+        android:paddingBottom="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

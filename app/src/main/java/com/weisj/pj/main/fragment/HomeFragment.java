@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.weisj.pj.R;
 import com.weisj.pj.adapter.ItemHomeAreaGoodsAdapter;
 import com.weisj.pj.adapter.ItemHomeGoodAdapter;
+import com.weisj.pj.adapter.ItemHomeUserCommentAdapter;
 import com.weisj.pj.base.BaseFragment;
 import com.weisj.pj.base.activity.CouponDetail1;
 import com.weisj.pj.base.activity.GoodDetailActivity;
@@ -28,6 +29,7 @@ import com.weisj.pj.bean.HomeBanner;
 import com.weisj.pj.bean.HomeBean;
 import com.weisj.pj.bean.HomeCouponbean;
 import com.weisj.pj.bean.ShareData;
+import com.weisj.pj.bean.UsershareBean;
 import com.weisj.pj.presenter.HomePresenter;
 import com.weisj.pj.utils.CommenString;
 import com.weisj.pj.utils.ImageLoaderUtils;
@@ -46,6 +48,8 @@ import com.weisj.pj.viewinterface.IHomeView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.umeng.socialize.utils.DeviceConfig.context;
+
 
 /**
  * Created by zh on 16/6/21.
@@ -55,13 +59,14 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     private HomePresenter homePresenter;
     private AbPullToRefreshView refreshView;
     private String pronvin = CommenString.selectCity;
-    private ListView listView;
+    private ListView listView;//最底部的listView
     private TextView goodName1, goodName2, goodName3, goodPrice1, goodPrice2, goodPrice3, userName, areaRecommend;
-    private ImageView goodImage1, goodImage2, goodImage3, highImage;
-    private LinearLayout couponLinear, goodLinear;
+    private ImageView goodImage1, goodImage2, goodImage3, highImage, iv_acton;
+    private LinearLayout couponLinear, goodLinear, user_shareLinear;
     private ItemHomeGoodAdapter adapter;
+    private ItemHomeUserCommentAdapter adapter2;
     private TextView placeName, home_boss_text;
-    private BGABanner homeBanner;
+    private BGABanner homeBanner, homeBanner2;
     private HorizontalScrollView scrollView;
     private TextView home_recommend;
     public static String shareCity;
@@ -105,10 +110,11 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         view.findViewById(R.id.root_head_search).setOnClickListener(this);
         view.findViewById(R.id.root_head_share).setOnClickListener(this);
         homeBanner = (BGABanner) headView.findViewById(R.id.home_banner);
-        home_boss_text = (TextView) headView.findViewById(R.id.home_boss_text);
+        homeBanner2 = (BGABanner) headView.findViewById(R.id.home_banner2);
+
+//        home_boss_text = (TextView) headView.findViewById(R.id.home_boss_text);
         scrollView = (HorizontalScrollView) headView.findViewById(R.id.home_scroll_view);
         horizontalLinear = (LinearLayout) headView.findViewById(R.id.home_boss_good_linear);
-        userName = (TextView) headView.findViewById(R.id.user_name);
         goodName1 = (TextView) headView.findViewById(R.id.good1_name);
         goodName2 = (TextView) headView.findViewById(R.id.good2_name);
         goodName3 = (TextView) headView.findViewById(R.id.good3_name);
@@ -118,12 +124,15 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         goodImage1 = (ImageView) headView.findViewById(R.id.good1_image);
         goodImage2 = (ImageView) headView.findViewById(R.id.good2_image);
         goodImage3 = (ImageView) headView.findViewById(R.id.good3_image);
-        areaRecommend = (TextView) headView.findViewById(R.id.area_recommend);
         home_recommend = (TextView) headView.findViewById(R.id.home_recommend);
+
         goodLinear = (LinearLayout) headView.findViewById(R.id.good_linear);
         couponLinear = (LinearLayout) headView.findViewById(R.id.coupon_linear);
-        AreaGoodsListView = (MyListView) headView.findViewById(R.id.AreaGoodsList) ;
+        user_shareLinear = (LinearLayout) headView.findViewById(R.id.home_user_share);
+
+        AreaGoodsListView = (MyListView) headView.findViewById(R.id.AreaGoodsList);
         highImage = (ImageView) headView.findViewById(R.id.image_high_url);
+        iv_acton = (ImageView) headView.findViewById(R.id.iv_acton);
         listView.addHeaderView(headView);
         listView.setOnItemClickListener(this);
         homePresenter.getInitData(pronvin, true);
@@ -140,6 +149,22 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
                 } else {
                     ImageLoaderUtils.getInstance().display((ImageView) view, Urls.imageUrl + materialBean.getImageUrl(), R.mipmap.icon_banner_default);
                 }
+            }
+        });
+        homeBanner2.setAdapter(new BGABanner.Adapter() {
+            @Override
+            public void fillBannerItem(BGABanner banner, View view, Object model, int position) {
+                HomeBanner.ResultBean.MaterialBean materialBean = (HomeBanner.ResultBean.MaterialBean) model;
+                ImageView imageView = (ImageView) view.findViewById(R.id.iv);
+
+
+                if (position == 0 && materialBean.getEntity() != null) {
+
+                    ImageLoaderUtils.getInstance().display(imageView, materialBean.getEntity().getCouponPic(), R.mipmap.icon_banner_default);
+                } else {
+                    ImageLoaderUtils.getInstance().display(imageView, Urls.imageUrl + materialBean.getImageUrl(), R.mipmap.icon_banner_default);
+                }
+
             }
         });
         homeBanner.setOnItemClickListener(new BGABanner.OnItemClickListener() {
@@ -167,6 +192,31 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
                 }
             }
         });
+//        homeBanner2.setOnItemClickListener(new BGABanner.OnItemClickListener() {
+//            @Override
+//            public void onBannerItemClick(BGABanner banner, View view, Object model, int position) {
+//                HomeBanner.ResultBean.MaterialBean materialBean = (HomeBanner.ResultBean.MaterialBean) model;
+//                if (position == 0 && materialBean.getEntity() != null) {
+//                    HomeCouponbean.DataEntity.SingleCouponListEntity dataEntity = materialBean.getEntity();
+//                    Intent intent = new Intent(getContext(), WebViewActivity.class);
+//                    intent.putExtra("url", dataEntity.getHtmlAddress());
+//                    intent.putExtra("web_title", dataEntity.getCouponTitle());
+//                    intent.putExtra("imageUrl", dataEntity.getSharePic() != null ? dataEntity.getSharePic() : dataEntity.getCouponPic());
+//                    intent.putExtra("coupon_id", dataEntity.getCouponId());
+//                    getContext().startActivity(intent);
+//                } else {
+//                    Intent intent = new Intent(getContext(), WebViewActivity.class);
+//                    if (materialBean.getUrl().contains("?")) {
+//                        intent.putExtra("url", materialBean.getUrl() + "&sell_member_id=" + PersonMessagePreferencesUtils.getUid());
+//                    } else {
+//                        intent.putExtra("url", materialBean.getUrl() + "?sell_member_id=" + PersonMessagePreferencesUtils.getUid());
+//                    }
+//                    intent.putExtra("web_title", materialBean.getTitle());
+//                    intent.putExtra("imageUrl", Urls.imageUrl + materialBean.getImageUrl());
+//                    HomeFragment.this.startActivity(intent);
+//                }
+//            }
+//        });
 
         placeName.setText(CommenString.selectCity);
 
@@ -250,6 +300,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
 
     private void loadHomeCoupon(List<HomeCouponbean.DataEntity.SingleCouponListEntity> list) {
         couponLinear.removeAllViews();
+
         if (list != null && list.size() > 0) {
             HomeBanner.ResultBean.MaterialBean beanData = new HomeBanner.ResultBean.MaterialBean();
             beanData.setEntity(list.get(0));
@@ -257,11 +308,13 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
                 List datas = homeBanner.getmModels();
                 datas.add(0, beanData);
                 homeBanner.setData(datas, null);
+                homeBanner2.setData(R.layout.bgabanner2_item, datas, null);
             } else {
                 isRefresh = false;
                 List data = new ArrayList();
                 data.add(beanData);
                 homeBanner.setData(data, null);
+                homeBanner2.setData(R.layout.bgabanner2_item, data, null);
             }
         }
 
@@ -290,19 +343,21 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     @Override
     public void getData(HomeBean homeBean) {
         shareCity = homeBean.getData().getGuanName();
-        areaRecommend.setVisibility(View.VISIBLE);
-        goodLinear.setVisibility(View.VISIBLE);
-        if (homeBean.getData().getHighCommissionPicUrl() != null) {
-            highImage.setVisibility(View.VISIBLE);
-            ImageLoaderUtils.getInstance().display(highImage, homeBean.getData().getHighCommissionPicUrl());
-            highImage.setOnClickListener(this);
-        } else {
-            highImage.setVisibility(View.GONE);
-        }
+//        goodLinear.setVisibility(View.VISIBLE);
+        ImageLoaderUtils.getInstance().display(iv_acton, homeBean.getData().getHighCommissionPicUrl());
+        //判断原app 热销专区的显示
+//        if (homeBean.getData().getHighCommissionPicUrl() != null) {
+//            highImage.setVisibility(View.VISIBLE);
+//            ImageLoaderUtils.getInstance().display(highImage, homeBean.getData().getHighCommissionPicUrl());
+//            highImage.setOnClickListener(this);
+//        } else {
+//            highImage.setVisibility(View.GONE);
+//        }
+//
+
         if (homeBean.getData().getDistrictGoodsList().size() > 0) {
             loadHomeThreeGoods(homeBean, 0, goodName1, goodPrice1, goodImage1);
         } else {
-            areaRecommend.setVisibility(View.GONE);
             goodLinear.setVisibility(View.GONE);
         }
         if (homeBean.getData().getDistrictGoodsList().size() > 1) {
@@ -317,19 +372,36 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         }
 
 
-        if (homeBean.getData().getPositionAreaGoodsList().size()>0){
-            AreaGoodsListView.setVisibility(View.VISIBLE);
-            areaGoodsAdapter = new ItemHomeAreaGoodsAdapter(getContext(),homeBean.getData().getPositionAreaGoodsList());
+        if (homeBean.getData().getPositionAreaGoodsList().size() > 0) {
+//            AreaGoodsListView.setVisibility(View.VISIBLE);
+            areaGoodsAdapter = new ItemHomeAreaGoodsAdapter(getContext(), homeBean.getData().getPositionAreaGoodsList());
             AreaGoodsListView.setAdapter(areaGoodsAdapter);
         }
 
         loadHomeCoupon(homeBean.getData().getDistrictCouponList());
         adapter = new ItemHomeGoodAdapter(getContext(), homeBean.getData().getCountryGoodsList());
-        listView.setAdapter(adapter);
+
+
+        List<String> list = new ArrayList<>();
+        String pic1 = "timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1511257175617&di=f1cbd0f2078a86e1e2a421fd971c2c88&imgtype=0&src=http%3A%2F%2Fc.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fd8f9d72a6059252dce8c06ce3d9b033b5ab5b964.jpg";
+
+        list.add(pic1);
+        list.add(pic1);
+        list.add(pic1);
+
+
+        UsershareBean usershareBean = new UsershareBean("用户1", "http://avatar.csdn.net/3/B/1/3_wqb1319856391.jpg", "可以，不错！", list);
+
+        List<UsershareBean> beans = new ArrayList<>();
+        beans.add(usershareBean);
+        beans.add(usershareBean);
+        beans.add(usershareBean);
+
+        adapter2 = new ItemHomeUserCommentAdapter(beans, getContext());
+        listView.setAdapter(adapter2);
         refreshView.onHeaderRefreshFinish();
 //        TextViewUtils.setTextAndrightOther(userName, homeBean.getData().getMemberName(), ",您好");
         PreferencesUtils.putString("member_name", homeBean.getData().getMemberName());
-
 
 
     }
@@ -337,20 +409,25 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     @Override
     public void getBannerData(HomeBanner data) {
         homeBanner.setVisibility(View.VISIBLE);
-        home_boss_text.setVisibility(View.VISIBLE);
+        homeBanner2.setVisibility(View.VISIBLE);
+//        home_boss_text.setVisibility(View.VISIBLE);
         scrollView.setVisibility(View.VISIBLE);
         if (data.getResult() != null && data.getResult().getMaterial() != null) {
             if (homeBanner.getmModels() != null && homeBanner.getmModels().size() > 0 && !isRefresh) {
                 List datas = homeBanner.getmModels();
                 datas.addAll(data.getResult().getMaterial());
                 homeBanner.setData(datas, null);
+                homeBanner2.setData(R.layout.bgabanner2_item, datas, null);
             } else {
                 isRefresh = false;
                 homeBanner.setData(data.getResult().getMaterial(), null);
+                homeBanner2.setData(R.layout.bgabanner2_item, data.getResult().getMaterial(), null);
             }
         } else {
             homeBanner.setVisibility(View.GONE);
+            homeBanner2.setVisibility(View.GONE);
         }
+
         horizontalLinear.removeAllViews();
         if (data.getResult() != null && data.getResult().getHotGoods() != null) {
             for (int i = 0; i < data.getResult().getHotGoods().size(); i++) {
@@ -358,6 +435,11 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
                 horizontalLinear.addView(view);
             }
         }
+//        user_shareLinear.removeAllViews();
+//
+
+//        View view = getView(usershareBean);
+//        horizontalLinear.addView(view);
     }
 
     private View getView(final HomeBanner.ResultBean.HotGoodsBean hotGoodsBean) {
@@ -380,10 +462,23 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         return view;
     }
 
+
+    //用户分享
+    private View getView(UsershareBean usershare) {
+
+        View view = mInflater.inflate(R.layout.item_home_user_im, null);
+        ImageLoaderUtils.getInstance().display((ImageView) view.findViewById(R.id.iv_head_pic), usershare.getUser_head());
+        TextViewUtils.setText((TextView) view.findViewById(R.id.tv_username), usershare.getUser_name());
+        TextViewUtils.setText((TextView) view.findViewById(R.id.tv_user_comment), usershare.getUser_comment());
+
+        return view;
+    }
+
     @Override
     public void getBannerFail() {
-        home_boss_text.setVisibility(View.GONE);
+//        home_boss_text.setVisibility(View.GONE);
         homeBanner.setVisibility(View.GONE);
+        homeBanner2.setVisibility(View.GONE);
         scrollView.setVisibility(View.GONE);
     }
 

@@ -6,7 +6,7 @@
     android:background="#e6e6e6"
     android:orientation="vertical">
 
-    <com.weisj.fx.view.bgabanner.BGABanner
+    <com.weisj.pj.view.bgabanner.BGABanner
         android:id="@+id/bagbanner_container"
         android:layout_width="match_parent"
         android:layout_height="285dp"
@@ -286,7 +286,7 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp">
 
-        <com.weisj.fx.view.MyRatingBar
+        <com.weisj.pj.view.MyRatingBar
             android:id="@+id/good_detail_bar"
             android:layout_width="wrap_content"
             android:layout_height="16dp" />

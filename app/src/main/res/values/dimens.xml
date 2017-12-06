@@ -23,5 +23,6 @@
     <dimen name="text_size_16">16dp</dimen>
     <dimen name="text_size_17">17dp</dimen>
     <dimen name="text_size_18">18dp</dimen>
+    <dimen name="text_size_48px">48px</dimen>
     <dimen name="text_size_20">20dp</dimen>
 </resources>

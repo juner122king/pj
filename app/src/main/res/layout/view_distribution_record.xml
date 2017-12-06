@@ -44,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.weisj.fx.view.abpullrefresh.AbPullToRefreshView
+        <com.weisj.pj.view.abpullrefresh.AbPullToRefreshView
             android:id="@+id/refresh_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -57,7 +57,7 @@
                 android:scrollbars="none">
 
             </ExpandableListView>
-        </com.weisj.fx.view.abpullrefresh.AbPullToRefreshView>
+        </com.weisj.pj.view.abpullrefresh.AbPullToRefreshView>
 
         <TextView
             android:id="@+id/no_data"
