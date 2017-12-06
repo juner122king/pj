@@ -69,7 +69,7 @@ public class CategoryFragment extends BaseFragment implements AdapterView.OnItem
         imageView1 = (ImageView) headView.findViewById(R.id.image_category1);
 
         // 加载网络图片
-        Glide.with(this).load("https://img12.360buyimg.com/n7/jfs/t9163/217/1078094329/137867/d66b5174/59bb4a2aNd0d375bf.jpg").crossFade().into(imageView1);
+        Glide.with(this).load("https://img11.360buyimg.com/n7/jfs/t4609/96/4691595833/60668/1ba1ced0/59140bc9N987f5b57.jpg").crossFade().into(imageView1);
 
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 

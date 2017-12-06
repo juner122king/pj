@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class TabDb {
     public static boolean isNet = false;
-    public static String[] tabs = {"首页", "品类", "活动", "订单", "我的"};
+    public static String[] tabs = {"首页", "品类", "首饰盒", "晒图", "我的"};
     public static List<Bitmap> tabImage = new ArrayList<>();
     public static List<Bitmap> selectImage = new ArrayList<>();
 
@@ -30,17 +30,17 @@ public class TabDb {
     }
 
     public static int[] getTabsImg() {
-        int[] ids = {R.mipmap.icon_home_normal, R.mipmap.icon_category_normal, R.mipmap.icon_acti_normal, R.mipmap.icon_order_normal, R.mipmap.icon_me_normal};
+        int[] ids = {R.mipmap.icon_shouye, R.mipmap.icon_pinlei, R.mipmap.icon_shoushi, R.mipmap.icon_shaitu, R.mipmap.icon_gerenzhongxin};
         return ids;
     }
 
     public static int[] getTabsImgLight() {
-        int[] ids = {R.mipmap.icon_home, R.mipmap.icon_category, R.mipmap.icon_acti_select, R.mipmap.icon_order, R.mipmap.icon_me};
+        int[] ids = {R.mipmap.icon_shouye_dianji, R.mipmap.icon_pinlei_dianji, R.mipmap.icon_shoushi_dianji, R.mipmap.icon_shaitu_dianji, R.mipmap.icon_gerenzhongxin_dianji};
         return ids;
     }
 
     public static Class[] getFragments() {
-        Class[] clz = {HomeFragment.class, CategoryFragment.class, ActiFragment.class, OrderFragment.class, MeFragment.class};
+        Class[] clz = {HomeFragment.class, CategoryFragment.class, OrderFragment.class, ActiFragment.class, MeFragment.class};
         return clz;
     }
 

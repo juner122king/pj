@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="@string/fragment_category_title"
-            android:textColor="@color/colorHome"
+            android:textColor="@color/color1b1b1b"
             android:textSize="@dimen/text_size_18" />
 
         <ImageView

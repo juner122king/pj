@@ -24,7 +24,7 @@ import java.util.List;
 
 /**
  * Created by zh on 16/6/21.
- * 订单主页
+ * 首饰盒主页
  */
 public class OrderFragment extends BaseFragment implements View.OnClickListener, ViewPager.OnPageChangeListener, FiltratePopupWindow.FiltrateListener {
     List<View> list = new ArrayList<>();

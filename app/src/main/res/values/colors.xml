@@ -5,6 +5,7 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="colorHome">#621d6e</color>
+    <color name="color1b1b1b">#1b1b1b</color>
     <color name="colore6e6e6">#e6e6e6</color>
     <color name="colorf4f4f4">#f4f4f4</color>
     <color name="colorWhite">#ffffff</color>
@@ -14,6 +15,7 @@
     <color name="color333333">#333333</color>
     <color name="colorf8f8f8">#f8f8f8</color>
     <color name="colorBlack">#000000</color>
+    <color name="color33Black">#33000000</color>
     <color name="gray_878787">#878787</color>
     <color name="colorfbb100">#fbb100</color>
     <color name="password_background">#DFDFDF</color>
