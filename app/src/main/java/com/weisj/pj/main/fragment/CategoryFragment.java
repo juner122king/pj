@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.weisj.pj.R;
 import com.weisj.pj.adapter.ItemCategoryCommodityAdapter;
 import com.weisj.pj.adapter.ItemCategoryGoodAdapter;
@@ -74,7 +75,7 @@ public class CategoryFragment extends BaseFragment implements AdapterView.OnItem
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
         recyclerView.setAdapter(adapter);
-//        recyclerView.setNestedScrollingEnabled(false);
+
 
 
     }

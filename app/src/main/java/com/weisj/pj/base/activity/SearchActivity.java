@@ -2,14 +2,21 @@ package com.weisj.pj.base.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.mcxtzhang.layoutmanager.flow.FlowLayoutManager;
 import com.weisj.pj.R;
 import com.weisj.pj.adapter.ItemSearchAdapter;
 import com.weisj.pj.base.BaseActivity;
@@ -22,12 +29,13 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/7/4 0004.
  */
-public class SearchActivity extends BaseActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
+public class SearchActivity extends BaseActivity implements BaseQuickAdapter.OnItemClickListener, View.OnClickListener {
     private DBUtil dbUtil;
     private List<String> list = new ArrayList<>();
-    private ListView listView;
+    //    private ListView listView;
+    private RecyclerView recyclerView;
     private EditText searchEdit;
-    private TextView searchbt;
+    private TextView searchbt, delete;
     private ItemSearchAdapter adapter;
 
     @Override
@@ -41,24 +49,29 @@ public class SearchActivity extends BaseActivity implements AdapterView.OnItemCl
         return view;
     }
 
-    public void setTitle(String str){
+    public void setTitle(String str) {
         searchEdit.setText(str);
         searchEdit.setSelection(str.length());
     }
 
     private void initData() {
         list = dbUtil.select();
-        adapter = new ItemSearchAdapter(this, list);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(this);
+        adapter = new ItemSearchAdapter(list);
+        adapter.setOnItemClickListener(this);
+        recyclerView.setLayoutManager(new FlowLayoutManager());
+        recyclerView.setAdapter(adapter);
+
+
     }
 
     private void initView(View view) {
-        listView = (ListView) view.findViewById(R.id.listview);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         searchEdit = (EditText) view.findViewById(R.id.search_edit);
         searchbt = (TextView) view.findViewById(R.id.search_bt);
+        delete = (TextView) view.findViewById(R.id.tv_delete);
         view.findViewById(R.id.search_image).setOnClickListener(this);
         searchbt.setOnClickListener(this);
+        delete.setOnClickListener(this);
         searchEdit.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -92,11 +105,12 @@ public class SearchActivity extends BaseActivity implements AdapterView.OnItemCl
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
         Intent intent = new Intent(this, SearchListActivity.class);
         intent.putExtra("goodName", list.get(position));
         startActivity(intent);
     }
+
 
     @Override
     public void onClick(View v) {
@@ -109,7 +123,7 @@ public class SearchActivity extends BaseActivity implements AdapterView.OnItemCl
                     intent.putExtra("goodName", searchEdit.getText().toString());
                     dbUtil.insert(searchEdit.getText().toString());
                     list.add(0, searchEdit.getText().toString());
-                    adapter.notifyDataSetChanged();
+
                     startActivity(intent);
                 }
                 KeyboardUtil.closeKeyBoard(this);
@@ -120,11 +134,23 @@ public class SearchActivity extends BaseActivity implements AdapterView.OnItemCl
                     intent.putExtra("goodName", searchEdit.getText().toString());
                     dbUtil.insert(searchEdit.getText().toString());
                     list.add(0, searchEdit.getText().toString());
-                    adapter.notifyDataSetChanged();
                     startActivity(intent);
                     KeyboardUtil.closeKeyBoard(this);
                 }
                 break;
+
+            case R.id.tv_delete:
+                dbUtil.clean();
+                list.clear();
+                adapter.notifyDataSetChanged();
+                break;
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (null != adapter)
+            adapter.notifyDataSetChanged();
     }
 }

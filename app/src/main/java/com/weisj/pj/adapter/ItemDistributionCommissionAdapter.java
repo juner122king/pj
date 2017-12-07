@@ -121,25 +121,25 @@ public class ItemDistributionCommissionAdapter extends BaseExpandableListAdapter
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         GoodViewHolder viewHolder = null;
-        if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.item_distribution_commission_good, null);
-            viewHolder = new GoodViewHolder();
-            viewHolder.bottomLinear = (LinearLayout) convertView.findViewById(R.id.bottom_linear);
-            viewHolder.goodImage = (ImageView) convertView.findViewById(R.id.good_image);
-            viewHolder.goodName = (TextView) convertView.findViewById(R.id.good_name);
-            viewHolder.goodPrice = (TextView) convertView.findViewById(R.id.good_price);
-            viewHolder.goodBuyName = (TextView) convertView.findViewById(R.id.good_buy_name);
-            viewHolder.goodCommission = (TextView) convertView.findViewById(R.id.good_commission);
-            viewHolder.orderNum = (TextView) convertView.findViewById(R.id.order_num);
-            viewHolder.orderCommission = (TextView) convertView.findViewById(R.id.order_commission_all);
-            viewHolder.goodNum = (TextView) convertView.findViewById(R.id.good_num);
-            viewHolder.goodNormal = (LinearLayout) convertView.findViewById(R.id.order_normal);
-            viewHolder.goodDelete = (RelativeLayout) convertView.findViewById(R.id.order_delete);
-            viewHolder.goodDeleteBt = (ImageView) convertView.findViewById(R.id.order_delete_bt);
-            convertView.setTag(viewHolder);
-        } else {
-            viewHolder = (GoodViewHolder) convertView.getTag();
-        }
+//        if (convertView == null) {
+//            convertView = mInflater.inflate(R.layout.item_distribution_commission_good, null);
+//            viewHolder = new GoodViewHolder();
+//            viewHolder.bottomLinear = (LinearLayout) convertView.findViewById(R.id.bottom_linear);
+//            viewHolder.goodImage = (ImageView) convertView.findViewById(R.id.good_image);
+//            viewHolder.goodName = (TextView) convertView.findViewById(R.id.good_name);
+//            viewHolder.goodPrice = (TextView) convertView.findViewById(R.id.good_price);
+//            viewHolder.goodBuyName = (TextView) convertView.findViewById(R.id.good_buy_name);
+//            viewHolder.goodCommission = (TextView) convertView.findViewById(R.id.good_commission);
+//            viewHolder.orderNum = (TextView) convertView.findViewById(R.id.order_num);
+//            viewHolder.orderCommission = (TextView) convertView.findViewById(R.id.order_commission_all);
+//            viewHolder.goodNum = (TextView) convertView.findViewById(R.id.good_num);
+//            viewHolder.goodNormal = (LinearLayout) convertView.findViewById(R.id.order_normal);
+//            viewHolder.goodDelete = (RelativeLayout) convertView.findViewById(R.id.order_delete);
+//            viewHolder.goodDeleteBt = (ImageView) convertView.findViewById(R.id.order_delete_bt);
+//            convertView.setTag(viewHolder);
+//        } else {
+//            viewHolder = (GoodViewHolder) convertView.getTag();
+//        }
         OrderBean.DataEntity.OrderInfoDomainListEntity childData = (OrderBean.DataEntity.OrderInfoDomainListEntity) getChild(groupPosition, childPosition);
         if (childData != null) {
             OrderBean.DataEntity dataEntity = (OrderBean.DataEntity) getGroup(groupPosition);
@@ -202,10 +202,10 @@ public class ItemDistributionCommissionAdapter extends BaseExpandableListAdapter
 //                intent.putExtra("orderType", dataEntity.getOrder_brand_state());
 //                mInflater.getContext().startActivity(intent);
                 break;
-            case R.id.order_delete_bt:
-                OrderBean.DataEntity data = (OrderBean.DataEntity) v.getTag();
-                deleteAlert(data);
-                break;
+//            case R.id.order_delete_bt:
+//                OrderBean.DataEntity data = (OrderBean.DataEntity) v.getTag();
+//                deleteAlert(data);
+//                break;
         }
     }
 

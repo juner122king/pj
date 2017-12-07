@@ -28,7 +28,7 @@ import java.util.List;
  */
 public class OrderFragment extends BaseFragment implements View.OnClickListener, ViewPager.OnPageChangeListener, FiltratePopupWindow.FiltrateListener {
     List<View> list = new ArrayList<>();
-    private View view, leftBar, rightBar, topImage, filtrateBt;
+    private View view;
     private ViewPager viewPager;
     private DistributionCommissionView commissionView;
     private DistributionRecordView recordView;
@@ -41,18 +41,6 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener,
         View view = inflater.inflate(R.layout.fragment_order, null);
         this.view = view;
         rootView.isHintHeadBar(true);
-        leftBar = view.findViewById(R.id.order_left_bar);
-        leftBar.setSelected(true);
-        rightBar = view.findViewById(R.id.order_right_bar);
-        topImage = view.findViewById(R.id.order_top_image);
-        filtrateBt = view.findViewById(R.id.order_filtrate_bt);
-        topImage.setSelected(true);
-        topImage.setOnClickListener(this);
-        rightBar.setOnClickListener(this);
-        filtrateBt.setOnClickListener(this);
-        leftBar.setOnClickListener(this);
-        topImage.setVisibility(View.GONE);
-        filtrateBt.setVisibility(View.VISIBLE);
         initView();
         return view;
     }
@@ -86,7 +74,7 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener,
 
     @Override
     public String setTitleStr() {
-        return "订单";
+        return "首饰盒";
     }
 
     @Override
@@ -100,65 +88,19 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener,
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.order_left_bar:
-                if (viewPager != null)
-                    viewPager.setCurrentItem(0);
-                break;
-            case R.id.order_right_bar:
-                if (viewPager != null)
-                    viewPager.setCurrentItem(1);
-                break;
-            case R.id.order_top_image: // 右上角图片点击
-                if (viewPager != null)
-                    if (viewPager.getCurrentItem() == 1) {
-                        startActivity(new Intent(this.getContext(), SystemNoticeActivity.class));
-                    } else {
-                        startActivity(new Intent(this.getContext(), ConversionrRateActivity.class));
-                    }
-                break;
-            case R.id.order_filtrate_bt:
-                if (popupWindow == null) {
-                    popupWindow = new FiltratePopupWindow(this.getContext(),this);
-                }
-                popupWindow.show(this.getActivity());
-                break;
-        }
     }
 
     private void changeBarState(int state) {
-        if (state == 0) {
-            topImage.setVisibility(View.GONE);
-            filtrateBt.setVisibility(View.VISIBLE);
-        } else {
-            topImage.setVisibility(View.VISIBLE);
-            filtrateBt.setVisibility(View.GONE);
-        }
-        leftBar.setSelected(state == 0);
-        rightBar.setSelected(state == 1);
-        topImage.setSelected(state == 0);
-    }
-
-
-    private void hid() {
-
-        showLoading();
-        OkHttpClientManager.postAsyn("http://shop.pj-sf.com/pjfront/interface/getstatus?appid=APPID", new OkHttpClientManager.ResultCallback<BaseBean>() {
-            @Override
-            public void onError(Request request, Exception e) {
-
-            }
-
-            @Override
-            public void onResponse(BaseBean response) {
-                showLoadFinish();
-                baseBean = response;
-                initView();
-                commissionView.getdata();
-                recordView.getdata();
-            }
-        });
-
+//        if (state == 0) {
+//            topImage.setVisibility(View.GONE);
+//            filtrateBt.setVisibility(View.VISIBLE);
+//        } else {
+//            topImage.setVisibility(View.VISIBLE);
+//            filtrateBt.setVisibility(View.GONE);
+//        }
+//        leftBar.setSelected(state == 0);
+//        rightBar.setSelected(state == 1);
+//        topImage.setSelected(state == 0);
     }
 
     @Override

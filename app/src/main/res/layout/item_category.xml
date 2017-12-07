@@ -34,8 +34,8 @@
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="首饰标题"
             android:layout_marginBottom="5dp"
+            android:text="首饰标题"
             android:textColor="@color/radiobutton_textcolor" />
 
         <LinearLayout
@@ -47,23 +47,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="月租"
-                android:textSize="11sp"
-                android:textColor="#707070" />
+                android:textColor="#707070"
+                android:textSize="11sp" />
 
             <TextView
                 android:id="@+id/tv_use_number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="84"
-                android:textSize="11sp"
-                android:textColor="#ec0031" />
+                android:textColor="#ec0031"
+                android:textSize="11sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="人"
-                android:textSize="11sp"
-                android:textColor="#707070" />
+                android:textColor="#707070"
+                android:textSize="11sp" />
 
         </LinearLayout>
 

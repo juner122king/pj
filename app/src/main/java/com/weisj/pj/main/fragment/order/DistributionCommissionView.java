@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.weisj.pj.R;
@@ -30,15 +31,15 @@ import java.util.List;
  */
 public class DistributionCommissionView implements View.OnClickListener, BaseViewState, IOrderView, AbPullToRefreshView.OnHeaderRefreshListener, AbPullToRefreshView.OnFooterLoadListener, RootView.NoWifiListener, ExpandableListView.OnChildClickListener {
     private LayoutInflater inflater;
-    private View rootView, allview, noPayView, noSendView, noReceiveView, noEvaluateView, lastView;
+    private View rootView, selectView1, selectView2, selectView3, selectView4, lastView;
     private RootView rootRela;
-    private TextView myIncome;
+    private LinearLayout ll_zhifu;//支付分局  只在待选中页面显示
     private ExpandableListView expandableListView;
     private List<OrderBean.DataEntity> dataList = new ArrayList<>();
     private ItemDistributionCommissionAdapter adapter;
     private AbPullToRefreshView refreshView;
     public OrderPresenter presenter;
-    private int state = -1;//0等待买家待付款,1买家已付款,2卖家已发货，待买家收货,  12 待评价 -1表示全部
+    private int state = 0;//0等待买家待选中,1买家已付款,2卖家已发货，待买家收货,  12 待评价 -1表示全部
     private TextView noDataView;
     private int filter_type;
     private String wxName;
@@ -71,22 +72,24 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
         expandableListView = (ExpandableListView) rootView.findViewById(R.id.expand_list_view);
         expandableListView.setEmptyView(ViewStateUtil.getNoDataView(inflater.getContext(), "暂无数据", Color.parseColor("#ffffff")));
         expandableListView.setOnChildClickListener(this);
-        allview = rootView.findViewById(R.id.order_commission_all);
-        noPayView = rootView.findViewById(R.id.order_commission_no_pay);
-        noSendView = rootView.findViewById(R.id.order_commission_no_send);
-        noReceiveView = rootView.findViewById(R.id.order_commission_no_receive);
-        noEvaluateView = rootView.findViewById(R.id.order_commission_no_evaluate);
+        selectView1 = rootView.findViewById(R.id.order_commission_no_pay);
+        selectView2 = rootView.findViewById(R.id.order_commission_no_send);
+        selectView3 = rootView.findViewById(R.id.order_commission_no_receive);
+        selectView4 = rootView.findViewById(R.id.order_commission_no_evaluate);
+        ll_zhifu = (LinearLayout) rootView.findViewById(R.id.ll_zhifu);
+
         noDataView = (TextView) rootView.findViewById(R.id.no_data);
-        myIncome = (TextView) rootView.findViewById(R.id.my_come);
-        lastView = allview;
-        allview.setSelected(true);
-        allview.setOnClickListener(this);
-        noPayView.setOnClickListener(this);
-        noSendView.setOnClickListener(this);
-        noReceiveView.setOnClickListener(this);
-        noEvaluateView.setOnClickListener(this);
-        rootView.findViewById(R.id.my_income_linear).setOnClickListener(this);
+        lastView = selectView1;
+        selectView1.setSelected(true);
+        selectView1.setOnClickListener(this);
+        selectView2.setOnClickListener(this);
+        selectView3.setOnClickListener(this);
+        selectView4.setOnClickListener(this);
         presenter.getInitOrderData(state, filter_type, wxName);
+    }
+
+    public void hidezhifu() {
+        ll_zhifu.setVisibility(View.GONE);
     }
 
     public void getdata() {
@@ -119,6 +122,7 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
         }
     }
 
+
     public void replaceData() {
         adapter = new ItemDistributionCommissionAdapter(inflater, dataList, this);
         expandableListView.setAdapter(adapter);
@@ -128,38 +132,33 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.order_commission_all:
-                lastView.setSelected(false);
-                v.setSelected(true);
-                lastView = allview;
-                changeOrderState(-1);
-                break;
             case R.id.order_commission_no_pay:
                 lastView.setSelected(false);
                 v.setSelected(true);
-                lastView = noPayView;
+                lastView = selectView1;
                 changeOrderState(0);
+                ll_zhifu.setVisibility(View.VISIBLE);
                 break;
             case R.id.order_commission_no_send:
                 lastView.setSelected(false);
                 v.setSelected(true);
-                lastView = noSendView;
+                lastView = selectView2;
                 changeOrderState(1);
+                hidezhifu();
                 break;
             case R.id.order_commission_no_receive:
                 lastView.setSelected(false);
                 v.setSelected(true);
-                lastView = noReceiveView;
+                lastView = selectView3;
                 changeOrderState(2);
+                hidezhifu();
                 break;
             case R.id.order_commission_no_evaluate:
                 lastView.setSelected(false);
                 v.setSelected(true);
-                lastView = noEvaluateView;
+                lastView = selectView4;
                 changeOrderState(12);
-                break;
-            case R.id.my_income_linear:
-//                inflater.getContext().startActivity(new Intent(inflater.getContext(), WalletActivity.class));
+                hidezhifu();
                 break;
         }
     }
@@ -240,7 +239,7 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
 
     @Override
     public void getRecommendStr(String money) {
-        TextViewUtils.setTextAndleftOther(myIncome, SystemConfig.moneymulti(money), "");
+
     }
 
     @Override
@@ -271,10 +270,6 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
 
     @Override
     public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
-//        OrderBean.DataEntity orderData = dataList.get(groupPosition);
-//        Intent intent = new Intent(inflater.getContext(), OrderDetailActivity.class);
-//        intent.putExtra("orderId", orderData.getOrder_brand_id());
-//        inflater.getContext().startActivity(intent);
         return true;
     }
 

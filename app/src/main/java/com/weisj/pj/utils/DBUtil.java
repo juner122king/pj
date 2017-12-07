@@ -63,8 +63,10 @@ public class DBUtil extends SQLiteOpenHelper {
      */
     public void insert(String name) {
         ContentValues cv = new ContentValues();
+
         cv.put(FILED_1, name);
         this.getWritableDatabase().insert(TABLE_NAME, null, cv);
+
         this.getWritableDatabase().close();//关闭数据库对象
     }
 
