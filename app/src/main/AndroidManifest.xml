@@ -82,6 +82,10 @@
             android:label="搜索界面"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".base.activity.VipActivity"
+            android:label="会员卡"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".base.activity.SearchListActivity"
             android:label="搜索列表界面"
             android:screenOrientation="portrait" />

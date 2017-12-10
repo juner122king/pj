@@ -43,7 +43,6 @@ public class SearchActivity extends BaseActivity implements BaseQuickAdapter.OnI
         View view = mLayoutInflater.inflate(R.layout.activity_search, null);
         rootView.isHintHeadBar(true);
         initView(view);
-        rootView.isHintHeadBar(true);
         dbUtil = new DBUtil(this);
         initData();
         return view;

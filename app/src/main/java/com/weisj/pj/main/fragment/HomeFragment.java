@@ -24,6 +24,7 @@ import com.weisj.pj.base.activity.SearchActivity;
 import com.weisj.pj.base.activity.SearchHighListActivity;
 import com.weisj.pj.base.activity.SearchListActivity;
 import com.weisj.pj.base.activity.SystemNoticeActivity;
+import com.weisj.pj.base.activity.VipActivity;
 import com.weisj.pj.base.activity.WebViewActivity;
 import com.weisj.pj.bean.HomeBanner;
 import com.weisj.pj.bean.HomeBean;
@@ -47,8 +48,6 @@ import com.weisj.pj.viewinterface.IHomeView;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.umeng.socialize.utils.DeviceConfig.context;
 
 
 /**
@@ -129,6 +128,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         goodLinear = (LinearLayout) headView.findViewById(R.id.good_linear);
         couponLinear = (LinearLayout) headView.findViewById(R.id.coupon_linear);
         user_shareLinear = (LinearLayout) headView.findViewById(R.id.home_user_share);
+        headView.findViewById(R.id.image_99y_test).setOnClickListener(this);
 
         AreaGoodsListView = (MyListView) headView.findViewById(R.id.AreaGoodsList);
         highImage = (ImageView) headView.findViewById(R.id.image_high_url);
@@ -486,6 +486,13 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()) {
+
+            case R.id.image_99y_test:
+
+                intent = new Intent(getContext(), VipActivity.class);
+                startActivity(intent);
+                break;
+
             case R.id.good1:
                 HomeBean.DataEntity.DistrictGoodsListEntity data = (HomeBean.DataEntity.DistrictGoodsListEntity) goodImage1.getTag();
                 if (data != null)

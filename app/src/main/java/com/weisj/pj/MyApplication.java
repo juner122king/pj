@@ -20,8 +20,8 @@ public class MyApplication extends Application {
         super.onCreate();
         this.context = getApplicationContext();
 
-        PlatformConfig.setQQZone("1105562634", "noktgEbDLLqsQuUh");
-        PlatformConfig.setWeixin("wx005ab789136494c0", "ad9d74847446a17aaee4d9c805c3803f");
-        PlatformConfig.setSinaWeibo("476430127", "d49c3c2ba7db9d5a97d5ede968a6be88");
+//        PlatformConfig.setQQZone("1105562634", "noktgEbDLLqsQuUh");
+//        PlatformConfig.setWeixin("wx005ab789136494c0", "ad9d74847446a17aaee4d9c805c3803f");
+//        PlatformConfig.setSinaWeibo("476430127", "d49c3c2ba7db9d5a97d5ede968a6be88");
     }
 }

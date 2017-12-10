@@ -16,7 +16,7 @@ import com.weisj.pj.utils.SystemConfig;
 /**
  * Created by Administrator on 2015/12/9 0009.
  */
-public class NewVersionDialog extends AlertDialog implements View.OnClickListener {
+public class  NewVersionDialog extends AlertDialog implements View.OnClickListener {
     public String APK_URL;
     private String title;
     private String des;
