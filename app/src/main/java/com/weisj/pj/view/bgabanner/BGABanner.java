@@ -84,7 +84,7 @@ public class BGABanner extends RelativeLayout implements BGAViewPager.AutoPlayDe
         initView(context);
     }
 
-    public List<? extends Object> getmModels(){
+    public List<? extends Object> getmModels() {
         return mModels;
     }
 
@@ -433,11 +433,17 @@ public class BGABanner extends RelativeLayout implements BGAViewPager.AutoPlayDe
         if (mAutoPlayAble) {
             mViewPager.setAutoPlayDelegate(this);
 
-            int zeroItem = Integer.MAX_VALUE / 2 - (Integer.MAX_VALUE / 2) % mViews.size();
-            mViewPager.setCurrentItem(zeroItem);
+            if (0 == mViews.size())
+                mViewPager.setCurrentItem(0);
+            else {
+                int zeroItem = Integer.MAX_VALUE / 2 - (Integer.MAX_VALUE / 2) % mViews.size();
+                mViewPager.setCurrentItem(zeroItem);
+            }
 
             startAutoPlay();
-        } else {
+        } else
+
+        {
             switchToPoint(0);
         }
     }
@@ -656,6 +662,9 @@ public class BGABanner extends RelativeLayout implements BGAViewPager.AutoPlayDe
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
+            if (0 == mViews.size())
+                return null;
+
             final int finalPosition = position % mViews.size();
 
             View view = null;

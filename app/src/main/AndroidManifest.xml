@@ -54,11 +54,11 @@
             android:label="定位列表"
             android:screenOrientation="portrait" />
         <!--<activity-->
-            <!--android:name=".MainActivity"-->
-            <!--android:label="主页面"-->
-            <!--android:launchMode="singleTop"-->
-            <!--android:screenOrientation="portrait"-->
-            <!--android:windowSoftInputMode="adjustResize|stateHidden" />-->
+        <!--android:name=".MainActivity"-->
+        <!--android:label="主页面"-->
+        <!--android:launchMode="singleTop"-->
+        <!--android:screenOrientation="portrait"-->
+        <!--android:windowSoftInputMode="adjustResize|stateHidden" />-->
         <activity
             android:name=".base.activity.LoginActivity"
             android:label="登录界面"
@@ -76,7 +76,7 @@
         <activity
             android:name=".base.activity.SystemNoticeActivity"
             android:label="公告"
-            android:screenOrientation="portrait" /> 
+            android:screenOrientation="portrait" />
         <activity
             android:name=".base.activity.SearchActivity"
             android:label="搜索界面"
@@ -86,6 +86,10 @@
             android:label="会员卡"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".base.activity.VipSRActivity"
+            android:label="购卡送人"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".base.activity.SearchListActivity"
             android:label="搜索列表界面"
             android:screenOrientation="portrait" />
@@ -93,8 +97,8 @@
             android:name=".base.activity.SearchHighListActivity"
             android:label="高计提专区"
             android:screenOrientation="portrait" />
-        <service android:name=".view.dialog.DownloadService" />
 
+        <service android:name=".view.dialog.DownloadService" />
 
 
         <!-- 友盟分享 -->
@@ -103,11 +107,11 @@
             android:excludeFromRecents="true"
             android:theme="@style/Theme.UMDefault" />
         <!--<activity-->
-            <!--android:name=".wxapi.WXEntryActivity"-->
-            <!--android:configChanges="keyboardHidden|orientation|screenSize"-->
-            <!--android:exported="true"-->
-            <!--android:screenOrientation="portrait"-->
-            <!--android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
+        <!--android:name=".wxapi.WXEntryActivity"-->
+        <!--android:configChanges="keyboardHidden|orientation|screenSize"-->
+        <!--android:exported="true"-->
+        <!--android:screenOrientation="portrait"-->
+        <!--android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
@@ -126,14 +130,14 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <!--<activity-->
-            <!--android:name=".WBShareActivity"-->
-            <!--android:configChanges="keyboardHidden|orientation"-->
-            <!--android:screenOrientation="portrait">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />-->
+        <!--android:name=".WBShareActivity"-->
+        <!--android:configChanges="keyboardHidden|orientation"-->
+        <!--android:screenOrientation="portrait">-->
+        <!--<intent-filter>-->
+        <!--<action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />-->
 
-                <!--<category android:name="android.intent.category.DEFAULT" />-->
-            <!--</intent-filter>-->
+        <!--<category android:name="android.intent.category.DEFAULT" />-->
+        <!--</intent-filter>-->
         <!--</activity>-->
         <activity
             android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
@@ -282,8 +286,8 @@
             android:value="Channel ID" />
         // *****************************友盟推送 End*******************************************
         <!--<activity-->
-            <!--android:name=".base.activity.BingPhoneActivity"-->
-            <!--android:screenOrientation="portrait"></activity>-->
+        <!--android:name=".base.activity.BingPhoneActivity"-->
+        <!--android:screenOrientation="portrait"></activity>-->
 
 
         // *****************************百度定位*************************************

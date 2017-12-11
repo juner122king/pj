@@ -307,6 +307,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
             if (homeBanner.getmModels() != null && homeBanner.getmModels().size() > 0 && !isRefresh) {
                 List datas = homeBanner.getmModels();
                 datas.add(0, beanData);
+
                 homeBanner.setData(datas, null);
                 homeBanner2.setData(R.layout.bgabanner2_item, datas, null);
             } else {
@@ -412,17 +413,18 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         homeBanner2.setVisibility(View.VISIBLE);
 //        home_boss_text.setVisibility(View.VISIBLE);
         scrollView.setVisibility(View.VISIBLE);
-        if (data.getResult() != null && data.getResult().getMaterial() != null) {
+        if (data.getResult() != null && data.getResult().getMaterial() != null || data.getResult().getMaterial().size() != 0) {
             if (homeBanner.getmModels() != null && homeBanner.getmModels().size() > 0 && !isRefresh) {
                 List datas = homeBanner.getmModels();
                 datas.addAll(data.getResult().getMaterial());
                 homeBanner.setData(datas, null);
                 homeBanner2.setData(R.layout.bgabanner2_item, datas, null);
-            } else {
-                isRefresh = false;
-                homeBanner.setData(data.getResult().getMaterial(), null);
-                homeBanner2.setData(R.layout.bgabanner2_item, data.getResult().getMaterial(), null);
             }
+//            else {
+//                isRefresh = false;
+//                homeBanner.setData(data.getResult().getMaterial(), null);
+//                homeBanner2.setData(R.layout.bgabanner2_item, data.getResult().getMaterial(), null);
+//            }
         } else {
             homeBanner.setVisibility(View.GONE);
             homeBanner2.setVisibility(View.GONE);
