@@ -3,6 +3,7 @@ package com.weisj.pj.manager.impl;
 import com.squareup.okhttp.Request;
 import com.weisj.pj.bean.GoodDetail;
 import com.weisj.pj.bean.GoodDetailImageBean;
+import com.weisj.pj.bean.GoodPoint;
 import com.weisj.pj.manager.IGoodDetailmanager;
 import com.weisj.pj.manager.listener.IOnManagerListener;
 import com.weisj.pj.utils.OkHttpClientManager;
@@ -65,14 +66,14 @@ public class GoodDetailManager implements IGoodDetailmanager {
         params.put("goods_id", String.valueOf(good_id));
         params.put("page", String.valueOf(page));
         params.put("page_num", "10");
-        OkHttpClientManager.postAsyn(Urls.goodscomment, params, new OkHttpClientManager.ResultCallback<GoodDetailImageBean>() {
+        OkHttpClientManager.postAsyn(Urls.goodscomment, params, new OkHttpClientManager.ResultCallback<GoodPoint>() {
             @Override
             public void onError(Request request, Exception e) {
                 listener.onFail(e, Urls.goodscomment + "=page=" + page);
             }
 
             @Override
-            public void onResponse(GoodDetailImageBean response) {
+            public void onResponse(GoodPoint response) {
                 if (response != null) {
                     listener.onSuccess(response, Urls.goodscomment + "=page=" + page);
                 } else {

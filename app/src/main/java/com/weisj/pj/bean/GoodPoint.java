@@ -60,6 +60,12 @@ public class GoodPoint {
         private int comment_rank;
         private List<String> pics;
 
+        public DataBean(String user_name, String content) {
+            this.user_name = user_name;
+            this.content = content;
+        }
+
+
         public String getContent() {
             return content;
         }

@@ -8,13 +8,14 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.weisj.pj.R;
 import com.weisj.pj.bean.CommodityShow;
+import com.weisj.pj.bean.HomeBean;
 
 import java.util.List;
 
 /**
  * 品类页的商品Item
  */
-public class ItemCategoryCommodityAdapter extends BaseQuickAdapter<CommodityShow, BaseViewHolder> {
+public class ItemCategoryCommodityAdapter extends BaseQuickAdapter<HomeBean.DataEntity.DistrictGoodsListEntity, BaseViewHolder> {
 
 
     public ItemCategoryCommodityAdapter(List data) {
@@ -22,13 +23,13 @@ public class ItemCategoryCommodityAdapter extends BaseQuickAdapter<CommodityShow
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, CommodityShow item) {
+    protected void convert(BaseViewHolder helper, HomeBean.DataEntity.DistrictGoodsListEntity item) {
 
-        helper.setText(R.id.tv_title, item.getTitle());
+        helper.setText(R.id.tv_title, item.getGoodsName());
 
         // 加载网络图片
-        Glide.with(mContext).load(item.getPic()).crossFade().into((ImageView) helper.getView(R.id.iv));
-        helper.setText(R.id.tv_use_number, String.valueOf(item.getNubmer()));
+        Glide.with(mContext).load(item.getImg1()).crossFade().into((ImageView) helper.getView(R.id.iv));
+        helper.setText(R.id.tv_use_number, String.valueOf(item.getPrice()));
 
 
     }
