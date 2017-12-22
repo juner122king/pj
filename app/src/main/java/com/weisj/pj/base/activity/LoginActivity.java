@@ -45,10 +45,7 @@ public class  LoginActivity extends BaseActivity implements View.OnClickListener
     }
 
     private class MyBroadcastReceiver extends BroadcastReceiver {
-        //        Intent intent = new Intent();
-//        intent.setAction(MainActivity.BROADCAST_ACTION);
-//        intent.putExtra(StringUtil.BUYNUMBER, StringUtil.BUYNUMBER);
-//        context.sendBroadcast(intent);
+
         @Override
         public void onReceive(Context context, Intent intent) {
             finish();
@@ -58,7 +55,7 @@ public class  LoginActivity extends BaseActivity implements View.OnClickListener
     private void initView(View view) {
         view.findViewById(R.id.registerBt).setOnClickListener(this);
         view.findViewById(R.id.loginBt).setOnClickListener(this);
-        view.findViewById(R.id.delect).setOnClickListener(this);
+//        view.findViewById(R.id.delect).setOnClickListener(this);
         view.findViewById(R.id.forgetPass).setOnClickListener(this);
         phoneEdit = (EditText) view.findViewById(R.id.phone);
         passwordEdit = (EditText) view.findViewById(R.id.password);
@@ -92,9 +89,9 @@ public class  LoginActivity extends BaseActivity implements View.OnClickListener
                 presenter.login();
                 KeyboardUtil.closeKeyBoard(this);
                 break;
-            case R.id.delect:
-                finish();
-                break;
+//            case R.id.delect:
+//                finish();
+//                break;
             case R.id.forgetPass:
                 Intent intent = new Intent(this, RegisterActivity.class);
                 intent.putExtra("type", 1);
@@ -106,12 +103,7 @@ public class  LoginActivity extends BaseActivity implements View.OnClickListener
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//        if (requestCode == 1 && resultCode == RESULT_OK) {
-//            if (data != null) {
-//                phoneEdit.setText(data.getStringExtra("phoneNumber"));
-//                passwordEdit.setText(data.getStringExtra("password"));
-//            }
-//        }
+
     }
 
     @Override

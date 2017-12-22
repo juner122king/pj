@@ -42,7 +42,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Black">
-        <activity android:name=".MainActivity">
+        <activity android:name=".base.activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -53,15 +53,19 @@
             android:name=".base.activity.LocationActivity"
             android:label="定位列表"
             android:screenOrientation="portrait" />
-        <!--<activity-->
-        <!--android:name=".MainActivity"-->
-        <!--android:label="主页面"-->
-        <!--android:launchMode="singleTop"-->
-        <!--android:screenOrientation="portrait"-->
-        <!--android:windowSoftInputMode="adjustResize|stateHidden" />-->
         <activity
-            android:name=".base.activity.LoginActivity"
-            android:label="登录界面"
+            android:name=".MainActivity"
+            android:label="主页面"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <!--<activity-->
+            <!--android:name=".base.activity.LoginActivity"-->
+            <!--android:label="登录界面"-->
+            <!--android:screenOrientation="portrait" />-->
+        <activity
+            android:name=".base.activity.RegisterActivity"
+            android:label="注册界面"
             android:screenOrientation="portrait" />
 
         <activity
@@ -104,6 +108,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".base.activity.SearchHighListActivity"
+            android:label="高计提专区"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".base.activity.OrderActivity"
             android:label="高计提专区"
             android:screenOrientation="portrait" />
 

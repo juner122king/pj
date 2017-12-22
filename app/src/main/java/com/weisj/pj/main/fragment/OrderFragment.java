@@ -48,7 +48,6 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener,
     @Override
     public void onResume() {
         super.onResume();
-//        hid();
         commissionView.getdata();
         recordView.getdata();
     }
@@ -57,18 +56,11 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener,
         commissionView = new DistributionCommissionView(mInflater);
         recordView = new DistributionRecordView(mInflater);
         list.add(commissionView.getRootView());
-
-//        if (baseBean.getData().equals("0")) {
         list.add(recordView.getRootView());
-//        } else {
-//            rightBar.setVisibility(View.GONE);
-//        }
         viewPager = (ViewPager) view.findViewById(R.id.view_pager);
         viewPager.setAdapter(new ItemOrderFragmentAdapter(list));
         viewPager.addOnPageChangeListener(this);
 
-
-        //
 
     }
 

@@ -3,103 +3,111 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
 
+
+    <TextView
+        android:id="@+id/tv_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="输入手机号，便可获取短信验证码"
+        android:textColor="#ee0059"
+        android:textSize="13dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginTop="20dp">
+
+
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/iv"
+            android:background="@null"
+            android:hint="手机号"
+            android:paddingLeft="10dp"
+            android:singleLine="true"
+            android:textColor="#333333"
+            android:textColorHint="#898989"
+            android:textSize="@dimen/text_size_14" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#621d6e" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_height="42dp"
+        android:layout_marginTop="0dp">
+
+
+        <EditText
+            android:id="@+id/staff_number"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/iv2"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="验证码"
+            android:paddingLeft="10dp"
+            android:singleLine="true"
+            android:textColor="#333333"
+            android:textColorHint="#898989"
+            android:textSize="@dimen/text_size_14" />
 
         <TextView
+            android:id="@+id/tv_reset_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="输入手机号，便可获取短信验证码"
-            android:textColor="#666666"
-            android:textSize="13dp" />
+            android:background="@drawable/red_1radio"
+            android:padding="5dp"
+            android:text="发送验证码"
+            android:textColor="#ee0059"
+            android:textSize="12sp" />
+
     </LinearLayout>
 
-
-    <com.weisj.fx.view.ClearEditText
-        android:id="@+id/phone"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/hui_yuanjiao"
-        android:digits="1234567890"
-        android:gravity="center_vertical"
-        android:hint="手机号"
-        android:inputType="phone"
-        android:maxLength="11"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:singleLine="true"
-        android:textColor="#333333"
-        android:textColorHint="#aaaaaa"
-        android:textSize="14dp" />
+        android:layout_height="0.5dp"
+        android:background="#621d6e" />
 
-    <com.weisj.fx.view.ClearEditText
-        android:id="@+id/staff_number"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/hui_yuanjiao"
-        android:digits="1234567890"
-        android:gravity="center_vertical"
-        android:hint="证件号码"
-        android:inputType="phone"
-        android:maxLength="8"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:singleLine="true"
-        android:textColor="#333333"
-        android:textColorHint="#aaaaaa"
-        android:textSize="14dp" />
 
     <TextView
-        android:id="@+id/staff_city"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/hui_yuanjiao"
-        android:gravity="center_vertical"
-        android:hint="所在地区"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:singleLine="true"
-        android:textColor="#333333"
-        android:textColorHint="#aaaaaa"
-        android:textSize="14dp" />
-
-    <Button
         android:id="@+id/nextBt"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/rolegold_yuanjiao"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/f61_0radio"
+        android:gravity="center"
+        android:padding="7dp"
         android:text="下一步"
-        android:textColor="#ffffff"
-        android:textSize="18dp" />
+        android:textColor="#fff"
+        android:textSize="16sp" />
 
     <TextView
+        android:id="@+id/user_protocol"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:text="用户注册协议"
-        android:id="@+id/user_protocol"
         android:textColor="#ff0000"
-        android:textSize="12dp" />
+        android:textSize="12dp"
+        android:visibility="gone" />
 
 
 </LinearLayout>

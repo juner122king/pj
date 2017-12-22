@@ -24,28 +24,11 @@ public class RegisterTwoPresenter implements IOnManagerListener {
         iPhoneVerManager = new PhoneVerManger();
     }
 
-    public void verCode() {
-        if (iRegisterTwoView.getVerCode() != null && !iRegisterTwoView.getVerCode().trim().equals("")) {
-            viewState.showLoading();
-            iPhoneVerManager.verifactionCode(iRegisterTwoView.getPhoneNumber(), 1, iRegisterTwoView.getVerCode(), this);
-        } else {
-            SystemConfig.showToast("请输入验证码");
-        }
-    }
-
-    public void againGetCode() {
-        iPhoneVerManager.getPhoneVerCode(iRegisterTwoView.getPhoneNumber(), 1, this);
-    }
-
 
     @Override
     public void onSuccess(Object data, String url) {
         viewState.showLoadFinish();
-        if (url.equals(Urls.checkticket)) {
-            iRegisterTwoView.successVerCode((VerCodeBean) data);
-        } else {
-            iRegisterTwoView.successAgainGetCode((BaseBean) data);
-        }
+
     }
 
     @Override

@@ -3,78 +3,102 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/tv_info"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:orientation="horizontal">
+        android:padding="10dp"
+        android:text="请设置登录密码并确认密码"
+        android:textColor="#ee0059"
+        android:textSize="13dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="短信已经发送到"
-            android:textColor="#666666"
-            android:textSize="13dp" />
-
-        <TextView
-            android:id="@+id/phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:textColor="#f44341"
-            android:textSize="14dp" />
-    </LinearLayout>
-
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_height="42dp"
         android:layout_marginTop="20dp">
 
 
-        <com.weisj.fx.view.ClearEditText
-            android:id="@+id/codeEv"
-            android:layout_width="0dp"
+        <EditText
+            android:id="@+id/psw"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/left_radio"
-            android:gravity="center_vertical"
-            android:hint="验证码"
-            android:inputType="phone"
-            android:paddingLeft="15dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/iv"
+            android:background="@null"
+            android:hint="请输入6位以上登录密码"
+            android:inputType="textPassword"
+            android:paddingLeft="10dp"
             android:singleLine="true"
-            android:textColor="#000000"
-            android:textColorHint="#aaaaaa"
-            android:textSize="14dp" />
+            android:textColor="#333333"
+            android:textColorHint="#898989"
+            android:textSize="@dimen/text_size_14" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#621d6e" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_marginTop="0dp">
 
 
-        <Button
-            android:id="@+id/codeBt"
-            android:layout_width="120dp"
+        <EditText
+            android:id="@+id/psw2"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/right_radio"
-            android:text="重新发送159秒"
-            android:textColor="@color/colorHome"
-            android:textSize="14dp" />
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/iv2"
+            android:layout_weight="1"
+            android:background="@null"
+            android:hint="请再次确认登录密码"
+            android:inputType="textPassword"
+            android:paddingLeft="10dp"
+            android:singleLine="true"
+            android:textColor="#333333"
+            android:textColorHint="#898989"
+            android:textSize="@dimen/text_size_14" />
+
 
     </LinearLayout>
 
-
-    <Button
-        android:id="@+id/loginBt"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="0.5dp"
+        android:background="#621d6e" />
+
+
+    <TextView
+        android:id="@+id/register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginTop="15dp"
-        android:background="@drawable/rolegold_yuanjiao"
-        android:text="下一步"
-        android:textColor="#ffffff"
-        android:textSize="18dp" />
+        android:layout_marginTop="40dp"
+        android:background="@drawable/f61_0radio"
+        android:gravity="center"
+        android:padding="7dp"
+        android:text="注册"
+        android:textColor="#fff"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/user_protocol"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="用户注册协议"
+        android:textColor="#ff0000"
+        android:textSize="12dp"
+        android:visibility="gone" />
 
 </LinearLayout>

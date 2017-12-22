@@ -72,6 +72,8 @@ public class GoodDetailActivity extends BaseActivity implements IGoodDetailView,
         view.findViewById(R.id.good_image_linear).setOnClickListener(this);
         view.findViewById(R.id.good_point).setOnClickListener(this);
         view.findViewById(R.id.tv_gp_more).setOnClickListener(this);
+        view.findViewById(R.id.tv_b2).setOnClickListener(this);
+        view.findViewById(R.id.tv_b3).setOnClickListener(this);
         refreshView.setLoadMoreEnable(false);
         refreshView.setOnHeaderRefreshListener(this);
         bgaBanner = (BGABanner) view.findViewById(R.id.bagbanner_container);
@@ -191,7 +193,11 @@ public class GoodDetailActivity extends BaseActivity implements IGoodDetailView,
 
 
             case R.id.tv_gp_more:
+            case R.id.tv_b2:
                 startActivity(new Intent(this, GoodPointActivity.class));
+                break;
+            case R.id.tv_b3:
+                startActivity(new Intent(this, OrderActivity.class));
                 break;
         }
     }

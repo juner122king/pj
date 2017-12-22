@@ -25,13 +25,18 @@
             android:textColor="@color/colorHome"
             android:textSize="@dimen/text_size_18" />
 
-        <ImageView
+
+        <TextView
             android:id="@+id/register_finish"
-            android:layout_width="48dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+
             android:layout_alignParentRight="true"
-            android:padding="14dp"
-            android:src="@mipmap/icon_finish" />
+            android:gravity="center"
+            android:padding="13dp"
+            android:text="取消"
+            android:textColor="#ee0059"
+            android:textSize="16sp" />
     </RelativeLayout>
 
     <LinearLayout

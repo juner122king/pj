@@ -2,10 +2,13 @@ package com.weisj.pj.presenter;
 
 import com.weisj.pj.base.BaseViewState;
 import com.weisj.pj.bean.BaseBean;
+import com.weisj.pj.bean.VerCodeBean;
 import com.weisj.pj.manager.IPhoneVerManager;
 import com.weisj.pj.manager.impl.PhoneVerManger;
 import com.weisj.pj.manager.listener.IOnManagerListener;
 import com.weisj.pj.utils.SystemConfig;
+import com.weisj.pj.utils.Urls;
+import com.weisj.pj.utils.Utility;
 import com.weisj.pj.viewinterface.IRegisterOneView;
 
 /**
@@ -22,23 +25,36 @@ public class RegisterOnePresenter implements IOnManagerListener {
         this.viewState = viewState;
     }
 
-    public void getVerCode() {
-        if (iRegisterView.getPhoneNumber() != null && iRegisterView.getPhoneNumber().length() == 11) {
-            if (iRegisterView.getStaffCode() != null && !iRegisterView.getStaffCode().trim().equals("") && iRegisterView.getStaffCode().trim().length() >= 6) {
-                viewState.showLoading();
-                iPhoneVerManager.getPhoneVerCode(iRegisterView.getPhoneNumber(), 1, this);
-            } else {
-                SystemConfig.showToast("请输入正确员工工号");
-            }
+
+    //验证手机验证码
+    public void verCode() {
+        if (iRegisterView.getVerCode() != null && !iRegisterView.getVerCode().trim().equals("")) {
+            viewState.showLoading();
+            iPhoneVerManager.verifactionCode(iRegisterView.getPhoneNumber(), 1, iRegisterView.getVerCode(), this);
         } else {
-            SystemConfig.showToast("请输入正确手机号");
+            SystemConfig.showToast("请输入验证码");
         }
+    }
+
+    //发送手机验证码
+    public void againGetCode() {
+        String phone = iRegisterView.getPhoneNumber();
+
+        if (Utility.isMobile(phone))
+            iPhoneVerManager.getPhoneVerCode(phone, 1, this);
+        else
+            SystemConfig.showToast("请输入正确的手机号码");
+
     }
 
     @Override
     public void onSuccess(Object data, String url) {
         viewState.showLoadFinish();
-        iRegisterView.successGetCode((BaseBean) data);
+        if (url.equals(Urls.checkticket)) {
+            iRegisterView.successVerCode((VerCodeBean) data);
+        } else {
+            iRegisterView.successAgainGetCode((BaseBean) data);
+        }
     }
 
     @Override
