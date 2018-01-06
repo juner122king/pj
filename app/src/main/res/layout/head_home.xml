@@ -97,15 +97,23 @@
     </LinearLayout>
 
     <!-- 99元 试戴-->
-    <ImageView
-        android:id="@+id/image_99y_test"
+
+    <com.weisj.pj.view.bgabanner.BGABanner
+        android:id="@+id/home_banner_vip"
         android:layout_width="match_parent"
+
         android:layout_height="60dp"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
-        android:background="@drawable/white_radio" />
+        android:background="@drawable/white_radio"
+        app:banner_pageChangeDuration="1000"
+        app:banner_pointAutoPlayAble="true"
+        app:banner_pointContainerBackground="@android:color/transparent"
+        app:banner_pointDrawable="@drawable/bga_banner_selector_point_hollow"
+        app:banner_pointTopBottomMargin="10dp"
+        app:banner_transitionEffect="defaultEffect"></com.weisj.pj.view.bgabanner.BGABanner>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -185,16 +193,15 @@
     <HorizontalScrollView
         android:id="@+id/home_scroll_view"
         android:layout_width="match_parent"
-        android:layout_height="125dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
-        android:layout_marginTop="0.5dp"
-        android:background="#e6e6e6"
+        android:background="#fff"
         android:scrollbars="none">
 
         <LinearLayout
             android:id="@+id/home_boss_good_linear"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="135dp"
             android:orientation="horizontal"></LinearLayout>
     </HorizontalScrollView>
 
@@ -330,179 +337,4 @@
         android:orientation="vertical"></LinearLayout>
 
 
-    <LinearLayout
-        android:id="@+id/good_linear"
-        android:layout_width="match_parent"
-        android:layout_height="158dp"
-        android:layout_marginTop="0.5dp"
-        android:background="#ffffff"
-        android:orientation="horizontal"
-        android:visibility="visible">
-
-        <LinearLayout
-            android:id="@+id/good1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/good1_name"
-                style="@style/head_home_recommend_text_name"
-                android:ellipsize="end"
-                android:singleLine="true" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="125dp">
-
-                <ImageView
-                    android:id="@+id/good1_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY" />
-
-                <TextView
-                    android:id="@+id/good1_price"
-                    style="@style/head_home_recommend_text_price" />
-            </RelativeLayout>
-        </LinearLayout>
-
-        <View
-            android:layout_width="0.5dp"
-            android:layout_height="match_parent"
-            android:background="#e6e6e6" />
-
-        <LinearLayout
-            android:id="@+id/good2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/good2_name"
-                style="@style/head_home_recommend_text_name"
-                android:ellipsize="end"
-                android:singleLine="true" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="125dp">
-
-                <ImageView
-                    android:id="@+id/good2_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY" />
-
-                <TextView
-                    android:id="@+id/good2_price"
-                    style="@style/head_home_recommend_text_price" />
-            </RelativeLayout>
-        </LinearLayout>
-
-        <View
-            android:layout_width="0.5dp"
-            android:layout_height="match_parent"
-            android:background="#e6e6e6" />
-
-        <LinearLayout
-            android:id="@+id/good3"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/good3_name"
-                style="@style/head_home_recommend_text_name"
-                android:ellipsize="end"
-                android:singleLine="true" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="125dp">
-
-                <ImageView
-                    android:id="@+id/good3_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY" />
-
-                <TextView
-                    android:id="@+id/good3_price"
-                    style="@style/head_home_recommend_text_price" />
-            </RelativeLayout>
-        </LinearLayout>
-    </LinearLayout>
-
-
-    <!-- 原app 热销专区-->
-    <ImageView
-        android:id="@+id/image_high_url"
-        android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
-        android:visibility="gone" />
-
-    <LinearLayout
-        android:id="@+id/coupon_linear"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone" />
-
-
-    <com.weisj.pj.view.MyListView
-        android:id="@+id/AreaGoodsList"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@null"
-        android:dividerHeight="0dp"
-        android:scrollbars="none"
-        android:visibility="gone"></com.weisj.pj.view.MyListView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:layout_marginTop="10dp"
-        android:background="#ffffff"
-        android:orientation="horizontal"
-        android:visibility="gone">
-
-        <TextView
-            android:id="@+id/home_recommend"
-            android:layout_width="0dp"
-
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:paddingLeft="10dp"
-            android:text="顺丰大当家推荐"
-            android:textColor="@color/colorHome"
-            android:textSize="15dp" />
-
-        <!--<LinearLayout-->
-        <!--android:id="@+id/home_more"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:gravity="center">-->
-
-        <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="更多"-->
-        <!--android:textColor="#999999"-->
-        <!--android:textSize="@dimen/text_size_13" />-->
-
-        <!--<ImageView-->
-        <!--android:layout_width="20dp"-->
-        <!--android:layout_height="16dp"-->
-        <!--android:layout_marginRight="10dp"-->
-        <!--android:src="@mipmap/icon_go" />-->
-
-        <!--</LinearLayout>-->
-    </LinearLayout>
 </LinearLayout>

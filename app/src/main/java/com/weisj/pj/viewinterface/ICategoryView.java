@@ -1,15 +1,14 @@
 package com.weisj.pj.viewinterface;
 
-import com.weisj.pj.bean.CategoryBean;
+import com.weisj.pj.bean.GoodBean;
 
 /**
  * Created by Administrator on 2016/7/20 0020.
  */
 public interface ICategoryView {
 
-    void getTitle(CategoryBean categoryTitleBean);
 
-    void getContent(CategoryBean categoryContentBean);
+    void getContent(GoodBean goodBean);
 
     void cateFail();
 

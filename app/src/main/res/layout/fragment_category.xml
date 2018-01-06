@@ -28,13 +28,14 @@
             android:padding="@dimen/text_size_13"
             android:src="@mipmap/icon_search" />
 
-
     </RelativeLayout>
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:background="@color/colorf4f4f4" />
 
 </LinearLayout>

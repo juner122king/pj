@@ -10,6 +10,7 @@ android {
         versionCode 43
         versionName '1.4.3'
         multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -22,6 +23,9 @@ android {
 }
 
 dependencies {
+    implementation 'com.android.support:support-v4:24.2.1'
+    implementation 'com.android.support:support-vector-drawable:24.2.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     //noinspection GradleCompatible

@@ -2,6 +2,8 @@ package com.weisj.pj.manager.impl;
 
 import com.squareup.okhttp.Request;
 import com.weisj.pj.bean.CategoryBean;
+import com.weisj.pj.bean.GoodBean;
+import com.weisj.pj.bean.HomeBean;
 import com.weisj.pj.manager.ICategoryManager;
 import com.weisj.pj.manager.listener.IOnManagerListener;
 import com.weisj.pj.utils.OkHttpClientManager;
@@ -15,45 +17,30 @@ import java.util.Map;
  */
 public class CategoryManager implements ICategoryManager {
 
+
+    //查询商品
     @Override
-    public void getCateContent(final int id, final IOnManagerListener onManagerListener) {
+    public void getCateContent(final String page, final String goods_params, final IOnManagerListener onManagerListener) {
         Map<String, String> params = new HashMap<>();
-        params.put("parent_id", String.valueOf(id));
-        OkHttpClientManager.postAsyn(Urls.getcategorybychildfilter, params, new OkHttpClientManager.ResultCallback<CategoryBean>() {
+        params.put("page", page);
+        params.put("page_num", "10");
+        params.put("json_goods_params", goods_params);//商品类别
+        OkHttpClientManager.postAsyn(Urls.searchByProperties, params, new OkHttpClientManager.ResultCallback<GoodBean>() {
             @Override
             public void onError(Request request, Exception e) {
-                onManagerListener.onFail(e, Urls.getcategorybychildfilter);
+                onManagerListener.onFail(e, Urls.searchByProperties);
             }
 
             @Override
-            public void onResponse(CategoryBean response) {
+            public void onResponse(GoodBean response) {
                 if (response != null) {
-                    onManagerListener.onSuccess(response, Urls.getcategorybychildfilter);
+                    onManagerListener.onSuccess(response, Urls.searchByProperties);
                 } else {
-                    onManagerListener.onFail(new RuntimeException("null"), Urls.getcategorybychildfilter);
+                    onManagerListener.onFail(new RuntimeException("null"), Urls.searchByProperties);
                 }
             }
         });
     }
 
-    @Override
-    public void getCateTitle(final IOnManagerListener listener) {
-        Map<String, String> params = new HashMap<>();
-        params.put("parent_id", "0");
-        OkHttpClientManager.postAsyn(Urls.getcategorybytopfilter, params, new OkHttpClientManager.ResultCallback<CategoryBean>() {
-            @Override
-            public void onError(Request request, Exception e) {
-                listener.onFail(e, Urls.getcategorybytopfilter);
-            }
 
-            @Override
-            public void onResponse(CategoryBean response) {
-                if (response != null) {
-                    listener.onSuccess(response, Urls.getcategorybytopfilter);
-                } else {
-                    listener.onFail(new RuntimeException("null"), Urls.getcategorybytopfilter);
-                }
-            }
-        });
-    }
 }

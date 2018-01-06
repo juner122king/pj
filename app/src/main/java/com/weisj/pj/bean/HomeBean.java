@@ -39,26 +39,73 @@ public class HomeBean {
     }
 
     public static class DataEntity {
-
-        private List<DistrictGoodsListEntity> districtGoodsList;
-
-        private List<HomeCouponbean.DataEntity.SingleCouponListEntity> districtCouponList;
-
-        private List<DistrictGoodsListEntity> countryGoodsList;
-
-        private List<PositionAreaGoodsListEntity> positionAreaGoodsList;
-        private String memberName;
+//
+//        private List<DistrictGoodsListEntity> districtGoodsList;
+//
+//        private List<HomeCouponbean.DataEntity.SingleCouponListEntity> districtCouponList;
+//
+//        private List<DistrictGoodsListEntity> countryGoodsList;
+//
+//        private List<PositionAreaGoodsListEntity> positionAreaGoodsList;
+//        private String memberName;
         private String guanName;
-        private String highCommissionPicUrl;
+//        private String highCommissionPicUrl;
 
-        public String getHighCommissionPicUrl() {
-            return highCommissionPicUrl;
+
+        private List<Ad> topAdList;
+        private List<Ad> insertAdList;
+        private List<Ad> rotateAdList;
+        private List<HomeBean.DataEntity.DistrictGoodsListEntity> recommendGoodsList;
+        private List<Comment> commentList;
+
+        public List<Ad> getTopAdList() {
+            return topAdList;
         }
 
-        public void setHighCommissionPicUrl(String highCommissionPicUrl) {
-            this.highCommissionPicUrl = highCommissionPicUrl;
+        public void setTopAdList(List<Ad> topAdList) {
+            this.topAdList = topAdList;
         }
 
+        public List<Ad> getInsertAdList() {
+            return insertAdList;
+        }
+
+        public void setInsertAdList(List<Ad> insertAdList) {
+            this.insertAdList = insertAdList;
+        }
+
+        public List<Ad> getRotateAdList() {
+            return rotateAdList;
+        }
+
+        public void setRotateAdList(List<Ad> rotateAdList) {
+            this.rotateAdList = rotateAdList;
+        }
+
+        public List<DistrictGoodsListEntity> getRecommendGoodsList() {
+            return recommendGoodsList;
+        }
+
+        public void setRecommendGoodsList(List<DistrictGoodsListEntity> recommendGoodsList) {
+            this.recommendGoodsList = recommendGoodsList;
+        }
+
+        public List<Comment> getCommentList() {
+            return commentList;
+        }
+
+        public void setCommentList(List<Comment> commentList) {
+            this.commentList = commentList;
+        }
+
+//        public String getHighCommissionPicUrl() {
+//            return highCommissionPicUrl;
+//        }
+//
+//        public void setHighCommissionPicUrl(String highCommissionPicUrl) {
+//            this.highCommissionPicUrl = highCommissionPicUrl;
+//        }
+//
         public String getGuanName() {
             return guanName;
         }
@@ -67,45 +114,45 @@ public class HomeBean {
             this.guanName = guanName;
         }
 
-        public String getMemberName() {
-            return memberName;
-        }
-
-        public void setMemberName(String memberName) {
-            this.memberName = memberName;
-        }
-
-        public void setDistrictGoodsList(List<DistrictGoodsListEntity> districtGoodsList) {
-            this.districtGoodsList = districtGoodsList;
-        }
-
-        public void setDistrictCouponList(List<HomeCouponbean.DataEntity.SingleCouponListEntity> districtCouponList) {
-            this.districtCouponList = districtCouponList;
-        }
-
-        public void setCountryGoodsList(List<DistrictGoodsListEntity> countryGoodsList) {
-            this.countryGoodsList = countryGoodsList;
-        }
-
-        public List<DistrictGoodsListEntity> getDistrictGoodsList() {
-            return districtGoodsList;
-        }
-
-        public List<HomeCouponbean.DataEntity.SingleCouponListEntity> getDistrictCouponList() {
-            return districtCouponList;
-        }
-
-        public List<DistrictGoodsListEntity> getCountryGoodsList() {
-            return countryGoodsList;
-        }
-
-        public List<PositionAreaGoodsListEntity> getPositionAreaGoodsList() {
-            return positionAreaGoodsList;
-        }
-
-        public void setPositionAreaGoodsList(List<PositionAreaGoodsListEntity> positionAreaGoodsList) {
-            this.positionAreaGoodsList = positionAreaGoodsList;
-        }
+//        public String getMemberName() {
+//            return memberName;
+//        }
+//
+//        public void setMemberName(String memberName) {
+//            this.memberName = memberName;
+//        }
+//
+//        public void setDistrictGoodsList(List<DistrictGoodsListEntity> districtGoodsList) {
+//            this.districtGoodsList = districtGoodsList;
+//        }
+//
+//        public void setDistrictCouponList(List<HomeCouponbean.DataEntity.SingleCouponListEntity> districtCouponList) {
+//            this.districtCouponList = districtCouponList;
+//        }
+//
+//        public void setCountryGoodsList(List<DistrictGoodsListEntity> countryGoodsList) {
+//            this.countryGoodsList = countryGoodsList;
+//        }
+//
+//        public List<DistrictGoodsListEntity> getDistrictGoodsList() {
+//            return districtGoodsList;
+//        }
+//
+//        public List<HomeCouponbean.DataEntity.SingleCouponListEntity> getDistrictCouponList() {
+//            return districtCouponList;
+//        }
+//
+//        public List<DistrictGoodsListEntity> getCountryGoodsList() {
+//            return countryGoodsList;
+//        }
+//
+//        public List<PositionAreaGoodsListEntity> getPositionAreaGoodsList() {
+//            return positionAreaGoodsList;
+//        }
+//
+//        public void setPositionAreaGoodsList(List<PositionAreaGoodsListEntity> positionAreaGoodsList) {
+//            this.positionAreaGoodsList = positionAreaGoodsList;
+//        }
 
         public static class DistrictGoodsListEntity {
             private int goodsId;
@@ -124,7 +171,7 @@ public class HomeBean {
             private String unit;
             private String delMoneyFinish;
             private String commission;
-
+            private String sellNum;
             private String maxPrice;
 
             public String getDelMoneyFinish() {
@@ -138,6 +185,13 @@ public class HomeBean {
                 }
             }
 
+            public String getSellNum() {
+                return sellNum;
+            }
+
+            public void setSellNum(String sellNum) {
+                this.sellNum = sellNum;
+            }
 
             public String getMaxPrice() {
                 return maxPrice;
@@ -276,15 +330,14 @@ public class HomeBean {
         }
 
 
-
-        public static class PositionAreaGoodsListEntity{
+        public static class PositionAreaGoodsListEntity {
 
             private String adId;
             private String positionId;
             private String positionName;
             private String recommendCategoryId;
             private String positionPicUrl;
-            private ArrayList<AreaGoodsListListEntity>  areaGoodsList;
+            private ArrayList<AreaGoodsListListEntity> areaGoodsList;
 
             public String getAdId() {
                 return adId;
@@ -336,27 +389,25 @@ public class HomeBean {
         }
 
 
+        public static class AreaGoodsListListEntity {
 
-
-        public static class AreaGoodsListListEntity{
-
-            private String  adPositionId;
-            private String  adName;
-            private String  adPic;
-            private String  img1;
-            private String  goodsName;
-            private String  price;
-            private String  commission;
-            private String  unit;
-            private String  districtName;
-            private String  districtId;
-            private String  recommendCategoryId;
-            private String  createTime;
-            private String  sellNum;
-            private String  sortOrder;
-            private String  website;
-            private String  goodsId;
-            private String  adId;
+            private String adPositionId;
+            private String adName;
+            private String adPic;
+            private String img1;
+            private String goodsName;
+            private String price;
+            private String commission;
+            private String unit;
+            private String districtName;
+            private String districtId;
+            private String recommendCategoryId;
+            private String createTime;
+            private String sellNum;
+            private String sortOrder;
+            private String website;
+            private String goodsId;
+            private String adId;
             private String areaId;
 
             public String getAdPositionId() {

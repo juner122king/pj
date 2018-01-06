@@ -18,6 +18,7 @@ import com.weisj.pj.base.BaseFragment;
 import com.weisj.pj.base.activity.SearchActivity;
 import com.weisj.pj.bean.CategoryBean;
 import com.weisj.pj.bean.CommodityShow;
+import com.weisj.pj.bean.GoodBean;
 import com.weisj.pj.presenter.CategoryPresenter;
 import com.weisj.pj.viewinterface.ICategoryView;
 
@@ -36,30 +37,27 @@ public class CategoryFragment extends BaseFragment implements AdapterView.OnItem
     private TextView home_more;
     ItemCategoryCommodityAdapter adapter;
 
+
+    static String goods_params = "";//商品类别 为空串是所有商品
+    View headView;
+
+
+
     @Override
     public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_category, null);
+        headView = mInflater.inflate(R.layout.fragment_category_head, null);
+
+
         rootView.isHintHeadBar(true);
-//        presenter = new CategoryPresenter(this, this);
+        presenter = new CategoryPresenter(this, this);
         initView(view);
-//        presenter.getTitleList();
+        presenter.getContentList(1, goods_params);
         return view;
     }
 
     private void initView(final View view) {
-        CommodityShow commodityShow1 = new CommodityShow("https://img12.360buyimg.com/n7/jfs/t9163/217/1078094329/137867/d66b5174/59bb4a2aNd0d375bf.jpg", "标题1", 99);
-        CommodityShow commodityShow2 = new CommodityShow("https://img12.360buyimg.com/n7/jfs/t9163/217/1078094329/137867/d66b5174/59bb4a2aNd0d375bf.jpg", "标题1", 99);
-        CommodityShow commodityShow3 = new CommodityShow("https://img12.360buyimg.com/n7/jfs/t9163/217/1078094329/137867/d66b5174/59bb4a2aNd0d375bf.jpg", "标题1", 99);
 
-        List<CommodityShow> list = new ArrayList<>();
-        list.add(commodityShow1);
-        list.add(commodityShow2);
-        list.add(commodityShow3);
-
-        adapter = new ItemCategoryCommodityAdapter(null);
-
-        final View headView = mInflater.inflate(R.layout.fragment_category_head, null);
-        adapter.addHeaderView(headView);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
@@ -67,25 +65,15 @@ public class CategoryFragment extends BaseFragment implements AdapterView.OnItem
         home_more = (TextView) headView.findViewById(R.id.home_more);
         view.findViewById(R.id.root_head_search).setOnClickListener(this);
 
-
-        // 加载网络图片
-        Glide.with(this).load("https://img11.360buyimg.com/n7/jfs/t4609/96/4691595833/60668/1ba1ced0/59140bc9N987f5b57.jpg").crossFade().into(imageView1);
-
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
-
-        recyclerView.setAdapter(adapter);
-
-
     }
 
     @Override
     public String setTitleStr() {
-        return "分类";
+        return "品类";
     }
 
     @Override
     public void getRefreshData() {
-//        presenter.getTitleList();
     }
 
     @Override
@@ -105,21 +93,14 @@ public class CategoryFragment extends BaseFragment implements AdapterView.OnItem
 //        }
     }
 
-    @Override
-    public void getTitle(CategoryBean categoryTitleBean) {
-//        listView.setAdapter(new ItemCategoryTextAdapter(this.getContext(), categoryTitleBean.getData()));
-//        listView.setOnItemClickListener(this);
-//        if (categoryTitleBean.getData() != null && categoryTitleBean.getData().size() > 0) {
-//            presenter.getContentList(categoryTitleBean.getData().get(0).getCategoryId());
-//        }
-    }
 
     @Override
-    public void getContent(CategoryBean categoryContentBean) {
-//        failView.setVisibility(View.GONE);
-//        gridView.setAdapter(new ItemCategoryGoodAdapter(this.getContext(), categoryContentBean.getData()));
-//        gridView.setOnItemClickListener(this);
+    public void getContent(GoodBean goodBean) {
+        adapter = new ItemCategoryCommodityAdapter(goodBean.getData());
+        adapter.addHeaderView(headView);
 
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        recyclerView.setAdapter(adapter);
     }
 
     @Override

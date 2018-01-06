@@ -35,11 +35,24 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginBottom="5dp"
-            android:text="首饰标题"
-            android:lines="2"
-            android:maxLines="2"
             android:ellipsize="end"
+            android:lines="1"
+            android:maxLines="2"
+            android:text="首饰标题"
             android:textColor="@color/radiobutton_textcolor" />
+
+        <TextView
+            android:id="@+id/tv_unit"
+
+            android:layout_marginBottom="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dc_0radio"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="颜色"
+            android:textColor="#acacac"
+            android:textSize="13sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"

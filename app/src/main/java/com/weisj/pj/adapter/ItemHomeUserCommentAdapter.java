@@ -1,78 +1,37 @@
 package com.weisj.pj.adapter;
 
-import android.content.Context;
-import android.content.Intent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.weisj.pj.R;
-import com.weisj.pj.bean.UsershareBean;
-import com.weisj.pj.utils.ImageLoaderUtils;
+import com.weisj.pj.bean.Comment;
+import com.weisj.pj.utils.Urls;
 
 import java.util.List;
 
 /**
+ * 用户评论
  * Created by jun on 2017/11/21.
  */
 
-public class ItemHomeUserCommentAdapter extends BaseAdapter {
+public class ItemHomeUserCommentAdapter extends BaseQuickAdapter<Comment, BaseViewHolder> {
 
-    private List<UsershareBean> objects;
-    private Context context;
-    private LayoutInflater layoutInflater;
 
-    public ItemHomeUserCommentAdapter(List<UsershareBean> objects, Context context) {
-        this.objects = objects;
-        this.context = context;
-        this.layoutInflater = LayoutInflater.from(context);
+    public ItemHomeUserCommentAdapter(List data) {
+        super(R.layout.item_home_user_im, data);
     }
 
     @Override
-    public int getCount() {
-        return objects.size();
+    protected void convert(BaseViewHolder helper, Comment item) {
+        helper.setText(R.id.tv_username, item.getNickname());
+        helper.setText(R.id.tv_user_comment, item.getContent());
+        // 加载网络图片
+        Glide.with(mContext).load(Urls.imageUrl + item.getHeaderPic()).crossFade().into((ImageView) helper.getView(R.id.iv_head_pic));
+        Glide.with(mContext).load(Urls.imageUrl + item.getImg1()).crossFade().into((ImageView) helper.getView(R.id.iv0));
+
     }
 
-    @Override
-    public UsershareBean getItem(int position) {
-        return objects.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup viewGroup) {
-        ItemHomeUserCommentAdapter.ViewHolder viewHolder = new ItemHomeUserCommentAdapter.ViewHolder();
-        if (convertView == null) {
-            convertView = layoutInflater.inflate(R.layout.item_home_user_im, null);
-            viewHolder.user_head = (ImageView) convertView.findViewById(R.id.iv_head_pic);
-            viewHolder.tv_username = (TextView) convertView.findViewById(R.id.tv_username);
-            viewHolder.tv_usercomment = (TextView) convertView.findViewById(R.id.tv_user_comment);
-
-            convertView.setTag(viewHolder);
-        }
-
-
-        ImageLoaderUtils.getInstance().display(viewHolder.user_head, objects.get(position).getUser_head());
-
-
-        return convertView;
-    }
-
-
-    protected class ViewHolder {
-
-        ImageView user_head;
-        TextView tv_username;
-        TextView tv_usercomment;
-        ListView listView;
-    }
 
 }

@@ -2,6 +2,7 @@ package com.weisj.pj.presenter;
 
 import com.weisj.pj.base.BaseViewState;
 import com.weisj.pj.bean.CategoryBean;
+import com.weisj.pj.bean.GoodBean;
 import com.weisj.pj.manager.ICategoryManager;
 import com.weisj.pj.manager.impl.CategoryManager;
 import com.weisj.pj.manager.listener.IOnManagerListener;
@@ -25,27 +26,18 @@ public class CategoryPresenter implements IOnManagerListener {
         this.viewState = viewState;
     }
 
-    public void getTitleList() {
-        viewState.showInitLoading();
-        iCategoryManager.getCateTitle(this);
-    }
-
-    public void getContentList(int id) {
+    public void getContentList(int page, String goods_params) {
         viewState.showLoading();
-        iCategoryManager.getCateContent(id, this);
+        iCategoryManager.getCateContent(String.valueOf(page), goods_params, this);
     }
 
 
     @Override
     public void onSuccess(Object data, String url) {
-        CategoryBean categoryBean = (CategoryBean) data;
+        GoodBean bean = (GoodBean) data;
         viewState.showLoadFinish();
-        if (categoryBean.getCode().equals("1")) {
-            if (url.equals(Urls.getcategorybytopfilter)) {
-                iCategoryView.getTitle(categoryBean);
-            } else {
-                iCategoryView.getContent(categoryBean);
-            }
+        if (bean.getCode().equals("1")) {
+            iCategoryView.getContent(bean);
         } else {
             if (url.equals(Urls.getcategorybytopfilter)) {
                 viewState.showNoData();

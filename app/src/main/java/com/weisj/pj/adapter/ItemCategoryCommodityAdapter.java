@@ -26,10 +26,17 @@ public class ItemCategoryCommodityAdapter extends BaseQuickAdapter<HomeBean.Data
     protected void convert(BaseViewHolder helper, HomeBean.DataEntity.DistrictGoodsListEntity item) {
 
         helper.setText(R.id.tv_title, item.getGoodsName());
-
+        helper.setText(R.id.tv_unit, item.getUnit());
         // 加载网络图片
         Glide.with(mContext).load(item.getImg1()).crossFade().into((ImageView) helper.getView(R.id.iv));
-        helper.setText(R.id.tv_use_number, String.valueOf(item.getPrice()));
+        String sellNum;
+
+        if (null == item.getSellNum())
+            sellNum = "0";
+        else
+            sellNum = item.getSellNum();
+        helper.setText(R.id.tv_use_number, sellNum);
+
 
 
     }

@@ -1,6 +1,5 @@
 package com.weisj.pj.viewinterface;
 
-import com.weisj.pj.bean.HomeBanner;
 import com.weisj.pj.bean.HomeBean;
 
 /**
@@ -10,8 +9,5 @@ public interface IHomeView {
 
     void getData(HomeBean homeBean);
 
-    void getBannerData(HomeBanner data);
-
-    void getBannerFail();
 
 }

@@ -195,7 +195,7 @@ public class MainActivity extends FragmentActivity implements TabHost.OnTabChang
         if (KeyEvent.KEYCODE_BACK == keyCode) {
             // 判断是否在两秒之内连续点击返回键，是则退出，否则不退出
             if (System.currentTimeMillis() - firstTime > 1000) {
-                Toast.makeText(getApplicationContext(), "连按两次才能退出顺丰大当家哦，亲！",
+                Toast.makeText(getApplicationContext(), "连按两次才能退出哦，亲！",
                         Toast.LENGTH_SHORT).show();
                 // 将系统当前的时间赋值给exitTime
                 firstTime = System.currentTimeMillis();

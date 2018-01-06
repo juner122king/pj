@@ -25,13 +25,13 @@ public class HomePresenter implements IOnManagerListener {
         this.iHomeManager = new HomeManager();
     }
 
-    public void getInitData(String pronvin, boolean b) {
+    public void getInitData(boolean b) {
         if (b) {
             viewState.showInitLoading();
         } else {
             viewState.showLoading();
         }
-        iHomeManager.getHomeInfo(pronvin, this);
+        iHomeManager.getHomeInfo(this);
         iHomeManager.getHomeBanner(this);
     }
 
@@ -46,13 +46,6 @@ public class HomePresenter implements IOnManagerListener {
             } else {
                 viewState.showNoNetWork();
             }
-        } else {
-            HomeBanner homeBanner = (HomeBanner) data;
-            if ("success".equals(homeBanner.getMessage())) {
-                iHomeView.getBannerData(homeBanner);
-            } else {
-                iHomeView.getBannerFail();
-            }
         }
     }
 
@@ -60,8 +53,6 @@ public class HomePresenter implements IOnManagerListener {
     public void onFail(Exception e, String url) {
         if (url.equals(Urls.homepage)) {
             viewState.showNoNetWork();
-        } else {
-            iHomeView.getBannerFail();
         }
     }
 }

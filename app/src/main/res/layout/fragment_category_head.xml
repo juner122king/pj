@@ -92,11 +92,55 @@
             android:textSize="12dp" />
     </LinearLayout>
 
-
-    <RadioGroup
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2px"
+        android:background="#fff"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:id="@+id/rg1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2px"
+            android:background="#ffffff"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="10dp">
+
+            <RadioButton
+                android:id="@+id/rg1_rb1"
+                style="@style/category_radiobutton"
+                android:text="戒指" />
+
+            <RadioButton
+
+                android:id="@+id/rg1_rb2"
+                style="@style/category_radiobutton"
+                android:text="吊坠" />
+
+            <RadioButton
+
+                android:id="@+id/rg1_rb3"
+                style="@style/category_radiobutton"
+                android:text="项链" />
+
+            <RadioButton
+
+                android:id="@+id/rg1_rb4"
+                style="@style/category_radiobutton"
+                android:text="不限" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <RadioGroup
+
+        android:id="@+id/rg2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="#ffffff"
         android:orientation="horizontal"
         android:paddingBottom="10dp"
@@ -105,82 +149,60 @@
         android:paddingTop="10dp">
 
         <RadioButton
-            style="@style/category_radiobutton"
-            android:text="戒指" />
 
-        <RadioButton
-            style="@style/category_radiobutton"
-            android:text="吊坠" />
-
-        <RadioButton
-            style="@style/category_radiobutton"
-            android:text="项链" />
-
-        <RadioButton
-            style="@style/category_radiobutton"
-            android:text="手链" />
-
-        <RadioButton
-            style="@style/category_radiobutton"
-            android:text="耳饰" />
-
-        <RadioButton
-            style="@style/category_radiobutton"
-            android:text="套装" />
-
-        <RadioButton
-            style="@style/category_radiobutton"
-            android:text="脚链" />
-
-        <RadioButton
-            style="@style/category_radiobutton"
-            android:text="其他" />
-    </RadioGroup>
-
-
-    <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#ffffff"
-        android:orientation="horizontal"
-        android:paddingBottom="10dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:paddingTop="10dp">
-
-        <RadioButton
+            android:id="@+id/rg2_rb1"
             style="@style/category_radiobutton"
             android:text="商务" />
 
         <RadioButton
+
+            android:id="@+id/rg2_rb2"
             style="@style/category_radiobutton"
             android:lines="1"
             android:text="民族风" />
 
         <RadioButton
+            android:id="@+id/rg2_rb3"
+
             style="@style/category_radiobutton"
             android:text="甜美" />
 
         <RadioButton
+
+            android:id="@+id/rg2_rb4"
             style="@style/category_radiobutton"
             android:text="复古" />
 
 
         <RadioButton
+
+            android:id="@+id/rg2_rb5"
             style="@style/category_radiobutton"
             android:text="欧美" />
 
         <RadioButton
+
+            android:id="@+id/rg2_rb6"
             style="@style/category_radiobutton"
             android:text="简约" />
 
         <RadioButton
+
+            android:id="@+id/rg2_rb7"
             style="@style/category_radiobutton"
             android:text="日韩" />
 
         <RadioButton
+
+            android:id="@+id/rg2_rb8"
             style="@style/category_radiobutton"
             android:text="其他" />
+
+        <RadioButton
+
+            android:id="@+id/rg2_rb9"
+            style="@style/category_radiobutton"
+            android:text="不限" />
     </RadioGroup>
 
 
@@ -198,6 +220,8 @@
             android:background="@color/colore6e6e6" />
 
         <RadioGroup
+
+            android:id="@+id/rg3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#ffffff"
@@ -208,19 +232,33 @@
             android:paddingTop="10dp">
 
             <RadioButton
+
+                android:id="@+id/rg3_rb1"
                 style="@style/category_radiobutton"
                 android:text="银饰" />
 
             <RadioButton
+
+                android:id="@+id/rg3_rb2"
                 style="@style/category_radiobutton"
                 android:text="K 金" />
 
             <RadioButton
+
+                android:id="@+id/rg3_rb3"
                 style="@style/category_radiobutton"
                 android:text="宝石" />
+
+            <RadioButton
+
+                android:id="@+id/rg3_rb4"
+                style="@style/category_radiobutton"
+                android:text="不限" />
         </RadioGroup>
 
         <RadioGroup
+
+            android:id="@+id/rg4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#ffffff"
@@ -231,20 +269,33 @@
             android:paddingTop="5dp">
 
             <RadioButton
+                android:id="@+id/rg4_rb1"
                 style="@style/category_radiobutton"
                 android:text="0-499" />
 
             <RadioButton
+
+                android:id="@+id/rg4_rb2"
                 style="@style/category_radiobutton"
                 android:text="500-1199" />
 
             <RadioButton
+
+                android:id="@+id/rg4_rb3"
                 style="@style/category_radiobutton"
                 android:text="1200-2099" />
 
             <RadioButton
+
+                android:id="@+id/rg4_rb4"
                 style="@style/category_radiobutton"
                 android:text="2100以上" />
+
+            <RadioButton
+
+                android:id="@+id/rg4_rb5"
+                style="@style/category_radiobutton"
+                android:text="不限" />
         </RadioGroup>
 
         <View
@@ -255,6 +306,8 @@
             android:background="@color/colore6e6e6" />
 
         <RadioGroup
+
+            android:id="@+id/rg5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#ffffff"
@@ -265,19 +318,31 @@
             android:paddingTop="10dp">
 
             <RadioButton
+
+                android:id="@+id/rg5_rb1"
                 style="@style/category_radiobutton"
                 android:layout_weight="1"
                 android:text="情侣" />
 
             <RadioButton
+
+                android:id="@+id/rg5_rb2"
                 style="@style/category_radiobutton"
                 android:layout_weight="1"
                 android:text="女" />
 
             <RadioButton
+
+                android:id="@+id/rg5_rb3"
                 style="@style/category_radiobutton"
                 android:layout_weight="1"
                 android:text="男" />
+
+            <RadioButton
+
+                android:id="@+id/rg5_rb4"
+                style="@style/category_radiobutton"
+                android:text="不限" />
 
         </RadioGroup>
     </LinearLayout>

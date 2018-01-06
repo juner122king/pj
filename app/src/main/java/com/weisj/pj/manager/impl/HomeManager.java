@@ -18,10 +18,8 @@ import java.util.Map;
 public class HomeManager implements IHomeManager {
 
     @Override
-    public void getHomeInfo(String pronvin, final IOnManagerListener onHomeListener) {
+    public void getHomeInfo(final IOnManagerListener onHomeListener) {
         Map<String, String> params = new HashMap<>();
-        params.put("city", pronvin);
-        params.put("member_id", PersonMessagePreferencesUtils.getUid());
         OkHttpClientManager.postAsyn(Urls.homepage, params, new OkHttpClientManager.ResultCallback<HomeBean>() {
             @Override
             public void onError(Request request, Exception e) {

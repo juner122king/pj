@@ -53,17 +53,12 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
     }
 
     private void initView(View view) {
-        view.findViewById(R.id.me_wallet).setOnClickListener(this);
         view.findViewById(R.id.my_collection_linear).setOnClickListener(this);
-        view.findViewById(R.id.me_become_shop_linear).setOnClickListener(this);
         view.findViewById(R.id.user_address_linear).setOnClickListener(this);
         view.findViewById(R.id.user_share).setOnClickListener(this);
         view.findViewById(R.id.notice_image).setOnClickListener(this);
         view.findViewById(R.id.user_setup).setOnClickListener(this);
         view.findViewById(R.id.image_head).setOnClickListener(this);
-        view.findViewById(R.id.user_jc).setOnClickListener(this);
-        view.findViewById(R.id.share_pingan).setVisibility(View.GONE);
-        imageHeadHint = view.findViewById(R.id.image_head_hint);
         presenter = new CenterPresenter(this, this);
 
     }
@@ -138,10 +133,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
         ImageLoaderUtils.getInstance().display((ImageView) (view.findViewById(R.id.image_head)), centerBean.getData().getMember_pic(), R.mipmap.icon_head);
         ((TextView) (view.findViewById(R.id.user_name))).setText(centerBean.getData().getMember_name() != null ? centerBean.getData().getMember_name() : "");
         PreferencesUtils.putString("member_name", centerBean.getData().getMember_name());
-        ((TextView) (view.findViewById(R.id.user_money))).setText(SystemConfig.moneymulti(centerBean.getData().getCurrent_money()));
-        ((TextView) (view.findViewById(R.id.user_point))).setText(String.valueOf(centerBean.getData().getPoint()));
-        ((TextView) (view.findViewById(R.id.user_collec))).setText(String.valueOf(centerBean.getData().getCupon_num()));
-        ((TextView) (view.findViewById(R.id.user_coupon))).setText(String.valueOf(centerBean.getData().getCupon_num()) + "张");
     }
 
     @Override

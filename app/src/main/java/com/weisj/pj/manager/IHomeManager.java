@@ -7,7 +7,7 @@ import com.weisj.pj.manager.listener.IOnManagerListener;
  */
 public interface IHomeManager {
 
-    void getHomeInfo(String pronvin, IOnManagerListener onHomeListener);
+    void getHomeInfo( IOnManagerListener onHomeListener);
 
     void getHomeBanner(IOnManagerListener onHomeListener);
 

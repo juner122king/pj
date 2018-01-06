@@ -4,14 +4,16 @@ package com.weisj.pj.utils;
  * Created by Administrator on 2016/7/21 0021.
  */
 public class Urls {
-    public static final String IP = "http://m.sfddj.com";
+//    public static final String IP = "http://m.sfddj.com";
 //    public static final String IP = "http://shop.fx-sf.com";
+    public static final String IP = "http://120.79.34.138";
 
-    public static final String imageUrl = "http://img.sfddj.com/";
+//    public static final String imageUrl = "http://img.sfddj.com/";
+    public static final String imageUrl = "http://120.79.34.138";
     // 获取手机验证码
-    public static final String getmoblieticket = IP + "/fxfront/member/getmoblieticket?appid=APPID";
+    public static final String getmoblieticket = IP + "/ndfront/member/getmoblieticket?appid=APPID";
     // 验证手机验证码
-    public static final String checkticket = IP + "/fxfront/member/checkticket?appid=APPID";
+    public static final String checkticket = IP + "/ndfront/member/checkticket?appid=APPID";
     // 绑定手机号
     public static final String bindcellphonebypassword = IP + "/fxfront/member/bindcellphonebypassword?appid=APPID";
     // 会员注册
@@ -41,6 +43,15 @@ public class Urls {
     public static final String getcategorybytopfilter = IP + "/fxfront/interface/getcategorybytopfilter?appid=APPID";
     // 所有分类（小类）
     public static final String getcategorybychildfilter = IP + "/fxfront/interface/getcategorybychildfilter?appid=APPID";
+
+
+    // 所有品类
+    public static final String searchByProperties = IP + "/ndfront/property/searchByProperties?appid=APPID";
+
+
+
+
+
     //    //2.1 分类查询商品接口
 //    public static final String getgoodsbycategoryorder = IP + "/fxfront/interface/getgoodsbycategoryorder?appid=APPID";
     //2.1 分类查询商品接口
@@ -56,7 +67,9 @@ public class Urls {
     //2.5 商品详情app接口
     public static final String goodscontent = IP + "/fxfront/interface/goodscontent?appid=APPID";
     // 首页接口
-    public static final String homepage = IP + "/fxfront/interface/homepage?appid=APPID";
+//    public static final String homepage = IP + "/ndfront/interface/homepage?appid=APPID";
+    // 首页接口
+    public static final String homepage = IP + "/ndfront/interface/getNdHomePage?appid=APPID";
     // 首页material
     public static final String material = IP + "/fx/material";
 
