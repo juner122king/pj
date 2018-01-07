@@ -119,7 +119,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         homeBanner.setAdapter(new BGABanner.Adapter() {
             @Override
             public void fillBannerItem(BGABanner banner, View view, Object model, int position) {
-                Ad bean = (Ad) model;
+                    Ad bean = (Ad) model;
 
                 Glide.with(getActivity())
                         .load(Urls.imageUrl + bean.getAdPic())

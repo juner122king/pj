@@ -131,6 +131,7 @@
 
                 android:id="@+id/rg1_rb4"
                 style="@style/category_radiobutton"
+                android:checked="true"
                 android:text="不限" />
         </RadioGroup>
 
@@ -202,6 +203,7 @@
 
             android:id="@+id/rg2_rb9"
             style="@style/category_radiobutton"
+            android:checked="true"
             android:text="不限" />
     </RadioGroup>
 
@@ -235,7 +237,7 @@
 
                 android:id="@+id/rg3_rb1"
                 style="@style/category_radiobutton"
-                android:text="银饰" />
+                android:text="宝石" />
 
             <RadioButton
 
@@ -247,12 +249,13 @@
 
                 android:id="@+id/rg3_rb3"
                 style="@style/category_radiobutton"
-                android:text="宝石" />
+                android:text="鉑金" />
 
             <RadioButton
 
                 android:id="@+id/rg3_rb4"
                 style="@style/category_radiobutton"
+                android:checked="true"
                 android:text="不限" />
         </RadioGroup>
 
@@ -295,6 +298,7 @@
 
                 android:id="@+id/rg4_rb5"
                 style="@style/category_radiobutton"
+                android:checked="true"
                 android:text="不限" />
         </RadioGroup>
 
@@ -342,6 +346,7 @@
 
                 android:id="@+id/rg5_rb4"
                 style="@style/category_radiobutton"
+                android:checked="true"
                 android:text="不限" />
 
         </RadioGroup>
