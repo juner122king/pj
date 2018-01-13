@@ -82,6 +82,15 @@ public class CenterBean {
         private String true_name;
         private int district_id;
         private String staff_id;
+        private int group_id;
+
+        public int getGroup_id() {
+            return group_id;
+        }
+
+        public void setGroup_id(int group_id) {
+            this.group_id = group_id;
+        }
 
         public String getStaff_id() {
             return staff_id;

@@ -98,22 +98,32 @@
 
     <!-- 99元 试戴-->
 
-    <com.weisj.pj.view.bgabanner.BGABanner
+    <!--<com.weisj.pj.view.bgabanner.BGABanner-->
+        <!--android:id="@+id/home_banner_vip"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="60dp"-->
+        <!--android:background="@color/colore6e6e6"-->
+        <!--android:paddingBottom="5dp"-->
+        <!--android:paddingLeft="10dp"-->
+        <!--android:paddingRight="10dp"-->
+
+        <!--android:paddingTop="5dp"-->
+
+        <!--android:layout_margin="20dp"-->
+        <!--app:banner_pageChangeDuration="1000"-->
+        <!--app:banner_pointAutoPlayAble="true"-->
+        <!--app:banner_pointContainerBackground="@android:color/transparent"-->
+        <!--app:banner_pointDrawable="@drawable/bga_banner_selector_point_hollow"-->
+        <!--app:banner_pointTopBottomMargin="10dp"-->
+        <!--app:banner_transitionEffect="defaultEffect"></com.weisj.pj.view.bgabanner.BGABanner>-->
+
+    <ImageView
         android:id="@+id/home_banner_vip"
         android:layout_width="match_parent"
-
         android:layout_height="60dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/white_radio"
-        app:banner_pageChangeDuration="1000"
-        app:banner_pointAutoPlayAble="true"
-        app:banner_pointContainerBackground="@android:color/transparent"
-        app:banner_pointDrawable="@drawable/bga_banner_selector_point_hollow"
-        app:banner_pointTopBottomMargin="10dp"
-        app:banner_transitionEffect="defaultEffect"></com.weisj.pj.view.bgabanner.BGABanner>
+        android:layout_margin="10dp"
+        android:scaleType="fitXY" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -235,16 +245,19 @@
         android:layout_marginBottom="5dp"
         android:background="@color/colorWhite"
         android:orientation="horizontal"
-        android:padding="5dp"
-        android:paddingBottom="15dp"
-        android:paddingLeft="10dp">
+
+        android:paddingBottom="20dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp">
 
 
         <ImageView
             android:id="@+id/iv_acton"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginRight="5dp" />
+            android:layout_marginRight="5dp"
+            android:scaleType="fitXY" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -258,7 +271,7 @@
                 android:ellipsize="end"
                 android:lines="1"
                 android:maxLines="1"
-                android:text="活动标题，只有一行"
+                android:text="#双十二大放送#"
                 android:textColor="#1b1b1b"
                 android:textStyle="bold" />
 
@@ -270,14 +283,14 @@
                 android:ellipsize="end"
                 android:lines="2"
                 android:maxLines="2"
-                android:text="活动描述，最多两行描述，活动描述，最多两行描述活动描述，最多两行描述活动描述，最多两行描述活动描述，最多两行描述"
+                android:text="购置税减半活动即将结束,购置税减半活动即将结束"
                 android:textColor="#707070" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:text="剩余1天5小时 | 98人报名"
+                android:text="剩余1天05小时 | 66人报名"
                 android:textColor="#ee8274"
                 android:textSize="12sp" />
 
@@ -286,8 +299,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:background="@mipmap/kuang_vip"
-                android:padding="5dp"
+                android:background="@drawable/black_0radio"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 android:text="立即参与"
                 android:textColor="#fff" />
         </RelativeLayout>

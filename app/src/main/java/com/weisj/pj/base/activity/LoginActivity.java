@@ -25,7 +25,7 @@ public class  LoginActivity extends BaseActivity implements View.OnClickListener
     private EditText phoneEdit, passwordEdit;
     private LoginPresenter presenter;
     private long firstTime;
-    public static final String BROADCAST_ACTION = "com.zzc.fx";
+    public static final String BROADCAST_ACTION = "com.zzc.pj";
     private BroadcastReceiver mBroadcastReceiver;
 
     @Override

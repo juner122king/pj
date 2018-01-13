@@ -5,59 +5,18 @@
     android:background="#f4f4f4"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/linearLayout">
 
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/root_head_title_height"
-            android:background="@color/colorWhite">
-
-            <ImageView
-                android:id="@+id/iv_back"
-                android:layout_width="48dp"
-                android:layout_height="match_parent"
-                android:padding="13dp"
-                android:src="@mipmap/icon_back" />
-
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="会员卡"
-                android:textColor="@color/colorHome"
-                android:textSize="@dimen/text_size_18" />
-
-
-            <TextView
-                android:id="@+id/tv_but"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-
-                android:layout_alignParentRight="true"
-                android:gravity="center"
-                android:padding="13dp"
-                android:text="送人"
-                android:textColor="#ee0059"
-                android:textSize="16sp" />
-        </RelativeLayout>
-
-    </LinearLayout>
+    <include layout="@layout/activity_vip_frgment1" />
 
     <LinearLayout
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="38dp"
+            android:layout_height="32dp"
             android:layout_marginBottom="2px"
             android:layout_marginTop="3dp"
             android:background="#fff"
@@ -85,14 +44,15 @@
             <RadioButton
                 android:id="@+id/rb_wx"
                 android:layout_width="match_parent"
-                android:layout_height="36dp"
+                android:layout_height="30dp"
                 android:background="#fff"
                 android:button="@null"
                 android:drawableLeft="@mipmap/zhifu_weixin"
                 android:drawablePadding="10dp"
                 android:drawableRight="@drawable/radiobutton_zifu"
                 android:text="微信支付"
-                android:textColor="#434343" />
+                android:textColor="#434343"
+                android:textSize="14sp" />
 
             <View
                 android:layout_width="match_parent"
@@ -102,14 +62,15 @@
             <RadioButton
                 android:id="@+id/rb_zb"
                 android:layout_width="match_parent"
-                android:layout_height="36dp"
+                android:layout_height="30dp"
                 android:background="#fff"
                 android:button="@null"
                 android:drawableLeft="@mipmap/zhifu_zfb"
                 android:drawablePadding="10dp"
                 android:drawableRight="@drawable/radiobutton_zifu"
                 android:text="支付宝支付"
-                android:textColor="#434343" />
+                android:textColor="#434343"
+                android:textSize="14sp" />
 
         </RadioGroup>
 
@@ -120,9 +81,10 @@
             android:button="@null"
             android:drawableLeft="@drawable/radiobutton_zifu"
             android:drawablePadding="5dp"
-            android:padding="10dp"
+            android:padding="5dp"
             android:text="同意菲尔南多用户协议"
-            android:textColor="#959595" />
+            android:textColor="#959595"
+            android:textSize="12sp" />
 
         <!--<View-->
         <!--android:layout_width="wrap_content"-->

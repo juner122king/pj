@@ -31,7 +31,7 @@
                 android:layout_marginRight="100dp"
                 android:singleLine="true"
                 android:text="标题"
-                android:textColor="@color/colorHome"
+                android:textColor="@color/colorBlack"
                 android:textSize="@dimen/text_size_18" />
 
 

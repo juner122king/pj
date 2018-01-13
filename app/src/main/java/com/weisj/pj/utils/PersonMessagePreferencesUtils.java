@@ -16,6 +16,7 @@ public class PersonMessagePreferencesUtils {
      */
     public static void storeInfo(UserBean user) {
         PreferencesUtils.putString("member_id", user.getData().getMember_id());
+        PreferencesUtils.putString("member", user.getData().getMember());
         PreferencesUtils.putString("true_name", user.getData().getTrue_name());
         PreferencesUtils.putString("member_name", user.getData().getMember_name());
         PreferencesUtils.putInt("group_id", user.getData().getGroup_id());

@@ -25,12 +25,23 @@ public class ItemHomeUserCommentAdapter extends BaseQuickAdapter<Comment, BaseVi
 
     @Override
     protected void convert(BaseViewHolder helper, Comment item) {
-        helper.setText(R.id.tv_username, item.getNickname());
+        helper.setText(R.id.tv_username, item.getUserName());
         helper.setText(R.id.tv_user_comment, item.getContent());
         // 加载网络图片
         Glide.with(mContext).load(Urls.imageUrl + item.getHeaderPic()).crossFade().into((ImageView) helper.getView(R.id.iv_head_pic));
+        Glide.with(mContext).load("http://shop.party-queen.com/Public/img/pic/pic-defaultHeaderPic.png").crossFade().into((ImageView) helper.getView(R.id.iv_head_pic));
         Glide.with(mContext).load(Urls.imageUrl + item.getImg1()).crossFade().into((ImageView) helper.getView(R.id.iv0));
 
+
+        String status_v = "";
+
+        if (item.getStatus() == "1")
+            status_v = "会员";
+        else
+            helper.setVisible(R.id.tv_vip_lvl, false);
+
+
+        helper.setText(R.id.tv_vip_lvl, status_v);
     }
 
 

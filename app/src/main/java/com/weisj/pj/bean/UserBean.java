@@ -62,7 +62,17 @@ public class UserBean {
     public static class DataEntity {
         private int state;
         private int sex;
+        private String member;
         private String member_id;
+
+        public String getMember() {
+            return member;
+        }
+
+        public void setMember(String member) {
+            this.member = member;
+        }
+
         private String member_name;
         private int group_id;
         private String reg_time;

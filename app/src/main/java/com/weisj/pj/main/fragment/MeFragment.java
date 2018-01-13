@@ -39,15 +39,18 @@ import com.weisj.pj.viewinterface.ICenterView;
 public class MeFragment extends BaseFragment implements View.OnClickListener, ICenterView {
     private View view;
     private CenterPresenter presenter;
-    private CenterBean centerBean;
-    private View imageHeadHint;
     private final String GETHINTIMAGECLICK = "isClickImage";
+    private ImageView iv_head;
+    private TextView name;
+
 
     @Override
     public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_me, null);
         initView(view);
         rootView.isHintHeadBar(true);
+        presenter = new CenterPresenter(this, this);
+        presenter.getMemberCenter();
         this.view = view;
         return view;
     }
@@ -55,9 +58,9 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
     private void initView(View view) {
         view.findViewById(R.id.my_collection_linear).setOnClickListener(this);
         view.findViewById(R.id.user_address_linear).setOnClickListener(this);
-        view.findViewById(R.id.user_share).setOnClickListener(this);
+//        view.findViewById(R.id.user_share).setOnClickListener(this);
         view.findViewById(R.id.notice_image).setOnClickListener(this);
-        view.findViewById(R.id.user_setup).setOnClickListener(this);
+//        view.findViewById(R.id.user_setup).setOnClickListener(this);
         view.findViewById(R.id.image_head).setOnClickListener(this);
         presenter = new CenterPresenter(this, this);
 
@@ -129,7 +132,6 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
 
     @Override
     public void getCenter(CenterBean centerBean) {
-        this.centerBean = centerBean;
         ImageLoaderUtils.getInstance().display((ImageView) (view.findViewById(R.id.image_head)), centerBean.getData().getMember_pic(), R.mipmap.icon_head);
         ((TextView) (view.findViewById(R.id.user_name))).setText(centerBean.getData().getMember_name() != null ? centerBean.getData().getMember_name() : "");
         PreferencesUtils.putString("member_name", centerBean.getData().getMember_name());

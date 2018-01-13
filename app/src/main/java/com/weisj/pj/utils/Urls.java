@@ -23,9 +23,9 @@ public class Urls {
     // 忘记密码
     public static final String lostpassword = IP + "/fxfront/member/lostpassword?appid=APPID";
     // 会员登陆
-    public static final String login = IP + "/fxfront/member/login?appid=APPID";
+    public static final String login = IP + "/ndfront/member/login?appid=APPID";
     // 个人信息中心
-    public static final String membercenter = IP + "/fxfront/member/membercenter?appid=APPID";
+    public static final String membercenter = IP + "/ndfront/member/membercenter?appid=APPID";
     // 修改个人地区
     public static final String modifydistrict = IP + "/fxfront/member/modifydistrict?appid=APPID";
 

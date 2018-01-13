@@ -68,8 +68,10 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     private String pronvin = CommenString.selectCity;
     private RecyclerView recyclerView;//最底部的recyclerView
     private ItemHomeUserCommentAdapter adapter_comment;
-    private TextView placeName;
-    private BGABanner homeBanner, homeBanner2, homeBanner_vip;
+    private TextView placeName, tv_acton_title, tv_acton_info;
+    private ImageView iv_acton, homeBanner_vip;
+    private BGABanner homeBanner, homeBanner2;
+
     private HorizontalScrollView scrollView;
     public static String shareCity;
 
@@ -96,6 +98,21 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     }
 
     private void loadView(View view) {
+
+
+        tv_acton_title = (TextView) headView.findViewById(R.id.tv_acton_title);
+        tv_acton_info = (TextView) headView.findViewById(R.id.tv_acton_info);
+        iv_acton = (ImageView) headView.findViewById(R.id.iv_acton);
+        Glide.with(getActivity())
+                .load("http://image.rakuten.co.jp/navie/cabinet/b/ijw-b-061a.jpg")
+
+                .placeholder(R.mipmap.icon_banner_default)
+                .error(R.mipmap.icon_banner_default)
+
+                .transform(new GlideRoundTransform(getActivity(), 3))
+                .into(iv_acton);
+
+
         placeName = (TextView) view.findViewById(R.id.root_place);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -103,7 +120,8 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         view.findViewById(R.id.root_head_search).setOnClickListener(this);
         homeBanner = (BGABanner) headView.findViewById(R.id.home_banner);
         homeBanner2 = (BGABanner) headView.findViewById(R.id.home_banner2);
-        homeBanner_vip = (BGABanner) headView.findViewById(R.id.home_banner_vip);
+        homeBanner_vip = (ImageView) headView.findViewById(R.id.home_banner_vip);
+
 
         scrollView = (HorizontalScrollView) headView.findViewById(R.id.home_scroll_view);
         horizontalLinear = (LinearLayout) headView.findViewById(R.id.home_boss_good_linear);
@@ -127,19 +145,21 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
                         .into((ImageView) view);
             }
         });
-        homeBanner_vip.setAdapter(new BGABanner.Adapter() {
-            @Override
-            public void fillBannerItem(BGABanner banner, View view, Object model, int position) {
-                Ad bean = (Ad) model;
-
-                Glide.with(getActivity())
-                        .load(Urls.imageUrl + bean.getAdPic())
-                        .placeholder(R.mipmap.icon_banner_default)
-                        .error(R.mipmap.icon_banner_default)
-                        .transform(new GlideRoundTransform(getActivity(), 5))
-                        .into((ImageView) view);
-            }
-        });
+//        homeBanner_vip.setAdapter(new BGABanner.Adapter() {
+//            @Override
+//            public void fillBannerItem(BGABanner banner, View view, Object model, int position) {
+//                Ad bean = (Ad) model;
+//
+//                Glide.with(getActivity())
+//                        .load(Urls.imageUrl + bean.getAdPic())
+//                        .placeholder(R.mipmap.icon_banner_default)
+//                        .error(R.mipmap.icon_banner_default)
+//
+//                        .fitCenter()
+//                        .transform(new GlideRoundTransform(getActivity(), 3))
+//                        .into((ImageView) view);
+//            }
+//        });
         homeBanner2.setAdapter(new BGABanner.Adapter() {
             @Override
             public void fillBannerItem(BGABanner banner, View view, Object model, int position) {
@@ -151,7 +171,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
                         .placeholder(R.mipmap.icon_banner_default)
                         .error(R.mipmap.icon_banner_default)
                         .centerCrop()
-                        .transform(new GlideRoundTransform(getActivity(), 5))
+                        .transform(new GlideRoundTransform(getActivity(), 3))
                         .into((ImageView) view.findViewById(R.id.iv));
 
                 ((TextView) view.findViewById(R.id.tv_title)).setText(bean.getAdName());
@@ -185,15 +205,15 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
 //        });
 
 
-        homeBanner_vip.setOnItemClickListener(new BGABanner.OnItemClickListener() {
-            @Override
-            public void onBannerItemClick(BGABanner banner, View view, Object model, int position) {
-
-                startActivity(new Intent(getContext(), VipActivity.class));
-
-            }
-        });
-
+//        homeBanner_vip.setOnItemClickListener(new BGABanner.OnItemClickListener() {
+//            @Override
+//            public void onBannerItemClick(BGABanner banner, View view, Object model, int position) {
+//
+//                startActivity(new Intent(getContext(), VipActivity.class));
+//
+//            }
+//        });
+//
 
         placeName.setText(CommenString.selectCity);
 
@@ -332,6 +352,15 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         List<Ad> rotateAdList = homeBean.getData().getRotateAdList();//专题轮播图
         List<HomeBean.DataEntity.DistrictGoodsListEntity> recommendGoodsList = homeBean.getData().getRecommendGoodsList();//推荐商品
 
+        Glide.with(getActivity())
+                .load(Urls.imageUrl + insertAdList.get(0).getAdPic())
+
+                .placeholder(R.mipmap.icon_banner_default)
+                .error(R.mipmap.icon_banner_default)
+
+                .transform(new GlideRoundTransform(getActivity(), 3))
+                .into(homeBanner_vip);
+
         adapter_comment = new ItemHomeUserCommentAdapter(comments);
         adapter_comment.addHeaderView(headView);
         recyclerView.setAdapter(adapter_comment);
@@ -351,12 +380,12 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
             homeBanner2.setVisibility(View.GONE);
         }
 
-        if (null != insertAdList) {
-            homeBanner_vip.setData(insertAdList, null);
-
-        } else {
-            homeBanner_vip.setVisibility(View.GONE);
-        }
+//        if (null != insertAdList) {
+//            homeBanner_vip.setData(insertAdList, null);
+//
+//        } else {
+//            homeBanner_vip.setVisibility(View.GONE);
+//        }
 
 
         horizontalLinear.removeAllViews();

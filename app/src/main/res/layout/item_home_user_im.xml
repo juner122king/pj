@@ -38,7 +38,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
+        android:layout_margin="5dp">
 
         <ImageView
             android:id="@+id/iv_head_pic"
@@ -51,24 +51,48 @@
             android:layout_marginLeft="5dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_username"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:lines="1"
-                android:maxLines="1"
-                android:textColor="#333"
-                android:text="用户名" />
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tv_username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:text="用户名"
+                    android:textColor="#333" />
+
+                <TextView
+                    android:id="@+id/tv_vip_lvl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/black_0radio"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:paddingBottom="0dp"
+                    android:paddingLeft="7dp"
+                    android:paddingRight="7dp"
+                    android:paddingTop="0dp"
+                    android:text="会员"
+
+                    android:textColor="#fff"
+                    android:textSize="13sp" />
+
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_user_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:ellipsize="end"
-                android:textSize="13sp"
                 android:lines="2"
                 android:maxLines="2"
-                android:text="用户评论 最多两行用户评论 最多两行用户评论 最多两行用户评论 最多两行用户评论 最多两行用户评论 最多两行用户评论 最多两行用户评论 最多两行用户评论 最多两行" />
+                android:text="用户评论 最多两行用户评论 最多两行用户评论 最多两行用户评论 最多两行用户评论 最多两行用户评论 最多两行用户评论 最多两行用户评论 最多两行用户评论 最多两行"
+                android:textSize="13sp" />
 
         </LinearLayout>
     </LinearLayout>
