@@ -100,9 +100,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         headView.findViewById(R.id.home_more).setOnClickListener(this);
-        view.findViewById(R.id.root_head_talk).setOnClickListener(this);
         view.findViewById(R.id.root_head_search).setOnClickListener(this);
-        view.findViewById(R.id.root_head_share).setOnClickListener(this);
         homeBanner = (BGABanner) headView.findViewById(R.id.home_banner);
         homeBanner2 = (BGABanner) headView.findViewById(R.id.home_banner2);
         homeBanner_vip = (BGABanner) headView.findViewById(R.id.home_banner_vip);
@@ -119,7 +117,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         homeBanner.setAdapter(new BGABanner.Adapter() {
             @Override
             public void fillBannerItem(BGABanner banner, View view, Object model, int position) {
-                    Ad bean = (Ad) model;
+                Ad bean = (Ad) model;
 
                 Glide.with(getActivity())
                         .load(Urls.imageUrl + bean.getAdPic())
@@ -138,8 +136,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
                         .load(Urls.imageUrl + bean.getAdPic())
                         .placeholder(R.mipmap.icon_banner_default)
                         .error(R.mipmap.icon_banner_default)
-                        .centerCrop()
-                        .transform(new GlideRoundTransform(getActivity(),5))
+                        .transform(new GlideRoundTransform(getActivity(), 5))
                         .into((ImageView) view);
             }
         });
@@ -153,8 +150,8 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
 
                         .placeholder(R.mipmap.icon_banner_default)
                         .error(R.mipmap.icon_banner_default)
-
-                        .transform(new GlideRoundTransform(getActivity(),5))
+                        .centerCrop()
+                        .transform(new GlideRoundTransform(getActivity(), 5))
                         .into((ImageView) view.findViewById(R.id.iv));
 
                 ((TextView) view.findViewById(R.id.tv_title)).setText(bean.getAdName());
@@ -186,6 +183,16 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
 //                }
 //            }
 //        });
+
+
+        homeBanner_vip.setOnItemClickListener(new BGABanner.OnItemClickListener() {
+            @Override
+            public void onBannerItemClick(BGABanner banner, View view, Object model, int position) {
+
+                startActivity(new Intent(getContext(), VipActivity.class));
+
+            }
+        });
 
 
         placeName.setText(CommenString.selectCity);
@@ -409,13 +416,6 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
             case R.id.root_head_search:
                 intent = new Intent(this.getActivity(), SearchActivity.class);
                 startActivity(intent);
-                break;
-            case R.id.root_head_talk:
-                startActivity(new Intent(this.getActivity(), SystemNoticeActivity.class));
-                break;
-            case R.id.root_head_share:
-                ShareData shareData = new ShareData(true, "有担当，更爱家", "顺丰大当家-" + shareCity + "生活馆", String.format("%s/Shop/Index/home.html?city=%s&sell_member_id=%s", Urls.IP, pronvin, PersonMessagePreferencesUtils.getUid()));
-                new ShareViewDialog(this.getContext(), shareData).show();
                 break;
             case R.id.image_high_url:
                 startActivity(new Intent(this.getActivity(), SearchHighListActivity.class));

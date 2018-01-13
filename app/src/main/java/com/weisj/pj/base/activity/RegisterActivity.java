@@ -30,8 +30,8 @@ public class RegisterActivity extends FragmentActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        findViewById(R.id.register_back).setOnClickListener(this);
-        findViewById(R.id.register_finish).setOnClickListener(this);
+        findViewById(R.id.iv_back).setOnClickListener(this);
+        findViewById(R.id.tv_but).setOnClickListener(this);
         type = getIntent().getIntExtra("type", 0);
         if (type > 0) {
             ((TextView) findViewById(R.id.title)).setText("重设密码");
@@ -72,14 +72,14 @@ public class RegisterActivity extends FragmentActivity implements View.OnClickLi
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.register_back:
+            case R.id.iv_back:
                 if (number == 0) {
                     finish();
                 } else {
                     changeFragment(number - 1);
                 }
                 break;
-            case R.id.register_finish:
+            case R.id.tv_but:
                 finish();
                 break;
         }

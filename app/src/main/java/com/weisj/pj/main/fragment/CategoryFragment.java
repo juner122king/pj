@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -25,6 +26,7 @@ import com.weisj.pj.bean.CommodityShow;
 import com.weisj.pj.bean.GoodBean;
 import com.weisj.pj.bean.GoodsParams;
 import com.weisj.pj.presenter.CategoryPresenter;
+import com.weisj.pj.view.MyRadioGroup;
 import com.weisj.pj.viewinterface.ICategoryView;
 
 import org.json.JSONObject;
@@ -41,7 +43,6 @@ public class CategoryFragment extends BaseFragment implements AdapterView.OnItem
 
     private CategoryPresenter presenter;
     private RecyclerView recyclerView;
-    private ImageView imageView1, imageView2, imageView3, imageView4;
     private TextView home_more;
     ItemCategoryCommodityAdapter adapter;
 
@@ -118,39 +119,41 @@ public class CategoryFragment extends BaseFragment implements AdapterView.OnItem
         adapter.addHeaderView(headView);
         recyclerView.setAdapter(adapter);
 
-
-        imageView1 = (ImageView) headView.findViewById(R.id.image_category1);
-        imageView2 = (ImageView) headView.findViewById(R.id.image_category2);
-        imageView3 = (ImageView) headView.findViewById(R.id.image_category3);
-        imageView4 = (ImageView) headView.findViewById(R.id.image_category4);
-
-        Glide.with(this).load("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513048838&di=d0fc7049c9778fd1841e5043be3b8331&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.a-do.tw%2Fphoto%2Fprt%2F4c%5B4-1%5D%2Fp112836%2F%5Bre%5D112836%2F201412213766.jpg").crossFade().into(imageView1);
-        Glide.with(this).load("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513048838&di=d0fc7049c9778fd1841e5043be3b8331&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.a-do.tw%2Fphoto%2Fprt%2F4c%5B4-1%5D%2Fp112836%2F%5Bre%5D112836%2F201412213766.jpg").crossFade().into(imageView2);
-        Glide.with(this).load("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513048838&di=d0fc7049c9778fd1841e5043be3b8331&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.a-do.tw%2Fphoto%2Fprt%2F4c%5B4-1%5D%2Fp112836%2F%5Bre%5D112836%2F201412213766.jpg").crossFade().into(imageView3);
-        Glide.with(this).load("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1513048838&di=d0fc7049c9778fd1841e5043be3b8331&imgtype=jpg&er=1&src=http%3A%2F%2Fwww.a-do.tw%2Fphoto%2Fprt%2F4c%5B4-1%5D%2Fp112836%2F%5Bre%5D112836%2F201412213766.jpg").crossFade().into(imageView4);
-
-        imageView1.setOnClickListener(this);
-        imageView2.setOnClickListener(this);
-        imageView3.setOnClickListener(this);
-        imageView4.setOnClickListener(this);
-
-
         home_more = (TextView) headView.findViewById(R.id.home_more);
         view.findViewById(R.id.root_head_search).setOnClickListener(this);
-        RadioGroup rg1 = (RadioGroup) headView.findViewById(R.id.rg1);
-        RadioGroup rg2 = (RadioGroup) headView.findViewById(R.id.rg2);
+        MyRadioGroup rg1 = (MyRadioGroup) headView.findViewById(R.id.rg1);
+        final RadioGroup rgt = (RadioGroup) headView.findViewById(R.id.rgt);
         RadioGroup rg3 = (RadioGroup) headView.findViewById(R.id.rg3);
         RadioGroup rg4 = (RadioGroup) headView.findViewById(R.id.rg4);
-        RadioGroup rg5 = (RadioGroup) headView.findViewById(R.id.rg5);
+        RadioButton rgt1 = (RadioButton) headView.findViewById(R.id.rgt_rb1);
+        RadioButton rgt2 = (RadioButton) headView.findViewById(R.id.rgt_rb2);
+        RadioButton rgt3 = (RadioButton) headView.findViewById(R.id.rgt_rb3);
+        RadioButton rgt4 = (RadioButton) headView.findViewById(R.id.rgt_rb4);
 
-        rg1.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        View.OnTouchListener radioButtonOnTouchListener = new View.OnTouchListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
+            public boolean onTouch(View v, MotionEvent event) {
+                if (((RadioButton) v).isChecked()) {
+                    rgt.clearCheck();
 
-                View checkView = headView.findViewById(checkedId);
-                if (!checkView.isPressed()) {
-                    return;
+                    propertyCode_top = null;
+                    getGoodList();
+                    return true;
                 }
+                return false;
+            }
+        };
+
+        rgt1.setOnTouchListener(radioButtonOnTouchListener);
+        rgt2.setOnTouchListener(radioButtonOnTouchListener);
+        rgt3.setOnTouchListener(radioButtonOnTouchListener);
+        rgt4.setOnTouchListener(radioButtonOnTouchListener);
+
+
+        rg1.setOnCheckedChangeListener(new MyRadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(MyRadioGroup group, int checkedId) {
+
                 switch (checkedId) {
                     case R.id.rg1_rb1:
                         goodsParams.setCategoryCode("jz");
@@ -163,6 +166,27 @@ public class CategoryFragment extends BaseFragment implements AdapterView.OnItem
                         goodsParams.setCategoryCode("xl");
                         break;
                     case R.id.rg1_rb4:
+                        goodsParams.setCategoryCode("sz");
+                        break;
+                    case R.id.rg1_rb5:
+                        goodsParams.setCategoryCode("erh");
+                        break;
+                    case R.id.rg1_rb6:
+                        goodsParams.setCategoryCode("xz");
+                        break;
+                    case R.id.rg1_rb7:
+                        goodsParams.setCategoryCode("weij");
+                        break;
+                    case R.id.rg1_rb8:
+                        goodsParams.setCategoryCode("maoz");
+                        break;
+                    case R.id.rg1_rb9:
+                        goodsParams.setCategoryCode("sb");
+                        break;
+                    case R.id.rg1_rb10:
+                        goodsParams.setCategoryCode("tyj");
+                        break;
+                    case R.id.rg1_rb11:
                         goodsParams.setCategoryCode(null);
                         break;
                 }
@@ -170,48 +194,32 @@ public class CategoryFragment extends BaseFragment implements AdapterView.OnItem
             }
         });
 
-        rg2.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        rgt.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-                View checkView = headView.findViewById(checkedId);
-                if (!checkView.isPressed()) {
-                    return;
-                }
-
                 switch (checkedId) {
-                    case R.id.rg2_rb1:
-                        propertyCode2 = "fg_sw";
+                    case R.id.rgt_rb1:
+
+                        propertyCode_top = "cj_wy";
                         break;
-                    case R.id.rg2_rb2:
-                        propertyCode2 = "fg_mzf";
+                    case R.id.rgt_rb2:
+                        propertyCode_top = "cj_yw";
                         break;
-                    case R.id.rg2_rb3:
-                        propertyCode2 = "fg_tm";
+                    case R.id.rgt_rb3:
+                        propertyCode_top = "cj_xx";
                         break;
-                    case R.id.rg2_rb4:
-                        propertyCode2 = "fg_fg";
+                    case R.id.rgt_rb4:
+                        propertyCode_top = "cj_jh";
                         break;
-                    case R.id.rg2_rb5:
-                        propertyCode2 = "fg_om";
-                        break;
-                    case R.id.rg2_rb6:
-                        propertyCode2 = "fg_jy";
-                        break;
-                    case R.id.rg2_rb7:
-                        propertyCode2 = "fg_rh";
-                        break;
-                    case R.id.rg2_rb8:
-                        propertyCode2 = "fg_qt";
-                        break;
-                    case R.id.rg2_rb9:
-                        propertyCode2 = null;
-                        break;
+
                 }
                 getGoodList();
 
             }
         });
+
+
         rg3.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -270,33 +278,6 @@ public class CategoryFragment extends BaseFragment implements AdapterView.OnItem
                 getGoodList();
             }
         });
-        rg5.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-                View checkView = headView.findViewById(checkedId);
-                if (!checkView.isPressed()) {
-                    return;
-                }
-
-                switch (checkedId) {
-                    case R.id.rg5_rb1:
-                        propertyCode5 = "rq_ql";
-
-                        break;
-                    case R.id.rg5_rb2:
-                        propertyCode5 = "rq_woman";
-                        break;
-                    case R.id.rg5_rb3:
-                        propertyCode5 = "rq_man";
-                        break;
-                    case R.id.rg5_rb4:
-                        propertyCode5 = null;
-                        break;
-                }
-                getGoodList();
-            }
-        });
 
     }
 
@@ -344,33 +325,30 @@ public class CategoryFragment extends BaseFragment implements AdapterView.OnItem
     public void onClick(View v) {
         Intent intent;
 
-        if (!v.isPressed()) {
-            return;
-        }
-        switch (v.getId()) {
-            case R.id.root_head_search:
-                intent = new Intent(this.getActivity(), SearchActivity.class);
-                startActivity(intent);
-                break;
-
-            case R.id.image_category1:
-                propertyCode_top = "cj_wy";
-                getGoodList();
-                break;
-            case R.id.image_category2:
-                propertyCode_top = "cj_xx";
-                getGoodList();
-                break;
-            case R.id.image_category3:
-                propertyCode_top = "cj_yw";
-                getGoodList();
-                break;
-            case R.id.image_category4:
-                propertyCode_top = "cj_jh";
-                getGoodList();
-                break;
-
-        }
+//        switch (v.getId()) {
+//            case R.id.root_head_search:
+//                intent = new Intent(this.getActivity(), SearchActivity.class);
+//                startActivity(intent);
+//                break;
+//
+//            case R.id.image_category1:
+//                propertyCode_top = "cj_wy";
+//                getGoodList();
+//                break;
+//            case R.id.image_category2:
+//                propertyCode_top = "cj_yw";
+//                getGoodList();
+//                break;
+//            case R.id.image_category3:
+//                propertyCode_top = "cj_xx";
+//                getGoodList();
+//                break;
+//            case R.id.image_category4:
+//                propertyCode_top = "cj_jh";
+//                getGoodList();
+//                break;
+//
+//        }
 
 
     }

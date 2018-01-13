@@ -14,42 +14,67 @@
         android:paddingLeft="10dp"
         android:text="场景首饰" />
 
-    <LinearLayout
+
+    <RadioGroup
+        android:id="@+id/rgt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center"
         android:layout_marginBottom="8dp"
         android:background="#ffffff"
         android:orientation="horizontal"
         android:padding="@dimen/text_size_10">
 
-        <com.weisj.pj.view.CircleImageView
-            android:id="@+id/image_category1"
+        <RadioButton
+            android:id="@+id/rgt_rb1"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_centerInParent="true" />
+            android:layout_marginRight="5dp"
+            android:background="@drawable/catgory_top_button_check1"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingTop="50dp"
+            android:text="宴会"
+            android:textSize="12sp" />
 
-        <com.weisj.pj.view.CircleImageView
-            android:id="@+id/image_category2"
+        <RadioButton
+            android:id="@+id/rgt_rb2"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_centerInParent="true"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp" />
+            android:layout_marginRight="5dp"
+            android:background="@drawable/catgory_top_button_check2"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingTop="50dp"
+            android:text="商务"
+            android:textSize="12sp" />
 
-        <com.weisj.pj.view.CircleImageView
-            android:id="@+id/image_category3"
+        <RadioButton
+            android:id="@+id/rgt_rb3"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_centerInParent="true"
-            android:layout_marginRight="5dp" />
+            android:layout_marginRight="5dp"
+            android:background="@drawable/catgory_top_button_check3"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingTop="50dp"
+            android:text="休闲"
+            android:textSize="12sp" />
 
-        <com.weisj.pj.view.CircleImageView
-            android:id="@+id/image_category4"
+        <RadioButton
+            android:id="@+id/rgt_rb4"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_centerInParent="true" />
-    </LinearLayout>
+
+            android:background="@drawable/catgory_top_button_check4"
+            android:button="@null"
+            android:gravity="center"
+            android:paddingTop="50dp"
+            android:text="校园"
+            android:textSize="12sp" />
+
+
+    </RadioGroup>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -92,48 +117,121 @@
             android:textSize="12dp" />
     </LinearLayout>
 
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="2px"
+
+        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#fff"
         android:orientation="vertical">
 
-        <RadioGroup
+        <com.weisj.pj.view.MyRadioGroup
             android:id="@+id/rg1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="2px"
             android:background="#ffffff"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:paddingBottom="10dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:paddingTop="10dp">
 
-            <RadioButton
-                android:id="@+id/rg1_rb1"
-                style="@style/category_radiobutton"
-                android:text="戒指" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <RadioButton
+                <RadioButton
+                    android:id="@+id/rg1_rb1"
+                    style="@style/category_radiobutton"
+                    android:text="戒指" />
 
-                android:id="@+id/rg1_rb2"
-                style="@style/category_radiobutton"
-                android:text="吊坠" />
+                <RadioButton
 
-            <RadioButton
+                    android:id="@+id/rg1_rb2"
+                    style="@style/category_radiobutton"
+                    android:text="吊坠" />
 
-                android:id="@+id/rg1_rb3"
-                style="@style/category_radiobutton"
-                android:text="项链" />
+                <RadioButton
 
-            <RadioButton
+                    android:id="@+id/rg1_rb3"
+                    style="@style/category_radiobutton"
+                    android:text="项链" />
 
-                android:id="@+id/rg1_rb4"
-                style="@style/category_radiobutton"
-                android:checked="true"
-                android:text="不限" />
-        </RadioGroup>
+                <RadioButton
+
+                    android:id="@+id/rg1_rb4"
+                    style="@style/category_radiobutton"
+                    android:text="手镯" />
+
+                <RadioButton
+
+                    android:id="@+id/rg1_rb5"
+                    style="@style/category_radiobutton"
+                    android:text="耳环" />
+
+                <RadioButton
+
+                    android:id="@+id/rg1_rb6"
+                    style="@style/category_radiobutton"
+                    android:text="胸针" />
+
+                <RadioButton
+
+                    android:id="@+id/rg1_rb7"
+                    style="@style/category_radiobutton"
+                    android:text="围巾" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/rg1_rb8"
+                    style="@style/category_radiobutton"
+                    android:text="帽子" />
+
+                <RadioButton
+
+                    android:id="@+id/rg1_rb9"
+                    style="@style/category_radiobutton"
+                    android:text="手表" />
+
+                <RadioButton
+
+                    android:id="@+id/rg1_rb10"
+                    style="@style/category_radiobutton"
+                    android:text="太阳镜" />
+
+                <RadioButton
+                    android:id="@+id/rg1_rb11"
+                    style="@style/category_radiobutton"
+                    android:checked="true"
+                    android:text="不限" />
+
+                <RadioButton
+                    style="@style/category_radiobutton"
+                    android:visibility="invisible" />
+
+                <RadioButton
+
+                    style="@style/category_radiobutton"
+                    android:visibility="invisible" />
+
+                <RadioButton
+
+                    style="@style/category_radiobutton"
+                    android:visibility="invisible" />
+
+            </LinearLayout>
+
+        </com.weisj.pj.view.MyRadioGroup>
 
     </LinearLayout>
 
@@ -147,7 +245,8 @@
         android:paddingBottom="10dp"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-        android:paddingTop="10dp">
+        android:paddingTop="10dp"
+        android:visibility="gone">
 
         <RadioButton
 
@@ -237,19 +336,19 @@
 
                 android:id="@+id/rg3_rb1"
                 style="@style/category_radiobutton"
-                android:text="宝石" />
+                android:text="镀金" />
 
             <RadioButton
 
                 android:id="@+id/rg3_rb2"
                 style="@style/category_radiobutton"
-                android:text="K 金" />
+                android:text="S925银" />
 
             <RadioButton
 
                 android:id="@+id/rg3_rb3"
                 style="@style/category_radiobutton"
-                android:text="鉑金" />
+                android:text="K金" />
 
             <RadioButton
 
@@ -274,25 +373,25 @@
             <RadioButton
                 android:id="@+id/rg4_rb1"
                 style="@style/category_radiobutton"
-                android:text="0-499" />
+                android:text="0-500" />
 
             <RadioButton
 
                 android:id="@+id/rg4_rb2"
                 style="@style/category_radiobutton"
-                android:text="500-1199" />
+                android:text="501-3000" />
 
             <RadioButton
 
                 android:id="@+id/rg4_rb3"
                 style="@style/category_radiobutton"
-                android:text="1200-2099" />
+                android:text="3001-10000" />
 
             <RadioButton
 
                 android:id="@+id/rg4_rb4"
                 style="@style/category_radiobutton"
-                android:text="2100以上" />
+                android:text="10000以上" />
 
             <RadioButton
 
@@ -307,7 +406,8 @@
             android:layout_height="2px"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:background="@color/colore6e6e6" />
+            android:background="@color/colore6e6e6"
+            android:visibility="gone" />
 
         <RadioGroup
 
@@ -319,7 +419,8 @@
             android:paddingBottom="10dp"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
-            android:paddingTop="10dp">
+            android:paddingTop="10dp"
+            android:visibility="gone">
 
             <RadioButton
 
