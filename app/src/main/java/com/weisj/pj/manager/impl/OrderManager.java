@@ -20,16 +20,25 @@ import java.util.Map;
 public class OrderManager implements IOrderManager {
 
     @Override
-    public void getOrderData(int filter_type, String wx_name, int state, final int page, int pageNum, final IOnManagerListener listener) {
+    public void getOrderData(int state, final int page, int pageNum, final IOnManagerListener listener) {
         Map<String, String> params = new HashMap<>();
-        params.put("sell_member_id", PersonMessagePreferencesUtils.getUid());
+//        params.put("sell_member_id", PersonMessagePreferencesUtils.getUid());
+//        params.put("order_state", String.valueOf(state));
+//        params.put("page", String.valueOf(page));
+//        params.put("page_num", String.valueOf(pageNum));
+//        if (wx_name != null && !wx_name.trim().equals("")) {
+//            params.put("wx_name", wx_name);
+//        }
+//        params.put("filter_type", String.valueOf(filter_type));
+//
+
+        params.put("member_id", PersonMessagePreferencesUtils.getUid());
         params.put("order_state", String.valueOf(state));
         params.put("page", String.valueOf(page));
         params.put("page_num", String.valueOf(pageNum));
-        if (wx_name != null && !wx_name.trim().equals("")) {
-            params.put("wx_name", wx_name);
-        }
-        params.put("filter_type", String.valueOf(filter_type));
+
+
+
         OkHttpClientManager.postAsyn(Urls.myorders, params, new OkHttpClientManager.ResultCallback<OrderBean>() {
             @Override
             public void onError(Request request, Exception e) {

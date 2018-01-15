@@ -34,6 +34,7 @@
     </LinearLayout>
 
     <FrameLayout
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
@@ -74,16 +75,17 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
-            android:text="租金:"
+            android:text="押金:"
             android:textColor="#313131" />
 
         <TextView
+            android:id="@+id/tv_p"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="7dp"
             android:layout_weight="1"
-            android:text="$198"
+            android:text="￥0"
             android:textColor="#f00056" />
 
         <TextView

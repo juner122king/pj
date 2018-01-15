@@ -7,7 +7,7 @@ import com.weisj.pj.manager.listener.IOnManagerListener;
  */
 public interface IOrderManager {
 
-    void getOrderData(int filter_type, String wx_name, int state, int page, int pageNum, IOnManagerListener listener);
+    void getOrderData( int state, int page, int pageNum, IOnManagerListener listener);
 
     void getOrderRecordData(IOnManagerListener listener);
 

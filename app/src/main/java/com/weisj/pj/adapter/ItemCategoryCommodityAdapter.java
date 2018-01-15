@@ -38,6 +38,5 @@ public class ItemCategoryCommodityAdapter extends BaseQuickAdapter<HomeBean.Data
             sellNum = item.getSellNum();
         helper.setText(R.id.tv_use_number, sellNum);
 
-
     }
 }

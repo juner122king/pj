@@ -32,13 +32,13 @@ public class Urls {
     //1.1 热门城市接口
     public static final String gethotregions = IP + "/fxfront/interface/gethotregions?appid=APPID";
     //1.11 添加收货人
-    public static final String addconsignee = IP + "/fxfront/member/addconsignee?appid=APPID";
+    public static final String addconsignee = IP + "/ndfront/member/addconsignee?appid=APPID";
     //1.12 设置默认收货地址
-    public static final String setdefaultconsignee = IP + "/fxfront/member/setdefaultconsignee?appid=APPID";
+    public static final String setdefaultconsignee = IP + "/ndfront/member/setdefaultconsignee?appid=APPID";
     //1.13 删除收货地址
-    public static final String delconsignee = IP + "/fxfront/member/delconsignee?appid=APPID";
+    public static final String delconsignee = IP + "/ndfront/member/delconsignee?appid=APPID";
     //2.1 用户地址信息
-    public static final String getAddress = IP + "/fxfront/order/address?appid=APPID";
+    public static final String getAddress = IP + "/ndfront/order/address?appid=APPID";
     // 所有分类（大类）
     public static final String getcategorybytopfilter = IP + "/fxfront/interface/getcategorybytopfilter?appid=APPID";
     // 所有分类（小类）
@@ -78,7 +78,7 @@ public class Urls {
     // 分享good url
     public static final String shareGoodUrl = IP + "/Shop/goods?goods_id=";
     // 查询我的订单
-    public static final String myorders = IP + "/fxfront/shoporder/myorders?appid=APPID";
+    public static final String myorders = IP + "/ndfront/order/myorders?appid=APPID";
     // 申请商家接口
     public static final String apply_company = IP + "/fxfront/interface/apply_company?appid=APPID";
     // 闪屏广告

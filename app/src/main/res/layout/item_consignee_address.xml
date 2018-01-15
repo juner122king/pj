@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginTop="5dp"
     android:background="#e6e6e6"
     android:orientation="vertical">
@@ -54,43 +54,45 @@
         android:layout_width="match_parent"
         android:layout_height="38dp"
         android:layout_marginTop="0.5dp"
-        android:gravity="center_vertical"
         android:background="#ffffff"
+        android:gravity="center_vertical"
         android:orientation="horizontal">
+
         <ImageView
             android:id="@+id/consignee_choose"
-            android:layout_width="14dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:src="@drawable/consignee_default_address_image_selector"
-            android:layout_height="14dp" />
+            android:src="@drawable/consignee_default_address_image_selector" />
 
         <TextView
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="设为默认地址"
-            android:textSize="12dp"
             android:layout_marginLeft="7dp"
-            android:textColor="#999999"/>
+            android:layout_weight="1"
+            android:text="设为默认地址"
+            android:textColor="#999999"
+            android:textSize="12dp" />
 
         <Button
+            android:id="@+id/consignee_edit"
             android:layout_width="54dp"
             android:layout_height="22dp"
             android:background="@drawable/consignee_edit_background"
             android:text="编辑"
-            android:id="@+id/consignee_edit"
-            android:textSize="12dp"
-            android:textColor="#666666"/>
+            android:textColor="#666666"
+            android:textSize="12dp" />
+
         <Button
+            android:id="@+id/consignee_delete"
             android:layout_width="54dp"
             android:layout_height="22dp"
-            android:background="@drawable/consignee_delete_background"
-            android:text="删除"
-            android:id="@+id/consignee_delete"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="15dp"
-            android:textSize="12dp"
-            android:textColor="#86a127"/>
+            android:background="@drawable/consignee_delete_background"
+            android:text="删除"
+            android:textColor="#86a127"
+            android:textSize="12dp" />
     </LinearLayout>
 
 </LinearLayout>

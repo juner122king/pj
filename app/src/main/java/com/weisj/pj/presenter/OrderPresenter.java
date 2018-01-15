@@ -26,16 +26,16 @@ public class OrderPresenter implements IOnManagerListener {
         orderManager = new OrderManager();
     }
 
-    public void getInitOrderData(int orderState, int filter_type, String wxName) {
+    public void getInitOrderData(int orderState) {
         page = 1;
         viewState.showLoading();
-        orderManager.getOrderData(filter_type, wxName, orderState, page, pageNum, this);
+        orderManager.getOrderData(orderState, page, pageNum, this);
         orderManager.getMyRecommend(this);
     }
 
-    public void getOrderdata(int orderState, int filter_type, String wxName) {
+    public void getOrderdata(int orderState) {
         page++;
-        orderManager.getOrderData(filter_type, wxName, orderState, page, pageNum, this);
+        orderManager.getOrderData( orderState, page, pageNum, this);
     }
 
     public void deleteOrder(int id) {
@@ -80,6 +80,6 @@ public class OrderPresenter implements IOnManagerListener {
 
     @Override
     public void onFail(Exception e, String url) {
-        viewState.showNoNetWork();
+//        viewState.showNoNetWork();
     }
 }

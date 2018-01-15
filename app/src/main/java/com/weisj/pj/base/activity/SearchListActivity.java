@@ -14,16 +14,21 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.weisj.pj.R;
 import com.weisj.pj.adapter.ItemCategoryCommodityAdapter;
+import com.weisj.pj.adapter.ItemConsigneeAddress;
 import com.weisj.pj.adapter.ItemHomeGoodAdapter;
 import com.weisj.pj.base.BaseActivity;
+import com.weisj.pj.bean.AdressBean;
 import com.weisj.pj.bean.GoodBean;
 import com.weisj.pj.bean.HomeBean;
 import com.weisj.pj.bean.Region;
 import com.weisj.pj.bean.SearchBrand;
 import com.weisj.pj.presenter.SearchListPresenter;
+import com.weisj.pj.presenter.ShowAddressPresenter;
+import com.weisj.pj.utils.PreferencesUtils;
 import com.weisj.pj.utils.Urls;
 import com.weisj.pj.view.abpullrefresh.AbPullToRefreshView;
 import com.weisj.pj.viewinterface.ISearchListView;
+import com.weisj.pj.viewinterface.IShowAddressView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -317,5 +322,80 @@ public class SearchListActivity extends BaseActivity implements View.OnClickList
         Intent intent = new Intent(this, GoodDetailActivity.class);
         intent.putExtra("goodId", data.getGoodsId());
         startActivity(intent);
+    }
+
+    /**
+     * Created by Administrator on 2016/7/22 0022.
+     */
+    public static class ConsigneeAddressActivity extends BaseActivity implements IShowAddressView {
+        private RecyclerView recyclerView;
+        private ShowAddressPresenter presenter;
+        private AdressBean adressBean;
+
+        @Override
+        public View initView(Bundle savedInstanceState) {
+            View view = mLayoutInflater.inflate(R.layout.activity_consignee_address, null);
+            initView(view);
+            return view;
+        }
+
+        public ShowAddressPresenter getPresenter() {
+            return presenter;
+        }
+
+        private void initView(View view) {
+            recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+            rootView.setRightText("添加",true);
+            presenter = new ShowAddressPresenter(this, this);
+        }
+
+        @Override
+        public String setTitleStr() {
+            return "我的收货地址";
+        }
+
+        @Override
+        public void showAddress(AdressBean adressBean) {
+            this.adressBean = adressBean;
+            recyclerView.setAdapter(new ItemConsigneeAddress(ConsigneeAddressActivity.this, adressBean));
+            recyclerView.setLayoutManager(new LinearLayoutManager(ConsigneeAddressActivity.this));
+        }
+
+        @Override
+        protected void onResume() {
+            super.onResume();
+            presenter.getAddress();
+        }
+
+        @Override
+        public void successAddress(String addressId) {
+            AdressBean.DataEntity data = null;
+            for (AdressBean.DataEntity dataEntity : adressBean.getData()) {
+                if (String.valueOf(dataEntity.getRecipient_id()).equals(addressId)) {
+                    data = dataEntity;
+                    break;
+                }
+            }
+            adressBean.getData().remove(data);
+            recyclerView.getAdapter().notifyDataSetChanged();
+            if (!(adressBean.getData().size() > 0)) {
+                showNoData();
+                PreferencesUtils.putInt("has_default_consignee", 0);
+            }
+        }
+
+        @Override
+        public void onHeadClick(View v) {
+            if (v.getId() == R.id.root_head_right_text) {
+                Intent intent = new Intent(this, EditAddressActivity.class);
+                intent.putExtra("Title", "add");
+                startActivity(intent);
+            }
+        }
+
+        @Override
+        public void getRefreshData() {
+            presenter.getAddress();
+        }
     }
 }

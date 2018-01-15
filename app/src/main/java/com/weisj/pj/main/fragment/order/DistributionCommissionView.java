@@ -41,13 +41,12 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
     public OrderPresenter presenter;
     private int state = 0;//0等待买家待选中,1买家已付款,2卖家已发货，待买家收货,  12 待评价 -1表示全部
     private TextView noDataView;
-    private int filter_type;
-    private String wxName;
+    private TextView tv_p;//押金
+
 
     public void setWxAndFilterType(int filter_type, String wxName) {
-        this.filter_type = filter_type;
-        this.wxName = wxName;
-        presenter.getInitOrderData(state, filter_type, wxName);
+
+        presenter.getInitOrderData(state);
     }
 
     public DistributionCommissionView(LayoutInflater inflater) {
@@ -76,6 +75,7 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
         selectView2 = rootView.findViewById(R.id.order_commission_no_send);
         selectView3 = rootView.findViewById(R.id.order_commission_no_receive);
         selectView4 = rootView.findViewById(R.id.order_commission_no_evaluate);
+        tv_p = (TextView) rootView.findViewById(R.id.tv_p);
         ll_zhifu = (LinearLayout) rootView.findViewById(R.id.ll_zhifu);
 
         noDataView = (TextView) rootView.findViewById(R.id.no_data);
@@ -85,7 +85,7 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
         selectView2.setOnClickListener(this);
         selectView3.setOnClickListener(this);
         selectView4.setOnClickListener(this);
-        presenter.getInitOrderData(state, filter_type, wxName);
+        presenter.getInitOrderData(state);
     }
 
     public void hidezhifu() {
@@ -94,12 +94,12 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
 
     public void getdata() {
         replaceData();
-        presenter.getInitOrderData(state, filter_type, wxName);
+        presenter.getInitOrderData(state);
     }
 
     public void changeOrderState(int state) {
         this.state = state;
-        presenter.getInitOrderData(state, filter_type, wxName);
+        presenter.getInitOrderData(state);
     }
 
 
@@ -245,7 +245,7 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
     @Override
     public void deleteOrderSuccess() {
         SystemConfig.showToast("订单删除成功,刷新中···");
-        presenter.getInitOrderData(state, filter_type, wxName);
+        presenter.getInitOrderData(state);
     }
 
     @Override
@@ -255,12 +255,12 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
 
     @Override
     public void onHeaderRefresh(AbPullToRefreshView view) {
-        presenter.getInitOrderData(state, filter_type, wxName);
+        presenter.getInitOrderData(state);
     }
 
     @Override
     public void onFooterLoad(AbPullToRefreshView view) {
-        presenter.getOrderdata(state, filter_type, wxName);
+        presenter.getOrderdata(state);
     }
 
     @Override

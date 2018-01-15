@@ -49,14 +49,14 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener,
     public void onResume() {
         super.onResume();
         commissionView.getdata();
-        recordView.getdata();
+//        recordView.getdata();
     }
 
     private void initView() {
         commissionView = new DistributionCommissionView(mInflater);
-        recordView = new DistributionRecordView(mInflater);
+//        recordView = new DistributionRecordView(mInflater);
         list.add(commissionView.getRootView());
-        list.add(recordView.getRootView());
+//        list.add(recordView.getRootView());
         viewPager = (ViewPager) view.findViewById(R.id.view_pager);
         viewPager.setAdapter(new ItemOrderFragmentAdapter(list));
         viewPager.addOnPageChangeListener(this);

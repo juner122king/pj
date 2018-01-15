@@ -35,26 +35,26 @@
             android:background="#ffffff"
             android:orientation="horizontal" >
 
-            <com.weisj.fx.view.choosearea.WheelView
+            <com.weisj.pj.view.choosearea.WheelView
                 android:id="@+id/id_province"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" >
-            </com.weisj.fx.view.choosearea.WheelView>
+            </com.weisj.pj.view.choosearea.WheelView>
 
-            <com.weisj.fx.view.choosearea.WheelView
+            <com.weisj.pj.view.choosearea.WheelView
                 android:id="@+id/id_city"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" >
-            </com.weisj.fx.view.choosearea.WheelView>
+            </com.weisj.pj.view.choosearea.WheelView>
 
-            <com.weisj.fx.view.choosearea.WheelView
+            <com.weisj.pj.view.choosearea.WheelView
                 android:id="@+id/id_area"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1" >
-            </com.weisj.fx.view.choosearea.WheelView>
+            </com.weisj.pj.view.choosearea.WheelView>
 
         </LinearLayout>
 

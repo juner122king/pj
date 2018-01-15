@@ -9,11 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.weisj.pj.R;
 import com.weisj.pj.base.BaseFragment;
 //import com.weisj.pj.base.activity.BecomeShopActivity;
 //import com.weisj.pj.base.activity.BingPhoneActivity;
-//import com.weisj.pj.base.activity.ConsigneeAddressActivity;
+//import com.weisj.pj.base.activity.SearchListActivity.ConsigneeAddressActivity;
 //import com.weisj.pj.base.activity.ListViewActivity;
 //import com.weisj.pj.base.activity.MyCollectionActivity;
 //import com.weisj.pj.base.activity.SetUpActivity;
@@ -21,6 +22,7 @@ import com.weisj.pj.base.BaseFragment;
 //import com.weisj.pj.base.activity.UserInfoActivity;
 //import com.weisj.pj.base.activity.WalletActivity;
 //import com.weisj.pj.base.activity.WebActivity;
+import com.weisj.pj.base.activity.ConsigneeAddressActivity;
 import com.weisj.pj.bean.CenterBean;
 import com.weisj.pj.bean.ShareData;
 import com.weisj.pj.presenter.CenterPresenter;
@@ -30,6 +32,7 @@ import com.weisj.pj.utils.PreferencesUtils;
 import com.weisj.pj.utils.SystemConfig;
 import com.weisj.pj.utils.Urls;
 import com.weisj.pj.view.dialog.LinkShareDialog;
+import com.weisj.pj.view.photocheck.GlideRoundTransform;
 import com.weisj.pj.viewinterface.ICenterView;
 
 /**
@@ -37,11 +40,11 @@ import com.weisj.pj.viewinterface.ICenterView;
  * 我的主页
  */
 public class MeFragment extends BaseFragment implements View.OnClickListener, ICenterView {
-    private View view;
+    private View view, view_dl;
     private CenterPresenter presenter;
     private final String GETHINTIMAGECLICK = "isClickImage";
     private ImageView iv_head;
-    private TextView name;
+    private TextView name, user_lv, user_lv_info, numb1, numb2, numb3, numb4, logout;
 
 
     @Override
@@ -50,18 +53,33 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
         initView(view);
         rootView.isHintHeadBar(true);
         presenter = new CenterPresenter(this, this);
-        presenter.getMemberCenter();
+//        presenter.getMemberCenter();
         this.view = view;
         return view;
     }
 
     private void initView(View view) {
-        view.findViewById(R.id.my_collection_linear).setOnClickListener(this);
+        iv_head = (ImageView) view.findViewById(R.id.image_head);
+        view_dl = view.findViewById(R.id.view_dl);
         view.findViewById(R.id.user_address_linear).setOnClickListener(this);
-//        view.findViewById(R.id.user_share).setOnClickListener(this);
-        view.findViewById(R.id.notice_image).setOnClickListener(this);
-//        view.findViewById(R.id.user_setup).setOnClickListener(this);
-        view.findViewById(R.id.image_head).setOnClickListener(this);
+
+        name = (TextView) view.findViewById(R.id.tv_name);
+        numb1 = (TextView) view.findViewById(R.id.tv_number1);
+        numb2 = (TextView) view.findViewById(R.id.tv_number2);
+        numb3 = (TextView) view.findViewById(R.id.tv_number3);
+        numb4 = (TextView) view.findViewById(R.id.tv_number4);
+        logout = (TextView) view.findViewById(R.id.tv_logout);
+        user_lv = (TextView) view.findViewById(R.id.loginBt);
+        user_lv_info = (TextView) view.findViewById(R.id.tv_vip_info);
+        iv_head.setOnClickListener(this);
+
+        Glide.with(getActivity())
+                .load("http://image.rakuten.co.jp/navie/cabinet/b/ijw-b-061a.jpg")
+
+                .placeholder(R.mipmap.icon_banner_default)
+                .error(R.mipmap.icon_banner_default)
+
+                .into(iv_head);
         presenter = new CenterPresenter(this, this);
 
     }
@@ -78,7 +96,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
 
     @Override
     public void onClick(View v) {
-//        switch (v.getId()) {
+        switch (v.getId()) {
 //            case R.id.me_wallet:
 //                if (PreferencesUtils.getString("cellphone") != null && PreferencesUtils.getString("cellphone").length() == 11) {
 //                    startActivity(new Intent(this.getContext(), WalletActivity.class));
@@ -92,9 +110,9 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
 //            case R.id.me_become_shop_linear:
 //                startActivity(new Intent(this.getContext(), BecomeShopActivity.class));
 //                break;
-//            case R.id.user_address_linear:
-//                startActivity(new Intent(this.getContext(), ConsigneeAddressActivity.class));
-//                break;
+            case R.id.user_address_linear:
+                startActivity(new Intent(this.getContext(), ConsigneeAddressActivity.class));
+                break;
 //            case R.id.user_share:
 //                ShareData data = new ShareData(BitmapFactory.decodeResource(this.getResources(), R.mipmap.icon_share_sf), "顺丰大当家，分享每一刻", "顺丰大当家，分享每一刻", Urls.IP + "/Shop/MDownload/down_load", 0, 0);
 //                new LinkShareDialog(this.getContext(), data).show();
@@ -127,24 +145,29 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
 //                startActivity(intent);
 //                break;
 //
-//        }
+        }
     }
 
     @Override
     public void getCenter(CenterBean centerBean) {
-        ImageLoaderUtils.getInstance().display((ImageView) (view.findViewById(R.id.image_head)), centerBean.getData().getMember_pic(), R.mipmap.icon_head);
-        ((TextView) (view.findViewById(R.id.user_name))).setText(centerBean.getData().getMember_name() != null ? centerBean.getData().getMember_name() : "");
-        PreferencesUtils.putString("member_name", centerBean.getData().getMember_name());
+        CenterBean.DataEntity dataEntity = centerBean.getData();
+        name.setText(dataEntity.getMember_name());
+
+        numb1.setText(String.valueOf(dataEntity.getCollec_num()));
+        numb2.setText(String.valueOf(dataEntity.getCurrent_money()));
+        numb3.setText(String.valueOf(dataEntity.getCupon_num()));
+        numb4.setText(String.valueOf(dataEntity.getCart_num()));
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
-//        if (PersonMessagePreferencesUtils.getUid() == null) {
-//            getActivity().finish();
-//        } else {
-//            presenter.getMemberCenter();
-//        }
+        if (PersonMessagePreferencesUtils.getUid() == null) {
+            getActivity().finish();
+        } else {
+            presenter.getMemberCenter();
+        }
 //        if (PreferencesUtils.getBoolean(GETHINTIMAGECLICK)) {
 //            imageHeadHint.setVisibility(View.GONE);
 //        } else {
