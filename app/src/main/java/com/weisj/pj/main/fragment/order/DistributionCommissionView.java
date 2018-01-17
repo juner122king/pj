@@ -1,7 +1,8 @@
 package com.weisj.pj.main.fragment.order;
 
-import android.content.Intent;
 import android.graphics.Color;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ExpandableListView;
@@ -9,14 +10,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.weisj.pj.R;
+import com.weisj.pj.adapter.ItemCarListAdapter;
 import com.weisj.pj.adapter.ItemDistributionCommissionAdapter;
 import com.weisj.pj.base.BaseViewState;
-//import com.weisj.pj.base.activity.OrderDetailActivity;
-//import com.weisj.pj.base.activity.WalletActivity;
+import com.weisj.pj.bean.CartGoodBean;
 import com.weisj.pj.bean.OrderBean;
 import com.weisj.pj.presenter.OrderPresenter;
 import com.weisj.pj.utils.SystemConfig;
-import com.weisj.pj.utils.TextViewUtils;
 import com.weisj.pj.utils.ViewStateUtil;
 import com.weisj.pj.view.RootView;
 import com.weisj.pj.view.abpullrefresh.AbPullToRefreshView;
@@ -31,22 +31,23 @@ import java.util.List;
  */
 public class DistributionCommissionView implements View.OnClickListener, BaseViewState, IOrderView, AbPullToRefreshView.OnHeaderRefreshListener, AbPullToRefreshView.OnFooterLoadListener, RootView.NoWifiListener, ExpandableListView.OnChildClickListener {
     private LayoutInflater inflater;
-    private View rootView, selectView1, selectView2, selectView3, selectView4, lastView;
+    private View rootView, selectView1, selectView2, selectView3, selectView4, lastView, refresh_view;
     private RootView rootRela;
     private LinearLayout ll_zhifu;//支付分局  只在待选中页面显示
     private ExpandableListView expandableListView;
     private List<OrderBean.DataEntity> dataList = new ArrayList<>();
     private ItemDistributionCommissionAdapter adapter;
+    private ItemCarListAdapter carListAdapter;
     private AbPullToRefreshView refreshView;
     public OrderPresenter presenter;
-    private int state = 0;//0等待买家待选中,1买家已付款,2卖家已发货，待买家收货,  12 待评价 -1表示全部
+    private int state = 0;//0等待买家待选中,1买家已付款,  2卖家已发货，待收货,  12 待评价 -1表示全部  13待归还  14 已完成
     private TextView noDataView;
     private TextView tv_p;//押金
-
+    private RecyclerView recyclerView_carlist;
 
     public void setWxAndFilterType(int filter_type, String wxName) {
 
-        presenter.getInitOrderData(state);
+        presenter.getcartList();
     }
 
     public DistributionCommissionView(LayoutInflater inflater) {
@@ -68,13 +69,16 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
         rootRela.addContentView(rootView);
         rootRela.isHintHeadBar(true);
         rootRela.setNoWifiListener(this);
-        expandableListView = (ExpandableListView) rootView.findViewById(R.id.expand_list_view);
+        expandableListView = (ExpandableListView) rootView.findViewById(R.id.expand_list_order);
         expandableListView.setEmptyView(ViewStateUtil.getNoDataView(inflater.getContext(), "暂无数据", Color.parseColor("#ffffff")));
         expandableListView.setOnChildClickListener(this);
         selectView1 = rootView.findViewById(R.id.order_commission_no_pay);
         selectView2 = rootView.findViewById(R.id.order_commission_no_send);
         selectView3 = rootView.findViewById(R.id.order_commission_no_receive);
         selectView4 = rootView.findViewById(R.id.order_commission_no_evaluate);
+        refresh_view = rootView.findViewById(R.id.refresh_view);
+
+        recyclerView_carlist = (RecyclerView) rootView.findViewById(R.id.recyclerView_carlist);
         tv_p = (TextView) rootView.findViewById(R.id.tv_p);
         ll_zhifu = (LinearLayout) rootView.findViewById(R.id.ll_zhifu);
 
@@ -85,7 +89,10 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
         selectView2.setOnClickListener(this);
         selectView3.setOnClickListener(this);
         selectView4.setOnClickListener(this);
-        presenter.getInitOrderData(state);
+//        presenter.getInitOrderData(state);
+
+//        presenter.getcartList();
+
     }
 
     public void hidezhifu() {
@@ -95,6 +102,11 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
     public void getdata() {
         replaceData();
         presenter.getInitOrderData(state);
+    }
+
+    public void getcart() {
+        replaceCartData();
+        presenter.getcartList();
     }
 
     public void changeOrderState(int state) {
@@ -128,6 +140,10 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
         expandableListView.setAdapter(adapter);
         setExpandListView();
     }
+    public void replaceCartData() {
+        carListAdapter = new ItemCarListAdapter(null);
+        recyclerView_carlist.setAdapter(carListAdapter);
+    }
 
     @Override
     public void onClick(View v) {
@@ -136,8 +152,10 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
                 lastView.setSelected(false);
                 v.setSelected(true);
                 lastView = selectView1;
-                changeOrderState(0);
+                presenter.getcartList();
                 ll_zhifu.setVisibility(View.VISIBLE);
+                refresh_view.setVisibility(View.GONE);
+                recyclerView_carlist.setVisibility(View.VISIBLE);
                 break;
             case R.id.order_commission_no_send:
                 lastView.setSelected(false);
@@ -145,20 +163,26 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
                 lastView = selectView2;
                 changeOrderState(1);
                 hidezhifu();
+                refresh_view.setVisibility(View.VISIBLE);
+                recyclerView_carlist.setVisibility(View.GONE);
                 break;
             case R.id.order_commission_no_receive:
                 lastView.setSelected(false);
                 v.setSelected(true);
                 lastView = selectView3;
-                changeOrderState(2);
+                changeOrderState(13);
                 hidezhifu();
+                refresh_view.setVisibility(View.VISIBLE);
+                recyclerView_carlist.setVisibility(View.GONE);
                 break;
             case R.id.order_commission_no_evaluate:
                 lastView.setSelected(false);
                 v.setSelected(true);
                 lastView = selectView4;
-                changeOrderState(12);
+                changeOrderState(14);
                 hidezhifu();
+                refresh_view.setVisibility(View.VISIBLE);
+                recyclerView_carlist.setVisibility(View.GONE);
                 break;
         }
     }
@@ -251,6 +275,20 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
     @Override
     public void deleteOrderFail() {
         SystemConfig.showToast("订单删除失败");
+    }
+
+    @Override
+    public void getCartList(CartGoodBean cartGoodBean) {
+        recyclerView_carlist.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
+        carListAdapter = new ItemCarListAdapter(cartGoodBean.getData());
+        recyclerView_carlist.setAdapter(carListAdapter);
+
+
+    }
+
+    @Override
+    public void getCartListFail() {
+
     }
 
     @Override

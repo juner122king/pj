@@ -2,6 +2,7 @@ package com.weisj.pj.presenter;
 
 import com.weisj.pj.base.BaseViewState;
 import com.weisj.pj.bean.BaseBean;
+import com.weisj.pj.bean.CartGoodBean;
 import com.weisj.pj.bean.OrderBean;
 import com.weisj.pj.bean.RecommendBean;
 import com.weisj.pj.manager.IOrderManager;
@@ -29,19 +30,25 @@ public class OrderPresenter implements IOnManagerListener {
     public void getInitOrderData(int orderState) {
         page = 1;
         viewState.showLoading();
+
         orderManager.getOrderData(orderState, page, pageNum, this);
-        orderManager.getMyRecommend(this);
+//        orderManager.getMyRecommend(this);
     }
 
     public void getOrderdata(int orderState) {
         page++;
-        orderManager.getOrderData( orderState, page, pageNum, this);
+        orderManager.getOrderData(orderState, page, pageNum, this);
     }
 
     public void deleteOrder(int id) {
         orderManager.deleteOrder(id, this);
     }
 
+
+    public void getcartList() {
+        orderManager.cartlist(this);
+
+    }
 
     @Override
     public void onSuccess(Object data, String url) {
@@ -57,6 +64,16 @@ public class OrderPresenter implements IOnManagerListener {
             } else {
                 orderView.deleteOrderFail();
             }
+        } else if (url.equals(Urls.cartlist)) {
+            CartGoodBean cgb = (CartGoodBean) data;
+            viewState.showLoadFinish();
+            if (cgb.getCode().equals("1") && cgb.getData() != null) {
+                orderView.getCartList(cgb);
+            } else {
+                orderView.getCartListFail();
+
+            }
+
         } else {
             OrderBean orderBean = (OrderBean) data;
             viewState.showLoadFinish();

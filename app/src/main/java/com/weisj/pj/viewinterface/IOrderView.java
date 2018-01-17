@@ -1,5 +1,6 @@
 package com.weisj.pj.viewinterface;
 
+import com.weisj.pj.bean.CartGoodBean;
 import com.weisj.pj.bean.OrderBean;
 
 /**
@@ -19,4 +20,6 @@ public interface IOrderView {
 
     void deleteOrderFail();
 
+    void getCartList(CartGoodBean cartGoodBean);
+    void getCartListFail();
 }

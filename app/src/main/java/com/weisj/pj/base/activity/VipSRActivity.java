@@ -1,6 +1,7 @@
 package com.weisj.pj.base.activity;
 
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RadioButton;
@@ -21,13 +22,8 @@ import com.weisj.pj.view.dialog.VipYHJDialog;
 public class VipSRActivity extends BaseActivity {
 
 
-    private int zf_type;//支付方式  0 微信， 1 支付宝
-    private final static int zb = 1;
-    private final static int wx = 0;
 
-    private RadioButton rb_wx, rb_zb;
-    private CheckBox checkBox;
-    private TextView title, tv2, tv2_2;
+    private RecyclerView recyclerView;
 
 
     @Override

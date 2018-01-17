@@ -48,8 +48,11 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener,
     @Override
     public void onResume() {
         super.onResume();
-        commissionView.getdata();
+//        commissionView.getdata();
+        commissionView.getcart();
 //        recordView.getdata();
+
+
     }
 
     private void initView() {
@@ -72,7 +75,7 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener,
     @Override
     public void getRefreshData() {
         if (viewPager.getCurrentItem() == 0) {
-            commissionView.getdata();
+            commissionView.getcart();
         } else {
             recordView.getdata();
         }

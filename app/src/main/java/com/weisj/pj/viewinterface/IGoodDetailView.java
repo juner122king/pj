@@ -18,4 +18,10 @@ public interface IGoodDetailView {
 
     int getActivityId();
 
+    void showInfo(String tag);
+
+
+    void toVipActivity();
+
+
 }

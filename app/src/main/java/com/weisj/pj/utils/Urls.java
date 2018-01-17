@@ -89,6 +89,20 @@ public class Urls {
     //2.5 商品详情app接口
     public static final String goodsdetailbyapp = IP + "/ndfront/interface/goodsdetailbyh5?appid=APPID";
 
+    // 6.首饰被租用之前，判断该名用户是否已经是买过卡，并且名下的卡还在服务期内
+    public static final String isBuyCard = IP + "/ndfront/card/isBuyCard?appid=APPID";
+
+
+    //租商品
+    public static final String addtocart = IP + "/ndfront/interface/addtocart?appid=APPID";
+
+   //首饰盒里的待选中商品
+    public static final String cartlist = IP + "/ndfront/interface/cartlist?appid=APPID";
+
+
+
+
+
     //2.5 商品详情app接口
     public static final String goodscontent = IP + "/fxfront/interface/goodscontent?appid=APPID";
     // 首页接口

@@ -80,6 +80,16 @@ public class GoodImageDetailActivity extends BaseActivity implements IGoodDetail
     }
 
     @Override
+    public void showInfo(String tag) {
+
+    }
+
+    @Override
+    public void toVipActivity() {
+
+    }
+
+    @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Intent intent = new Intent(this, WebImageCheckActivity.class);
         intent.putExtra("image_index", position);

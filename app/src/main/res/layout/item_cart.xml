@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="2dp"
-    android:layout_marginTop="5dp"
     android:background="@color/colorffffff"
     android:gravity="center_vertical"
     android:orientation="vertical"
@@ -75,20 +74,4 @@
         </RelativeLayout>
 
     </LinearLayout>
-
-    <View
-        android:background="#999"
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="1px" />
-
-    <TextView
-        android:id="@+id/tv_but"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="right"
-
-        android:paddingTop="10dp"
-        android:text="催发货"
-        android:textColor="#999" />
 </LinearLayout>

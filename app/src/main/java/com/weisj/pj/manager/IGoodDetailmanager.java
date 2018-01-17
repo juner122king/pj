@@ -9,6 +9,11 @@ public interface IGoodDetailmanager {
 
     void getData(int good_id, IOnManagerListener listener);
 
+    void isBuyCard(IOnManagerListener listener);
+
+    void addtocart( int good_id, IOnManagerListener listener);
+
+
     void getImageData(int good_id, IOnManagerListener listener);
 
     void getGoodPointData(int good_id, int page, IOnManagerListener listener);

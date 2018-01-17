@@ -74,6 +74,7 @@ public class GoodDetailActivity extends BaseActivity implements IGoodDetailView,
         view.findViewById(R.id.tv_gp_more).setOnClickListener(this);
         view.findViewById(R.id.tv_b2).setOnClickListener(this);
         view.findViewById(R.id.tv_b3).setOnClickListener(this);
+        view.findViewById(R.id.tv_b4).setOnClickListener(this);
         refreshView.setLoadMoreEnable(false);
         refreshView.setOnHeaderRefreshListener(this);
         bgaBanner = (BGABanner) view.findViewById(R.id.bagbanner_container);
@@ -158,13 +159,26 @@ public class GoodDetailActivity extends BaseActivity implements IGoodDetailView,
     }
 
     @Override
+    public void showInfo(String tag) {
+
+        Toast.makeText(this, tag, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void toVipActivity() {
+
+        startActivity(new Intent(this, VipActivity.class));
+
+    }
+
+    @Override
     public void onHeaderRefresh(AbPullToRefreshView view) {
         presenter.getData(false);
     }
 
     @Override
     public void onClick(View v) {
-//        switch (v.getId()) {
+        switch (v.getId()) {
 //            case R.id.good_share:
 //                if (goodDetail != null) {
 //                    if ((state > 0 && goodDetail.getData().getSharePic() != null) || (state == 0 && goodDetail.getData().getImages() != null && goodDetail.getData().getImages().size() > 0)) {
@@ -201,6 +215,9 @@ public class GoodDetailActivity extends BaseActivity implements IGoodDetailView,
 //            case R.id.tv_b3:
 //                startActivity(new Intent(this, OrderActivity.class));
 //                break;
-//        }
+            case R.id.tv_b4:
+                presenter.isBuyCard();
+                break;
+        }
     }
 }

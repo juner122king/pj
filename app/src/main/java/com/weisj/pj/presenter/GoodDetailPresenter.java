@@ -40,6 +40,17 @@ public class GoodDetailPresenter implements IOnManagerListener {
         iGoodDetailmanager.getImageData(iGoodDetailView.getGoodId(), this);
     }
 
+
+    public void isBuyCard() {
+        iGoodDetailmanager.isBuyCard(this);
+    }
+
+
+    public void addtocart() {
+        iGoodDetailmanager.addtocart(iGoodDetailView.getGoodId(), this);
+    }
+
+
     @Override
     public void onSuccess(Object data, String url) {
         if (url.equals(Urls.goodsdetailbyapp)) {
@@ -58,6 +69,24 @@ public class GoodDetailPresenter implements IOnManagerListener {
             } else {
                 viewState.showNoData();
             }
+        } else if (url.equals(Urls.isBuyCard)) {
+            GoodDetail goodDetail = (GoodDetail) data;
+            if (goodDetail.getCode().equals("1")) {
+
+                addtocart();
+
+            } else {
+
+
+                iGoodDetailView.toVipActivity();
+            }
+
+        } else if (url.equals(Urls.addtocart)) {
+
+            GoodDetail goodDetail = (GoodDetail) data;
+            iGoodDetailView.showInfo(goodDetail.getMsg());
+
+
         } else {
             GoodDetailImageBean goodDetailImageBean = (GoodDetailImageBean) data;
             if (goodDetailImageBean.getCode().equals("1")) {

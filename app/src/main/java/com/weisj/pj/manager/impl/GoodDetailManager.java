@@ -40,6 +40,53 @@ public class GoodDetailManager implements IGoodDetailmanager {
     }
 
     @Override
+    public void isBuyCard(final IOnManagerListener listener) {
+        Map<String, String> params = new HashMap<>();
+        params.put("member_id", PersonMessagePreferencesUtils.getUid());
+        OkHttpClientManager.postAsyn(Urls.isBuyCard, params, new OkHttpClientManager.ResultCallback<GoodDetail>() {
+            @Override
+            public void onError(Request request, Exception e) {
+                listener.onFail(e, Urls.isBuyCard);
+            }
+
+            @Override
+            public void onResponse(GoodDetail response) {
+                if (response != null) {
+                    listener.onSuccess(response, Urls.isBuyCard);
+                } else {
+                    listener.onFail(new RuntimeException("null"), Urls.isBuyCard);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void addtocart(int good_id, final IOnManagerListener listener) {
+
+        Map<String, String> params = new HashMap<>();
+        params.put("member_id", PersonMessagePreferencesUtils.getUid());
+        params.put("goods_id", String.valueOf(good_id));
+        params.put("buy_number", String.valueOf(1));
+        OkHttpClientManager.postAsyn(Urls.addtocart, params, new OkHttpClientManager.ResultCallback<GoodDetail>() {
+            @Override
+            public void onError(Request request, Exception e) {
+                listener.onFail(e, Urls.addtocart);
+            }
+
+            @Override
+            public void onResponse(GoodDetail response) {
+                if (response != null) {
+                    listener.onSuccess(response, Urls.addtocart);
+                } else {
+                    listener.onFail(new RuntimeException("null"), Urls.addtocart);
+                }
+            }
+        });
+
+
+    }
+
+    @Override
     public void getImageData(int good_id, final IOnManagerListener listener) {
         Map<String, String> params = new HashMap<>();
         params.put("goods_id", String.valueOf(good_id));

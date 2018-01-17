@@ -104,7 +104,7 @@ public class ItemDistributionCommissionAdapter extends BaseExpandableListAdapter
                 viewHolder.orderState.setText("待付款");
                 break;
             case 1:
-                viewHolder.orderState.setText("待卖家发货");
+                viewHolder.orderState.setText("待商家发货");
                 break;
             case 2:
                 viewHolder.orderState.setText("待收货");

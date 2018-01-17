@@ -2,6 +2,7 @@ package com.weisj.pj.manager.impl;
 
 import com.squareup.okhttp.Request;
 import com.weisj.pj.bean.BaseBean;
+import com.weisj.pj.bean.CartGoodBean;
 import com.weisj.pj.bean.OrderBean;
 import com.weisj.pj.bean.OrderShareBean;
 import com.weisj.pj.bean.RecommendBean;
@@ -22,22 +23,10 @@ public class OrderManager implements IOrderManager {
     @Override
     public void getOrderData(int state, final int page, int pageNum, final IOnManagerListener listener) {
         Map<String, String> params = new HashMap<>();
-//        params.put("sell_member_id", PersonMessagePreferencesUtils.getUid());
-//        params.put("order_state", String.valueOf(state));
-//        params.put("page", String.valueOf(page));
-//        params.put("page_num", String.valueOf(pageNum));
-//        if (wx_name != null && !wx_name.trim().equals("")) {
-//            params.put("wx_name", wx_name);
-//        }
-//        params.put("filter_type", String.valueOf(filter_type));
-//
-
         params.put("member_id", PersonMessagePreferencesUtils.getUid());
         params.put("order_state", String.valueOf(state));
         params.put("page", String.valueOf(page));
         params.put("page_num", String.valueOf(pageNum));
-
-
 
         OkHttpClientManager.postAsyn(Urls.myorders, params, new OkHttpClientManager.ResultCallback<OrderBean>() {
             @Override
@@ -56,6 +45,29 @@ public class OrderManager implements IOrderManager {
         });
     }
 
+
+    @Override
+    public void cartlist(final IOnManagerListener listener) {
+        Map<String, String> params = new HashMap<>();
+
+        params.put("member_id", PersonMessagePreferencesUtils.getUid());
+
+        OkHttpClientManager.postAsyn(Urls.cartlist, params, new OkHttpClientManager.ResultCallback<CartGoodBean>() {
+            @Override
+            public void onError(Request request, Exception e) {
+                listener.onFail(e, Urls.cartlist);
+            }
+
+            @Override
+            public void onResponse(CartGoodBean response) {
+                if (response != null) {
+                    listener.onSuccess(response, Urls.cartlist);
+                } else {
+                    listener.onFail(new RuntimeException("null"), Urls.cartlist);
+                }
+            }
+        });
+    }
     @Override
     public void getOrderRecordData(final IOnManagerListener listener) {
         Map<String, String> params = new HashMap<>();
