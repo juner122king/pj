@@ -47,7 +47,7 @@ import java.util.List;
  */
 public class GoodDetailActivity extends BaseActivity implements IGoodDetailView, AbPullToRefreshView.OnHeaderRefreshListener, View.OnClickListener {
     private BGABanner bgaBanner;
-    private TextView goodname, goodPrice, goodPerson;
+    private TextView goodname, goodPrice, goodPerson, tv_sku;
     private RecyclerView recyclerView;
     private GoodDetailPresenter presenter;
     private AbPullToRefreshView refreshView;
@@ -85,6 +85,7 @@ public class GoodDetailActivity extends BaseActivity implements IGoodDetailView,
         });
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         goodname = (TextView) view.findViewById(R.id.good_name);
+        tv_sku = (TextView) view.findViewById(R.id.tv_sku);
         goodPrice = (TextView) view.findViewById(R.id.good_price);
         goodPerson = (TextView) view.findViewById(R.id.good_detail_person);
         goodBar = (MyRatingBar) view.findViewById(R.id.good_detail_bar);
@@ -114,6 +115,7 @@ public class GoodDetailActivity extends BaseActivity implements IGoodDetailView,
         }
 
         TextViewUtils.setText(goodname, goodDetail.getData().getGoodsName());
+        TextViewUtils.setText(tv_sku, goodDetail.getData().getSku());
 
 
         TextViewUtils.setTextAndleftOther(goodPrice, goodDetail.getData().getPrice(), "市场价:￥");
@@ -162,43 +164,43 @@ public class GoodDetailActivity extends BaseActivity implements IGoodDetailView,
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.good_share:
-                if (goodDetail != null) {
-                    if ((state > 0 && goodDetail.getData().getSharePic() != null) || (state == 0 && goodDetail.getData().getImages() != null && goodDetail.getData().getImages().size() > 0)) {
-                        ImageLoaderUtils.getInstance().display(state == 0 ? goodDetail.getData().getImages().get(0) : goodDetail.getData().getSharePic(), new SimpleImageLoadingListener() {
-                            @Override
-                            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                                ShareData shareData = new ShareData(loadedImage, goodDetail.getData().getImages(), goodDetail.getData().getShareDes(), state == 0 ? goodDetail.getData().getShareTitle() : goodDetail.getData().getActivityName(), goodDetail.getData().getWebsite(), getGoodId(), 0, goodDetail.getData().getPrice(), goodDetail.getData().getDelMoney());
-                                new ShareViewDialog(GoodDetailActivity.this, shareData).show();
-                            }
-
-                            @Override
-                            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                                ShareData shareData = new ShareData(BitmapFactory.decodeResource(GoodDetailActivity.this.getResources(), R.mipmap.icon_share_sf), goodDetail.getData().getShareDes(), state == 0 ? goodDetail.getData().getShareTitle() : goodDetail.getData().getActivityName(), goodDetail.getData().getWebsite(), getGoodId(), 0, goodDetail.getData().getPrice(), goodDetail.getData().getDelMoney());
-                                new ShareViewDialog(GoodDetailActivity.this, shareData).show();
-                            }
-                        });
-                    } else {
-                        ShareData shareData = new ShareData(BitmapFactory.decodeResource(GoodDetailActivity.this.getResources(), R.mipmap.icon_share_sf), goodDetail.getData().getShareDes(), state == 0 ? goodDetail.getData().getShareTitle() : goodDetail.getData().getActivityName(), goodDetail.getData().getWebsite(), getGoodId(), 0, goodDetail.getData().getPrice(), goodDetail.getData().getDelMoney());
-                        new ShareViewDialog(GoodDetailActivity.this, shareData).show();
-                    }
-                }
-                break;
-            case R.id.good_image_linear:
-                Intent intent = new Intent(this, GoodImageDetailActivity.class);
-                intent.putExtra("goodId", getGoodId());
-                startActivity(intent);
-                break;
-
-
-            case R.id.tv_gp_more:
-            case R.id.tv_b2:
-                startActivity(new Intent(this, GoodPointActivity.class));
-                break;
-            case R.id.tv_b3:
-                startActivity(new Intent(this, OrderActivity.class));
-                break;
-        }
+//        switch (v.getId()) {
+//            case R.id.good_share:
+//                if (goodDetail != null) {
+//                    if ((state > 0 && goodDetail.getData().getSharePic() != null) || (state == 0 && goodDetail.getData().getImages() != null && goodDetail.getData().getImages().size() > 0)) {
+//                        ImageLoaderUtils.getInstance().display(state == 0 ? goodDetail.getData().getImages().get(0) : goodDetail.getData().getSharePic(), new SimpleImageLoadingListener() {
+//                            @Override
+//                            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+//                                ShareData shareData = new ShareData(loadedImage, goodDetail.getData().getImages(), goodDetail.getData().getShareDes(), state == 0 ? goodDetail.getData().getShareTitle() : goodDetail.getData().getActivityName(), goodDetail.getData().getWebsite(), getGoodId(), 0, goodDetail.getData().getPrice(), goodDetail.getData().getDelMoney());
+//                                new ShareViewDialog(GoodDetailActivity.this, shareData).show();
+//                            }
+//
+//                            @Override
+//                            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+//                                ShareData shareData = new ShareData(BitmapFactory.decodeResource(GoodDetailActivity.this.getResources(), R.mipmap.icon_share_sf), goodDetail.getData().getShareDes(), state == 0 ? goodDetail.getData().getShareTitle() : goodDetail.getData().getActivityName(), goodDetail.getData().getWebsite(), getGoodId(), 0, goodDetail.getData().getPrice(), goodDetail.getData().getDelMoney());
+//                                new ShareViewDialog(GoodDetailActivity.this, shareData).show();
+//                            }
+//                        });
+//                    } else {
+//                        ShareData shareData = new ShareData(BitmapFactory.decodeResource(GoodDetailActivity.this.getResources(), R.mipmap.icon_share_sf), goodDetail.getData().getShareDes(), state == 0 ? goodDetail.getData().getShareTitle() : goodDetail.getData().getActivityName(), goodDetail.getData().getWebsite(), getGoodId(), 0, goodDetail.getData().getPrice(), goodDetail.getData().getDelMoney());
+//                        new ShareViewDialog(GoodDetailActivity.this, shareData).show();
+//                    }
+//                }
+//                break;
+//            case R.id.good_image_linear:
+//                Intent intent = new Intent(this, GoodImageDetailActivity.class);
+//                intent.putExtra("goodId", getGoodId());
+//                startActivity(intent);
+//                break;
+//
+//
+//            case R.id.tv_gp_more:
+//            case R.id.tv_b2:
+//                startActivity(new Intent(this, GoodPointActivity.class));
+//                break;
+//            case R.id.tv_b3:
+//                startActivity(new Intent(this, OrderActivity.class));
+//                break;
+//        }
     }
 }

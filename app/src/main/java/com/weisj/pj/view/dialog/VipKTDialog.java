@@ -3,6 +3,8 @@ package com.weisj.pj.view.dialog;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.weisj.pj.R;
+import com.weisj.pj.base.activity.VipActivity;
 import com.weisj.pj.utils.SystemConfig;
 
 /**
@@ -21,11 +24,13 @@ public class VipKTDialog extends AlertDialog implements View.OnClickListener {
     private Context context;
     private boolean isdone;
     private TextView tv1, tv2, tv3;
+    private Handler handler;
 
-    public VipKTDialog(Context context, boolean isdone) {
+    public VipKTDialog(Context context, boolean isdone, Handler handler) {
         super(context);
         this.context = context;
         this.isdone = isdone;
+        this.handler = handler;
     }
 
     @Override
@@ -67,6 +72,14 @@ public class VipKTDialog extends AlertDialog implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.tv2:
                 Toast.makeText(context, "去逛逛", Toast.LENGTH_LONG).show();
+
+                Message msg = new Message();
+                msg.what = VipActivity.JH_Success;
+                handler.sendMessage(msg);
+
+                cancel();
+
+
                 break;
             case R.id.tv3:
                 Toast.makeText(context, "重新选择", Toast.LENGTH_LONG).show();

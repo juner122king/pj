@@ -10,6 +10,7 @@ import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.weisj.pj.Constants;
 import com.weisj.pj.bean.ComfirmPayCardBean;
+import com.weisj.pj.utils.WXPayUtils;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,62 +18,41 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
-public class
-WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
+public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
 
     private static final String TAG = "MicroMsg.SDKSample.WXPayEntryActivity";
 
-    private IWXAPI api;
-    PayReq req;
-    ComfirmPayCardBean bean;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        api = WXAPIFactory.createWXAPI(this, null);
-        api.registerApp(Constants.APP_ID);
-        if (!api.isWXAppInstalled()) {
-            //提醒用户没有按照微信
-            Toast.makeText(getApplicationContext(), "没有安装微信,请先安装微信!", Toast.LENGTH_SHORT).show();
+        testWxPay((ComfirmPayCardBean) getIntent().getSerializableExtra("ComfirmPayCardBean"));
+
+    }
+
+
+    public void testWxPay(final ComfirmPayCardBean response) {
+
+        if (null == response)
             return;
-        }
 
-        bean = (ComfirmPayCardBean) getIntent().getSerializableExtra("ComfirmPayCardBean");
-        testWxPay();
+        WXPayUtils.WXPayBuilder builder = new WXPayUtils.WXPayBuilder();
+        builder.setAppId(Constants.APP_ID)
+                .setPartnerId(response.getData().getPartnerid())
+                .setPrepayId(response.getData().getPrepayid())
+                .setPackageValue(response.getData().getPackage_value())
+                .setNonceStr(response.getData().getNoncestr())
+                .setTimeStamp(response.getData().getTimestamp())
+                .setSign(response.getData().getSign())
+                .build().toWXPayNotSign(this, Constants.APP_ID);
+
 
     }
-
-    public void testWxPay() {
-
-        Runnable payRunnable = new Runnable() {  //这里注意要放在子线程
-            @Override
-            public void run() {
-                req = new PayReq();
-                req.appId = Constants.APP_ID;
-                req.partnerId = bean.getData().getPartnerid();
-                req.prepayId = bean.getData().getPrepayid();
-                req.nonceStr = bean.getData().getNoncestr();
-                req.timeStamp = bean.getData().getTimestamp();
-                req.packageValue = bean.getData().getPackage_value();
-                req.sign = bean.getData().getSign();
-                req.extData = "app data"; // optional
-
-                api.sendReq(req);
-
-            }
-        };
-        Thread payThread = new Thread(payRunnable);
-        payThread.start();
-    }
-
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        setIntent(intent);
-        api.handleIntent(intent, this);
-
     }
 
     @Override

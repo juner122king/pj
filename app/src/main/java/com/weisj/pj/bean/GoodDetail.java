@@ -70,7 +70,7 @@ public class GoodDetail {
         private String freight;
         private String delMoney;
         private String commission;
-		private String price;
+        private String price;
         private String describe;
         private String website;
         private String shareTitle;
@@ -82,7 +82,16 @@ public class GoodDetail {
         private String activityRule;
         private String htmlAddress;
         private String activityName;
-        private  String sharePic;
+        private String sharePic;
+        private String sku;
+
+        public String getSku() {
+            return sku;
+        }
+
+        public void setSku(String sku) {
+            this.sku = sku;
+        }
 
         public String getSharePic() {
             return sharePic;
@@ -171,7 +180,8 @@ public class GoodDetail {
         public void setDescribe(String describe) {
             this.describe = describe;
         }
-		 public String getPrice() {
+
+        public String getPrice() {
             return price;
         }
 
@@ -295,9 +305,11 @@ public class GoodDetail {
         public List<GoodsListEntity> getGoodsList() {
             return goodsList;
         }
+
         public List<ShortDomainList> getShortsList() {
             return shortDomainList;
         }
+
         public static class GoodsListEntity {
             private int goodsId;
             private String goodsName;
@@ -336,6 +348,7 @@ public class GoodDetail {
                 return img1;
             }
         }
+
         public static class ShortDomainList {
             private int goodsId;
             private String goodsName;
@@ -429,7 +442,6 @@ public class GoodDetail {
                 this.commission = commission;
             }
         }
-
 
 
     }

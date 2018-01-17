@@ -59,7 +59,7 @@ public abstract class BaseFragment extends Fragment implements RootView.RootView
     }
 
     public void changeState(RootView.ViewState state) {
-        rootView.changeRootViewState(state);
+//        rootView.changeRootViewState(state);
     }
 
 

@@ -18,8 +18,6 @@ import android.widget.Toast;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 import com.squareup.okhttp.Request;
 import com.umeng.analytics.MobclickAgent;
-import com.umeng.message.PushAgent;
-import com.umeng.socialize.UMShareAPI;
 import com.weisj.pj.base.activity.GoodDetailActivity;
 import com.weisj.pj.base.activity.WebViewActivity;
 import com.weisj.pj.bean.ADBean;
@@ -42,17 +40,13 @@ public class MainActivity extends FragmentActivity implements TabHost.OnTabChang
     public static ADBean.DataEntity adBean;
     private long firstTime;
 
+    public final static int HomeTOVip = 101;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        PushAgent mPushAgent = PushAgent.getInstance(this);
-        if (PreferencesUtils.getBoolean("is_open_send",true)) {
-            mPushAgent.enable();
-        }else{
-            mPushAgent.disable();
-        }
-        PushAgent.getInstance(this).onAppStart();
+
         checkNewVersion();
         b = TabDb.isNet;
         tabHost = (FragmentTabHost) super.findViewById(android.R.id.tabhost);
@@ -74,25 +68,26 @@ public class MainActivity extends FragmentActivity implements TabHost.OnTabChang
         }
     }
 
-    private void checkNewVersion() {
-        OkHttpClientManager.postAsyn(Urls.updateVersion, new OkHttpClientManager.ResultCallback<VersionInfo>() {
-            @Override
-            public void onError(Request request, Exception e) {
-            }
 
-            @Override
-            public void onResponse(VersionInfo response) {
-                try {
-                    if (response != null && response.getCode().equals("1")) {
-                        if (response.getData().getCode() > SystemConfig.getVersionCode()) {
-                            new NewVersionDialog(MainActivity.this, response.getData().getWebsite(), response.getData().getVersion(), response.getData().getDes()).show();
-                        }
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+    private void checkNewVersion() {
+//        OkHttpClientManager.postAsyn(Urls.updateVersion, new OkHttpClientManager.ResultCallback<VersionInfo>() {
+//            @Override
+//            public void onError(Request request, Exception e) {
+//            }
+//
+//            @Override
+//            public void onResponse(VersionInfo response) {
+//                try {
+//                    if (response != null && response.getCode().equals("1")) {
+//                        if (response.getData().getCode() > SystemConfig.getVersionCode()) {
+//                            new NewVersionDialog(MainActivity.this, response.getData().getWebsite(), response.getData().getVersion(), response.getData().getDes()).show();
+//                        }
+//                    }
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
     }
 
     private void displayAd() {
@@ -160,8 +155,11 @@ public class MainActivity extends FragmentActivity implements TabHost.OnTabChang
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+
+        //来自按钮1的请求，作相应业务处理
+        if (resultCode == 2) {
+        }
+
     }
 
     @Override
@@ -210,12 +208,12 @@ public class MainActivity extends FragmentActivity implements TabHost.OnTabChang
     @Override
     protected void onResume() {
         super.onResume();
-        MobclickAgent.onResume(this);
+//        MobclickAgent.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        MobclickAgent.onPause(this);
+//        MobclickAgent.onPause(this);
     }
 }

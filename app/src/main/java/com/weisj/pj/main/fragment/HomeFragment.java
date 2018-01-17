@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.weisj.pj.MainActivity;
 import com.weisj.pj.R;
 import com.weisj.pj.adapter.ItemHomeAreaGoodsAdapter;
 import com.weisj.pj.adapter.ItemHomeGoodAdapter;
@@ -54,6 +55,7 @@ import com.weisj.pj.view.dialog.ShareViewDialog;
 import com.weisj.pj.view.photocheck.GlideCircleTransform;
 import com.weisj.pj.view.photocheck.GlideRoundTransform;
 import com.weisj.pj.viewinterface.IHomeView;
+import com.weisj.pj.wxapi.WXPayEntryActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +67,7 @@ import java.util.List;
  */
 public class HomeFragment extends BaseFragment implements AdapterView.OnItemClickListener, AbPullToRefreshView.OnHeaderRefreshListener, IHomeView, View.OnClickListener {
     private HomePresenter homePresenter;
-    private String pronvin = CommenString.selectCity;
+    //    private String pronvin = CommenString.selectCity;
     private RecyclerView recyclerView;//最底部的recyclerView
     private ItemHomeUserCommentAdapter adapter_comment;
     private TextView placeName, tv_acton_title, tv_acton_info;
@@ -222,23 +224,23 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     @Override
     public void onResume() {
         super.onResume();
-        pronvin = CommenString.selectCity;
-        if (!PreferencesUtils.getBoolean("one_go_app", false)) {
-            PreferencesUtils.putBoolean("one_go_app", true);
-            new SelectCityDialog(this.getContext(), this).show();
-        } else {
-            if (CommenString.locationState) {
-                if (!CommenString.selectCity.equals(PreferencesUtils.getString("select_city", ""))) {
-                    new SelectCityDialog(this.getContext(), this).show();
-                }
-            } else {
-                String city = PreferencesUtils.getString("select_city", "");
-                if (!city.equals("")) {
-                    CommenString.selectCity = city;
-                    pronvin = CommenString.selectCity;
-                }
-            }
-        }
+//        pronvin = CommenString.selectCity;
+//        if (!PreferencesUtils.getBoolean("one_go_app", false)) {
+//            PreferencesUtils.putBoolean("one_go_app", true);
+//            new SelectCityDialog(this.getContext(), this).show();
+//        } else {
+//            if (CommenString.locationState) {
+//                if (!CommenString.selectCity.equals(PreferencesUtils.getString("select_city", ""))) {
+//                    new SelectCityDialog(this.getContext(), this).show();
+//                }
+//            } else {
+//                String city = PreferencesUtils.getString("select_city", "");
+//                if (!city.equals("")) {
+//                    CommenString.selectCity = city;
+//                    pronvin = CommenString.selectCity;
+//                }
+//            }
+//        }
     }
 
     @Override
@@ -407,17 +409,14 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
 
         TextViewUtils.setText((TextView) view.findViewById(R.id.good_name), item.getGoodsName());
 
-//        view.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(getContext(), WebViewActivity.class);
-//                intent.putExtra("url", "http://m.sfddj.com/shop/goods/view/" + hotGoodsBean.getGoodsSn());
-//                intent.putExtra("web_title", hotGoodsBean.getTitle());
-//                intent.putExtra("content", hotGoodsBean.getName());
-//                intent.putExtra("imageUrl", Urls.imageUrl + hotGoodsBean.getGoodsImagePath());
-//                getContext().startActivity(intent);
-//            }
-//        });
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), GoodDetailActivity.class);
+                intent.putExtra("goodId", item.getGoodsId());
+                getContext().startActivity(intent);
+            }
+        });
         return view;
     }
 
@@ -429,8 +428,10 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
 
             case R.id.home_banner_vip:
 
-                intent = new Intent(getContext(), VipActivity.class);
-                startActivity(intent);
+//                intent = new Intent(getContext(), VipActivity.class);
+//                startActivity(intent);
+
+                startActivityForResult(new Intent(getActivity(), VipActivity.class), MainActivity.HomeTOVip);
                 break;
 
             case R.id.root_left:
@@ -457,15 +458,15 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 10) {
-            placeName.setText(data.getStringExtra("city"));
-            CommenString.selectCity = data.getStringExtra("city");
-            if (!pronvin.equals(CommenString.selectCity)) {
-                pronvin = CommenString.selectCity;
-                homePresenter.getInitData(true);
-            }
-        }
+//
+//        if (requestCode == 10) {
+//            placeName.setText(data.getStringExtra("city"));
+//            CommenString.selectCity = data.getStringExtra("city");
+//            if (!pronvin.equals(CommenString.selectCity)) {
+//                pronvin = CommenString.selectCity;
+//                homePresenter.getInitData(true);
+//            }
+//        }
 
 
     }

@@ -32,17 +32,20 @@
             android:paddingTop="10dp"
             android:text="实体卡卡号"
             android:textColor="#1b1b1b" />
-
-        <TextView
+        <EditText
             android:id="@+id/text_kahao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@null"
             android:gravity="right"
+            android:hint="请输入实体卡卡号"
+            android:inputType="number"
             android:paddingBottom="10dp"
             android:paddingTop="10dp"
-            android:text="83838283823"
-            android:textColor="#1b1b1b" />
+            android:textColor="#1b1b1b"
+            android:textColorHint="#e3e3e3"
+            android:textSize="14sp" />
 
     </LinearLayout>
 
@@ -97,7 +100,7 @@
         android:layout_marginTop="10dp"
         android:drawableLeft="@drawable/miss_mima"
         android:drawablePadding="5dp"
-        android:text="无效会员卡或密码错误"
+        android:text=""
         android:textColor="#e13461"
         android:textSize="12sp"
         android:visibility="invisible" />

@@ -1,8 +1,11 @@
 package com.weisj.pj.view.dialog;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
@@ -10,22 +13,35 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.squareup.okhttp.Request;
 import com.weisj.pj.R;
+import com.weisj.pj.base.activity.VipActivity;
+import com.weisj.pj.base.activity.VipSRActivity;
+import com.weisj.pj.bean.CardBean;
+import com.weisj.pj.bean.CenterBean;
+import com.weisj.pj.utils.OkHttpClientManager;
+import com.weisj.pj.utils.PersonMessagePreferencesUtils;
 import com.weisj.pj.utils.SystemConfig;
+import com.weisj.pj.utils.Urls;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by jun on 2017/12/9.
  */
 
 public class VipJHDialog extends AlertDialog implements View.OnClickListener {
-    private Context context;
+    private Activity context;
 
-    private TextView tv_kahao, tv_miss;
-    private EditText et_mima;
+    private TextView tv_miss;
+    private EditText et_mima, tv_kahao;
+    private Handler uiHandler;
 
-    public VipJHDialog(Context context) {
+    public VipJHDialog(Activity context, Handler uiHandler) {
         super(context, R.style.dialog);
         this.context = context;
+        this.uiHandler = uiHandler;
     }
 
     @Override
@@ -40,7 +56,7 @@ public class VipJHDialog extends AlertDialog implements View.OnClickListener {
         setContentView(R.layout.dialog_vip_jh);
         findViewById(R.id.tv_caler).setOnClickListener(this);
         findViewById(R.id.tv_ent).setOnClickListener(this);
-        tv_kahao = (TextView) findViewById(R.id.text_kahao);
+        tv_kahao = (EditText) findViewById(R.id.text_kahao);
         tv_miss = (TextView) findViewById(R.id.tv_miss);
         et_mima = (EditText) findViewById(R.id.et_mima);
 
@@ -64,13 +80,56 @@ public class VipJHDialog extends AlertDialog implements View.OnClickListener {
                 break;
             case R.id.tv_ent:
 
-                if (TextUtils.isEmpty(et_mima.getText()))
-                    tv_miss.setVisibility(View.VISIBLE);
-                else {
-                    //TODO 支付
-                }
+
+                entityCard();
+
                 break;
         }
+    }
+
+
+    //判断实体卡
+    private void entityCard() {
+
+        Map<String, String> params = new HashMap<>();
+
+
+        params.put("member_id", PersonMessagePreferencesUtils.getUid());
+        params.put("card_no", tv_kahao.getText().toString());
+
+
+        OkHttpClientManager.postAsyn(Urls.getEntityCardInfo, params, new OkHttpClientManager.ResultCallback<CardBean>() {
+            @Override
+            public void onError(Request request, Exception e) {
+//                listener.onFail(e, Urls.membercenter);
+            }
+
+            @Override
+            public void onResponse(CardBean response) {
+                if (response != null) {
+//                   listener.onSuccess(response, Urls.membercenter);
+                    String code = response.getCode();
+                    if (code.equals("0")) {
+                        tv_miss.setVisibility(View.VISIBLE);
+                        tv_miss.setText(response.getMsg());
+                    } else {
+
+
+                        Message msg = new Message();
+                        msg.what = VipActivity.GET_Success;
+                        msg.obj = response.getData();
+                        uiHandler.sendMessage(msg);
+                        cancel();
+
+                    }
+                } else {
+
+//                    listener.onFail(new RuntimeException("null"), Urls.membercenter);
+                }
+            }
+        });
+
+
     }
 
 }

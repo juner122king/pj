@@ -16,12 +16,13 @@ import com.weisj.pj.R;
 import com.weisj.pj.base.BaseActivity;
 import com.weisj.pj.presenter.LoginPresenter;
 import com.weisj.pj.utils.KeyboardUtil;
+import com.weisj.pj.utils.PersonMessagePreferencesUtils;
 import com.weisj.pj.viewinterface.ILoginView;
 
 /**
  * Created by Administrator on 2016/6/29 0029.
  */
-public class  LoginActivity extends BaseActivity implements View.OnClickListener, ILoginView {
+public class LoginActivity extends BaseActivity implements View.OnClickListener, ILoginView {
     private EditText phoneEdit, passwordEdit;
     private LoginPresenter presenter;
     private long firstTime;
@@ -34,6 +35,18 @@ public class  LoginActivity extends BaseActivity implements View.OnClickListener
         rootView.isHintHeadBar(true);
         initView(view);
         return view;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (null != PersonMessagePreferencesUtils.getUid()) {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        }
+
+
     }
 
     @Override
@@ -50,6 +63,7 @@ public class  LoginActivity extends BaseActivity implements View.OnClickListener
         public void onReceive(Context context, Intent intent) {
             finish();
         }
+
     }
 
     private void initView(View view) {

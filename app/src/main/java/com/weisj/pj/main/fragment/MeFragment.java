@@ -1,7 +1,6 @@
 package com.weisj.pj.main.fragment;
 
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,16 +22,10 @@ import com.weisj.pj.base.BaseFragment;
 //import com.weisj.pj.base.activity.WalletActivity;
 //import com.weisj.pj.base.activity.WebActivity;
 import com.weisj.pj.base.activity.ConsigneeAddressActivity;
+import com.weisj.pj.base.activity.LoginActivity;
 import com.weisj.pj.bean.CenterBean;
-import com.weisj.pj.bean.ShareData;
 import com.weisj.pj.presenter.CenterPresenter;
-import com.weisj.pj.utils.ImageLoaderUtils;
 import com.weisj.pj.utils.PersonMessagePreferencesUtils;
-import com.weisj.pj.utils.PreferencesUtils;
-import com.weisj.pj.utils.SystemConfig;
-import com.weisj.pj.utils.Urls;
-import com.weisj.pj.view.dialog.LinkShareDialog;
-import com.weisj.pj.view.photocheck.GlideRoundTransform;
 import com.weisj.pj.viewinterface.ICenterView;
 
 /**
@@ -62,6 +55,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
         iv_head = (ImageView) view.findViewById(R.id.image_head);
         view_dl = view.findViewById(R.id.view_dl);
         view.findViewById(R.id.user_address_linear).setOnClickListener(this);
+        view.findViewById(R.id.tv_logout).setOnClickListener(this);
 
         name = (TextView) view.findViewById(R.id.tv_name);
         numb1 = (TextView) view.findViewById(R.id.tv_number1);
@@ -112,6 +106,11 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
 //                break;
             case R.id.user_address_linear:
                 startActivity(new Intent(this.getContext(), ConsigneeAddressActivity.class));
+                break;
+            case R.id.tv_logout:
+                PersonMessagePreferencesUtils.deleteInfo();
+
+                startActivity(new Intent(this.getActivity(), LoginActivity.class));
                 break;
 //            case R.id.user_share:
 //                ShareData data = new ShareData(BitmapFactory.decodeResource(this.getResources(), R.mipmap.icon_share_sf), "顺丰大当家，分享每一刻", "顺丰大当家，分享每一刻", Urls.IP + "/Shop/MDownload/down_load", 0, 0);

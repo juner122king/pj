@@ -21,7 +21,7 @@ public class GoodDetailManager implements IGoodDetailmanager {
     public void getData(int good_id, final IOnManagerListener listener) {
         Map<String, String> params = new HashMap<>();
         params.put("goods_id", String.valueOf(good_id));
-        params.put("member_id", PersonMessagePreferencesUtils.getUid());
+//        params.put("member_id", PersonMessagePreferencesUtils.getUid());
         OkHttpClientManager.postAsyn(Urls.goodsdetailbyapp, params, new OkHttpClientManager.ResultCallback<GoodDetail>() {
             @Override
             public void onError(Request request, Exception e) {

@@ -5,8 +5,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -15,16 +13,12 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.umeng.analytics.MobclickAgent;
-import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.weisj.pj.R;
 import com.weisj.pj.bean.ShareData;
-import com.weisj.pj.utils.BitmapUtil;
-import com.weisj.pj.utils.FileUtil;
 import com.weisj.pj.utils.KeyboardUtil;
 import com.weisj.pj.utils.QRCodeUtil;
 import com.weisj.pj.utils.SystemConfig;
 import com.weisj.pj.utils.TextViewUtils;
-import com.weisj.pj.utils.UmengShareUtil;
 
 import java.io.File;
 
@@ -89,22 +83,6 @@ public class ImageShareDialog extends AlertDialog implements View.OnClickListene
                 break;
             case R.id.click_link:
                 KeyboardUtil.copy(data.getUrl(), getContext());
-                break;
-            case R.id.click_wechat_py:
-                MobclickAgent.onEvent(context, "weixinpy");
-                new UmengShareUtil().share((Activity) context, SHARE_MEDIA.WEIXIN_CIRCLE, bitmap, data.getGoodId(), data.getCouponId(), data.getTitle(),data.getUrl());
-                break;
-            case R.id.click_wx:
-                MobclickAgent.onEvent(context, "weixin");
-                new UmengShareUtil().share((Activity) context, SHARE_MEDIA.WEIXIN, bitmap, data.getGoodId(), data.getCouponId(), data.getTitle(),data.getUrl());
-                break;
-            case R.id.click_qq:
-                MobclickAgent.onEvent(context, "qq");
-                new UmengShareUtil().share((Activity) context, SHARE_MEDIA.QQ, bitmap, data.getGoodId(), data.getCouponId(), data.getTitle(),data.getUrl());
-                break;
-            case R.id.click_sina:
-                MobclickAgent.onEvent(context, "sina");
-                new UmengShareUtil().share((Activity) context, SHARE_MEDIA.SINA, bitmap, data.getGoodId(), data.getCouponId(), data.getTitle(),data.getUrl());
                 break;
         }
         dismiss();

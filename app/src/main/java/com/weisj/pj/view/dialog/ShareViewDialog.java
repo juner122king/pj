@@ -52,7 +52,7 @@ public class ShareViewDialog extends AlertDialog implements View.OnClickListener
                 dismiss();
                 break;
             case R.id.link_share:
-                new LinkShareDialog(context, data).show();
+//                new LinkShareDialog(context, data).show();
                 dismiss();
                 break;
             case R.id.image_share:
@@ -65,7 +65,7 @@ public class ShareViewDialog extends AlertDialog implements View.OnClickListener
                 shareData.setContent("有担当，更爱家");
                 shareData.setUrl(String.format("%s/Shop/Index/tuijian_list.html?city=%s&sell_member_id=%s", Urls.IP, CommenString.selectCity, PersonMessagePreferencesUtils.getUid()));
                 shareData.setBitmap(BitmapFactory.decodeResource(context.getResources(), R.mipmap.icon_share_sf));
-                new LinkShareDialog(context, shareData).show();
+//                new LinkShareDialog(context, shareData).show();
 //                new ChangImageShareDialog(context, data).show();
                 dismiss();
                 break;

@@ -4,11 +4,11 @@ package com.weisj.pj.utils;
  * Created by Administrator on 2016/7/21 0021.
  */
 public class Urls {
-//    public static final String IP = "http://m.sfddj.com";
+    //    public static final String IP = "http://m.sfddj.com";
 //    public static final String IP = "http://shop.fx-sf.com";
     public static final String IP = "http://120.79.34.138";
 
-//    public static final String imageUrl = "http://img.sfddj.com/";
+    //    public static final String imageUrl = "http://img.sfddj.com/";
     public static final String imageUrl = "http://120.79.34.138";
     // 获取手机验证码
     public static final String getmoblieticket = IP + "/ndfront/member/getmoblieticket?appid=APPID";
@@ -49,6 +49,30 @@ public class Urls {
     public static final String searchByProperties = IP + "/ndfront/property/searchByProperties?appid=APPID";
 
 
+    //返回所有类型的卡信息
+    public static final String getAllCardTypes = IP + "/ndfront/card/getAllCardTypes?appid=APPID";
+
+    //分配一张该类型的卡
+    public static final String dispatchOneCardByCardType = IP + "/ndfront/card/dispatchOneCardByCardType?appid=APPID";
+
+    //判断实体卡合法
+    public static final String getEntityCardInfo = IP + "/ndfront/card/getEntityCardInfo?appid=APPID";
+
+    //激活一张实体卡
+    public static final String activeEntityCard = IP + "/ndfront/card/activeEntityCard?appid=APPID";
+
+    //确认支付一张虚拟卡
+    public static final String comfirmPayCard = IP + "/ndfront/card/confirmPayCard?appid=APPID";
+
+//    //买卡的回调接口
+//    public static final String wxpay_card_notify = IP + "/ndfront/notify/wxpay_card_notify?appid=APPID";
+//
+//    //买卡的回调接口
+//    public static final String wxpay_notify = IP + "/ndfront/notify/wxpay_notify?appid=APPID";
+//
+
+
+
 
 
 
@@ -63,7 +87,8 @@ public class Urls {
     //2.3 按类别查单优惠券接口
     public static final String couponcategory = IP + "/fxfront/interface/couponcategory?appid=APPID";
     //2.5 商品详情app接口
-    public static final String goodsdetailbyapp = IP + "/fxfront/interface/goodsdetailbyapp?appid=APPID";
+    public static final String goodsdetailbyapp = IP + "/ndfront/interface/goodsdetailbyh5?appid=APPID";
+
     //2.5 商品详情app接口
     public static final String goodscontent = IP + "/fxfront/interface/goodscontent?appid=APPID";
     // 首页接口

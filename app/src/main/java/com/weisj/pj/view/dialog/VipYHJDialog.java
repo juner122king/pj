@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
@@ -47,6 +48,13 @@ public class VipYHJDialog extends AlertDialog {
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         adapter = new ItemVIPYHJAdapter(getList());
         recyclerView.setAdapter(adapter);
+
+        findViewById(R.id.tv_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancel();
+            }
+        });
     }
 
     private List<YHJBean> getList() {
