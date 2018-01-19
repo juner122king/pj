@@ -49,7 +49,7 @@
                 android:id="@+id/expand_list_order"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scrollbars="none"></ExpandableListView>
+                android:scrollbars="none" />
 
         </com.weisj.pj.view.abpullrefresh.AbPullToRefreshView>
 

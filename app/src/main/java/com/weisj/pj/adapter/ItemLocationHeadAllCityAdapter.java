@@ -21,7 +21,7 @@ import java.util.List;
 
 public class ItemLocationHeadAllCityAdapter<T> extends BaseAdapter {
 
-    private List<T> objects = new ArrayList<T>();
+    private List<T> objects = new ArrayList<>();
 
     private Activity context;
     private LayoutInflater layoutInflater;
@@ -56,7 +56,7 @@ public class ItemLocationHeadAllCityAdapter<T> extends BaseAdapter {
             viewHolder.listView = (ListView) convertView.findViewById(R.id.listview);
             convertView.setTag(viewHolder);
         }
-        initializeViews((T) getItem(position), (ViewHolder) convertView.getTag());
+        initializeViews(getItem(position), (ViewHolder) convertView.getTag());
         return convertView;
     }
 

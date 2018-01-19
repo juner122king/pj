@@ -38,15 +38,15 @@ dependencies {
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'com.google.zxing:core:3.2.1'
-    compile 'com.umeng.analytics:analytics:latest.integration'
+//    compile 'com.umeng.analytics:analytics:latest.integration'
     compile 'com.google.android.gms:play-services-appindexing:8.4.0'
 //    compile files('libs/mta-sdk-1.6.2.jar')
 //    compile files('libs/open_sdk_r5756.jar')
 //    compile files('libs/SocialSDK_QQZone_3.jar')
     compile files('libs/SocialSDK_WeiXin_1.jar')
     compile files('libs/SocialSDK_WeiXin_2.jar')
-    compile files('libs/umeng_social_sdk.jar')
-    compile files('libs/com.umeng.message.lib_v2.6.0.jar')
+//    compile files('libs/umeng_social_sdk.jar')
+//    compile files('libs/com.umeng.message.lib_v2.6.0.jar')
 //    compile files('libs/SocialSDK_Sina.jar')
 //    compile files('libs/weiboSDKCore_3.1.4.jar')
 //    compile files('libs/BaiduLBS_Android.jar')

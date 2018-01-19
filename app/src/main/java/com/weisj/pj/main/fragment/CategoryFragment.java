@@ -9,30 +9,21 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.CompoundButton;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.weisj.pj.R;
 import com.weisj.pj.adapter.ItemCategoryCommodityAdapter;
 import com.weisj.pj.base.BaseFragment;
-import com.weisj.pj.base.activity.SearchActivity;
-import com.weisj.pj.bean.CategoryBean;
-import com.weisj.pj.bean.CommodityShow;
 import com.weisj.pj.bean.GoodBean;
 import com.weisj.pj.bean.GoodsParams;
 import com.weisj.pj.presenter.CategoryPresenter;
 import com.weisj.pj.view.MyRadioGroup;
 import com.weisj.pj.viewinterface.ICategoryView;
 
-import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 /**

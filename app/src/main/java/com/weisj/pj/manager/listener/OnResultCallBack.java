@@ -3,8 +3,6 @@ package com.weisj.pj.manager.listener;
 import com.squareup.okhttp.Request;
 import com.weisj.pj.utils.OkHttpClientManager;
 
-import java.lang.reflect.Type;
-
 /**
  * Created by Administrator on 2016/7/22 0022.
  */

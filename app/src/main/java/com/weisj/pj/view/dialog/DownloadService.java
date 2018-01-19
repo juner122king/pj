@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 
 import com.weisj.pj.R;
-import com.weisj.pj.utils.SystemConfig;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -104,7 +103,7 @@ public class DownloadService extends Service {
             try {
                 downLoadFile = new File(rootDir + "/fx/", "new_wsj.apk");
                 saveToFile(fileURL, downLoadFile.getPath());
-            } catch (Exception e) {
+            } catch (Exception ignored) {
             }
             return null;
         }

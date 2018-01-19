@@ -1,22 +1,17 @@
 package com.weisj.pj.main.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.squareup.okhttp.Request;
 import com.weisj.pj.R;
 import com.weisj.pj.adapter.ItemOrderFragmentAdapter;
 import com.weisj.pj.base.BaseFragment;
-import com.weisj.pj.base.activity.ConversionrRateActivity;
-import com.weisj.pj.base.activity.SystemNoticeActivity;
 import com.weisj.pj.bean.BaseBean;
 import com.weisj.pj.main.fragment.order.DistributionCommissionView;
 import com.weisj.pj.main.fragment.order.DistributionRecordView;
-import com.weisj.pj.utils.OkHttpClientManager;
 import com.weisj.pj.view.FiltratePopupWindow;
 
 import java.util.ArrayList;

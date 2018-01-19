@@ -18,7 +18,7 @@ import com.weisj.pj.utils.TextViewUtils;
 
 public class ItemCategoryGoodAdapter<T> extends BaseAdapter {
 
-    private List<T> objects = new ArrayList<T>();
+    private List<T> objects = new ArrayList<>();
 
     private Context context;
     private LayoutInflater layoutInflater;
@@ -54,7 +54,7 @@ public class ItemCategoryGoodAdapter<T> extends BaseAdapter {
 
             convertView.setTag(viewHolder);
         }
-        initializeViews((T) getItem(position), (ViewHolder) convertView.getTag());
+        initializeViews(getItem(position), (ViewHolder) convertView.getTag());
         return convertView;
     }
 

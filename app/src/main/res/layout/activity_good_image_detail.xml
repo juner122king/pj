@@ -10,6 +10,5 @@
         android:layout_height="match_parent"
         android:divider="@null"
         android:dividerHeight="0dp"
-        android:scrollbars="none"
-        ></ListView>
+        android:scrollbars="none" />
 </LinearLayout>

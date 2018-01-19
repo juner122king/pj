@@ -37,7 +37,7 @@ public class ExpenditureFragment extends Fragment implements AbPullToRefreshView
     BillAdapter adapter;
     private RootView rootView;
 
-    List<AccountBillBean.DataEntity> dataEntities = new ArrayList<AccountBillBean.DataEntity>();
+    List<AccountBillBean.DataEntity> dataEntities = new ArrayList<>();
 
     int page = 1;
 
@@ -95,7 +95,7 @@ public class ExpenditureFragment extends Fragment implements AbPullToRefreshView
             public void onError(Request request, Exception e) {
                 try {
                     rootView.changeRootViewState(RootView.ViewState.NONETWORK);
-                } catch (Exception e1) {
+                } catch (Exception ignored) {
 
                 }
             }
@@ -120,7 +120,7 @@ public class ExpenditureFragment extends Fragment implements AbPullToRefreshView
                     } else {
                         rootView.changeRootViewState(RootView.ViewState.NODATA);
                     }
-                } catch (Exception e) {
+                } catch (Exception ignored) {
 
                 }
 

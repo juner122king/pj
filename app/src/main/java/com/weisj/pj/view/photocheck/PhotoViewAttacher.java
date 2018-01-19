@@ -1,18 +1,3 @@
-/*******************************************************************************
- * Copyright 2011, 2012 Chris Banes.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *******************************************************************************/
 package com.weisj.pj.view.photocheck;
 
 import android.content.Context;
@@ -100,11 +85,6 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
 	private static void setImageViewScaleTypeMatrix(ImageView imageView) {
 		if (null != imageView) {
 			if (imageView instanceof PhotoView) {
-				/**
-				 * PhotoView sets it's own ScaleType to Matrix, then diverts all
-				 * calls setScaleType to this.setScaleType. Basically we don't
-				 * need to do anything here
-				 */
 			} else {
 				imageView.setScaleType(ScaleType.MATRIX);
 			}
@@ -139,7 +119,7 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
 	private ScaleType mScaleType = ScaleType.FIT_CENTER;
 
 	public PhotoViewAttacher(ImageView imageView) {
-		mImageView = new WeakReference<ImageView>(imageView);
+		mImageView = new WeakReference<>(imageView);
 
 		imageView.setOnTouchListener(this);
 
@@ -290,15 +270,6 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
 			mSuppMatrix.postTranslate(dx, dy);
 			checkAndDisplayMatrix();
 
-			/**
-			 * Here we decide whether to let the ImageView's parent to start
-			 * taking over the touch event.
-			 * 
-			 * First we check whether this function is enabled. We never want
-			 * the parent to take over if we're scaling. We then check the edge
-			 * we're on, and the direction of the scroll (i.e. if we're pulling
-			 * against the edge, aka 'overscrolling', let the parent take over).
-			 */
 			if (mAllowParentInterceptOnEdge && !mScaleDragDetector.isScaling()) {
 				if (mScrollEdge == EDGE_BOTH
 						|| (mScrollEdge == EDGE_LEFT && dx >= 1f)
@@ -338,14 +309,7 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
                 final int bottom = imageView.getBottom();
                 final int left = imageView.getLeft();
 
-                /**
-                 * We need to check whether the ImageView's bounds have changed.
-                 * This would be easier if we targeted API 11+ as we could just use
-                 * View.OnLayoutChangeListener. Instead we have to replicate the
-                 * work, keeping track of the ImageView's bounds and then checking
-                 * if the values change.
-                 */
-                if (top != mIvTop || bottom != mIvBottom || left != mIvLeft
+				if (top != mIvTop || bottom != mIvBottom || left != mIvLeft
                         || right != mIvRight) {
                     // Update our base matrix, as the bounds have changed
                     updateBaseMatrix(imageView.getDrawable());
@@ -565,10 +529,6 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
 	private void checkImageViewScaleType() {
 		ImageView imageView = getImageView();
 
-		/**
-		 * PhotoView's getScaleType() will just divert to this.getScaleType() so
-		 * only call if we're not attached to a PhotoView.
-		 */
 		if (null != imageView && !(imageView instanceof PhotoView)) {
 			if (imageView.getScaleType() != ScaleType.MATRIX) {
 				throw new IllegalStateException(
@@ -774,7 +734,7 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
 	 * 
 	 * @author Chris Banes
 	 */
-	public static interface OnMatrixChangedListener {
+	public interface OnMatrixChangedListener {
 		/**
 		 * Callback for when the Matrix displaying the Drawable has changed.
 		 * This could be because the View's bounds have changed, or the user has
@@ -792,7 +752,7 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
 	 * 
 	 * @author Chris Banes
 	 */
-	public static interface OnPhotoTapListener {
+	public interface OnPhotoTapListener {
 
 		/**
 		 * A callback to receive where the user taps on a photo. You will only
@@ -817,7 +777,7 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
 	 * 
 	 * @author Chris Banes
 	 */
-	public static interface OnViewTapListener {
+	public interface OnViewTapListener {
 
 		/**
 		 * A callback to receive where the user taps on a ImageView. You will

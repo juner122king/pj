@@ -2,7 +2,6 @@ package com.weisj.pj.presenter;
 
 
 import com.weisj.pj.base.BaseViewState;
-import com.weisj.pj.bean.HomeBanner;
 import com.weisj.pj.bean.HomeBean;
 import com.weisj.pj.manager.IHomeManager;
 import com.weisj.pj.manager.impl.HomeManager;

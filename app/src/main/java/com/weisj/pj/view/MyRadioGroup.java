@@ -106,7 +106,7 @@ public class MyRadioGroup extends LinearLayout {
      * @param child
      */
     private List<RadioButton> getAllRadioButton(View child){
-        List<RadioButton> btns = new ArrayList<RadioButton>();
+        List<RadioButton> btns = new ArrayList<>();
         if (child instanceof RadioButton) {
             btns.add((RadioButton) child);
         }else if(child instanceof ViewGroup){
@@ -315,7 +315,7 @@ public class MyRadioGroup extends LinearLayout {
          * @param group the group in which the checked radio button has changed
          * @param checkedId the unique identifier of the newly checked radio button
          */
-        public void onCheckedChanged(MyRadioGroup group, int checkedId);
+        void onCheckedChanged(MyRadioGroup group, int checkedId);
     }
 
     private class CheckedStateTracker implements CompoundButton.OnCheckedChangeListener {

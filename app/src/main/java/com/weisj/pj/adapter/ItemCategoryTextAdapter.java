@@ -8,16 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.weisj.pj.R;
 import com.weisj.pj.bean.CategoryBean;
-import com.weisj.pj.utils.TextViewUtils;
 
 public class ItemCategoryTextAdapter<T> extends BaseAdapter {
 
-    private List<T> objects = new ArrayList<T>();
+    private List<T> objects = new ArrayList<>();
     private Context context;
     private LayoutInflater layoutInflater;
     private int selectId;
@@ -59,7 +57,7 @@ public class ItemCategoryTextAdapter<T> extends BaseAdapter {
             viewHolder.categoryText = (TextView) convertView.findViewById(R.id.category_text);
             convertView.setTag(viewHolder);
         }
-        initializeViews((T) getItem(position), (ViewHolder) convertView.getTag());
+        initializeViews(getItem(position), (ViewHolder) convertView.getTag());
         return convertView;
     }
 

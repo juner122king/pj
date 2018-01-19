@@ -51,7 +51,7 @@ public class LineChatView extends View {
 	private int lineColor;
 
 
-	private List<String> dFloats  = new ArrayList<String>();
+	private List<String> dFloats  = new ArrayList<>();
 	private float xV = 0,yV = 0;
 	int  tagValue;
 
@@ -191,7 +191,7 @@ public class LineChatView extends View {
 		if (null == milliliter || milliliter.size() == 0)
 			return;
 
-		dFloats  = new ArrayList<String>();
+		dFloats  = new ArrayList<>();
 		drawStrokiLine(c);
 		drawBrokenLine(c);
 

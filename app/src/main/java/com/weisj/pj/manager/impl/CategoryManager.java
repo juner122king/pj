@@ -1,9 +1,7 @@
 package com.weisj.pj.manager.impl;
 
 import com.squareup.okhttp.Request;
-import com.weisj.pj.bean.CategoryBean;
 import com.weisj.pj.bean.GoodBean;
-import com.weisj.pj.bean.HomeBean;
 import com.weisj.pj.manager.ICategoryManager;
 import com.weisj.pj.manager.listener.IOnManagerListener;
 import com.weisj.pj.utils.OkHttpClientManager;

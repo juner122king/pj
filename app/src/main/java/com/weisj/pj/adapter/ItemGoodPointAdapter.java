@@ -1,10 +1,8 @@
 package com.weisj.pj.adapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
-import android.support.v7.widget.GridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +17,6 @@ import com.weisj.pj.utils.ImageLoaderUtils;
 import com.weisj.pj.utils.SystemConfig;
 import com.weisj.pj.utils.TextViewUtils;
 import com.weisj.pj.view.MyRatingBar;
-
-import android.support.v7.widget.RecyclerView;
 
 public class ItemGoodPointAdapter<T> extends BaseAdapter {
 
@@ -56,7 +52,7 @@ public class ItemGoodPointAdapter<T> extends BaseAdapter {
             convertView = layoutInflater.inflate(R.layout.item_good_point, null);
             convertView.setTag(new ViewHolder(convertView));
         }
-        initializeViews((T) getItem(position), (ViewHolder) convertView.getTag());
+        initializeViews(getItem(position), (ViewHolder) convertView.getTag());
         return convertView;
     }
 

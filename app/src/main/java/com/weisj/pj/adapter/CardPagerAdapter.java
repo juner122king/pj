@@ -6,12 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.weisj.pj.R;
 import com.weisj.pj.bean.CardTypeBean;
-import com.weisj.pj.view.photocheck.GlideRoundTransform;
 
 import java.util.ArrayList;
 import java.util.List;

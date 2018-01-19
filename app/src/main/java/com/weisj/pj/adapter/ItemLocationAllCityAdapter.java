@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ItemLocationAllCityAdapter<T> extends BaseAdapter {
 
-    private List<T> objects = new ArrayList<T>();
+    private List<T> objects = new ArrayList<>();
 
     private Context context;
     private LayoutInflater layoutInflater;
@@ -49,7 +49,7 @@ public class ItemLocationAllCityAdapter<T> extends BaseAdapter {
             viewHolder.locationText = (TextView) convertView.findViewById(R.id.location_text);
             convertView.setTag(viewHolder);
         }
-        initializeViews((T)getItem(position), (ViewHolder) convertView.getTag());
+        initializeViews(getItem(position), (ViewHolder) convertView.getTag());
         return convertView;
     }
 

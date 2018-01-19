@@ -18,7 +18,7 @@ import java.util.List;
 
 public class ItemLocationHotCityAdapter<T> extends BaseAdapter {
 
-    private List<T> objects = new ArrayList<T>();
+    private List<T> objects = new ArrayList<>();
 
     private Activity context;
     private LayoutInflater layoutInflater;
@@ -53,7 +53,7 @@ public class ItemLocationHotCityAdapter<T> extends BaseAdapter {
 
             convertView.setTag(viewHolder);
         }
-        initializeViews((T) getItem(position), (ViewHolder) convertView.getTag());
+        initializeViews(getItem(position), (ViewHolder) convertView.getTag());
         return convertView;
     }
 

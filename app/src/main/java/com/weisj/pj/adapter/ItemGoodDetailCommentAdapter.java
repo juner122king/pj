@@ -8,7 +8,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.weisj.pj.R;
 import com.weisj.pj.bean.GoodPoint;
-import com.weisj.pj.bean.HomeBean;
 
 import java.util.List;
 

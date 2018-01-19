@@ -7,10 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.squareup.okhttp.Request;
 import com.weisj.pj.R;
 import com.weisj.pj.base.BaseFragment;
 //import com.weisj.pj.base.activity.BecomeShopActivity;
@@ -28,18 +26,11 @@ import com.weisj.pj.base.activity.LoginActivity;
 import com.weisj.pj.base.activity.UserInfoActivity;
 import com.weisj.pj.base.activity.VipActivity;
 import com.weisj.pj.bean.CenterBean;
-import com.weisj.pj.manager.listener.IOnManagerListener;
 import com.weisj.pj.presenter.CenterPresenter;
-import com.weisj.pj.utils.OkHttpClientManager;
 import com.weisj.pj.utils.PersonMessagePreferencesUtils;
 import com.weisj.pj.utils.PreferencesUtils;
-import com.weisj.pj.utils.Urls;
 import com.weisj.pj.view.dialog.ApplyAgentDialog;
-import com.weisj.pj.view.dialog.VipJHDialog;
 import com.weisj.pj.viewinterface.ICenterView;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Administrator on 2016/6/27 0027.

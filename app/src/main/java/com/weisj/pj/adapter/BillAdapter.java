@@ -25,7 +25,7 @@ public class BillAdapter extends BaseAdapter{
 
     Activity activity;
 
-    List<AccountBillBean.DataEntity> list = new ArrayList<AccountBillBean.DataEntity>();
+    List<AccountBillBean.DataEntity> list = new ArrayList<>();
 
 
     public BillAdapter(Activity activity, List<AccountBillBean.DataEntity> list){

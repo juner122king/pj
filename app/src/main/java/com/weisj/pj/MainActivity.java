@@ -16,19 +16,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
-import com.squareup.okhttp.Request;
-import com.umeng.analytics.MobclickAgent;
 import com.weisj.pj.base.activity.GoodDetailActivity;
 import com.weisj.pj.base.activity.WebViewActivity;
 import com.weisj.pj.bean.ADBean;
-import com.weisj.pj.bean.VersionInfo;
 import com.weisj.pj.main.TabDb;
 import com.weisj.pj.utils.ImageLoaderUtils;
-import com.weisj.pj.utils.OkHttpClientManager;
-import com.weisj.pj.utils.PreferencesUtils;
 import com.weisj.pj.utils.SystemConfig;
-import com.weisj.pj.utils.Urls;
-import com.weisj.pj.view.dialog.NewVersionDialog;
 
 import java.util.HashMap;
 import java.util.Map;

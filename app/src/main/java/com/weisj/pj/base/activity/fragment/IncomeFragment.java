@@ -39,7 +39,7 @@ public class IncomeFragment extends Fragment implements AbPullToRefreshView.OnFo
 
     int page = 1;
 
-    List<AccountBillBean.DataEntity> dataEntities = new ArrayList<AccountBillBean.DataEntity>();
+    List<AccountBillBean.DataEntity> dataEntities = new ArrayList<>();
 
     public static Fragment newInstance() {
         IncomeFragment f = new IncomeFragment();
@@ -97,7 +97,7 @@ public class IncomeFragment extends Fragment implements AbPullToRefreshView.OnFo
             public void onError(Request request, Exception e) {
                 try {
                     rootView.changeRootViewState(RootView.ViewState.NONETWORK);
-                } catch (Exception e1) {
+                } catch (Exception ignored) {
 
                 }
             }
@@ -122,7 +122,7 @@ public class IncomeFragment extends Fragment implements AbPullToRefreshView.OnFo
                     } else {
                         rootView.changeRootViewState(RootView.ViewState.NODATA);
                     }
-                } catch (Exception e) {
+                } catch (Exception ignored) {
 
                 }
 

@@ -1,7 +1,6 @@
 package com.weisj.pj.presenter;
 
 import com.weisj.pj.base.BaseViewState;
-import com.weisj.pj.bean.CategoryBean;
 import com.weisj.pj.bean.GoodBean;
 import com.weisj.pj.manager.ICategoryManager;
 import com.weisj.pj.manager.impl.CategoryManager;

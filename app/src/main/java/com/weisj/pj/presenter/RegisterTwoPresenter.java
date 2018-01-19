@@ -1,13 +1,10 @@
 package com.weisj.pj.presenter;
 
 import com.weisj.pj.base.BaseViewState;
-import com.weisj.pj.bean.BaseBean;
-import com.weisj.pj.bean.VerCodeBean;
 import com.weisj.pj.manager.IPhoneVerManager;
 import com.weisj.pj.manager.impl.PhoneVerManger;
 import com.weisj.pj.manager.listener.IOnManagerListener;
 import com.weisj.pj.utils.SystemConfig;
-import com.weisj.pj.utils.Urls;
 import com.weisj.pj.viewinterface.IRegisterTwoView;
 
 /**

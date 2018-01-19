@@ -5,18 +5,14 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.okhttp.Request;
 import com.weisj.pj.R;
-import com.weisj.pj.base.activity.VipActivity;
-import com.weisj.pj.bean.CardBean;
 import com.weisj.pj.bean.CenterBean;
 import com.weisj.pj.utils.OkHttpClientManager;
 import com.weisj.pj.utils.PersonMessagePreferencesUtils;

@@ -3,14 +3,11 @@ package com.weisj.pj.adapter;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +18,6 @@ import com.weisj.pj.R;
 import com.weisj.pj.bean.OrderBean;
 import com.weisj.pj.main.fragment.order.DistributionCommissionView;
 import com.weisj.pj.utils.ImageLoaderUtils;
-import com.weisj.pj.utils.SystemConfig;
 import com.weisj.pj.utils.TextViewUtils;
 import com.weisj.pj.view.photocheck.GlideRoundTransform;
 

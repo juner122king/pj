@@ -59,7 +59,7 @@ public class ImagePagerActivity extends FragmentActivity implements View.OnClick
     private TextView imageNumber;
     private LinearLayout chooseImage;
     private ImageView image;
-    private List<String> selectList = new ArrayList<String>();
+    private List<String> selectList = new ArrayList<>();
     private int limit = 9;
 
     @Override

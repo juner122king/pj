@@ -23,7 +23,6 @@
         android:divider="@null"
         android:layout_height="match_parent"
         android:background="#FFFFFF"
-        android:dividerHeight="0dp"
-        ></com.weisj.pj.view.MyListView>
+        android:dividerHeight="0dp" />
 
 </LinearLayout>

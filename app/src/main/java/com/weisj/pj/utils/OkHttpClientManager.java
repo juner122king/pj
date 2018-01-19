@@ -293,11 +293,11 @@ public class OkHttpClientManager {
                 } finally {
                     try {
                         if (is != null) is.close();
-                    } catch (IOException e) {
+                    } catch (IOException ignored) {
                     }
                     try {
                         if (fos != null) fos.close();
-                    } catch (IOException e) {
+                    } catch (IOException ignored) {
                     }
                 }
 
@@ -492,7 +492,7 @@ public class OkHttpClientManager {
     private static final String SESSION_KEY = "Set-Cookie";
     private static final String mSessionKey = "JSESSIONID";
 
-    private Map<String, String> mSessions = new HashMap<String, String>();
+    private Map<String, String> mSessions = new HashMap<>();
 
     private void deliveryResult(final ResultCallback callback, final Request request, final Param... params) {
         mOkHttpClient.newCall(request).enqueue(new Callback() {

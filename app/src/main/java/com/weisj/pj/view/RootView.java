@@ -3,8 +3,6 @@ package com.weisj.pj.view;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.StateListDrawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -238,6 +236,6 @@ public class RootView extends RelativeLayout implements View.OnClickListener {
         LOADING,// 普通加载
         SUCCESS,//加载成功
         NODATA, // 无数据
-        NONETWORK; // 无网络
+        NONETWORK // 无网络
     }
 }

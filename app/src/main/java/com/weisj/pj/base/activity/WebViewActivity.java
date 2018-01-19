@@ -3,24 +3,14 @@ package com.weisj.pj.base.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
-import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 import com.weisj.pj.R;
-import com.weisj.pj.base.BaseActivity;
-import com.weisj.pj.bean.ShareData;
-import com.weisj.pj.utils.ImageLoaderUtils;
-import com.weisj.pj.utils.PersonMessagePreferencesUtils;
-import com.weisj.pj.view.dialog.ShareViewDialog;
 
 
 public class WebViewActivity extends Activity {
@@ -121,7 +111,6 @@ public class WebViewActivity extends Activity {
         // 页面适应屏幕
         webView.getSettings().setLoadWithOverviewMode(true);
         webView.getSettings().setUseWideViewPort(true);
-        webView.getSettings().setJavaScriptEnabled(true);
         String oldUrl = getIntent().getStringExtra("url");
         if (oldUrl != null) {
             if (!oldUrl.contains("http://") && !oldUrl.contains("https://")) {

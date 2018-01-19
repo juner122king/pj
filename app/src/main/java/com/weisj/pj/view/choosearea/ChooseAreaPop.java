@@ -257,7 +257,7 @@ public class ChooseAreaPop extends Dialog implements OnWheelChangedListener, Vie
         WindowManager windowManager = activity.getWindowManager();
         Display display = windowManager.getDefaultDisplay();
         WindowManager.LayoutParams lp = this.getWindow().getAttributes();
-        lp.width = (int) (display.getWidth()); // 设置宽度
+        lp.width = display.getWidth(); // 设置宽度
         this.getWindow().setAttributes(lp);
     }
 
@@ -267,7 +267,7 @@ public class ChooseAreaPop extends Dialog implements OnWheelChangedListener, Vie
         WindowManager windowManager = activity.getWindowManager();
         Display display = windowManager.getDefaultDisplay();
         WindowManager.LayoutParams lp = this.getWindow().getAttributes();
-        lp.width = (int) (display.getWidth()); // 设置宽度
+        lp.width = display.getWidth(); // 设置宽度
         this.getWindow().setAttributes(lp);
     }
 

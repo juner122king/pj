@@ -1,7 +1,5 @@
 package com.weisj.pj.bean;
 
-import java.util.List;
-
 /**
  * Created by Administrator on 2016/8/6 0006.
  */

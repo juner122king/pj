@@ -28,7 +28,7 @@ import java.util.List;
  */
 public class ChooseImageAdapter extends RecyclerView.Adapter<ChooseImageAdapter.MyViewHolder> implements View.OnClickListener {
     private Activity context;
-    private List<String> pathList = new ArrayList<String>();
+    private List<String> pathList = new ArrayList<>();
     private ImageSize imageSize = new ImageSize(100, 100);
 
     public ChooseImageAdapter(Activity context, List<String> pathList) {

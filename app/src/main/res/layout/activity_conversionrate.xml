@@ -60,15 +60,14 @@
             android:layout_marginBottom="1dp"
             />
 
-        <com.weisj.fx.view.MyListView
+        <com.weisj.pj.view.MyListView
             android:id="@+id/listview"
             android:layout_width="match_parent"
             android:scrollbars="none"
             android:divider="@null"
             android:layout_height="match_parent"
             android:dividerHeight="0dp"
-            android:background="#FFFFFF"
-            ></com.weisj.fx.view.MyListView>
+            android:background="#FFFFFF" />
     </LinearLayout>
 
 </ScrollView>

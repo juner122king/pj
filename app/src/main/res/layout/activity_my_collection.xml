@@ -18,5 +18,5 @@
         app:swipeFrontView="@+id/front"
         app:swipeMode="left"
         app:swipeOffsetLeft="300dp"
-        app:swipeOpenOnLongPress="false"></com.weisj.fx.view.swipelistview.SwipeListView>
+        app:swipeOpenOnLongPress="false" />
 </LinearLayout>

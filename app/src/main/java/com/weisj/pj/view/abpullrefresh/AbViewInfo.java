@@ -239,7 +239,7 @@ public class AbViewInfo {
      */
     private void setKeyedTag(int key, Object tag) {
         if (keyedTags == null) {
-        	keyedTags = new SparseArray<Object>();
+        	keyedTags = new SparseArray<>();
         }
 
         keyedTags.put(key, tag);

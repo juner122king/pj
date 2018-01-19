@@ -1,46 +1,27 @@
 package com.weisj.pj.base.activity;
 
-import android.app.AlertDialog;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Paint;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
 import com.weisj.pj.R;
 import com.weisj.pj.TestData;
 import com.weisj.pj.adapter.ItemGoodDetailCommentAdapter;
-import com.weisj.pj.adapter.ItemGoodDetailRecommendAdapter;
 import com.weisj.pj.base.BaseActivity;
 import com.weisj.pj.bean.GoodDetail;
 import com.weisj.pj.bean.GoodDetailImageBean;
-import com.weisj.pj.bean.GoodPoint;
-import com.weisj.pj.bean.ShareData;
 import com.weisj.pj.presenter.GoodDetailPresenter;
 import com.weisj.pj.utils.ImageLoaderUtils;
-import com.weisj.pj.utils.SystemConfig;
 import com.weisj.pj.utils.TextViewUtils;
 import com.weisj.pj.view.MyRatingBar;
 import com.weisj.pj.view.abpullrefresh.AbPullToRefreshView;
 import com.weisj.pj.view.bgabanner.BGABanner;
-import com.weisj.pj.view.dialog.ShareViewDialog;
 import com.weisj.pj.viewinterface.IGoodDetailView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Administrator on 2016/7/4 0004.

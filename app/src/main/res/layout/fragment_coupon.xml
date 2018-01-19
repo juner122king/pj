@@ -21,7 +21,7 @@
                 android:divider="@null"
                 android:listSelector="@null"
                 android:dividerHeight="0.5dp"
-                android:scrollbars="none"></ListView>
+                android:scrollbars="none" />
         </com.weisj.fx.view.abpullrefresh.AbPullToRefreshView>
 
         <include layout="@layout/include_coupon_choose_bar" />

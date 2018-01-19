@@ -3,16 +3,9 @@ package com.weisj.pj.base.activity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.RadioButton;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.weisj.pj.R;
 import com.weisj.pj.base.BaseActivity;
-import com.weisj.pj.view.dialog.VipJHDialog;
-import com.weisj.pj.view.dialog.VipOfDialog;
-import com.weisj.pj.view.dialog.VipYHJDialog;
 
 /**
  * Created by jun on 2017/12/8.

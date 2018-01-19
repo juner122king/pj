@@ -1,12 +1,10 @@
 package com.weisj.pj.view.chooseimage;
 
-import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -38,13 +36,13 @@ import java.util.List;
 public class ChooseImageActivity extends BaseActivity implements View.OnClickListener, ImageBottomPopWindow.PopupListener {
     public static final String SELETEIMAGE = "selete_image";
     public static final String BROADCAST_ACTION = "com.powerthink.jdx.view.choosenewimageactivity";
-    private HashMap<String, List<String>> mGruopMap = new HashMap<String, List<String>>();
+    private HashMap<String, List<String>> mGruopMap = new HashMap<>();
     private final static int SCAN_OK = 1;
     private RecyclerView recyclerView;
-    private List<String> allPath = new ArrayList<String>();
+    private List<String> allPath = new ArrayList<>();
     private ChooseImageAdapter adapter;
     private TextView buttonFinish;
-    private List<String> selectList = new ArrayList<String>();
+    private List<String> selectList = new ArrayList<>();
     private LinearLayout choosePhotoAlbum;
     private ImageBottomPopWindow imageBottomPop;
     private TextView imagePreView;
@@ -162,7 +160,7 @@ public class ChooseImageActivity extends BaseActivity implements View.OnClickLis
 
                     // 根据父路径名将图片放入到mGruopMap中
                     if (!mGruopMap.containsKey(parentName)) {
-                        List<String> chileList = new ArrayList<String>();
+                        List<String> chileList = new ArrayList<>();
                         chileList.add(path);
                         mGruopMap.put(parentName, chileList);
                     } else {

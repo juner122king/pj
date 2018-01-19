@@ -131,7 +131,7 @@
                 android:layout_height="match_parent"
                 android:divider="@null"
                 android:dividerHeight="0dp"
-                android:scrollbars="none"></ListView>
+                android:scrollbars="none" />
         </com.weisj.pj.view.abpullrefresh.AbPullToRefreshView>
 
         <android.support.v7.widget.RecyclerView

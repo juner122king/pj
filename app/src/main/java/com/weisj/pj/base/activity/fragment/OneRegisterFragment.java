@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.weisj.pj.R;
 import com.weisj.pj.base.BaseFragment;
@@ -16,12 +15,8 @@ import com.weisj.pj.base.activity.RegisterActivity;
 import com.weisj.pj.bean.BaseBean;
 import com.weisj.pj.bean.VerCodeBean;
 import com.weisj.pj.presenter.RegisterOnePresenter;
-import com.weisj.pj.presenter.RegisterTwoPresenter;
 import com.weisj.pj.utils.KeyboardUtil;
 import com.weisj.pj.utils.SystemConfig;
-import com.weisj.pj.view.choosearea.ChooseAreaPop;
-import com.weisj.pj.view.choosearea.IDataCallback;
-import com.weisj.pj.view.dialog.UserProtocolDialog;
 import com.weisj.pj.viewinterface.IRegisterOneView;
 
 /**

@@ -8,56 +8,35 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.weisj.pj.MainActivity;
 import com.weisj.pj.R;
-import com.weisj.pj.adapter.ItemHomeAreaGoodsAdapter;
-import com.weisj.pj.adapter.ItemHomeGoodAdapter;
 import com.weisj.pj.adapter.ItemHomeUserCommentAdapter;
 import com.weisj.pj.base.BaseFragment;
 import com.weisj.pj.base.activity.CouponDetail1;
 import com.weisj.pj.base.activity.GoodDetailActivity;
 import com.weisj.pj.base.activity.LocationActivity;
 import com.weisj.pj.base.activity.SearchActivity;
-import com.weisj.pj.base.activity.SearchHighListActivity;
 import com.weisj.pj.base.activity.SearchListActivity;
-import com.weisj.pj.base.activity.SystemNoticeActivity;
 import com.weisj.pj.base.activity.VipActivity;
 import com.weisj.pj.base.activity.WebViewActivity;
 import com.weisj.pj.bean.Ad;
 import com.weisj.pj.bean.Comment;
-import com.weisj.pj.bean.HomeBanner;
 import com.weisj.pj.bean.HomeBean;
-import com.weisj.pj.bean.HomeCouponbean;
-import com.weisj.pj.bean.ShareData;
-import com.weisj.pj.bean.UsershareBean;
 import com.weisj.pj.presenter.HomePresenter;
 import com.weisj.pj.utils.CommenString;
-import com.weisj.pj.utils.ImageLoaderUtils;
-import com.weisj.pj.utils.PersonMessagePreferencesUtils;
-import com.weisj.pj.utils.PreferencesUtils;
-import com.weisj.pj.utils.SystemConfig;
 import com.weisj.pj.utils.TextViewUtils;
 import com.weisj.pj.utils.Urls;
-import com.weisj.pj.view.MyListView;
-import com.weisj.pj.view.RoundedCornersTransformation;
 import com.weisj.pj.view.abpullrefresh.AbPullToRefreshView;
 import com.weisj.pj.view.bgabanner.BGABanner;
-import com.weisj.pj.view.dialog.SelectCityDialog;
-import com.weisj.pj.view.dialog.ShareViewDialog;
-import com.weisj.pj.view.photocheck.GlideCircleTransform;
 import com.weisj.pj.view.photocheck.GlideRoundTransform;
 import com.weisj.pj.viewinterface.IHomeView;
-import com.weisj.pj.wxapi.WXPayEntryActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -450,9 +429,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
                 intent = new Intent(this.getActivity(), SearchActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.image_high_url:
-                startActivity(new Intent(this.getActivity(), SearchHighListActivity.class));
-                break;
+
 
 
             case R.id.im_tv_button0:

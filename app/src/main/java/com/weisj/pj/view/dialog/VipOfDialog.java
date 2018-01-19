@@ -3,8 +3,6 @@ package com.weisj.pj.view.dialog;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -12,12 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.weisj.pj.R;
-import com.weisj.pj.adapter.ItemVIPYHJAdapter;
-import com.weisj.pj.bean.YHJBean;
 import com.weisj.pj.utils.SystemConfig;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by jun on 2017/12/10.

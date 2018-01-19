@@ -4,8 +4,6 @@ import com.weisj.pj.bean.ActiBean;
 import com.weisj.pj.bean.CouponBean;
 import com.weisj.pj.bean.HomeCouponbean;
 
-import java.util.List;
-
 /**
  * Created by Administrator on 2016/7/28 0028.
  */

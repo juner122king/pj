@@ -7,7 +7,6 @@ import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.weisj.pj.R;
-import com.weisj.pj.bean.AdressBean;
 import com.weisj.pj.bean.CartGoodBean;
 import com.weisj.pj.utils.Urls;
 import com.weisj.pj.view.photocheck.GlideRoundTransform;

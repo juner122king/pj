@@ -58,7 +58,7 @@ public class FileUtil {
         }
 
         File folder = new File(filePath);
-        return (folder.exists() && folder.isDirectory()) ? true : folder
+        return (folder.exists() && folder.isDirectory()) || folder
                 .mkdirs();
     }
 
@@ -136,7 +136,7 @@ public class FileUtil {
             if (out != null) {
                 try {
                     out.close();
-                } catch (Exception e) {
+                } catch (Exception ignored) {
                 }
             }
         }
@@ -189,7 +189,7 @@ public class FileUtil {
             if (fos != null) {
                 try {
                     fos.close();
-                } catch (Exception e) {
+                } catch (Exception ignored) {
                 }
             }
         }
@@ -236,12 +236,12 @@ public class FileUtil {
         long size = 0;
         try {
             File[] fileList = file.listFiles();
-            for (int i = 0; i < fileList.length; i++) {
-                if (fileList[i].isDirectory()) {
-                    size = size + getFolderSize(fileList[i]);
+            for (File aFileList : fileList) {
+                if (aFileList.isDirectory()) {
+                    size = size + getFolderSize(aFileList);
 
                 } else {
-                    size = size + fileList[i].length();
+                    size = size + aFileList.length();
 
                 }
             }

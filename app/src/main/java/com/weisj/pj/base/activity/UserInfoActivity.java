@@ -160,7 +160,7 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
     // 点击用户头像
     private void clickSex(View view) {
         if (sexPopWin == null) {
-            List<String> list = new ArrayList<String>();
+            List<String> list = new ArrayList<>();
             list.add("男性");
             list.add("女性");
             sexPopWin = new CustomBottomPopWindow(this, list, this, 1);
@@ -264,13 +264,8 @@ public class UserInfoActivity extends BaseActivity implements View.OnClickListen
             int top = leftTop[1];
             int bottom = top + v.getHeight();
             int right = left + v.getWidth();
-            if (event.getX() > left && event.getX() < right
-                    && event.getY() > top && event.getY() < bottom) {
-                // 点击的是输入框区域，保留点击EditText的事件
-                return false;
-            } else {
-                return true;
-            }
+            return !(event.getX() > left && event.getX() < right
+                    && event.getY() > top && event.getY() < bottom);
         }
         return false;
     }

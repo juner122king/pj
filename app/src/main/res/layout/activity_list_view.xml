@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:divider="#e6e6e6"
-            android:scrollbars="none"></ListView>
+            android:scrollbars="none" />
 
     </com.weisj.fx.view.abpullrefresh.AbPullToRefreshView>
 </LinearLayout>

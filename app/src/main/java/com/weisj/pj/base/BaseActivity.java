@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.umeng.analytics.MobclickAgent;
 import com.weisj.pj.R;
 import com.weisj.pj.view.RootView;
 
@@ -35,13 +34,11 @@ public abstract class BaseActivity extends Activity implements RootView.RootView
     @Override
     protected void onResume() {
         super.onResume();
-        MobclickAgent.onResume(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        MobclickAgent.onPause(this);
     }
 
     public abstract View initView(Bundle savedInstanceState);

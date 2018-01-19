@@ -46,7 +46,7 @@ public class DBUtil extends SQLiteOpenHelper {
     public List<String> select() {
         Cursor cursor = this.getReadableDatabase()
                 .query(TABLE_NAME, null, null, null, null, null, FILED_2+" desc","30");
-        List<String> data = new ArrayList<String>();
+        List<String> data = new ArrayList<>();
         if (cursor.moveToFirst()) {
 //            System.out.println("当前表中的数据条数：" + cursor.getCount());
             do {

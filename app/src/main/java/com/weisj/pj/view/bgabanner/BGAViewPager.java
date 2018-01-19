@@ -30,15 +30,6 @@ public class BGAViewPager extends ViewPager {
 
     @Override
     public void setPageTransformer(boolean reverseDrawingOrder, PageTransformer transformer) {
-        /**
-         继承ViewPager，重写setPageTransformer方法，移除版本限制，通过反射设置参数和方法
-
-         getDeclaredMethod*()获取的是【类自身】声明的所有方法，包含public、protected和private方法。
-         getMethod*()获取的是类的所有共有方法，这就包括自身的所有【public方法】，和从基类继承的、从接口实现的所有【public方法】。
-
-         getDeclaredField获取的是【类自身】声明的所有字段，包含public、protected和private字段。
-         getField获取的是类的所有共有字段，这就包括自身的所有【public字段】，和从基类继承的、从接口实现的所有【public字段】。
-         */
         Class viewpagerClass = ViewPager.class;
 
         try {
@@ -68,7 +59,7 @@ public class BGAViewPager extends ViewPager {
                 populateMethod.setAccessible(true);
                 populateMethod.invoke(this);
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
 
@@ -99,7 +90,7 @@ public class BGAViewPager extends ViewPager {
             setCurrentItemInternalMethod.setAccessible(true);
             setCurrentItemInternalMethod.invoke(this, position, true, true);
             ViewCompat.postInvalidateOnAnimation(this);
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
     }
 
@@ -152,7 +143,7 @@ public class BGAViewPager extends ViewPager {
 
             velocityTracker.computeCurrentVelocity(1000, maximumVelocity);
             xVelocity = VelocityTrackerCompat.getXVelocity(velocityTracker, activePointerIdField.getInt(this));
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         return xVelocity;
     }

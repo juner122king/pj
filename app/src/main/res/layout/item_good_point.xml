@@ -31,7 +31,7 @@
         android:layout_height="16dp"
         android:layout_marginLeft="15dp"
         android:layout_marginTop="2dp"
-        android:id="@+id/point_bar"></com.weisj.fx.view.MyRatingBar>
+        android:id="@+id/point_bar" />
 
     <TextView
         android:layout_width="match_parent"

@@ -307,7 +307,7 @@ public class AbViewUtil {
 			float scaleWidth = (float) width / SystemConfig.UI_WIDTH;
 			float scaleHeight = (float) height / SystemConfig.UI_HEIGHT;
 			scale = Math.min(scaleWidth, scaleHeight);
-		} catch (Exception e) {
+		} catch (Exception ignored) {
 		}
 		return Math.round(pxValue * scale + 0.5f);
 	}
@@ -417,7 +417,7 @@ public class AbViewUtil {
             setTextSize(textView,textView.getTextSize());
         }
 
-        ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) view.getLayoutParams();
+        ViewGroup.LayoutParams params = view.getLayoutParams();
         if (null != params){
             int width = INVALID;
             int height = INVALID;
@@ -466,11 +466,8 @@ public class AbViewUtil {
     	if (view instanceof AbListViewHeader){
     		return false;
         }
-    	
-    	if (view instanceof AbListViewFooter){
-    		return false;
-        }
-    	return true;
+
+        return !(view instanceof AbListViewFooter);
     }
     
     /**

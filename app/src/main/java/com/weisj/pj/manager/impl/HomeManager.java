@@ -6,7 +6,6 @@ import com.weisj.pj.bean.HomeBean;
 import com.weisj.pj.manager.IHomeManager;
 import com.weisj.pj.manager.listener.IOnManagerListener;
 import com.weisj.pj.utils.OkHttpClientManager;
-import com.weisj.pj.utils.PersonMessagePreferencesUtils;
 import com.weisj.pj.utils.Urls;
 
 import java.util.HashMap;

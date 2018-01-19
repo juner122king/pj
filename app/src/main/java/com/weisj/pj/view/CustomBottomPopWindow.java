@@ -36,7 +36,7 @@ public class CustomBottomPopWindow extends BottomPushPopupWindow implements View
     public CustomBottomPopWindow(Context context, PopupListener listener) {
         super(context);
         this.listener = listener;
-        list = new ArrayList<String>();
+        list = new ArrayList<>();
         list.add("拍摄新照片");
         list.add("从照片库获取");
         loadItem();

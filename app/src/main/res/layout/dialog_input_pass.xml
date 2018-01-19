@@ -34,7 +34,7 @@
         android:textColorHint="#aaaaaa"
         android:textSize="14dp">
 
-        <requestFocus></requestFocus>
+        <requestFocus />
     </com.weisj.fx.view.ClearEditText>
 
     <View

@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.weisj.pj.R;
 import com.weisj.pj.base.activity.ConsigneeAddressActivity;
 import com.weisj.pj.base.activity.EditAddressActivity;
-import com.weisj.pj.base.activity.SearchListActivity;
 import com.weisj.pj.bean.AdressBean;
 
 /**
@@ -43,7 +42,7 @@ public class ItemConsigneeAddress extends RecyclerView.Adapter<ItemConsigneeAddr
         holder.consignee_name.setText(dataEntity.getRecipients());
         holder.consignee_phone.setText(dataEntity.getPhone());
         holder.consignee_address.setText(dataEntity.getProvince() + dataEntity.getCity() + dataEntity.getArea() + dataEntity.getAddress());
-//
+
         if (dataEntity.getRecipient_state() > 0) {
             holder.consignee_choose.setSelected(true);
             oldChoose = holder.consignee_choose;
@@ -108,17 +107,18 @@ public class ItemConsigneeAddress extends RecyclerView.Adapter<ItemConsigneeAddr
     }
 
     private void setdefaultconsignee(final int position) {
-        ConsigneeAddressActivity consigneeAddressActivity = (ConsigneeAddressActivity) context;
-        consigneeAddressActivity.getPresenter().setDefaultAddress(String.valueOf(adressBean.getData().get(position).getRecipient_id()));
-
+        if (context instanceof ConsigneeAddressActivity) {
+            ConsigneeAddressActivity consigneeAddressActivity = (ConsigneeAddressActivity) context;
+            consigneeAddressActivity.getPresenter().setDefaultAddress(String.valueOf(adressBean.getData().get(position).getRecipient_id()));
+        }
     }
 
 
     private void delectAddress(final int position) {
-//        if (context instanceof SearchListActivity.ConsigneeAddressActivity) {
-        ConsigneeAddressActivity consigneeAddressActivity = (ConsigneeAddressActivity) context;
-        consigneeAddressActivity.getPresenter().deleteAddress(String.valueOf(adressBean.getData().get(position).getRecipient_id()));
-//        }
+        if (context instanceof ConsigneeAddressActivity) {
+            ConsigneeAddressActivity consigneeAddressActivity = (ConsigneeAddressActivity) context;
+            consigneeAddressActivity.getPresenter().deleteAddress(String.valueOf(adressBean.getData().get(position).getRecipient_id()));
+        }
     }
 
 }
