@@ -1,10 +1,12 @@
 package com.weisj.pj.base.activity;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -21,7 +23,7 @@ import com.weisj.pj.utils.PersonMessagePreferencesUtils;
 import com.weisj.pj.view.dialog.ShareViewDialog;
 
 
-public class WebViewActivity extends BaseActivity {
+public class WebViewActivity extends Activity {
     private WebView webView;
     private String imageUrl;
     private String url;
@@ -59,75 +61,23 @@ public class WebViewActivity extends BaseActivity {
         }
     }
 
-
     @Override
-    public View initView(Bundle savedInstanceState) {
-        View view = mLayoutInflater.inflate(R.layout.activity_web, null);
-        initView(view);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_web);
+        initView();
         load();
-        return view;
     }
 
-    @Override
-    public String setTitleStr() {
-        title = getIntent().getStringExtra("web_title");
-        content = getIntent().getStringExtra("content");
-        if (content == null) {
-            content = title;
-        }
-        return title;
+
+
+
+
+    private void initView() {
+
+        webView = (WebView)findViewById(R.id.webView);
     }
 
-    private void initView(View view) {
-        imageUrl = getIntent().getStringExtra("imageUrl");
-        if (imageUrl != null) {
-            rootView.setRightText("分享", true);
-            id = getIntent().getIntExtra("coupon_id", 0);
-        }
-        webView = (WebView) view.findViewById(R.id.webView);
-    }
-
-    @Override
-    public void onHeadClick(View v) {
-        if (v.getId() == R.id.root_head_right_text) {
-            ImageLoaderUtils.getInstance().display(imageUrl, new SimpleImageLoadingListener() {
-                @Override
-                public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                    if (!url.contains("sell_member_id")) {
-                        if (url.contains("?")) {
-                            url = url + "&sell_member_id=" + PersonMessagePreferencesUtils.getUid();
-                        } else {
-                            url = url + "?sell_member_id=" + PersonMessagePreferencesUtils.getUid();
-                        }
-                    }
-//                    ShareData shareData = new ShareData(loadedImage, content, title, url, 0, id);
-//                    new ShareViewDialog(WebViewActivity.this, shareData).show();
-
-
-                    ShareData shareData = new ShareData(true, content, title, url);
-                    new ShareViewDialog(WebViewActivity.this, shareData).show();
-                }
-
-                @Override
-                public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                    if (!url.contains("sell_member_id")) {
-                        if (url.contains("?")) {
-                            url = url + "&sell_member_id=" + PersonMessagePreferencesUtils.getUid();
-                        } else {
-                            url = url + "?sell_member_id=" + PersonMessagePreferencesUtils.getUid();
-                        }
-                    }
-                    ShareData shareData = new ShareData(BitmapFactory.decodeResource(WebViewActivity.this.getResources(), R.mipmap.icon_share_sf), content, title, url, 0, id);
-                    new ShareViewDialog(WebViewActivity.this, shareData).show();
-                }
-            });
-        }
-    }
-
-    @Override
-    public void getRefreshData() {
-
-    }
 
     class myWebChromeClient extends WebChromeClient {
 
@@ -135,9 +85,9 @@ public class WebViewActivity extends BaseActivity {
         public void onProgressChanged(WebView view, int newProgress) {
             // TODO Auto-generated method stub
             if (newProgress == 100) {
-                showLoadFinish();
+//                showLoadFinish();?showLoadFinish
             } else {
-                showLoading();
+//                showLoading();
             }
             super.onProgressChanged(view, newProgress);
         }
@@ -188,6 +138,7 @@ public class WebViewActivity extends BaseActivity {
             webView.loadUrl(oldUrl);
         }
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

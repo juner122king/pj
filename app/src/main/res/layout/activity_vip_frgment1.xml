@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <RadioGroup
+        android:visibility="gone"
         android:id="@+id/rg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,15 +31,25 @@
             android:text="至尊年卡" />
 
         <!--<RadioButton-->
-            <!--android:id="@+id/rb3"-->
-            <!--style="@style/category_radiobutton"-->
-            <!--android:layout_weight="1"-->
-            <!--android:text="银卡" />-->
+        <!--android:id="@+id/rb3"-->
+        <!--style="@style/category_radiobutton"-->
+        <!--android:layout_weight="1"-->
+        <!--android:text="银卡" />-->
 
 
     </RadioGroup>
 
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingEnd="70dp"
+        android:paddingStart="70dp" />
 
+<!--<include -->
+    <!--layout="@layout/viewpager"/>-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

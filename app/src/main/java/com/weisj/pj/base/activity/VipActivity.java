@@ -12,6 +12,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
@@ -27,6 +28,7 @@ import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListene
 import com.squareup.okhttp.Request;
 import com.weisj.pj.MainActivity;
 import com.weisj.pj.R;
+import com.weisj.pj.adapter.CardPagerAdapter;
 import com.weisj.pj.base.BaseActivity;
 import com.weisj.pj.base.activity.fragment.OneRegisterFragment;
 import com.weisj.pj.base.activity.fragment.ThreeRegisterFragment;
@@ -42,12 +44,14 @@ import com.weisj.pj.utils.ImageLoaderUtils;
 import com.weisj.pj.utils.OkHttpClientManager;
 import com.weisj.pj.utils.PersonMessagePreferencesUtils;
 import com.weisj.pj.utils.Urls;
+import com.weisj.pj.view.ShadowTransformer;
 import com.weisj.pj.view.dialog.SelectCityDialog;
 import com.weisj.pj.view.dialog.ShareViewDialog;
 import com.weisj.pj.view.dialog.VipJHDialog;
 import com.weisj.pj.view.dialog.VipKTDialog;
 import com.weisj.pj.view.dialog.VipYHJDialog;
 import com.weisj.pj.wxapi.WXPayEntryActivity;
+import com.weisj.pj.wxapi.WxPayUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -77,8 +81,10 @@ public class VipActivity extends BaseActivity implements View.OnClickListener {
     private static CardBean.DataEntity ZF_card;//待支付的实体卡
     public final static int GET_Success = 0;
     public final static int JH_Success = 1;
+    private ViewPager viewPager;
+    private CardPagerAdapter cardPagerAdapter;
+    private ShadowTransformer mCardShadowTransformer;
 
-//    private Intent intent;
 
     @Override
 
@@ -117,6 +123,7 @@ public class VipActivity extends BaseActivity implements View.OnClickListener {
         rb1 = (RadioButton) view.findViewById(R.id.rb1);
         rb2 = (RadioButton) view.findViewById(R.id.rb2);
         rg = (RadioGroup) view.findViewById(R.id.rg);
+        viewPager = (ViewPager) view.findViewById(R.id.viewPager);
         view.findViewById(R.id.ll_rhj).setOnClickListener(this);
         view.findViewById(R.id.ll_jh).setOnClickListener(this);
         container = (TextView) view.findViewById(R.id.tv_zf);
@@ -145,6 +152,8 @@ public class VipActivity extends BaseActivity implements View.OnClickListener {
 
             }
         });
+        cardPagerAdapter = new CardPagerAdapter();
+
 
     }
 
@@ -159,13 +168,40 @@ public class VipActivity extends BaseActivity implements View.OnClickListener {
             @Override
             public void onResponse(CardTypeBean response) {
                 if (response != null) {
-//                    listener.onSuccess(response, Urls.beginad);
                     cardTypes = response.getData();
-                    setCardType(response.getData().get(0));
+
+
+                    cardPagerAdapter.setCards(cardTypes);
+                    mCardShadowTransformer = new ShadowTransformer(viewPager, cardPagerAdapter);
+                    mCardShadowTransformer.enableScaling(true);
+
+                    //滑动VIP卡片
+                    viewPager.setAdapter(cardPagerAdapter);
+                    viewPager.setPageTransformer(false, mCardShadowTransformer);
+                    viewPager.setOffscreenPageLimit(cardTypes.size());
+                    viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+                        @Override
+                        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                        }
+
+                        @Override
+                        public void onPageSelected(int position) {
+
+                            setCardType(cardTypes.get(position));
+
+
+                        }
+
+                        @Override
+                        public void onPageScrollStateChanged(int state) {
+
+                        }
+                    });
+                    setCardType(cardTypes.get(0));
 
 
                 } else {
-//                    listener.onFail(new RuntimeException("null"), Urls.beginad);
 
 
                 }
@@ -343,28 +379,29 @@ public class VipActivity extends BaseActivity implements View.OnClickListener {
             @Override
             public void onError(Request request, Exception e) {
                 e.printStackTrace();
-//                listener.onFail(e, Urls.membercenter);
             }
 
             @Override
             public void onResponse(ComfirmPayCardBean response) {
                 if (response != null) {
-                    String code = response.getCode();
-                    if (code.equals("0")) {
+                    if (response.getCode().equals("0")) {
                         new VipKTDialog(VipActivity.this, false, uiHandler).show();
 
                     } else {
 
-                        Intent intent = new Intent(VipActivity.this, WXPayEntryActivity.class);
 
-                        intent.putExtra("ComfirmPayCardBean", response);
+                        WxPayUtils wxPayUtils = new WxPayUtils(VipActivity.this);
+                        wxPayUtils.pay(response.getData());
+                        int code = WXPayEntryActivity.GetBaseResp();
+                        if (code == 0) {
+
+                        }
 
 
-                        startActivity(intent);
                     }
                 } else {
 
-//                    listener.onFail(new RuntimeException("null"), Urls.membercenter);
+
                 }
             }
         });

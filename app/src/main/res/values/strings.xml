@@ -4,8 +4,8 @@
     <string name="fragment_shoushihe_title">首饰盒</string>
     <string name="action_settings">Settings</string>
 
-    <string name="im_tv_button0">包月换戴</string>
-    <string name="im_tv_button1">玩法秒懂</string>
+    <string name="im_tv_button0">首饰共享</string>
+    <string name="im_tv_button1">会员权益</string>
     <string name="im_tv_button2">邀请有礼</string>
     <string name="title_activity_settings">Settings</string>
 

@@ -77,7 +77,6 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     private HorizontalScrollView scrollView;
     public static String shareCity;
 
-
     private LinearLayout addressLocation, horizontalLinear;
     View headView;
 
@@ -127,6 +126,10 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
 
         scrollView = (HorizontalScrollView) headView.findViewById(R.id.home_scroll_view);
         horizontalLinear = (LinearLayout) headView.findViewById(R.id.home_boss_good_linear);
+
+        headView.findViewById(R.id.im_tv_button0).setOnClickListener(this);
+        headView.findViewById(R.id.im_tv_button1).setOnClickListener(this);
+        headView.findViewById(R.id.im_tv_button2).setOnClickListener(this);
 
         homeBanner_vip.setOnClickListener(this);
 
@@ -451,9 +454,27 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
                 startActivity(new Intent(this.getActivity(), SearchHighListActivity.class));
                 break;
 
+
+            case R.id.im_tv_button0:
+                toWebViewActivity("http://shop.party-queen.com/Shop/Notice/index.html?id=50", "首饰共享");
+                break;
+            case R.id.im_tv_button1:
+                toWebViewActivity("http://shop.party-queen.com/Shop/Notice/index.html?id=51", "会员权益");
+                break;
+            case R.id.im_tv_button2:
+                toWebViewActivity("http://shop.party-queen.com/Shop/Notice/index.html?id=52", "邀请有礼");
+                break;
+
         }
     }
 
+
+    private void toWebViewActivity(String url, String title) {
+        Intent intent = new Intent(this.getActivity(), WebViewActivity.class);
+        intent.putExtra("url", url);
+        intent.putExtra("web_title", title);
+        this.getActivity().startActivity(intent);
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
