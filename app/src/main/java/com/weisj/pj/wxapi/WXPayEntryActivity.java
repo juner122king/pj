@@ -1,78 +1,67 @@
 package com.weisj.pj.wxapi;
 
-
-import com.tencent.mm.opensdk.constants.ConstantsAPI;
-import com.tencent.mm.opensdk.modelbase.BaseReq;
-import com.tencent.mm.opensdk.modelbase.BaseResp;
-import com.tencent.mm.opensdk.modelpay.PayReq;
-import com.tencent.mm.opensdk.openapi.IWXAPI;
-import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
-import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-import com.weisj.pj.Constants;
-import com.weisj.pj.bean.ComfirmPayCardBean;
-import com.weisj.pj.utils.WXPayUtils;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
+
+import com.tencent.mm.sdk.constants.ConstantsAPI;
+import com.tencent.mm.sdk.modelbase.BaseReq;
+import com.tencent.mm.sdk.modelbase.BaseResp;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.IWXAPIEventHandler;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
+import com.weisj.pj.Constant;
+import com.weisj.pj.MyApplication;
+
 
 public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
 
     private static final String TAG = "MicroMsg.SDKSample.WXPayEntryActivity";
 
+    private IWXAPI api;
+    private MyApplication app;
 
+
+    static  int code;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        testWxPay((ComfirmPayCardBean) getIntent().getSerializableExtra("ComfirmPayCardBean"));
-
-    }
-
-
-    public void testWxPay(final ComfirmPayCardBean response) {
-
-        if (null == response)
-            return;
-
-        WXPayUtils.WXPayBuilder builder = new WXPayUtils.WXPayBuilder();
-        builder.setAppId(Constants.APP_ID)
-                .setPartnerId(response.getData().getPartnerid())
-                .setPrepayId(response.getData().getPrepayid())
-                .setPackageValue(response.getData().getPackage_value())
-                .setNonceStr(response.getData().getNoncestr())
-                .setTimeStamp(response.getData().getTimestamp())
-                .setSign(response.getData().getSign())
-                .build().toWXPayNotSign(this, Constants.APP_ID);
-
-
+//		setContentView(R.layout.activity_splash);
+        api = WXAPIFactory.createWXAPI(this, Constant.app_wx_appid);
+        api.handleIntent(getIntent(), this);
     }
 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        setIntent(intent);
+        api.handleIntent(intent, this);
     }
 
     @Override
     public void onReq(BaseReq req) {
-        Log.d("微信支付回调》》req》", "req, req = " + req.toString());
     }
 
     @Override
     public void onResp(BaseResp resp) {
-        Log.d("微信支付回调》》resp》", "onPayFinish, errCode = " + resp.errCode);
+
 
         if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
+            code = resp.errCode;
             if (resp.errCode == 0) {
-                Toast.makeText(getApplicationContext(), "支付成功", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "支付成功！", Toast.LENGTH_SHORT).show();
+
+                this.finish();
             } else {
-                Toast.makeText(getApplicationContext(), "支付失败,请重试", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "支付失败！", Toast.LENGTH_SHORT).show();
+                this.finish();
             }
-
-            finish();
-
         }
+    }
+
+
+    public static int GetBaseResp(){
+        return code;
     }
 }
