@@ -13,12 +13,16 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.weisj.pj.R;
 import com.weisj.pj.adapter.ItemCategoryCommodityAdapter;
 import com.weisj.pj.base.BaseFragment;
+import com.weisj.pj.base.activity.GoodDetailActivity;
+import com.weisj.pj.base.activity.SearchActivity;
 import com.weisj.pj.bean.GoodBean;
 import com.weisj.pj.bean.GoodsParams;
+import com.weisj.pj.bean.HomeBean;
 import com.weisj.pj.presenter.CategoryPresenter;
 import com.weisj.pj.view.MyRadioGroup;
 import com.weisj.pj.viewinterface.ICategoryView;
@@ -30,7 +34,7 @@ import java.util.List;
  * Created by zh on 16/6/21.
  * 品类首页
  */
-public class CategoryFragment extends BaseFragment implements AdapterView.OnItemClickListener, ICategoryView, View.OnClickListener {
+public class CategoryFragment extends BaseFragment implements ICategoryView, View.OnClickListener {
 
     private CategoryPresenter presenter;
     private RecyclerView recyclerView;
@@ -108,6 +112,17 @@ public class CategoryFragment extends BaseFragment implements AdapterView.OnItem
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         adapter = new ItemCategoryCommodityAdapter(data);
         adapter.addHeaderView(headView);
+
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Intent intent = new Intent(getContext(), GoodDetailActivity.class);
+                intent.putExtra("goodId", ((HomeBean.DataEntity.DistrictGoodsListEntity) data.get(position)).getGoodsId());
+                getContext().startActivity(intent);
+            }
+        });
+
+
         recyclerView.setAdapter(adapter);
 
         home_more = (TextView) headView.findViewById(R.id.home_more);
@@ -281,23 +296,6 @@ public class CategoryFragment extends BaseFragment implements AdapterView.OnItem
     public void getRefreshData() {
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//        if (parent.getAdapter() instanceof ItemCategoryTextAdapter) {
-//            ItemCategoryTextAdapter itemCategoryTextAdapter = (ItemCategoryTextAdapter) parent.getAdapter();
-//            CategoryBean.DataEntity dataEntity = (CategoryBean.DataEntity) itemCategoryTextAdapter.getItem(position);
-//            itemCategoryTextAdapter.setSelectId(dataEntity.getCategoryId());
-//            presenter.getContentList(dataEntity.getCategoryId());
-//            itemCategoryTextAdapter.notifyDataSetChanged();
-//        } else if (parent.getAdapter() instanceof ItemCategoryGoodAdapter) {
-//            ItemCategoryGoodAdapter itemCategoryGoodAdapter = (ItemCategoryGoodAdapter) parent.getAdapter();
-//            CategoryBean.DataEntity dataEntity = (CategoryBean.DataEntity) itemCategoryGoodAdapter.getItem(position);
-//            Intent intent = new Intent(this.getContext(), SearchListActivity.class);
-//            intent.putExtra("categoryId", dataEntity.getCategoryId());
-//            startActivity(intent);
-//        }
-    }
-
 
     @Override
     public void getContent(GoodBean goodBean) {
@@ -316,11 +314,11 @@ public class CategoryFragment extends BaseFragment implements AdapterView.OnItem
     public void onClick(View v) {
         Intent intent;
 
-//        switch (v.getId()) {
-//            case R.id.root_head_search:
-//                intent = new Intent(this.getActivity(), SearchActivity.class);
-//                startActivity(intent);
-//                break;
+        switch (v.getId()) {
+            case R.id.root_head_search:
+                intent = new Intent(this.getActivity(), SearchActivity.class);
+                startActivity(intent);
+                break;
 //
 //            case R.id.image_category1:
 //                propertyCode_top = "cj_wy";
@@ -339,7 +337,7 @@ public class CategoryFragment extends BaseFragment implements AdapterView.OnItem
 //                getGoodList();
 //                break;
 //
-//        }
+        }
 
 
     }

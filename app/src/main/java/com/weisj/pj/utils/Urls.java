@@ -85,7 +85,7 @@ public class Urls {
     //    //2.1 分类查询商品接口
 //    public static final String getgoodsbycategoryorder = IP + "/fxfront/interface/getgoodsbycategoryorder?appid=APPID";
     //2.1 分类查询商品接口
-    public static final String getgoodsbycategoryorder = IP + "/fxfront/interface/getGoodsByCategoryDistrictBrandForApp?appid=APPID";
+    public static final String getgoodsbycategoryorder = IP + "/ndfront/interface/getGoodsByCategoryDistrictBrandForH5?appid=APPID";
     //2.1 分类查询商品接口
     public static final String getgoodsbycouponyorder = IP + "/fxfront/interface/getgoodsbycouponyorder?appid=APPID";
     //2.3 优惠券首页接口

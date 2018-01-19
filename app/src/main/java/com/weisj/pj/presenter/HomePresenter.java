@@ -31,7 +31,7 @@ public class HomePresenter implements IOnManagerListener {
             viewState.showLoading();
         }
         iHomeManager.getHomeInfo(this);
-        iHomeManager.getHomeBanner(this);
+//        iHomeManager.getHomeBanner(this);
     }
 
 

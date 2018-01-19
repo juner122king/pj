@@ -39,8 +39,8 @@ import java.util.List;
 public class SearchListActivity extends BaseActivity implements View.OnClickListener, ISearchListView, AbPullToRefreshView.OnFooterLoadListener, AbPullToRefreshView.OnHeaderRefreshListener, AdapterView.OnItemClickListener, BaseQuickAdapter.OnItemClickListener {
     private TextView synthesizeText, saleText, priceText, discountText;
     private ImageView saleImageUp, saleImageDown, priceImageUp, priceImageDown, discountImageUp, discountImageDown;
-    private int lastState = 0;
-    private int upOrDown = 0;// 0降，1升
+    private int lastState = 2;
+    private int upOrDown = 1;// 0降，1升
     private ListView listView;
     private RecyclerView recyclerView;
     private SearchListPresenter presenter;
@@ -67,8 +67,8 @@ public class SearchListActivity extends BaseActivity implements View.OnClickList
             presenter = new SearchListPresenter(this, this, from);
         }
         presenter.getInitData();
-        presenter.getRegions();
-        presenter.getbrandbydistrict(0);
+//        presenter.getRegions();
+//        presenter.getbrandbydistrict(0);
         return view;
     }
 
@@ -111,7 +111,11 @@ public class SearchListActivity extends BaseActivity implements View.OnClickList
         discountImageUp = (ImageView) view.findViewById(R.id.iv3_up);
         discountImageDown = (ImageView) view.findViewById(R.id.iv3_down);
 
-        synthesizeText.setSelected(true);
+//        synthesizeText.setSelected(true);
+
+        openSelect(2);
+        lastState = 2;
+
     }
 
     @Override
@@ -130,14 +134,14 @@ public class SearchListActivity extends BaseActivity implements View.OnClickList
             case R.id.tv0:// 折扣
                 selectNumber(0);
                 break;
-            case R.id.view1:// 特卖
-                selectNumber(1);
-                break;
-            case R.id.view2:// 价格
+            case R.id.view1:// 出租
                 selectNumber(2);
                 break;
-            case R.id.view3:// 综合
-                selectNumber(3);
+            case R.id.view2:// 最新
+                selectNumber(0);
+                break;
+            case R.id.view3:// 价格
+                selectNumber(1);
                 break;
         }
     }
@@ -155,10 +159,10 @@ public class SearchListActivity extends BaseActivity implements View.OnClickList
     // 打开这次选中
     private void openSelect(int state) {
         switch (state) {
-            case 0:// 综合
-                synthesizeText.setSelected(true);
-                break;
-            case 1:// 价格
+//            case 0:// 综合
+//                synthesizeText.setSelected(true);
+//                break;
+            case 2:// 出租
                 if (!priceText.isSelected()) {
                     priceText.setSelected(true);
                     priceImageUp.setSelected(true);
@@ -170,24 +174,24 @@ public class SearchListActivity extends BaseActivity implements View.OnClickList
                     upOrDown = priceImageUp.isSelected() ? 1 : 0;
                 }
                 break;
-            case 2:// 特卖
+            case 0:// 最新
                 if (!saleText.isSelected()) {
                     saleText.setSelected(true);
-                    saleImageUp.setSelected(false);
-                    saleImageDown.setSelected(true);
-                    upOrDown = 0;
+                    saleImageUp.setSelected(true);
+                    saleImageDown.setSelected(false);
+                    upOrDown = 1;
                 } else {
                     saleImageUp.setSelected(!saleImageUp.isSelected());
                     saleImageDown.setSelected(!saleImageDown.isSelected());
                     upOrDown = saleImageUp.isSelected() ? 1 : 0;
                 }
                 break;
-            case 3:// 折扣
+            case 1:// 价格
                 if (!discountText.isSelected()) {
                     discountText.setSelected(true);
-                    discountImageUp.setSelected(false);
-                    discountImageDown.setSelected(true);
-                    upOrDown = 0;
+                    discountImageUp.setSelected(true);
+                    discountImageDown.setSelected(false);
+                    upOrDown = 1;
                 } else {
                     discountImageUp.setSelected(!discountImageUp.isSelected());
                     discountImageDown.setSelected(!discountImageDown.isSelected());
@@ -200,20 +204,20 @@ public class SearchListActivity extends BaseActivity implements View.OnClickList
     // 关闭上次选中
     private void closeLastSelect() {
         switch (lastState) {
-            case 0:// 综合
-                synthesizeText.setSelected(false);
-                break;
-            case 1:// 价格
+//            case 0:// 综合
+//                synthesizeText.setSelected(false);
+//                break;
+            case 2:// 出租
                 priceText.setSelected(false);
                 priceImageUp.setSelected(false);
                 priceImageDown.setSelected(false);
                 break;
-            case 2:// 特卖
+            case 0:// 最新
                 saleText.setSelected(false);
                 saleImageUp.setSelected(false);
                 saleImageDown.setSelected(false);
                 break;
-            case 3:// 折扣
+            case 1:// 价格
                 discountText.setSelected(false);
                 discountImageUp.setSelected(false);
                 discountImageDown.setSelected(false);
@@ -345,7 +349,7 @@ public class SearchListActivity extends BaseActivity implements View.OnClickList
 
         private void initView(View view) {
             recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-            rootView.setRightText("添加",true);
+            rootView.setRightText("添加", true);
             presenter = new ShowAddressPresenter(this, this);
         }
 

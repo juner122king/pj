@@ -15,7 +15,9 @@
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:background="#fff"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp">
 
             <TextView
                 android:id="@+id/tv0"
@@ -28,7 +30,8 @@
                 android:paddingRight="5dp"
                 android:text="综合"
                 android:textColor="@color/coupon_textcolor_selector"
-                android:textSize="13dp" />
+                android:textSize="13dp"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:id="@+id/view1"

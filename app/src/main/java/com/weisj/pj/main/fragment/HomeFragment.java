@@ -364,13 +364,6 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
             homeBanner2.setVisibility(View.GONE);
         }
 
-//        if (null != insertAdList) {
-//            homeBanner_vip.setData(insertAdList, null);
-//
-//        } else {
-//            homeBanner_vip.setVisibility(View.GONE);
-//        }
-
 
         horizontalLinear.removeAllViews();
 

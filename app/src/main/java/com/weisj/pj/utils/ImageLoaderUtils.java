@@ -229,7 +229,6 @@ public class ImageLoaderUtils {
      *
      * @param container
      * @param imageUrl
-     * @param image     缓冲图片地址
      */
     public void display(ImageView container, String imageUrl, int onLoadImage,
                         int onFailImage) {

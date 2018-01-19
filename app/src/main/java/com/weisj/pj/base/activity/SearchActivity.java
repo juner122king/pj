@@ -116,7 +116,6 @@ public class SearchActivity extends BaseActivity implements BaseQuickAdapter.OnI
                     intent.putExtra("goodName", searchEdit.getText().toString());
                     dbUtil.insert(searchEdit.getText().toString());
                     list.add(0, searchEdit.getText().toString());
-
                     startActivity(intent);
                 }
                 KeyboardUtil.closeKeyBoard(this);

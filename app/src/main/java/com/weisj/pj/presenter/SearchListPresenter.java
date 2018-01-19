@@ -83,7 +83,7 @@ public class SearchListPresenter implements IOnManagerListener {
 
     @Override
     public void onFail(Exception e, String url) {
-        SystemConfig.showToast("网络错误");
+        e.printStackTrace();
         viewState.showNoNetWork();
     }
 }
