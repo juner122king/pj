@@ -80,9 +80,55 @@ public class CenterBean {
         private int shop_type;
         private int brand_id;
         private String true_name;
+        private String commission;
         private int district_id;
+        private int card_num;
         private String staff_id;
         private int group_id;
+        private int left_days;
+        private int agent_order_num;
+        private boolean is_buy_card;
+
+
+        public String getCommission() {
+            return commission;
+        }
+
+        public void setCommission(String commission) {
+            this.commission = commission;
+        }
+
+        public int getCard_num() {
+            return card_num;
+        }
+
+        public void setCard_num(int card_num) {
+            this.card_num = card_num;
+        }
+
+        public int getLeft_days() {
+            return left_days;
+        }
+
+        public void setLeft_days(int left_days) {
+            this.left_days = left_days;
+        }
+
+        public int getAgent_order_num() {
+            return agent_order_num;
+        }
+
+        public void setAgent_order_num(int agent_order_num) {
+            this.agent_order_num = agent_order_num;
+        }
+
+        public boolean isIs_buy_card() {
+            return is_buy_card;
+        }
+
+        public void setIs_buy_card(boolean is_buy_card) {
+            this.is_buy_card = is_buy_card;
+        }
 
         public int getGroup_id() {
             return group_id;
@@ -205,7 +251,10 @@ public class CenterBean {
         }
 
         public String getCurrent_money() {
-            return current_money;
+            if (current_money.equals("0.00"))
+                return "0";
+            else return current_money;
+
         }
 
         public int getCollec_num() {

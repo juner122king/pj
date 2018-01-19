@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.squareup.okhttp.Request;
 import com.weisj.pj.R;
 import com.weisj.pj.base.BaseFragment;
 //import com.weisj.pj.base.activity.BecomeShopActivity;
@@ -23,10 +25,21 @@ import com.weisj.pj.base.BaseFragment;
 //import com.weisj.pj.base.activity.WebActivity;
 import com.weisj.pj.base.activity.ConsigneeAddressActivity;
 import com.weisj.pj.base.activity.LoginActivity;
+import com.weisj.pj.base.activity.UserInfoActivity;
+import com.weisj.pj.base.activity.VipActivity;
 import com.weisj.pj.bean.CenterBean;
+import com.weisj.pj.manager.listener.IOnManagerListener;
 import com.weisj.pj.presenter.CenterPresenter;
+import com.weisj.pj.utils.OkHttpClientManager;
 import com.weisj.pj.utils.PersonMessagePreferencesUtils;
+import com.weisj.pj.utils.PreferencesUtils;
+import com.weisj.pj.utils.Urls;
+import com.weisj.pj.view.dialog.ApplyAgentDialog;
+import com.weisj.pj.view.dialog.VipJHDialog;
 import com.weisj.pj.viewinterface.ICenterView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2016/6/27 0027.
@@ -37,21 +50,22 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
     private CenterPresenter presenter;
     private final String GETHINTIMAGECLICK = "isClickImage";
     private ImageView iv_head;
-    private TextView name, user_lv, user_lv_info, numb1, numb2, numb3, numb4, logout;
+    private TextView name, user_lv, user_lv_info, numb1, numb2, numb3, numb4, logout, tv_day;
+    private View v_daili, ll_day, ll_date;
 
+    CenterBean.DataEntity dataEntity;
+    String user_head_imag = "http://shop.party-queen.com/Public/img/pic/pic-defaultHeaderPic.png";
 
     @Override
     public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_me, null);
-        initView(view);
+        view = inflater.inflate(R.layout.fragment_me, null);
+        initView();
         rootView.isHintHeadBar(true);
         presenter = new CenterPresenter(this, this);
-//        presenter.getMemberCenter();
-        this.view = view;
         return view;
     }
 
-    private void initView(View view) {
+    private void initView() {
         iv_head = (ImageView) view.findViewById(R.id.image_head);
         view_dl = view.findViewById(R.id.view_dl);
         view.findViewById(R.id.user_address_linear).setOnClickListener(this);
@@ -63,19 +77,21 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
         numb3 = (TextView) view.findViewById(R.id.tv_number3);
         numb4 = (TextView) view.findViewById(R.id.tv_number4);
         logout = (TextView) view.findViewById(R.id.tv_logout);
+
+        ll_day = view.findViewById(R.id.ll_day);
+        v_daili = view.findViewById(R.id.tv_daili);
+        ll_date = view.findViewById(R.id.ll_date);
         user_lv = (TextView) view.findViewById(R.id.loginBt);
+        tv_day = (TextView) view.findViewById(R.id.tv_day);
+
         user_lv_info = (TextView) view.findViewById(R.id.tv_vip_info);
         iv_head.setOnClickListener(this);
-
+        user_lv.setOnClickListener(this);
+        v_daili.setOnClickListener(this);
         Glide.with(getActivity())
-                .load("http://image.rakuten.co.jp/navie/cabinet/b/ijw-b-061a.jpg")
-
-                .placeholder(R.mipmap.icon_banner_default)
-                .error(R.mipmap.icon_banner_default)
+                .load(user_head_imag)
 
                 .into(iv_head);
-        presenter = new CenterPresenter(this, this);
-
     }
 
     @Override
@@ -122,40 +138,68 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
 //            case R.id.user_setup:
 //                startActivity(new Intent(this.getContext(), SetUpActivity.class));
 //                break;
-//            case R.id.image_head:
-//                if (centerBean != null) {
-//                    PreferencesUtils.putBoolean(GETHINTIMAGECLICK, true);
-//                    Intent intent = new Intent(this.getContext(), UserInfoActivity.class);
-//                    intent.putExtra("member_pic", centerBean.getData().getMember_pic());
-//                    intent.putExtra("sex", centerBean.getData().getSex());
-//                    intent.putExtra("member_name", centerBean.getData().getMember_name());
-//                    intent.putExtra("district_id", centerBean.getData().getDistrict_id());
-//                    intent.putExtra("staff_id", centerBean.getData().getStaff_id());
-//                    startActivity(intent);
-//                }
-//                break;
+            case R.id.image_head:
+                if (dataEntity != null) {
+                    PreferencesUtils.putBoolean(GETHINTIMAGECLICK, true);
+                    Intent intent = new Intent(this.getContext(), UserInfoActivity.class);
+//                    intent.putExtra("member_pic",dataEntity.getMember_pic());
+                    intent.putExtra("member_pic", user_head_imag);
+                    intent.putExtra("sex", dataEntity.getSex());
+                    intent.putExtra("member_name", dataEntity.getMember_name());
+                    startActivity(intent);
+                }
+                break;
 //            case R.id.user_jc:
 //                startActivity(new Intent(this.getContext(), ListViewActivity.class));
 //                break;
-//
-//            case R.id.share_pingan:
-//                Intent intent = new Intent(this.getContext(), WebActivity.class);
-//                intent.putExtra("web", "https://bank-static-stg.pingan.com.cn/bbc/index/index.html?mchId=B170700601&entrance=01&accessType=0");
-//                startActivity(intent);
-//                break;
-//
+            case R.id.loginBt:
+                startActivity(new Intent(this.getContext(), VipActivity.class));
+                break;
+            case R.id.tv_daili:
+//                Toast.makeText(this.getContext(), "您的申请已提交，耐心等候管理员审核", Toast.LENGTH_SHORT).show();
+
+                new ApplyAgentDialog(view.getContext()).show();
+                break;
+
         }
     }
 
+
     @Override
     public void getCenter(CenterBean centerBean) {
-        CenterBean.DataEntity dataEntity = centerBean.getData();
+        dataEntity = centerBean.getData();
         name.setText(dataEntity.getMember_name());
 
         numb1.setText(String.valueOf(dataEntity.getCollec_num()));
-        numb2.setText(String.valueOf(dataEntity.getCurrent_money()));
+        numb2.setText(dataEntity.getCurrent_money());
         numb3.setText(String.valueOf(dataEntity.getCupon_num()));
         numb4.setText(String.valueOf(dataEntity.getCart_num()));
+        if (dataEntity.getGroup_id() == 1) {
+            user_lv_info.setText("会员");
+            user_lv.setText("续费");
+            user_lv.setVisibility(View.INVISIBLE);
+            v_daili.setVisibility(View.VISIBLE);
+            ll_day.setVisibility(View.VISIBLE);
+            tv_day.setText(String.valueOf(dataEntity.getLeft_days()));
+            ll_date.setVisibility(View.VISIBLE);
+
+
+        } else if (dataEntity.getGroup_id() == 0) {
+            user_lv_info.setText("您还不是会员");
+            user_lv.setText("成为包月会员");
+            user_lv.setVisibility(View.VISIBLE);
+            v_daili.setVisibility(View.INVISIBLE);
+            ll_day.setVisibility(View.INVISIBLE);
+//            view_dl.setVisibility(View.INVISIBLE);
+            ll_date.setVisibility(View.INVISIBLE);
+        }
+
+
+    }
+
+    @Override
+    public void showLvlInfo(String s) {
+
 
     }
 

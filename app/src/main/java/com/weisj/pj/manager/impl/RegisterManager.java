@@ -27,8 +27,8 @@ public class RegisterManager implements IRegisterManager {
             return;
         }
         params.put("ticket", vCode);
-        params.put("district_id", staffCity);
-        params.put("staff_id", staffCode);
+        params.put("district_id", "0");
+        params.put("staff_id", "0");
         OkHttpClientManager.postAsyn(Urls.register, params, new OkHttpClientManager.ResultCallback<BaseBean>() {
             @Override
             public void onError(Request request, Exception e) {

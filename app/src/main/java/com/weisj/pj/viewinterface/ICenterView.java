@@ -7,4 +7,6 @@ import com.weisj.pj.bean.CenterBean;
  */
 public interface ICenterView {
     void getCenter(CenterBean centerBean);
+
+    void showLvlInfo(String s);
 }

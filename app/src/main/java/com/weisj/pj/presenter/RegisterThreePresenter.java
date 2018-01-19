@@ -33,8 +33,6 @@ public class RegisterThreePresenter implements IOnManagerListener {
         if (SystemConfig.isPassword(iRegisterThreeView.getPassword()) && iRegisterThreeView.getPassword().equals(iRegisterThreeView.getTwoPassword())) {
             viewState.showLoading();
             iRegisterManager.registerNumber(iRegisterThreeView.getPhoneNumber(), iRegisterThreeView.getPassword(), iRegisterThreeView.getVCode(), iRegisterThreeView.getStaffCode(), iRegisterThreeView.getStaffCity(), this);
-        } else {
-            SystemConfig.showToast("两次密码不一致");
         }
     }
 
@@ -42,8 +40,6 @@ public class RegisterThreePresenter implements IOnManagerListener {
         if (SystemConfig.isPassword(iRegisterThreeView.getPassword()) && iRegisterThreeView.getPassword().equals(iRegisterThreeView.getTwoPassword())) {
             viewState.showLoading();
             iRegisterManager.forgetPass(iRegisterThreeView.getPhoneNumber(), iRegisterThreeView.getPassword(), iRegisterThreeView.getVCode(), this);
-        } else {
-            SystemConfig.showToast("两次密码不一致");
         }
     }
 

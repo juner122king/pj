@@ -17,7 +17,7 @@ public class Urls {
     // 绑定手机号
     public static final String bindcellphonebypassword = IP + "/fxfront/member/bindcellphonebypassword?appid=APPID";
     // 会员注册
-    public static final String register = IP + "/fxfront/member/register?appid=APPID";
+    public static final String register = IP + "/ndfront/member/register?appid=APPID";
     // 重新上传sn
     public static final String refreshmobilesn = IP + "/fxfront/member/refreshmobilesn?appid=APPID";
     // 忘记密码
@@ -26,6 +26,12 @@ public class Urls {
     public static final String login = IP + "/ndfront/member/login?appid=APPID";
     // 个人信息中心
     public static final String membercenter = IP + "/ndfront/member/membercenter?appid=APPID";
+
+    // 申请代理商
+    public static final String applyAgent = IP + "/ndfront/member/applyAgent?appid=APPID";
+
+
+
     // 修改个人地区
     public static final String modifydistrict = IP + "/fxfront/member/modifydistrict?appid=APPID";
 
@@ -165,11 +171,11 @@ public class Urls {
     // 商品和活动的分享接口
     public static final String record_share = IP + "/fxfront/share/record_share?appid=APPID";
     // 修改个人昵称
-    public static final String updateUsernName = IP + "/fxfront/member/modifynickname?appid=APPID";
+    public static final String updateUsernName = IP + "/ndfront/member/modifynickname?appid=APPID";
     // 修改个人头像
-    public static final String updateUserImage = IP + "/fxfront/member/uploadmemberpic?appid=APPID";
+    public static final String updateUserImage = IP + "/ndfront/member/uploadmemberpic?appid=APPID";
     // 修改个人性别
-    public static final String updateUserSex = IP + "/fxfront/member/modifysex?appid=APPID";
+    public static final String updateUserSex = IP + "/ndfront/member/modifysex?appid=APPID";
 
     public static final String modifystaffid = IP + "/fxfront/member/modifystaffid?appid=APPID";
 

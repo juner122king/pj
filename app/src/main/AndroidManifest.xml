@@ -68,7 +68,15 @@
         <!--android:name=".base.activity.LoginActivity"-->
         <!--android:label="登录界面"-->
         <!--android:screenOrientation="portrait" />-->
+        <activity
+            android:name=".base.activity.UserInfoActivity"
+            android:label="个人设置"
+            android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".view.chooseimage.ChooseImageActivity"
+            android:label="本地图片"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".base.activity.ConsigneeAddressActivity"
             android:label="收货地址"

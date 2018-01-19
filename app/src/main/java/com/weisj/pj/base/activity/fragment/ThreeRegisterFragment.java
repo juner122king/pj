@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.weisj.pj.MainActivity;
 import com.weisj.pj.R;
@@ -30,8 +31,8 @@ public class ThreeRegisterFragment extends BaseFragment implements IRegisterThre
     @Override
     public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView.isHintHeadBar(true);
-        View view = inflater.inflate(R.layout.fragment_three_register, null);
-        this.view = view;
+        view = inflater.inflate(R.layout.fragment_three_register, null);
+
         view.findViewById(R.id.nextBt).setOnClickListener(this);
         password = ((EditText) view.findViewById(R.id.password));
         twoPassword = ((EditText) view.findViewById(R.id.confirmPass));
@@ -91,17 +92,26 @@ public class ThreeRegisterFragment extends BaseFragment implements IRegisterThre
 
     @Override
     public void onClick(View v) {
-        if (System.currentTimeMillis() - currentTime > 500) {
-            if (presenter == null) {
-                presenter = new RegisterThreePresenter(this, this);
+        String s1 = password.getText().toString();
+        String s2 = twoPassword.getText().toString();
+
+
+        if (s1.length() >= 6 && s1.equals(s2)) {
+
+            if (System.currentTimeMillis() - currentTime > 500) {
+                if (presenter == null) {
+                    presenter = new RegisterThreePresenter(this, this);
+                }
+                if (((RegisterActivity) getActivity()).type == 0) {
+                    presenter.register();
+                } else {
+                    presenter.forgetPass();
+                }
             }
-            if (((RegisterActivity) getActivity()).type == 0) {
-                presenter.register();
-            } else {
-                presenter.forgetPass();
-            }
+            currentTime = System.currentTimeMillis();
+        } else {
+            Toast.makeText(view.getContext(), "两次密码应该一致，且不少于6位", Toast.LENGTH_SHORT).show();
         }
-        currentTime = System.currentTimeMillis();
 
     }
 }

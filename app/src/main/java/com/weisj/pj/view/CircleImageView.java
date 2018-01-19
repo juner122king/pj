@@ -1,6 +1,7 @@
 package com.weisj.pj.view;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -24,6 +25,7 @@ import com.weisj.pj.R;
  *
  * @author lanyj
  */
+@SuppressLint("AppCompatCustomView")
 public class CircleImageView extends ImageView {
 
     private static final ScaleType SCALE_TYPE = ScaleType.CENTER_CROP;
@@ -40,7 +42,7 @@ public class CircleImageView extends ImageView {
     private final Matrix mShaderMatrix = new Matrix();
     private final Paint mBitmapPaint = new Paint();
     private final Paint mBorderPaint = new Paint();
-    Paint paint;
+//    Paint paint;
     private int mBorderColor = DEFAULT_BORDER_COLOR;
     private int mBorderWidth = DEFAULT_BORDER_WIDTH;
 
@@ -102,23 +104,23 @@ public class CircleImageView extends ImageView {
         canvas.drawCircle(getWidth() / 2, getHeight() / 2, mDrawableRadius, mBitmapPaint);
         canvas.drawCircle(getWidth() / 2, getHeight() / 2, mBorderRadius, mBorderPaint);
 
-
-        paint = new Paint(); //设置一个笔刷大小是3的黄色的画笔
-        paint.setColor(getResources().getColor(R.color.color33Black));
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeWidth(30);
-
-
-
 //
-        RectF rect = new RectF(0, 0, getWidth(), getHeight());
-
-        canvas.drawArc(rect, //弧线所使用的矩形区域大小
-                0,  //开始角度
-                180, //扫过的角度
-                true, //是否使用中心
-                paint);
+//        paint = new Paint(); //设置一个笔刷大小是3的黄色的画笔
+//        paint.setColor(getResources().getColor(R.color.color33Black));
+//        paint.setStrokeJoin(Paint.Join.ROUND);
+//        paint.setStrokeCap(Paint.Cap.ROUND);
+//        paint.setStrokeWidth(30);
+//
+//
+//
+////
+//        RectF rect = new RectF(0, 0, getWidth(), getHeight());
+//
+//        canvas.drawArc(rect, //弧线所使用的矩形区域大小
+//                0,  //开始角度
+//                180, //扫过的角度
+//                true, //是否使用中心
+//                paint);
     }
 
     @Override

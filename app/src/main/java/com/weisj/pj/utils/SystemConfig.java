@@ -224,7 +224,6 @@ public class SystemConfig {
 
     public static boolean isPassword(String inputText) {
         if (inputText == null || inputText.trim().equals("")) {
-            SystemConfig.showToast("请输入密码");
             return false;
         } else {
 

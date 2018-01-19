@@ -1,10 +1,12 @@
 package com.weisj.pj.view.chooseimage;
 
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -124,6 +126,15 @@ public class ChooseImageActivity extends BaseActivity implements View.OnClickLis
         }
 
         showLoading();
+
+//        int hasWriteContactsPermission = checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+//        if (hasWriteContactsPermission != PackageManager.PERMISSION_GRANTED) {
+//            requestPermissions(new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE},
+//                    CODE_FOR_WRITE_PERMISSION);
+//            return;
+//        }
+
+
 
         new Thread(new Runnable() {
 
