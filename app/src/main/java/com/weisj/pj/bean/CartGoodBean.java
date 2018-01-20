@@ -72,6 +72,7 @@ public class CartGoodBean {
         String goodsName;
         String img1;
 
+
         public String getCartId() {
             return cartId;
         }

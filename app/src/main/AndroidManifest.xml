@@ -130,6 +130,11 @@
             android:name=".base.activity.EditAddressActivity"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".base.activity.OrderConfirmActivity"
+            android:label="确认订单"
+            android:screenOrientation="portrait" />
+
 
         <activity
             android:name=".wxapi.WXPayEntryActivity"

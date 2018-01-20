@@ -373,9 +373,6 @@ public class VipActivity extends BaseActivity implements View.OnClickListener {
                         WxPayUtils wxPayUtils = new WxPayUtils(VipActivity.this);
                         wxPayUtils.pay(response.getData());
                         int code = WXPayEntryActivity.GetBaseResp();
-                        if (code == 0) {
-
-                        }
 
 
                     }

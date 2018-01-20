@@ -119,14 +119,20 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         homeBanner.setAdapter(new BGABanner.Adapter() {
             @Override
             public void fillBannerItem(BGABanner banner, View view, Object model, int position) {
-                Ad bean = (Ad) model;
+                final Ad bean = (Ad) model;
 
                 Glide.with(getActivity())
                         .load(Urls.imageUrl + bean.getAdPic())
-                        .placeholder(R.mipmap.icon_banner_default)
-                        .error(R.mipmap.icon_banner_default)
+
                         .centerCrop()
                         .into((ImageView) view);
+
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        toWebViewActivity(bean.getDiyAdLink(), bean.getAdName());
+                    }
+                });
             }
         });
 //        homeBanner_vip.setAdapter(new BGABanner.Adapter() {
@@ -147,19 +153,26 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         homeBanner2.setAdapter(new BGABanner.Adapter() {
             @Override
             public void fillBannerItem(BGABanner banner, View view, Object model, int position) {
-                Ad bean = (Ad) model;
+                final Ad bean = (Ad) model;
 
                 Glide.with(getActivity())
                         .load(Urls.imageUrl + bean.getAdPic())
 
-                        .placeholder(R.mipmap.icon_banner_default)
-                        .error(R.mipmap.icon_banner_default)
+
                         .centerCrop()
                         .transform(new GlideRoundTransform(getActivity(), 3))
                         .into((ImageView) view.findViewById(R.id.iv));
 
+
                 ((TextView) view.findViewById(R.id.tv_title)).setText(bean.getAdName());
                 ((TextView) view.findViewById(R.id.tv_content)).setText(bean.getAdDesc());
+
+                view.findViewById(R.id.iv).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        toWebViewActivity(bean.getDiyAdLink(), bean.getAdName());
+                    }
+                });
             }
         });
 //        homeBanner.setOnItemClickListener(new BGABanner.OnItemClickListener() {
@@ -374,6 +387,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
             }
         }
 
+
     }
 
     private View getView(final HomeBean.DataEntity.DistrictGoodsListEntity item) {
@@ -422,7 +436,6 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
                 intent = new Intent(this.getActivity(), SearchActivity.class);
                 startActivity(intent);
                 break;
-
 
 
             case R.id.im_tv_button0:

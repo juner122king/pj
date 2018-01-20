@@ -31,7 +31,6 @@ public class Urls {
     public static final String applyAgent = IP + "/ndfront/member/applyAgent?appid=APPID";
 
 
-
     // 修改个人地区
     public static final String modifydistrict = IP + "/fxfront/member/modifydistrict?appid=APPID";
 
@@ -70,16 +69,8 @@ public class Urls {
     //确认支付一张虚拟卡
     public static final String comfirmPayCard = IP + "/ndfront/card/confirmPayCard?appid=APPID";
 
-//    //买卡的回调接口
-//    public static final String wxpay_card_notify = IP + "/ndfront/notify/wxpay_card_notify?appid=APPID";
-//
-//    //买卡的回调接口
-//    public static final String wxpay_notify = IP + "/ndfront/notify/wxpay_notify?appid=APPID";
-//
-
-
-
-
+    //确认支付租商品
+    public static final String orderconfirm = IP + "/ndfront/order/orderconfirm?appid=APPID";
 
 
     //    //2.1 分类查询商品接口
@@ -102,11 +93,8 @@ public class Urls {
     //租商品
     public static final String addtocart = IP + "/ndfront/interface/addtocart?appid=APPID";
 
-   //首饰盒里的待选中商品
+    //首饰盒里的待选中商品
     public static final String cartlist = IP + "/ndfront/interface/cartlist?appid=APPID";
-
-
-
 
 
     //2.5 商品详情app接口

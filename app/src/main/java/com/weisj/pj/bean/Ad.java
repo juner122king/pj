@@ -12,9 +12,18 @@ public class Ad {
     String adName;
     String adPic;
     String adDesc;
+    String diyAdLink;
 
     public String getAdDesc() {
         return adDesc;
+    }
+
+    public String getDiyAdLink() {
+        return diyAdLink;
+    }
+
+    public void setDiyAdLink(String diyAdLink) {
+        this.diyAdLink = diyAdLink;
     }
 
     public void setAdDesc(String adDesc) {

@@ -1,5 +1,6 @@
 package com.weisj.pj.main.fragment.order;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,11 +10,16 @@ import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.weisj.pj.R;
 import com.weisj.pj.adapter.ItemCarListAdapter;
 import com.weisj.pj.adapter.ItemDistributionCommissionAdapter;
 import com.weisj.pj.base.BaseViewState;
+import com.weisj.pj.base.activity.GoodDetailActivity;
+import com.weisj.pj.base.activity.OrderConfirmActivity;
+import com.weisj.pj.base.activity.WebViewActivity;
 import com.weisj.pj.bean.CartGoodBean;
+import com.weisj.pj.bean.HomeBean;
 import com.weisj.pj.bean.OrderBean;
 import com.weisj.pj.presenter.OrderPresenter;
 import com.weisj.pj.utils.SystemConfig;
@@ -44,6 +50,8 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
     private TextView noDataView;
     private TextView tv_p;//押金
     private RecyclerView recyclerView_carlist;
+
+    public static String yj;
 
     public void setWxAndFilterType(int filter_type, String wxName) {
 
@@ -81,6 +89,7 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
         recyclerView_carlist = (RecyclerView) rootView.findViewById(R.id.recyclerView_carlist);
         tv_p = (TextView) rootView.findViewById(R.id.tv_p);
         ll_zhifu = (LinearLayout) rootView.findViewById(R.id.ll_zhifu);
+        tv_p = (TextView) rootView.findViewById(R.id.tv_p);
 
         noDataView = (TextView) rootView.findViewById(R.id.no_data);
         lastView = selectView1;
@@ -89,9 +98,7 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
         selectView2.setOnClickListener(this);
         selectView3.setOnClickListener(this);
         selectView4.setOnClickListener(this);
-//        presenter.getInitOrderData(state);
-
-//        presenter.getcartList();
+        ll_zhifu.setOnClickListener(this);
 
     }
 
@@ -105,7 +112,7 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
     }
 
     public void getcart() {
-        replaceCartData();
+//        replaceCartData();
         presenter.getcartList();
     }
 
@@ -140,10 +147,11 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
         expandableListView.setAdapter(adapter);
         setExpandListView();
     }
-    public void replaceCartData() {
-        carListAdapter = new ItemCarListAdapter(null);
-        recyclerView_carlist.setAdapter(carListAdapter);
-    }
+
+//    public void replaceCartData() {
+//        carListAdapter = new ItemCarListAdapter(null);
+//        recyclerView_carlist.setAdapter(carListAdapter);
+//    }
 
     @Override
     public void onClick(View v) {
@@ -152,10 +160,11 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
                 lastView.setSelected(false);
                 v.setSelected(true);
                 lastView = selectView1;
-                presenter.getcartList();
+                getcart();
                 ll_zhifu.setVisibility(View.VISIBLE);
                 refresh_view.setVisibility(View.GONE);
                 recyclerView_carlist.setVisibility(View.VISIBLE);
+                expandableListView.setVisibility(View.GONE);
                 break;
             case R.id.order_commission_no_send:
                 lastView.setSelected(false);
@@ -174,6 +183,7 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
                 hidezhifu();
                 refresh_view.setVisibility(View.VISIBLE);
                 recyclerView_carlist.setVisibility(View.GONE);
+
                 break;
             case R.id.order_commission_no_evaluate:
                 lastView.setSelected(false);
@@ -183,6 +193,24 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
                 hidezhifu();
                 refresh_view.setVisibility(View.VISIBLE);
                 recyclerView_carlist.setVisibility(View.GONE);
+
+                break;
+
+            case R.id.no_data:
+
+                // todo 跳到品类页面
+
+            case R.id.ll_zhifu:
+
+
+                // 跳到品类页面
+                Intent intent = new Intent(rootView.getContext(), OrderConfirmActivity.class);
+                intent.putExtra("cartId", cartId);
+                intent.putExtra("yj", yj);
+
+                rootView.getContext().startActivity(intent);
+
+
                 break;
         }
     }
@@ -231,9 +259,11 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
     public void getInitOrderData(OrderBean orderBean) {
         dataList.clear();
         dataList.addAll(orderBean.getData());
+        noDataView.setOnClickListener(null);
         if (dataList.size() > 0) {
             noDataView.setVisibility(View.GONE);
         } else {
+            noDataView.setText("没有更多了");
             noDataView.setVisibility(View.VISIBLE);
         }
         adapter = new ItemDistributionCommissionAdapter(inflater, dataList, this);
@@ -246,9 +276,13 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
     @Override
     public void getOrderFail() {
         dataList.clear();
+        noDataView.setOnClickListener(null);
+
         if (dataList.size() > 0) {
             noDataView.setVisibility(View.GONE);
         } else {
+
+            noDataView.setText("没有更多了");
             noDataView.setVisibility(View.VISIBLE);
         }
         if (adapter == null) {
@@ -277,14 +311,56 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
         SystemConfig.showToast("订单删除失败");
     }
 
+
+    String cartId;//商品cartid
+
     @Override
-    public void getCartList(CartGoodBean cartGoodBean) {
+    public void getCartList(final CartGoodBean cartGoodBean) {
+
+        cartId = "";
+        if (cartGoodBean.getData().size() > 0) {
+            noDataView.setVisibility(View.GONE);
+
+            if (cartGoodBean.getData().get(0).getRentNum().equals("3")) {
+                tv_p.setText("￥500");
+                yj = "500";
+            } else {
+                tv_p.setText("￥1000");
+                yj = "1000";
+            }
+        } else {
+            noDataView.setOnClickListener(this);
+            noDataView.setText("你还能再挑一件");
+            noDataView.setVisibility(View.VISIBLE);
+
+
+        }
         recyclerView_carlist.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
         carListAdapter = new ItemCarListAdapter(cartGoodBean.getData());
+        carListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Intent intent = new Intent(rootView.getContext(), GoodDetailActivity.class);
+                intent.putExtra("goodId", Integer.valueOf((cartGoodBean.getData().get(position)).getGoodsId()));
+                rootView.getContext().startActivity(intent);
+            }
+        });
+
         recyclerView_carlist.setAdapter(carListAdapter);
 
 
+        for (int i = 0; i < cartGoodBean.getData().size(); i++) {
+            String cart_id = cartGoodBean.getData().get(i).getCartId();
+
+            if (i == 0)
+                cartId = cartId.concat(cart_id);
+            else
+                cartId = cartId.concat("," + cart_id);
+        }
+
+
     }
+
 
     @Override
     public void getCartListFail() {
