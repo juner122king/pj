@@ -39,7 +39,7 @@ public class HomeBean {
     }
 
     public static class DataEntity {
-//
+        //
 //        private List<DistrictGoodsListEntity> districtGoodsList;
 //
 //        private List<HomeCouponbean.DataEntity.SingleCouponListEntity> districtCouponList;
@@ -56,7 +56,7 @@ public class HomeBean {
         private List<Ad> insertAdList;
         private List<Ad> rotateAdList;
         private List<HomeBean.DataEntity.DistrictGoodsListEntity> recommendGoodsList;
-        private List<Comment> commentList;
+        private List<Comment.DataBean> commentList;
 
         public List<Ad> getTopAdList() {
             return topAdList;
@@ -90,15 +90,15 @@ public class HomeBean {
             this.recommendGoodsList = recommendGoodsList;
         }
 
-        public List<Comment> getCommentList() {
+        public List<Comment.DataBean> getCommentList() {
             return commentList;
         }
 
-        public void setCommentList(List<Comment> commentList) {
+        public void setCommentList(List<Comment.DataBean> commentList) {
             this.commentList = commentList;
         }
 
-//        public String getHighCommissionPicUrl() {
+        //        public String getHighCommissionPicUrl() {
 //            return highCommissionPicUrl;
 //        }
 //

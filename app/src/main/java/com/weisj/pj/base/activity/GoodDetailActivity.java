@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.weisj.pj.MainActivity;
 import com.weisj.pj.R;
 import com.weisj.pj.TestData;
 import com.weisj.pj.adapter.ItemGoodDetailCommentAdapter;
@@ -189,13 +190,27 @@ public class GoodDetailActivity extends BaseActivity implements IGoodDetailView,
 //                break;
 //
 //
-//            case R.id.tv_gp_more:
-//            case R.id.tv_b2:
+            case R.id.tv_gp_more:
+                Intent intent = new Intent(GoodDetailActivity.this, GoodPointActivity.class);
+
+                intent.putExtra("pic_url", goodDetail.getData().getImages().get(0));
+                intent.putExtra("title", goodDetail.getData().getGoodsName());
+                intent.putExtra("jq", goodDetail.getData().getPrice());
+
+                startActivity(intent);
+
+                break;
+            case R.id.tv_b2:
 //                startActivity(new Intent(this, GoodPointActivity.class));
-//                break;
-//            case R.id.tv_b3:
-//                startActivity(new Intent(this, OrderActivity.class));
-//                break;
+                Toast.makeText(GoodDetailActivity.this, "暂不开放", Toast.LENGTH_SHORT).show();
+
+                break;
+            case R.id.tv_b3:
+                startActivity(new Intent(this, OrderActivity.class));
+
+
+
+                break;
             case R.id.tv_b4:
                 presenter.isBuyCard();
                 break;

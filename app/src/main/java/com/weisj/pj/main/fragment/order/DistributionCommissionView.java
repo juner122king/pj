@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.weisj.pj.R;
@@ -98,8 +99,8 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
         selectView2.setOnClickListener(this);
         selectView3.setOnClickListener(this);
         selectView4.setOnClickListener(this);
-        ll_zhifu.setOnClickListener(this);
 
+        ll_zhifu.setOnClickListener(this);
     }
 
     public void hidezhifu() {
@@ -200,17 +201,21 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
 
                 // todo 跳到品类页面
 
+                break;
             case R.id.ll_zhifu:
 
+                if (goodBean.getData().size() == 0) {
+                    Toast.makeText(rootRela.getContext(), "首饰盒中暂无商品，请先选择商品加入首饰盒", Toast.LENGTH_SHORT).show();
+                } else {
 
-                // 跳到品类页面
-                Intent intent = new Intent(rootView.getContext(), OrderConfirmActivity.class);
-                intent.putExtra("cartId", cartId);
-                intent.putExtra("yj", yj);
+                    // 跳到品类页面
+                    Intent intent = new Intent(rootView.getContext(), OrderConfirmActivity.class);
+                    intent.putExtra("cartId", cartId);
+                    intent.putExtra("yj", yj);
 
-                rootView.getContext().startActivity(intent);
+                    rootView.getContext().startActivity(intent);
 
-
+                }
                 break;
         }
     }
@@ -313,10 +318,11 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
 
 
     String cartId;//商品cartid
+    CartGoodBean goodBean;
 
     @Override
     public void getCartList(final CartGoodBean cartGoodBean) {
-
+        goodBean = cartGoodBean;
         cartId = "";
         if (cartGoodBean.getData().size() > 0) {
             noDataView.setVisibility(View.GONE);
@@ -330,7 +336,7 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
             }
         } else {
             noDataView.setOnClickListener(this);
-            noDataView.setText("你还能再挑一件");
+            noDataView.setText("没有选择商品");
             noDataView.setVisibility(View.VISIBLE);
 
 

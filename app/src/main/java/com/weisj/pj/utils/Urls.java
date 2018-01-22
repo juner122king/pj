@@ -73,6 +73,15 @@ public class Urls {
     public static final String orderconfirm = IP + "/ndfront/order/orderconfirm?appid=APPID";
 
 
+    //所有晒图
+    public static final String getNewComments = IP + "/ndfront/interface/getNewComments?appid=APPID";
+
+
+
+
+
+
+
     //    //2.1 分类查询商品接口
 //    public static final String getgoodsbycategoryorder = IP + "/fxfront/interface/getgoodsbycategoryorder?appid=APPID";
     //2.1 分类查询商品接口
@@ -176,7 +185,7 @@ public class Urls {
     // 获取该区域下品牌
     public static final String getbrandbydistrict = IP + "/fxfront/interface/getbrandbydistrict?appid=APPID";
     // 产品评价
-    public static final String goodscomment = IP + "/fxfront/interface/goodscomment?appid=APPID";
+    public static final String goodscomment = IP + "/ndfront/interface/goodscomment?appid=APPID";
 
     public static final String expressInfo = IP + "/fx/queryExpress";
     // 活动接口

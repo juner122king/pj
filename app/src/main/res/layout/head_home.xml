@@ -44,7 +44,7 @@
                 android:layout_marginLeft="@dimen/text_size_6"
                 android:text="@string/im_tv_button0"
                 android:textColor="#333333"
-                android:textSize="11sp" />
+                android:textSize="13sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -68,7 +68,7 @@
                 android:layout_marginLeft="@dimen/text_size_6"
                 android:text="@string/im_tv_button1"
                 android:textColor="#333333"
-                android:textSize="11sp" />
+                android:textSize="13sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -92,30 +92,30 @@
                 android:layout_marginLeft="@dimen/text_size_6"
                 android:text="@string/im_tv_button2"
                 android:textColor="#333333"
-                android:textSize="11sp" />
+                android:textSize="13sp" />
         </LinearLayout>
     </LinearLayout>
 
     <!-- 99元 试戴-->
 
     <!--<com.weisj.pj.view.bgabanner.BGABanner-->
-        <!--android:id="@+id/home_banner_vip"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="60dp"-->
-        <!--android:background="@color/colore6e6e6"-->
-        <!--android:paddingBottom="5dp"-->
-        <!--android:paddingLeft="10dp"-->
-        <!--android:paddingRight="10dp"-->
+    <!--android:id="@+id/home_banner_vip"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="60dp"-->
+    <!--android:background="@color/colore6e6e6"-->
+    <!--android:paddingBottom="5dp"-->
+    <!--android:paddingLeft="10dp"-->
+    <!--android:paddingRight="10dp"-->
 
-        <!--android:paddingTop="5dp"-->
+    <!--android:paddingTop="5dp"-->
 
-        <!--android:layout_margin="20dp"-->
-        <!--app:banner_pageChangeDuration="1000"-->
-        <!--app:banner_pointAutoPlayAble="true"-->
-        <!--app:banner_pointContainerBackground="@android:color/transparent"-->
-        <!--app:banner_pointDrawable="@drawable/bga_banner_selector_point_hollow"-->
-        <!--app:banner_pointTopBottomMargin="10dp"-->
-        <!--app:banner_transitionEffect="defaultEffect"></com.weisj.pj.view.bgabanner.BGABanner>-->
+    <!--android:layout_margin="20dp"-->
+    <!--app:banner_pageChangeDuration="1000"-->
+    <!--app:banner_pointAutoPlayAble="true"-->
+    <!--app:banner_pointContainerBackground="@android:color/transparent"-->
+    <!--app:banner_pointDrawable="@drawable/bga_banner_selector_point_hollow"-->
+    <!--app:banner_pointTopBottomMargin="10dp"-->
+    <!--app:banner_transitionEffect="defaultEffect"></com.weisj.pj.view.bgabanner.BGABanner>-->
 
     <ImageView
         android:id="@+id/home_banner_vip"
@@ -271,7 +271,7 @@
                 android:ellipsize="end"
                 android:lines="1"
                 android:maxLines="1"
-                android:text="#双十二大放送#"
+                android:text="年终内购会"
                 android:textColor="#1b1b1b"
                 android:textStyle="bold" />
 
@@ -283,14 +283,14 @@
                 android:ellipsize="end"
                 android:lines="2"
                 android:maxLines="2"
-                android:text="购置税减半活动即将结束,购置税减半活动即将结束"
+                android:text="FRNDO年终感恩回馈！围巾、帽子、首饰1-3折起特卖，火爆进行中！"
                 android:textColor="#707070" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:text="剩余1天05小时 | 66人报名"
+                android:text="剩余0天 | 66人报名"
                 android:textColor="#ee8274"
                 android:textSize="12sp" />
 
@@ -303,7 +303,8 @@
                 android:paddingLeft="5dp"
                 android:paddingRight="5dp"
                 android:text="立即参与"
-                android:textColor="#fff" />
+                android:textColor="#fff"
+                android:visibility="invisible" />
         </RelativeLayout>
 
     </LinearLayout>

@@ -21,7 +21,7 @@ import java.util.List;
  * Created by zh on 16/6/21.
  * 首饰盒主页
  */
-public class OrderFragment extends BaseFragment implements View.OnClickListener, ViewPager.OnPageChangeListener, FiltratePopupWindow.FiltrateListener {
+public class OrderFragment extends BaseFragment implements View.OnClickListener{
     List<View> list = new ArrayList<>();
     private View view;
     private ViewPager viewPager;
@@ -35,7 +35,7 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener,
 
         View view = inflater.inflate(R.layout.fragment_order, null);
         this.view = view;
-        rootView.isHintHeadBar(true);
+//        rootView.isHintHeadBar(true);
         initView();
         return view;
     }
@@ -55,7 +55,7 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener,
 //        list.add(recordView.getRootView());
         viewPager = (ViewPager) view.findViewById(R.id.view_pager);
         viewPager.setAdapter(new ItemOrderFragmentAdapter(list));
-        viewPager.addOnPageChangeListener(this);
+//        viewPager.addOnPageChangeListener(this);
 
 
     }
@@ -77,39 +77,39 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener,
     @Override
     public void onClick(View v) {
     }
-
-    private void changeBarState(int state) {
-//        if (state == 0) {
-//            topImage.setVisibility(View.GONE);
-//            filtrateBt.setVisibility(View.VISIBLE);
-//        } else {
-//            topImage.setVisibility(View.VISIBLE);
-//            filtrateBt.setVisibility(View.GONE);
+//
+//    private void changeBarState(int state) {
+////        if (state == 0) {
+////            topImage.setVisibility(View.GONE);
+////            filtrateBt.setVisibility(View.VISIBLE);
+////        } else {
+////            topImage.setVisibility(View.VISIBLE);
+////            filtrateBt.setVisibility(View.GONE);
+////        }
+////        leftBar.setSelected(state == 0);
+////        rightBar.setSelected(state == 1);
+////        topImage.setSelected(state == 0);
+//    }
+//
+//    @Override
+//    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//
+//    }
+//
+//    @Override
+//    public void onPageSelected(int position) {
+//        changeBarState(position);
+//    }
+//
+//    @Override
+//    public void onPageScrollStateChanged(int state) {
+//
+//    }
+//
+//    @Override
+//    public void onSure(String wxName, int filter_type) {
+//        if (commissionView != null){
+//            commissionView.setWxAndFilterType(filter_type,wxName);
 //        }
-//        leftBar.setSelected(state == 0);
-//        rightBar.setSelected(state == 1);
-//        topImage.setSelected(state == 0);
-    }
-
-    @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-        changeBarState(position);
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int state) {
-
-    }
-
-    @Override
-    public void onSure(String wxName, int filter_type) {
-        if (commissionView != null){
-            commissionView.setWxAndFilterType(filter_type,wxName);
-        }
-    }
+//    }
 }

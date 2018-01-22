@@ -1,32 +1,36 @@
 package com.weisj.pj.adapter;
 
+import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.weisj.pj.R;
+import com.weisj.pj.bean.CartGoodBean;
 import com.weisj.pj.bean.Comment;
-import com.weisj.pj.utils.Urls;
 
 import java.util.List;
 
 /**
- * 用户评论
- * Created by jun on 2017/11/21.
+ * Created by jun on 2018/1/22.
  */
 
-public class ItemHomeUserCommentAdapter extends BaseQuickAdapter<Comment.DataBean, BaseViewHolder> {
+public class ItemCommentAdapter extends BaseQuickAdapter<Comment.DataBean, BaseViewHolder> {
 
 
-    public ItemHomeUserCommentAdapter(List data) {
-        super(R.layout.item_home_user_im, data);
+    public ItemCommentAdapter(@Nullable List<Comment.DataBean> data) {
+        super(R.layout.item_user_im, data);
     }
 
     @Override
     protected void convert(BaseViewHolder helper, Comment.DataBean item) {
+
+
         helper.setText(R.id.tv_username, item.getUserName());
         helper.setText(R.id.tv_user_comment, item.getContent());
+        helper.setText(R.id.tv_zan_numb, "0");
         // 加载网络图片
 //        Glide.with(mContext).load(Urls.imageUrl + item.getHeaderPic()).crossFade().into((ImageView) helper.getView(R.id.iv_head_pic));
         Glide.with(mContext).load("http://shop.party-queen.com/Public/img/pic/pic-defaultHeaderPic.png").crossFade().into((ImageView) helper.getView(R.id.iv_head_pic));

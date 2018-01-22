@@ -27,8 +27,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:lines="3"
-            android:maxLines="3"
+            android:lines="2"
+            android:maxLines="2"
             android:text="BRVAH官方使用指南"
             android:textColor="#333"
             android:textSize="18sp" />

@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import com.weisj.pj.R;
 import com.weisj.pj.main.fragment.ActiFragment;
 import com.weisj.pj.main.fragment.CategoryFragment;
+import com.weisj.pj.main.fragment.CommentsFragment;
 import com.weisj.pj.main.fragment.HomeFragment;
 import com.weisj.pj.main.fragment.MeFragment;
 import com.weisj.pj.main.fragment.OrderFragment;
@@ -40,7 +41,7 @@ public class TabDb {
     }
 
     public static Class[] getFragments() {
-        Class[] clz = {HomeFragment.class, CategoryFragment.class, OrderFragment.class, ActiFragment.class, MeFragment.class};
+        Class[] clz = {HomeFragment.class, CategoryFragment.class, OrderFragment.class, CommentsFragment.class, MeFragment.class};
         return clz;
     }
 

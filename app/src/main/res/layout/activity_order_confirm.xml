@@ -33,12 +33,14 @@
                     android:src="@drawable/icons_add" />
 
                 <LinearLayout
+                    android:id="@+id/lladd"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:orientation="vertical"
-                    android:paddingLeft="10dp">
+                    android:paddingLeft="10dp"
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -49,7 +51,7 @@
                             android:id="@+id/consignee_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="纱布"
+                            android:text=""
                             android:textColor="#333333"
                             android:textSize="14dp" />
 
@@ -58,7 +60,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="9dp"
-                            android:text="13555555555"
+                            android:text=""
                             android:textColor="#333333"
                             android:textSize="14dp" />
                     </LinearLayout>
@@ -70,10 +72,22 @@
                         android:layout_marginTop="3dp"
                         android:ellipsize="none"
                         android:singleLine="true"
-                        android:text="广东省深圳市福田撒犯得上发射点发生士大夫"
+                        android:text=""
                         android:textColor="#999999"
                         android:textSize="13dp" />
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_notadd"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:text="您还没有添加地址，请添加"
+                    android:textColor="#333"
+                    android:visibility="visible" />
 
                 <ImageView
                     android:layout_width="20dp"

@@ -135,6 +135,11 @@
             android:label="确认订单"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".base.activity.OrderActivity"
+            android:label="首饰盒"
+            android:screenOrientation="portrait" />
+
 
         <activity
             android:name=".wxapi.WXPayEntryActivity"

@@ -90,7 +90,8 @@ public class VipActivity extends BaseActivity implements View.OnClickListener {
 
     private void initView(final View view) {
 
-        setRightText("送人", true);
+//        setRightText("送人", true);
+
         tv1 = (TextView) view.findViewById(R.id.tv_youhui);
         tv2 = (TextView) view.findViewById(R.id.tv_2_2);
         tv3 = (TextView) view.findViewById(R.id.tv_yj);
@@ -142,7 +143,7 @@ public class VipActivity extends BaseActivity implements View.OnClickListener {
         OkHttpClientManager.postAsyn(Urls.getAllCardTypes, null, new OkHttpClientManager.ResultCallback<CardTypeBean>() {
             @Override
             public void onError(Request request, Exception e) {
-//                listener.onFail(e, Urls.beginad);
+                e.printStackTrace();
             }
 
             @Override
@@ -373,6 +374,8 @@ public class VipActivity extends BaseActivity implements View.OnClickListener {
                         WxPayUtils wxPayUtils = new WxPayUtils(VipActivity.this);
                         wxPayUtils.pay(response.getData());
                         int code = WXPayEntryActivity.GetBaseResp();
+                        if (code == 0)
+                            finish();
 
 
                     }

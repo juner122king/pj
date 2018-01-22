@@ -44,8 +44,8 @@
             android:background="@null"
             android:hint="手机号"
             android:paddingLeft="10dp"
-            android:text="13602606602"
             android:singleLine="true"
+            android:text=""
             android:textColor="#333333"
             android:textColorHint="#898989"
             android:textSize="@dimen/text_size_14" />
@@ -77,10 +77,10 @@
             android:layout_toRightOf="@id/iv2"
             android:background="@null"
             android:hint="密码"
-            android:text="shenzhents"
             android:inputType="textPassword"
             android:paddingLeft="10dp"
             android:singleLine="true"
+            android:text=""
             android:textColor="#333333"
             android:textColorHint="#898989"
             android:textSize="@dimen/text_size_14" />
@@ -107,7 +107,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
 
         <TextView
             android:id="@+id/registerBt"
@@ -118,7 +119,7 @@
             android:paddingTop="8dp"
             android:text="注册"
             android:textColor="#ee0059"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/forgetPass"
@@ -130,7 +131,7 @@
             android:paddingTop="8dp"
             android:text="忘记密码"
             android:textColor="#ee0059"
-            android:textSize="12sp" />
+            android:textSize="14sp" />
 
 
     </RelativeLayout>

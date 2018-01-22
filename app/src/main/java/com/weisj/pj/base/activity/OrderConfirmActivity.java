@@ -31,10 +31,11 @@ import java.util.Map;
  */
 
 public class OrderConfirmActivity extends BaseActivity implements View.OnClickListener {
-    View view;
+    View view, lladd, notadd;
     AdressBean.DataEntity dataEntity;
     EditText editText;
     RadioButton rb_wx, rb_zf;
+    int add_size;
 
     @Override
     public void onClick(View v) {
@@ -42,6 +43,11 @@ public class OrderConfirmActivity extends BaseActivity implements View.OnClickLi
         switch (v.getId()) {
 
             case R.id.tv_zf:
+                if (add_size == 0) {
+                    Toast.makeText(OrderConfirmActivity.this, "您还没有添加地址，请添加", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 if (rb_wx.isChecked())
                     orderconfirm("2");
                 else if (rb_zf.isChecked())
@@ -85,7 +91,9 @@ public class OrderConfirmActivity extends BaseActivity implements View.OnClickLi
         editText = (EditText) view.findViewById(R.id.tv_2_2);
         rb_wx = (RadioButton) view.findViewById(R.id.rb_wx);
         rb_zf = (RadioButton) view.findViewById(R.id.rb_zb);
-        ((TextView)view.findViewById(R.id.tv_zj2)).setText(getIntent().getStringExtra("yj"));
+        lladd = view.findViewById(R.id.lladd);
+        notadd = view.findViewById(R.id.tv_notadd);
+        ((TextView) view.findViewById(R.id.tv_zj2)).setText("￥" + getIntent().getStringExtra("yj"));
 
     }
 
@@ -128,18 +136,15 @@ public class OrderConfirmActivity extends BaseActivity implements View.OnClickLi
             @Override
             public void onResponse(ComfirmPayCardBean response) {
                 if (response != null) {
-                    Toast.makeText(OrderConfirmActivity.this, response.getMsg(), Toast.LENGTH_SHORT).show();
-                    if (response.getCode().equals("0")) {
 
+                    if (response.getCode().equals("0")) {
+                        Toast.makeText(OrderConfirmActivity.this, response.getMsg(), Toast.LENGTH_SHORT).show();
                     } else {
                         WxPayUtils wxPayUtils = new WxPayUtils(OrderConfirmActivity.this);
                         wxPayUtils.pay(response.getData());
-                        int code = WXPayEntryActivity.GetBaseResp();
-                        if (code == 0)
-                            finish();
-                    }
-                } else {
+                        finish();
 
+                    }
                 }
             }
         });
@@ -160,12 +165,21 @@ public class OrderConfirmActivity extends BaseActivity implements View.OnClickLi
             public void onResponse(AdressBean response) {
                 if (response.getCode().equals("1")) {
                     if (null != response.getData() && response.getData().size() > 0) {
-                        dataEntity = response.getData().get(0);
-                        showAdress();
-                    } else
-                        startActivity(new Intent(OrderConfirmActivity.this, ConsigneeAddressActivity.class));
-                } else {
-                    startActivity(new Intent(OrderConfirmActivity.this, ConsigneeAddressActivity.class));
+                        add_size = response.getData().size();
+                        if (response.getData().size() > 0) {
+                            lladd.setVisibility(View.VISIBLE);
+                            notadd.setVisibility(View.GONE);
+                            dataEntity = response.getData().get(0);
+                            showAdress();
+
+                        } else {
+                            lladd.setVisibility(View.GONE);
+                            notadd.setVisibility(View.VISIBLE);
+
+                        }
+
+
+                    }
                 }
 
             }

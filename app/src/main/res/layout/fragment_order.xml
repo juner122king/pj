@@ -5,31 +5,32 @@
     android:background="@color/colorf4f4f4"
     android:orientation="vertical">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/root_head_title_height"
-        android:layout_marginBottom="2px"
-        android:background="#ffffff">
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="@dimen/root_head_title_height"-->
+        <!--android:layout_marginBottom="2px"-->
+        <!--android:background="#ffffff">-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="@string/fragment_shoushihe_title"
-            android:textColor="@color/color1b1b1b"
-            android:textSize="@dimen/text_size_18" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:text="@string/fragment_shoushihe_title"-->
+            <!--android:textColor="@color/color1b1b1b"-->
+            <!--android:textSize="@dimen/text_size_18" />-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:padding="@dimen/text_size_10"
-            android:text="编辑"
-            android:textColor="#707070"
-            android:textSize="11sp" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:padding="@dimen/text_size_10"-->
+            <!--android:text="编辑"-->
+            <!--android:textColor="#707070"-->
+            <!--android:textSize="11sp"-->
+            <!--android:visibility="gone" />-->
 
-    </RelativeLayout>
+    <!--</RelativeLayout>-->
 
 
     <android.support.v4.view.ViewPager

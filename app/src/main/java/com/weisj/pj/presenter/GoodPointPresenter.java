@@ -39,22 +39,9 @@ public class GoodPointPresenter implements IOnManagerListener {
         String[] str = url.split("=page=");
         try {
             GoodPoint goodPoint = (GoodPoint) data;
-            goodPoint.setData(TestData.getGoodPoint_DataBean());
+            goodPoint.setData(((GoodPoint) data).getData());
             this.goodPoint.getInitData(goodPoint);
-//            if (str[1].equals("1")) {
-//                if (goodPoint.getCode().equals("1") && goodPoint.getData() != null && goodPoint.getData().size() > 0) {
-//                    this.goodPoint.getInitData(goodPoint);
-//                } else {
-//                    viewState.showNoData();
-//                    this.goodPoint.getFail();
-//                }
-//            } else {
-//                if (goodPoint.getCode().equals("1")) {
-//                    this.goodPoint.getData((GoodPoint) data);
-//                } else {
-//                    this.goodPoint.getFail();
-//                }
-//            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }

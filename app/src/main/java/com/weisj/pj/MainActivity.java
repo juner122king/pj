@@ -28,12 +28,14 @@ import java.util.Map;
 
 
 public class MainActivity extends FragmentActivity implements TabHost.OnTabChangeListener, View.OnClickListener {
-    private FragmentTabHost tabHost;
+
+    private static FragmentTabHost tabHost;
     private boolean b; // 是否初始化菜单栏完成
     public static ADBean.DataEntity adBean;
     private long firstTime;
 
     public final static int HomeTOVip = 101;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,8 +97,8 @@ public class MainActivity extends FragmentActivity implements TabHost.OnTabChang
             TabHost.TabSpec tabSpec = tabHost.newTabSpec(tabs[i]).setIndicator(getTabView(i));
             tabHost.addTab(tabSpec, TabDb.getFragments()[i], null);
             tabHost.setTag(i);
-
         }
+
     }
 
     private View getTabView(int idx) {
@@ -151,6 +153,9 @@ public class MainActivity extends FragmentActivity implements TabHost.OnTabChang
 
         //来自按钮1的请求，作相应业务处理
         if (resultCode == 2) {
+
+        }else {
+
         }
 
     }

@@ -84,7 +84,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         tv_acton_info = (TextView) headView.findViewById(R.id.tv_acton_info);
         iv_acton = (ImageView) headView.findViewById(R.id.iv_acton);
         Glide.with(getActivity())
-                .load("http://image.rakuten.co.jp/navie/cabinet/b/ijw-b-061a.jpg")
+                .load("http://shop.party-queen.com/Public/img/pic/pic-activity.jpg?v=2")
 
                 .placeholder(R.mipmap.icon_banner_default)
                 .error(R.mipmap.icon_banner_default)
@@ -343,7 +343,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
 //        adapter = new ItemHomeGoodAdapter(getContext(), homeBean.getData().getCountryGoodsList());
 //
 
-        List<Comment> comments = homeBean.getData().getCommentList(); //用户评论
+        List<Comment.DataBean> comments = homeBean.getData().getCommentList(); //用户评论
         List<Ad> topAdList = homeBean.getData().getTopAdList();//顶部轮播图
         List<Ad> insertAdList = homeBean.getData().getInsertAdList();//vip卡图
         List<Ad> rotateAdList = homeBean.getData().getRotateAdList();//专题轮播图
@@ -453,6 +453,11 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
 
 
     private void toWebViewActivity(String url, String title) {
+
+        if (url.equals("http://shop.party-queen.com/Shop/Cards/index.html")) {
+            startActivityForResult(new Intent(getActivity(), VipActivity.class), MainActivity.HomeTOVip);
+            return;
+        }
         Intent intent = new Intent(this.getActivity(), WebViewActivity.class);
         intent.putExtra("url", url);
         intent.putExtra("web_title", title);

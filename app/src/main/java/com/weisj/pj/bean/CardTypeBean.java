@@ -69,7 +69,7 @@ public class CardTypeBean {
 
     public static class DataEntity {
         private String cardTypeId;
-        private int typeName;
+        private String typeName;
         private int typePic;
         private String cardType;
         private String cardMoney;
@@ -84,11 +84,11 @@ public class CardTypeBean {
             this.cardTypeId = cardTypeId;
         }
 
-        public int getTypeName() {
+        public String getTypeName() {
             return typeName;
         }
 
-        public void setTypeName(int typeName) {
+        public void setTypeName(String typeName) {
             this.typeName = typeName;
         }
 
