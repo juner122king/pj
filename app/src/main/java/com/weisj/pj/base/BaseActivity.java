@@ -83,12 +83,12 @@ public abstract class BaseActivity extends Activity implements RootView.RootView
 
     @Override
     public void showLoading() {
-        changeState(RootView.ViewState.LOADING);
+//        changeState(RootView.ViewState.LOADING);
     }
 
     @Override
     public void showInitLoading() {
-        changeState(RootView.ViewState.ONELOADING);
+//        changeState(RootView.View13412513007State.ONELOADING);
     }
 
     @Override

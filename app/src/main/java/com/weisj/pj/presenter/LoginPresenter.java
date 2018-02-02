@@ -37,7 +37,7 @@ public class LoginPresenter implements IOnManagerListener {
 
     @Override
     public void onSuccess(Object data, String url) {
-        viewState.showLoadFinish();
+//        viewState.showLoadFinish();
         UserBean ub = (UserBean) data;
         if (ub.getCode().equals("1")) {
             PersonMessagePreferencesUtils.storeInfo(ub);

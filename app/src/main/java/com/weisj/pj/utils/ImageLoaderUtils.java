@@ -40,15 +40,14 @@ public class ImageLoaderUtils {
 
     private static ImageLoader imageloader = ImageLoader.getInstance();
     private static DisplayImageOptions options = new DisplayImageOptions.Builder()
-            .showImageOnLoading(R.mipmap.load_default)
-            .showImageForEmptyUri(R.mipmap.load_default)
-            .showImageOnFail(R.mipmap.load_default).cacheOnDisk(true)
+
+            .cacheOnDisk(true)
             .cacheInMemory(true).imageScaleType(ImageScaleType.NONE)
             .bitmapConfig(Bitmap.Config.RGB_565).build();
     private static DisplayImageOptions optionsOriginal = new DisplayImageOptions.Builder()
-            .showImageOnLoading(R.mipmap.load_default)
-            .showImageForEmptyUri(R.mipmap.load_default)
-            .showImageOnFail(R.mipmap.load_default).cacheOnDisk(true)
+
+
+            .cacheOnDisk(true)
             .cacheInMemory(true).imageScaleType(ImageScaleType.NONE)
             .bitmapConfig(Bitmap.Config.RGB_565).build();
     private static ImageLoaderUtils imageloaderUtil;
@@ -95,7 +94,7 @@ public class ImageLoaderUtils {
                     }
                     imageloader.displayImage(Urls.IP + imageUrl, container, options);
                 } else {
-                    container.setImageResource(R.mipmap.load_default);
+
                 }
             }
         } catch (Exception e) {

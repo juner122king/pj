@@ -75,6 +75,24 @@ public class CardTypeBean {
         private String cardMoney;
         private String days;
         private String rentNum;
+        private String allCardCount;
+        private String sendCount;
+
+        public String getAllCardCount() {
+            return allCardCount;
+        }
+
+        public void setAllCardCount(String allCardCount) {
+            this.allCardCount = allCardCount;
+        }
+
+        public String getSendCount() {
+            return sendCount;
+        }
+
+        public void setSendCount(String sendCount) {
+            this.sendCount = sendCount;
+        }
 
         public String getCardTypeId() {
             return cardTypeId;

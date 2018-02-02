@@ -90,7 +90,7 @@ public class VipActivity extends BaseActivity implements View.OnClickListener {
 
     private void initView(final View view) {
 
-//        setRightText("送人", true);
+        setRightText("送人", true);
 
         tv1 = (TextView) view.findViewById(R.id.tv_youhui);
         tv2 = (TextView) view.findViewById(R.id.tv_2_2);
@@ -294,6 +294,11 @@ public class VipActivity extends BaseActivity implements View.OnClickListener {
             case R.id.ll_jh:
 //                Toast.makeText(this, "激活实体卡", Toast.LENGTH_SHORT).show();
                 new VipJHDialog(this, uiHandler).show();
+                break;
+
+
+            case R.id.root_head_right_text:
+                startActivity(new Intent(VipActivity.this, VipSRActivity.class));
                 break;
 
         }

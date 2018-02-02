@@ -84,10 +84,8 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         tv_acton_info = (TextView) headView.findViewById(R.id.tv_acton_info);
         iv_acton = (ImageView) headView.findViewById(R.id.iv_acton);
         Glide.with(getActivity())
-                .load("http://shop.party-queen.com/Public/img/pic/pic-activity.jpg?v=2")
+                .load("http://shop.party-queen.com/Public/img/pic/pic-activity2.jpg?v=2")
 
-                .placeholder(R.mipmap.icon_banner_default)
-                .error(R.mipmap.icon_banner_default)
 
                 .transform(new GlideRoundTransform(getActivity(), 3))
                 .into(iv_acton);
@@ -98,6 +96,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         headView.findViewById(R.id.home_more).setOnClickListener(this);
         view.findViewById(R.id.root_head_search).setOnClickListener(this);
+        iv_acton.setOnClickListener(this);
         homeBanner = (BGABanner) headView.findViewById(R.id.home_banner);
         homeBanner2 = (BGABanner) headView.findViewById(R.id.home_banner2);
         homeBanner_vip = (ImageView) headView.findViewById(R.id.home_banner_vip);
@@ -352,9 +351,6 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         Glide.with(getActivity())
                 .load(Urls.imageUrl + insertAdList.get(0).getAdPic())
 
-                .placeholder(R.mipmap.icon_banner_default)
-                .error(R.mipmap.icon_banner_default)
-
                 .transform(new GlideRoundTransform(getActivity(), 3))
                 .into(homeBanner_vip);
 
@@ -427,6 +423,14 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
                 intent = new Intent(this.getActivity(), LocationActivity.class);
                 startActivityForResult(intent, 10);
                 break;
+
+
+            case R.id.iv_acton:
+                toWebViewActivity("http://shop.party-queen.com/Shop/Notice/index.html?id=58&agent_id=8", "千人计划—“最美体验官”火热招募中！");
+                break;
+
+
+
             case R.id.home_more:
                 intent = new Intent(getContext(), SearchListActivity.class);
                 intent.putExtra("from", 1);

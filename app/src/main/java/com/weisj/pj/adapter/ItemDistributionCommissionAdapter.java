@@ -148,10 +148,6 @@ public class ItemDistributionCommissionAdapter extends BaseExpandableListAdapter
 
             Glide.with(viewHolder.goodImage.getContext())
                     .load(childData.getSpec_pic())
-
-                    .placeholder(R.mipmap.icon_banner_default)
-                    .error(R.mipmap.icon_banner_default)
-
                     .transform(new GlideRoundTransform(viewHolder.goodImage.getContext(), 3))
                     .into(viewHolder.goodImage);
             TextViewUtils.setText(viewHolder.goodName, childData.getGoods_name());

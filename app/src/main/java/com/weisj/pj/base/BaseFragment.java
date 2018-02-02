@@ -28,6 +28,7 @@ public abstract class BaseFragment extends Fragment implements RootView.RootView
         if (rootView == null) {
             rootView = new RootView(getContext());
             rootView.hintBackView(true);
+
             rootView.setHeadTitle(setTitleStr());
             rootView.addContentView(initView(inflater, container, savedInstanceState));
             rootView.setRootViewListener(this);

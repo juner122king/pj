@@ -5,8 +5,8 @@ package com.weisj.pj.utils;
  */
 public class Urls {
     //    public static final String IP = "http://m.sfddj.com";
-//    public static final String IP = "http://shop.fx-sf.com";
-    public static final String IP = "http://120.79.34.138";
+    public static final String IP = "http://shop.party-queen.com";
+//    public static final String IP = "http://120.79.34.138";
 
     //    public static final String imageUrl = "http://img.sfddj.com/";
     public static final String imageUrl = "http://120.79.34.138";
@@ -76,7 +76,12 @@ public class Urls {
     //所有晒图
     public static final String getNewComments = IP + "/ndfront/interface/getNewComments?appid=APPID";
 
+    //我的晒图
+    public static final String getMyComments = IP + "/ndfront/interface/getMyComments?appid=APPID";
 
+
+    //我的会员卡
+    public static final String getAllKindsOfCardCount = IP + "/ndfront/card/getAllKindsOfCardCount?appid=APPID";
 
 
 

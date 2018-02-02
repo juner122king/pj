@@ -10,6 +10,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.weisj.pj.R;
 import com.weisj.pj.bean.CartGoodBean;
 import com.weisj.pj.bean.Comment;
+import com.weisj.pj.utils.Urls;
 
 import java.util.List;
 
@@ -32,8 +33,8 @@ public class ItemCommentAdapter extends BaseQuickAdapter<Comment.DataBean, BaseV
         helper.setText(R.id.tv_user_comment, item.getContent());
         helper.setText(R.id.tv_zan_numb, "0");
         // 加载网络图片
-//        Glide.with(mContext).load(Urls.imageUrl + item.getHeaderPic()).crossFade().into((ImageView) helper.getView(R.id.iv_head_pic));
-        Glide.with(mContext).load("http://shop.party-queen.com/Public/img/pic/pic-defaultHeaderPic.png").crossFade().into((ImageView) helper.getView(R.id.iv_head_pic));
+        Glide.with(mContext).load(Urls.IP + item.getHeaderPic()).crossFade().into((ImageView) helper.getView(R.id.iv_head_pic));
+//        Glide.with(mContext).load("http://shop.party-queen.com/Public/img/pic/pic-defaultHeaderPic.png").crossFade().into((ImageView) helper.getView(R.id.iv_head_pic));
 
 
         switch (item.getFileList().size()) {

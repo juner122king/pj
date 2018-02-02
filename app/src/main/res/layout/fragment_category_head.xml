@@ -336,7 +336,7 @@
 
                 android:id="@+id/rg3_rb1"
                 style="@style/category_radiobutton"
-                android:text="镀金" />
+                android:text="K金" />
 
             <RadioButton
 
@@ -348,7 +348,7 @@
 
                 android:id="@+id/rg3_rb3"
                 style="@style/category_radiobutton"
-                android:text="K金" />
+                android:text="镀金" />
 
             <RadioButton
 

@@ -53,12 +53,10 @@ public class ChooseImageAdapter extends RecyclerView.Adapter<ChooseImageAdapter.
         ImageLoaderUtils.getInstance().display(holder.image,pathList.get(holder.getLayoutPosition()), new ImageLoadingListener() {
             @Override
             public void onLoadingStarted(String imageUri, View view) {
-                holder.image.setImageResource(R.mipmap.load_default);
-            }
+        }
 
             @Override
             public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                holder.image.setImageResource(R.mipmap.load_default);
             }
 
             @Override
@@ -72,7 +70,6 @@ public class ChooseImageAdapter extends RecyclerView.Adapter<ChooseImageAdapter.
 
             @Override
             public void onLoadingCancelled(String imageUri, View view) {
-                holder.image.setImageResource(R.mipmap.load_default);
             }
         });
         holder.imageSelect.setOnClickListener(this);

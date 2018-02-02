@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -23,6 +24,7 @@ import com.weisj.pj.base.BaseFragment;
 //import com.weisj.pj.base.activity.WebActivity;
 import com.weisj.pj.base.activity.ConsigneeAddressActivity;
 import com.weisj.pj.base.activity.LoginActivity;
+import com.weisj.pj.base.activity.MyCardActivity;
 import com.weisj.pj.base.activity.UserInfoActivity;
 import com.weisj.pj.base.activity.VipActivity;
 import com.weisj.pj.bean.CenterBean;
@@ -43,6 +45,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
     private ImageView iv_head;
     private TextView name, user_lv, user_lv_info, numb1, numb2, numb3, numb4, logout, tv_day;
     private View v_daili, ll_day, ll_date;
+
+    private LinearLayout ll4;
 
     CenterBean.DataEntity dataEntity;
     String user_head_imag = "http://shop.party-queen.com/Public/img/pic/pic-defaultHeaderPic.png";
@@ -68,6 +72,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
         numb3 = (TextView) view.findViewById(R.id.tv_number3);
         numb4 = (TextView) view.findViewById(R.id.tv_number4);
         logout = (TextView) view.findViewById(R.id.tv_logout);
+        ll4 = (LinearLayout) view.findViewById(R.id.ll4);
 
         ll_day = view.findViewById(R.id.ll_day);
         v_daili = view.findViewById(R.id.tv_daili);
@@ -79,6 +84,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
         iv_head.setOnClickListener(this);
         user_lv.setOnClickListener(this);
         v_daili.setOnClickListener(this);
+        ll4.setOnClickListener(this);
+
         Glide.with(getActivity())
                 .load(user_head_imag)
 
@@ -126,9 +133,9 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
 //            case R.id.notice_image:
 //                startActivity(new Intent(this.getContext(), SystemNoticeActivity.class));
 //                break;
-//            case R.id.user_setup:
-//                startActivity(new Intent(this.getContext(), SetUpActivity.class));
-//                break;
+            case R.id.ll4:
+                startActivity(new Intent(this.getContext(), MyCardActivity.class));
+                break;
             case R.id.image_head:
                 if (dataEntity != null) {
                     PreferencesUtils.putBoolean(GETHINTIMAGECLICK, true);

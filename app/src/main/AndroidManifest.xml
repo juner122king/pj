@@ -81,6 +81,11 @@
             android:name=".base.activity.ConsigneeAddressActivity"
             android:label="收货地址"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".base.activity.MyCardActivity"
+            android:label="我的会员卡"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".base.activity.LocationActivity"
             android:label="定位列表"

@@ -271,7 +271,7 @@
                 android:ellipsize="end"
                 android:lines="1"
                 android:maxLines="1"
-                android:text="年终内购会"
+                android:text="千人计划—“最美体验官”火热招募中！"
                 android:textColor="#1b1b1b"
                 android:textStyle="bold" />
 
@@ -283,14 +283,14 @@
                 android:ellipsize="end"
                 android:lines="2"
                 android:maxLines="2"
-                android:text="FRNDO年终感恩回馈！围巾、帽子、首饰1-3折起特卖，火爆进行中！"
+                android:text="购买99元体验卡报名活动，获取招募资格，即享三重收益……"
                 android:textColor="#707070" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:text="剩余0天 | 66人报名"
+                android:text="剩余165天 已报名793人"
                 android:textColor="#ee8274"
                 android:textSize="12sp" />
 

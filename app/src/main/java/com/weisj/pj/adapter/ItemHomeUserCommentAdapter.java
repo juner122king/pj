@@ -29,7 +29,7 @@ public class ItemHomeUserCommentAdapter extends BaseQuickAdapter<Comment.DataBea
         helper.setText(R.id.tv_user_comment, item.getContent());
         // 加载网络图片
 //        Glide.with(mContext).load(Urls.imageUrl + item.getHeaderPic()).crossFade().into((ImageView) helper.getView(R.id.iv_head_pic));
-        Glide.with(mContext).load("http://shop.party-queen.com/Public/img/pic/pic-defaultHeaderPic.png").crossFade().into((ImageView) helper.getView(R.id.iv_head_pic));
+        Glide.with(mContext).load(Urls.IP + item.getHeaderPic()).crossFade().into((ImageView) helper.getView(R.id.iv_head_pic));
 
 
         switch (item.getFileList().size()) {
