@@ -27,8 +27,8 @@ public class ItemCarListAdapter extends BaseQuickAdapter<CartGoodBean.DataEntity
 
     @Override
     protected void convert(BaseViewHolder helper, CartGoodBean.DataEntity item) {
-        helper.setText(R.id.tv_title, item.getUnit());
-        helper.setText(R.id.tv_title2, item.getSku());
+        helper.setText(R.id.tv_title, item.getGoodsName());
+        helper.setText(R.id.tv_title2, item.getUnit());
         helper.setText(R.id.tv_jiage, "￥" + item.getPrice());
 
         Glide.with(mContext)

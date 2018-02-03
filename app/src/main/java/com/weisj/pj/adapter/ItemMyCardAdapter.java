@@ -1,16 +1,17 @@
 package com.weisj.pj.adapter;
 
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.weisj.pj.R;
-import com.weisj.pj.bean.CardBean;
+import com.weisj.pj.base.activity.VipSRActivity;
 import com.weisj.pj.bean.CardTypeBean;
-import com.weisj.pj.utils.Urls;
 import com.weisj.pj.view.photocheck.GlideRoundTransform;
 
 import java.util.List;
@@ -51,6 +52,21 @@ public class ItemMyCardAdapter extends BaseQuickAdapter<CardTypeBean.DataEntity,
                 .transform(new GlideRoundTransform(mContext, 3))
                 .into((ImageView) helper.getView(R.id.iv));
 
+
+        helper.setOnClickListener(R.id.iv1, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mContext.startActivity(new Intent(mContext, VipSRActivity.class));
+            }
+        });
+
+        helper.setOnClickListener(R.id.iv2, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
 
     }
 }

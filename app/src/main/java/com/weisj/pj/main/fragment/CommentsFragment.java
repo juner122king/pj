@@ -1,5 +1,6 @@
 package com.weisj.pj.main.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +15,7 @@ import com.weisj.pj.R;
 import com.weisj.pj.adapter.ItemCarListAdapter;
 import com.weisj.pj.adapter.ItemCommentAdapter;
 import com.weisj.pj.base.BaseFragment;
+import com.weisj.pj.base.activity.MyShowActivity;
 import com.weisj.pj.base.activity.VipActivity;
 import com.weisj.pj.bean.CardBean;
 import com.weisj.pj.bean.Comment;
@@ -49,15 +51,17 @@ public class CommentsFragment extends BaseFragment implements View.OnClickListen
 
     private void initView() {
 
-        rootView.setRightText("发布", true);
+        rootView.isHintHeadBar(true);
         recyclerView = (RecyclerView) view.findViewById(R.id.rv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         tv1 = (TextView) view.findViewById(R.id.tv1);
         tv2 = (TextView) view.findViewById(R.id.tv2);
+
         tv_notdata = (TextView) view.findViewById(R.id.tv_notdata);
 
         tv1.setOnClickListener(this);
         tv2.setOnClickListener(this);
+        view.findViewById(R.id.tv_r).setOnClickListener(this);
 
     }
 
@@ -174,8 +178,8 @@ public class CommentsFragment extends BaseFragment implements View.OnClickListen
                 tv1.setTextColor(getResources().getColor(R.color.color1b1b1b));
                 break;
 
-            case R.id.root_head_right_text:
-
+            case R.id.tv_r:
+                startActivity(new Intent(getContext(), MyShowActivity.class));
 
                 break;
         }

@@ -31,21 +31,21 @@ public class CouponPresenter implements IOnManagerListener {
         if (b) {
             viewState.showInitLoading();
         } else {
-            viewState.showLoading();
+//            viewState.showLoading();
         }
         couponManager.getHomeCouponData(pronvin, this);
         couponManager.getActiData(this);
     }
 
     public void getInitData(int categoryId) {
-        viewState.showLoading();
+//        viewState.showLoading();
         page = 1;
         this.categoryId = categoryId;
         couponManager.getCouponData(categoryId, page, pageNum, this);
     }
 
     public void getData() {
-        viewState.showLoading();
+//        viewState.showLoading();
         page++;
         couponManager.getCouponData(categoryId, page, pageNum, this);
     }

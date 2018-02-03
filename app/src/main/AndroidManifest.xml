@@ -42,7 +42,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Black.NoTitleBar">
-        <activity android:name=".base.activity.LoginActivity">
+        <activity android:name=".base.activity.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -56,22 +56,16 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
 
-        <!--<activity android:name=".MainActivity">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="android.intent.action.MAIN" />-->
-
-        <!--<category android:name="android.intent.category.LAUNCHER" />-->
-        <!--</intent-filter>-->
-        <!--</activity>-->
-
-        <!--<activity-->
-        <!--android:name=".base.activity.LoginActivity"-->
-        <!--android:label="登录界面"-->
-        <!--android:screenOrientation="portrait" />-->
         <activity
             android:name=".base.activity.UserInfoActivity"
             android:label="个人设置"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".base.activity.LoginActivity"
+            android:label="登录"
+            android:screenOrientation="portrait" />
+
 
         <activity
             android:name=".view.chooseimage.ChooseImageActivity"
@@ -81,7 +75,6 @@
             android:name=".base.activity.ConsigneeAddressActivity"
             android:label="收货地址"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".base.activity.MyCardActivity"
             android:label="我的会员卡"
@@ -90,7 +83,6 @@
             android:name=".base.activity.LocationActivity"
             android:label="定位列表"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".base.activity.RegisterActivity"
             android:label="注册界面"
@@ -134,240 +126,266 @@
         <activity
             android:name=".base.activity.EditAddressActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".base.activity.OrderConfirmActivity"
             android:label="确认订单"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".base.activity.OrderActivity"
             android:label="首饰盒"
             android:screenOrientation="portrait" />
-
-
+        <activity
+            android:name=".base.activity.MyGoodActivity"
+            android:label="我的商品"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".base.activity.MyShowActivity"
+            android:label="发布晒图"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
+
                 <data android:scheme="wx3d41218648b9bdac" />
             </intent-filter>
-
-
         </activity>
 
         <service android:name=".view.dialog.DownloadService" />
 
-        <!--&lt;!&ndash; 友盟分享 &ndash;&gt;-->
-        <!--<activity-->
-        <!--android:name="com.umeng.socialize.editorpage.ShareActivity"-->
-        <!--android:excludeFromRecents="true"-->
-        <!--android:theme="@style/Theme.UMDefault" />-->
-        <!--&lt;!&ndash; <activity &ndash;&gt;-->
-        <!--&lt;!&ndash; android:name=".wxapi.WXEntryActivity" &ndash;&gt;-->
-        <!--&lt;!&ndash; android:configChanges="keyboardHidden|orientation|screenSize" &ndash;&gt;-->
-        <!--&lt;!&ndash; android:exported="true" &ndash;&gt;-->
-        <!--&lt;!&ndash; android:screenOrientation="portrait" &ndash;&gt;-->
-        <!--&lt;!&ndash; android:theme="@android:style/Theme.Translucent.NoTitleBar" /> &ndash;&gt;-->
-        <!--<activity-->
-        <!--android:name="com.tencent.tauth.AuthActivity"-->
-        <!--android:launchMode="singleTask"-->
-        <!--android:noHistory="true">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="android.intent.action.VIEW" />-->
-
-        <!--<category android:name="android.intent.category.DEFAULT" />-->
-        <!--<category android:name="android.intent.category.BROWSABLE" />-->
-
-        <!--<data android:scheme="tencent100424468" />-->
-        <!--</intent-filter>-->
-        <!--</activity>-->
-        <!--<activity-->
-        <!--android:name="com.tencent.connect.common.AssistActivity"-->
-        <!--android:screenOrientation="portrait"-->
-        <!--android:theme="@android:style/Theme.Translucent.NoTitleBar" />-->
-        <!--&lt;!&ndash; <activity &ndash;&gt;-->
-        <!--&lt;!&ndash; android:name=".WBShareActivity" &ndash;&gt;-->
-        <!--&lt;!&ndash; android:configChanges="keyboardHidden|orientation" &ndash;&gt;-->
-        <!--&lt;!&ndash; android:screenOrientation="portrait"> &ndash;&gt;-->
-        <!--&lt;!&ndash; <intent-filter> &ndash;&gt;-->
-        <!--&lt;!&ndash; <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" /> &ndash;&gt;-->
+        <!-- &lt;!&ndash; 友盟分享 &ndash;&gt; -->
+        <!-- <activity -->
+        <!-- android:name="com.umeng.socialize.editorpage.ShareActivity" -->
+        <!-- android:excludeFromRecents="true" -->
+        <!-- android:theme="@style/Theme.UMDefault" /> -->
+        <!-- &lt;!&ndash; <activity &ndash;&gt; -->
+        <!-- &lt;!&ndash; android:name=".wxapi.WXEntryActivity" &ndash;&gt; -->
+        <!-- &lt;!&ndash; android:configChanges="keyboardHidden|orientation|screenSize" &ndash;&gt; -->
+        <!-- &lt;!&ndash; android:exported="true" &ndash;&gt; -->
+        <!-- &lt;!&ndash; android:screenOrientation="portrait" &ndash;&gt; -->
+        <!-- &lt;!&ndash; android:theme="@android:style/Theme.Translucent.NoTitleBar" /> &ndash;&gt; -->
+        <!-- <activity -->
+        <!-- android:name="com.tencent.tauth.AuthActivity" -->
+        <!-- android:launchMode="singleTask" -->
+        <!-- android:noHistory="true"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.VIEW" /> -->
 
 
-        <!--&lt;!&ndash; <category android:name="android.intent.category.DEFAULT" /> &ndash;&gt;-->
-        <!--&lt;!&ndash; </intent-filter> &ndash;&gt;-->
-        <!--&lt;!&ndash; </activity> &ndash;&gt;-->
-        <!--<activity-->
-        <!--android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"-->
-        <!--android:configChanges="keyboardHidden|orientation"-->
-        <!--android:exported="false"-->
-        <!--android:windowSoftInputMode="adjustResize" />-->
+        <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+        <!-- <category android:name="android.intent.category.BROWSABLE" /> -->
 
-        <!--&lt;!&ndash;-->
-        <!--<service-->
-        <!--android:name="com.sina.weibo.sdk.net.DownloadService"-->
-        <!--android:exported="false"></service>-->
-        <!--&ndash;&gt;-->
 
-        <!--// *****************************友盟推送 Start*******************************************-->
-        <!--&lt;!&ndash; 监听通知点击或者忽略处理的广播 &ndash;&gt;-->
-        <!--<receiver-->
-        <!--android:name="com.umeng.message.NotificationProxyBroadcastReceiver"-->
-        <!--android:exported="false" />-->
+        <!-- <data android:scheme="tencent100424468" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
+        <!-- <activity -->
+        <!-- android:name="com.tencent.connect.common.AssistActivity" -->
+        <!-- android:screenOrientation="portrait" -->
+        <!-- android:theme="@android:style/Theme.Translucent.NoTitleBar" /> -->
+        <!-- &lt;!&ndash; <activity &ndash;&gt; -->
+        <!-- &lt;!&ndash; android:name=".WBShareActivity" &ndash;&gt; -->
+        <!-- &lt;!&ndash; android:configChanges="keyboardHidden|orientation" &ndash;&gt; -->
+        <!-- &lt;!&ndash; android:screenOrientation="portrait"> &ndash;&gt; -->
+        <!-- &lt;!&ndash; <intent-filter> &ndash;&gt; -->
+        <!-- &lt;!&ndash; <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" /> &ndash;&gt; -->
 
-        <!--&lt;!&ndash; 监听开机运行、网络连接变化、卸载的广播 &ndash;&gt;-->
-        <!--<receiver-->
-        <!--android:name="com.umeng.message.SystemReceiver"-->
-        <!--android:process=":push">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="android.intent.action.BOOT_COMPLETED" />-->
-        <!--</intent-filter>-->
-        <!--<intent-filter>-->
-        <!--<action android:name="android.net.conn.CONNECTIVITY_CHANGE" />-->
-        <!--</intent-filter>-->
-        <!--<intent-filter>-->
-        <!--<action android:name="android.intent.action.PACKAGE_REMOVED" />-->
 
-        <!--<data android:scheme="package" />-->
-        <!--</intent-filter>-->
-        <!--</receiver>-->
+        <!-- &lt;!&ndash; <category android:name="android.intent.category.DEFAULT" /> &ndash;&gt; -->
+        <!-- &lt;!&ndash; </intent-filter> &ndash;&gt; -->
+        <!-- &lt;!&ndash; </activity> &ndash;&gt; -->
+        <!-- <activity -->
+        <!-- android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser" -->
+        <!-- android:configChanges="keyboardHidden|orientation" -->
+        <!-- android:exported="false" -->
+        <!-- android:windowSoftInputMode="adjustResize" /> -->
 
-        <!--&lt;!&ndash; 监听消息到达的广播 &ndash;&gt;-->
-        <!--<receiver-->
-        <!--android:name="com.umeng.message.MessageReceiver"-->
-        <!--android:exported="false"-->
-        <!--android:process=":push">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="org.agoo.android.intent.action.RECEIVE" />-->
-        <!--</intent-filter>-->
-        <!--</receiver>-->
 
-        <!--&lt;!&ndash; 监听宿主选举的广播 &ndash;&gt;-->
-        <!--<receiver-->
-        <!--android:name="com.umeng.message.ElectionReceiver"-->
-        <!--android:process=":push">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="org.agoo.android.intent.action.ELECTION_RESULT_V4" />-->
+        <!-- &lt;!&ndash; -->
+        <!-- <service -->
+        <!-- android:name="com.sina.weibo.sdk.net.DownloadService" -->
+        <!-- android:exported="false"></service> -->
+        <!-- &ndash;&gt; -->
 
-        <!--<category android:name="umeng" />-->
-        <!--</intent-filter>-->
-        <!--</receiver>-->
 
-        <!--&lt;!&ndash; 监听注册的广播 &ndash;&gt;-->
-        <!--&lt;!&ndash; 【应用包名】字符串需要替换成本应用的应用包名 &ndash;&gt;-->
-        <!--<receiver-->
-        <!--android:name="com.umeng.message.RegistrationReceiver"-->
-        <!--android:exported="false">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="com.weisj.fx.intent.action.COMMAND" />-->
-        <!--</intent-filter>-->
-        <!--</receiver>-->
-        <!--<receiver android:name="com.umeng.message.UmengMessageBootReceiver">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="android.intent.action.BOOT_COMPLETED" />-->
-        <!--</intent-filter>-->
-        <!--</receiver>-->
+        <!-- // *****************************友盟推送 Start******************************************* -->
+        <!-- &lt;!&ndash; 监听通知点击或者忽略处理的广播 &ndash;&gt; -->
+        <!-- <receiver -->
+        <!-- android:name="com.umeng.message.NotificationProxyBroadcastReceiver" -->
+        <!-- android:exported="false" /> -->
 
-        <!--&lt;!&ndash; Umeng的长连服务，用来建立推送的长连接的 &ndash;&gt;-->
-        <!--&lt;!&ndash; 【应用包名】字符串需要替换成本应用的应用包名 &ndash;&gt;-->
-        <!--<service-->
-        <!--android:name="com.umeng.message.UmengService"-->
-        <!--android:exported="true"-->
-        <!--android:label="PushService"-->
-        <!--android:process=":push">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="com.weisj.fx.intent.action.START" />-->
-        <!--</intent-filter>-->
-        <!--<intent-filter>-->
-        <!--<action android:name="com.weisj.fx.intent.action.COCKROACH" />-->
-        <!--</intent-filter>-->
-        <!--<intent-filter>-->
-        <!--<action android:name="org.agoo.android.intent.action.PING_V4" />-->
 
-        <!--<category android:name="umeng" />-->
-        <!--</intent-filter>-->
-        <!--</service>-->
+        <!-- &lt;!&ndash; 监听开机运行、网络连接变化、卸载的广播 &ndash;&gt; -->
+        <!-- <receiver -->
+        <!-- android:name="com.umeng.message.SystemReceiver" -->
+        <!-- android:process=":push"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.BOOT_COMPLETED" /> -->
+        <!-- </intent-filter> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.net.conn.CONNECTIVITY_CHANGE" /> -->
+        <!-- </intent-filter> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.PACKAGE_REMOVED" /> -->
 
-        <!--&lt;!&ndash; Umeng的消息接收服务 &ndash;&gt;-->
-        <!--<service-->
-        <!--android:name="com.umeng.message.UmengIntentService"-->
-        <!--android:process=":push" />-->
 
-        <!--&lt;!&ndash; Umeng的消息路由服务 &ndash;&gt;-->
-        <!--<service-->
-        <!--android:name="com.umeng.message.UmengMessageIntentReceiverService"-->
-        <!--android:exported="true"-->
-        <!--android:process=":push">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="org.android.agoo.client.MessageReceiverService" />-->
-        <!--</intent-filter>-->
-        <!--<intent-filter>-->
-        <!--<action android:name="org.android.agoo.client.ElectionReceiverService" />-->
-        <!--</intent-filter>-->
-        <!--</service>-->
+        <!-- <data android:scheme="package" /> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
 
-        <!--&lt;!&ndash; v2.4.1添加的Service，Umeng的消息接收后的处理服务 &ndash;&gt;-->
-        <!--<service-->
-        <!--android:name="com.umeng.message.UmengMessageCallbackHandlerService"-->
-        <!--android:exported="false">-->
-        <!--<intent-filter>-->
-        <!--<action android:name="com.umeng.messge.registercallback.action" />-->
-        <!--</intent-filter>-->
-        <!--<intent-filter>-->
-        <!--<action android:name="com.umeng.message.unregistercallback.action" />-->
-        <!--</intent-filter>-->
-        <!--<intent-filter>-->
-        <!--<action android:name="com.umeng.message.message.handler.action" />-->
-        <!--</intent-filter>-->
-        <!--<intent-filter>-->
-        <!--<action android:name="com.umeng.message.autoupdate.handler.action" />-->
-        <!--</intent-filter>-->
-        <!--</service>-->
 
-        <!--&lt;!&ndash; V1.3.0添加的service，负责下载通知的资源 &ndash;&gt;-->
-        <!--<service android:name="com.umeng.message.UmengDownloadResourceService" />-->
+        <!-- &lt;!&ndash; 监听消息到达的广播 &ndash;&gt; -->
+        <!-- <receiver -->
+        <!-- android:name="com.umeng.message.MessageReceiver" -->
+        <!-- android:exported="false" -->
+        <!-- android:process=":push"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="org.agoo.android.intent.action.RECEIVE" /> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
 
-        <!--&lt;!&ndash; V2.5.0添加的Service，用于本地通知 &ndash;&gt;-->
-        <!--&lt;!&ndash; 如果不使用本地通知，可以注释掉本地通知服务的配置 &ndash;&gt;-->
-        <!--<service-->
-        <!--android:name="com.umeng.message.local.UmengLocalNotificationService"-->
-        <!--android:exported="false" />-->
 
-        <!--<meta-data-->
-        <!--android:name="UMENG_APPKEY"-->
-        <!--android:value="577db74167e58e18ae00313f" />-->
-        <!--<meta-data-->
-        <!--android:name="UMENG_MESSAGE_SECRET"-->
-        <!--android:value="5d97f330a054ee1f57589a83cddb361c" />-->
-        <!--<meta-data-->
-        <!--android:name="UMENG_CHANNEL"-->
-        <!--android:value="Channel ID" />-->
-        <!--// *****************************友盟推送 End*******************************************-->
-        <!--&lt;!&ndash; <activity &ndash;&gt;-->
-        <!--&lt;!&ndash; android:name=".base.activity.BingPhoneActivity" &ndash;&gt;-->
-        <!--&lt;!&ndash; android:screenOrientation="portrait"></activity> &ndash;&gt;-->
+        <!-- &lt;!&ndash; 监听宿主选举的广播 &ndash;&gt; -->
+        <!-- <receiver -->
+        <!-- android:name="com.umeng.message.ElectionReceiver" -->
+        <!-- android:process=":push"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="org.agoo.android.intent.action.ELECTION_RESULT_V4" /> -->
 
-        <!--// *****************************百度定位*************************************-->
-        <!--<service-->
-        <!--android:name="com.baidu.location.f"-->
-        <!--android:enabled="true"-->
-        <!--android:process=":remote" />-->
 
-        <!--<meta-data-->
-        <!--android:name="com.baidu.lbsapi.API_KEY"-->
-        <!--android:value="dGQOc6jfTWK76IgGxGsNCuPddMxW" />-->
-        <!--&lt;!&ndash;-->
-        <!--ATTENTION: This was auto-generated to add Google Play services to your project for-->
-        <!--App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.-->
-        <!--&ndash;&gt;-->
-        <!--<meta-data-->
-        <!--android:name="com.google.android.gms.version"-->
-        <!--android:value="@integer/google_play_services_version" />-->
+        <!-- <category android:name="umeng" /> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
 
-        <!--<activity android:name=".base.activity.GeRenActivity"></activity>-->
+
+        <!-- &lt;!&ndash; 监听注册的广播 &ndash;&gt; -->
+        <!-- &lt;!&ndash; 【应用包名】字符串需要替换成本应用的应用包名 &ndash;&gt; -->
+        <!-- <receiver -->
+        <!-- android:name="com.umeng.message.RegistrationReceiver" -->
+        <!-- android:exported="false"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.weisj.fx.intent.action.COMMAND" /> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
+        <!-- <receiver android:name="com.umeng.message.UmengMessageBootReceiver"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.BOOT_COMPLETED" /> -->
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
+
+
+        <!-- &lt;!&ndash; Umeng的长连服务，用来建立推送的长连接的 &ndash;&gt; -->
+        <!-- &lt;!&ndash; 【应用包名】字符串需要替换成本应用的应用包名 &ndash;&gt; -->
+        <!-- <service -->
+        <!-- android:name="com.umeng.message.UmengService" -->
+        <!-- android:exported="true" -->
+        <!-- android:label="PushService" -->
+        <!-- android:process=":push"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.weisj.fx.intent.action.START" /> -->
+        <!-- </intent-filter> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.weisj.fx.intent.action.COCKROACH" /> -->
+        <!-- </intent-filter> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="org.agoo.android.intent.action.PING_V4" /> -->
+
+
+        <!-- <category android:name="umeng" /> -->
+        <!-- </intent-filter> -->
+        <!-- </service> -->
+
+
+        <!-- &lt;!&ndash; Umeng的消息接收服务 &ndash;&gt; -->
+        <!-- <service -->
+        <!-- android:name="com.umeng.message.UmengIntentService" -->
+        <!-- android:process=":push" /> -->
+
+
+        <!-- &lt;!&ndash; Umeng的消息路由服务 &ndash;&gt; -->
+        <!-- <service -->
+        <!-- android:name="com.umeng.message.UmengMessageIntentReceiverService" -->
+        <!-- android:exported="true" -->
+        <!-- android:process=":push"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="org.android.agoo.client.MessageReceiverService" /> -->
+        <!-- </intent-filter> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="org.android.agoo.client.ElectionReceiverService" /> -->
+        <!-- </intent-filter> -->
+        <!-- </service> -->
+
+
+        <!-- &lt;!&ndash; v2.4.1添加的Service，Umeng的消息接收后的处理服务 &ndash;&gt; -->
+        <!-- <service -->
+        <!-- android:name="com.umeng.message.UmengMessageCallbackHandlerService" -->
+        <!-- android:exported="false"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.umeng.messge.registercallback.action" /> -->
+        <!-- </intent-filter> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.umeng.message.unregistercallback.action" /> -->
+        <!-- </intent-filter> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.umeng.message.message.handler.action" /> -->
+        <!-- </intent-filter> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.umeng.message.autoupdate.handler.action" /> -->
+        <!-- </intent-filter> -->
+        <!-- </service> -->
+
+
+        <!-- &lt;!&ndash; V1.3.0添加的service，负责下载通知的资源 &ndash;&gt; -->
+        <!-- <service android:name="com.umeng.message.UmengDownloadResourceService" /> -->
+
+
+        <!-- &lt;!&ndash; V2.5.0添加的Service，用于本地通知 &ndash;&gt; -->
+        <!-- &lt;!&ndash; 如果不使用本地通知，可以注释掉本地通知服务的配置 &ndash;&gt; -->
+        <!-- <service -->
+        <!-- android:name="com.umeng.message.local.UmengLocalNotificationService" -->
+        <!-- android:exported="false" /> -->
+
+
+        <!-- <meta-data -->
+        <!-- android:name="UMENG_APPKEY" -->
+        <!-- android:value="577db74167e58e18ae00313f" /> -->
+        <!-- <meta-data -->
+        <!-- android:name="UMENG_MESSAGE_SECRET" -->
+        <!-- android:value="5d97f330a054ee1f57589a83cddb361c" /> -->
+        <!-- <meta-data -->
+        <!-- android:name="UMENG_CHANNEL" -->
+        <!-- android:value="Channel ID" /> -->
+        <!-- // *****************************友盟推送 End******************************************* -->
+        <!-- &lt;!&ndash; <activity &ndash;&gt; -->
+        <!-- &lt;!&ndash; android:name=".base.activity.BingPhoneActivity" &ndash;&gt; -->
+        <!-- &lt;!&ndash; android:screenOrientation="portrait"></activity> &ndash;&gt; -->
+
+
+        <!-- // *****************************百度定位************************************* -->
+        <!-- <service -->
+        <!-- android:name="com.baidu.location.f" -->
+        <!-- android:enabled="true" -->
+        <!-- android:process=":remote" /> -->
+
+
+        <!-- <meta-data -->
+        <!-- android:name="com.baidu.lbsapi.API_KEY" -->
+        <!-- android:value="dGQOc6jfTWK76IgGxGsNCuPddMxW" /> -->
+        <!-- &lt;!&ndash; -->
+        <!-- ATTENTION: This was auto-generated to add Google Play services to your project for -->
+        <!-- App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <!-- &ndash;&gt; -->
+        <!-- <meta-data -->
+        <!-- android:name="com.google.android.gms.version" -->
+        <!-- android:value="@integer/google_play_services_version" /> -->
+
+
+        <!-- <activity android:name=".base.activity.GeRenActivity"></activity> -->
+
     </application>
 
 </manifest>

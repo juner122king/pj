@@ -83,6 +83,15 @@ public class Urls {
     //我的会员卡
     public static final String getAllKindsOfCardCount = IP + "/ndfront/card/getAllKindsOfCardCount?appid=APPID";
 
+    //提交晒图
+    public static final String addcomment = IP + "/ndfront/order/addcomment?appid=APPID";
+
+    //提交晒图 上传图片
+    public static final String addcommentpic = IP + "/ndfront/order/addcommentpic?appid=APPID";
+
+
+
+
 
 
 

@@ -31,6 +31,7 @@ import com.weisj.pj.bean.CenterBean;
 import com.weisj.pj.presenter.CenterPresenter;
 import com.weisj.pj.utils.PersonMessagePreferencesUtils;
 import com.weisj.pj.utils.PreferencesUtils;
+import com.weisj.pj.utils.Urls;
 import com.weisj.pj.view.dialog.ApplyAgentDialog;
 import com.weisj.pj.viewinterface.ICenterView;
 
@@ -49,7 +50,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
     private LinearLayout ll4;
 
     CenterBean.DataEntity dataEntity;
-    String user_head_imag = "http://shop.party-queen.com/Public/img/pic/pic-defaultHeaderPic.png";
+    String user_head_imag;
 
     @Override
     public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -86,10 +87,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
         v_daili.setOnClickListener(this);
         ll4.setOnClickListener(this);
 
-        Glide.with(getActivity())
-                .load(user_head_imag)
 
-                .into(iv_head);
     }
 
     @Override
@@ -171,7 +169,15 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
         numb1.setText(String.valueOf(dataEntity.getCollec_num()));
         numb2.setText(dataEntity.getCurrent_money());
         numb3.setText(String.valueOf(dataEntity.getCupon_num()));
-        numb4.setText(String.valueOf(dataEntity.getCart_num()));
+        numb4.setText(String.valueOf(dataEntity.getCard_num()));
+
+
+        Glide.with(getActivity())
+                .load(Urls.IP + dataEntity.getMember_pic())
+                .into(iv_head);
+
+        user_head_imag = Urls.IP + dataEntity.getMember_pic();
+
         if (dataEntity.getGroup_id() == 1) {
             user_lv_info.setText("会员");
             user_lv.setText("续费");

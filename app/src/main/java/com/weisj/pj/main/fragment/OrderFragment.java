@@ -77,39 +77,5 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
     }
-//
-//    private void changeBarState(int state) {
-////        if (state == 0) {
-////            topImage.setVisibility(View.GONE);
-////            filtrateBt.setVisibility(View.VISIBLE);
-////        } else {
-////            topImage.setVisibility(View.VISIBLE);
-////            filtrateBt.setVisibility(View.GONE);
-////        }
-////        leftBar.setSelected(state == 0);
-////        rightBar.setSelected(state == 1);
-////        topImage.setSelected(state == 0);
-//    }
-//
-//    @Override
-//    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//
-//    }
-//
-//    @Override
-//    public void onPageSelected(int position) {
-//        changeBarState(position);
-//    }
-//
-//    @Override
-//    public void onPageScrollStateChanged(int state) {
-//
-//    }
-//
-//    @Override
-//    public void onSure(String wxName, int filter_type) {
-//        if (commissionView != null){
-//            commissionView.setWxAndFilterType(filter_type,wxName);
-//        }
-//    }
+
 }

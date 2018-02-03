@@ -1,5 +1,7 @@
 package com.weisj.pj.base.activity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -54,6 +56,7 @@ public class GoodDetailActivity extends BaseActivity implements IGoodDetailView,
         view.findViewById(R.id.good_image_linear).setOnClickListener(this);
         view.findViewById(R.id.good_point).setOnClickListener(this);
         view.findViewById(R.id.tv_gp_more).setOnClickListener(this);
+        view.findViewById(R.id.tv_b1).setOnClickListener(this);
         view.findViewById(R.id.tv_b2).setOnClickListener(this);
         view.findViewById(R.id.tv_b3).setOnClickListener(this);
         view.findViewById(R.id.tv_b4).setOnClickListener(this);
@@ -200,6 +203,16 @@ public class GoodDetailActivity extends BaseActivity implements IGoodDetailView,
                 startActivity(intent);
 
                 break;
+            case R.id.tv_b1:
+
+                Dialog alertDialog = new AlertDialog.Builder(this).
+                        setTitle("联系客服").
+                        setMessage("400-099-828").
+                        create();
+                alertDialog.show();
+
+                break;
+
             case R.id.tv_b2:
 //                startActivity(new Intent(this, GoodPointActivity.class));
                 Toast.makeText(GoodDetailActivity.this, "暂不开放", Toast.LENGTH_SHORT).show();
@@ -207,7 +220,6 @@ public class GoodDetailActivity extends BaseActivity implements IGoodDetailView,
                 break;
             case R.id.tv_b3:
                 startActivity(new Intent(this, OrderActivity.class));
-
 
 
                 break;

@@ -70,16 +70,6 @@ public class OrderBean {
     }
 
     public static class DataEntity {
-        private String nickname;
-        private int order_brand_id;
-        private String brand_name;
-        private int order_brand_state;
-        private int goods_num;
-        private String shipping_sn;
-        private String shipping_company_name;
-        private String shipping_company_code;
-        private String commission_money;
-        private int pay_type;
         /**
          * number : 1
          * price : 0.02
@@ -94,6 +84,16 @@ public class OrderBean {
          * commission_money : 0
          * goods_sn : null
          */
+        private String nickname;
+        private int order_brand_id;
+        private String brand_name;
+        private int order_brand_state;
+        private int goods_num;
+        private String shipping_sn;
+        private String shipping_company_name;
+        private String shipping_company_code;
+        private String commission_money;
+        private int pay_type;
 
         private List<OrderInfoDomainListEntity> order_info_domain_list;
 
