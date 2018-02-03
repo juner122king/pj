@@ -8,6 +8,7 @@ import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.okhttp.Request;
+import com.weisj.pj.MainActivity;
 import com.weisj.pj.R;
 import com.weisj.pj.adapter.CardPagerAdapter;
 import com.weisj.pj.base.BaseActivity;
@@ -53,7 +55,7 @@ public class VipActivity extends BaseActivity implements View.OnClickListener {
     private RadioGroup rg;
     private CheckBox checkBox;
     private TextView tv1, tv2, tv3, tv4, tv5, tv6;
-    private TextView tv_zj21, tv_zj2;
+    private TextView tv_zj21, tv_zj2, tv_info;
     private TextView container;//支付按钮
     private List<CardTypeBean.DataEntity> cardTypes;
     private List<CardBean.DataEntity> cards;
@@ -93,6 +95,7 @@ public class VipActivity extends BaseActivity implements View.OnClickListener {
         setRightText("送人", true);
 
         tv1 = (TextView) view.findViewById(R.id.tv_youhui);
+        tv_info = (TextView) view.findViewById(R.id.tv_info);
         tv2 = (TextView) view.findViewById(R.id.tv_2_2);
         tv3 = (TextView) view.findViewById(R.id.tv_yj);
         tv4 = (TextView) view.findViewById(R.id.tv_yh);
@@ -135,6 +138,9 @@ public class VipActivity extends BaseActivity implements View.OnClickListener {
         });
         cardPagerAdapter = new CardPagerAdapter();
 
+
+        tv_info.setText(Html.fromHtml("<u>《菲尔南多用户协议》</u>"));
+        tv_info.setOnClickListener(this);
 
     }
 
@@ -299,6 +305,16 @@ public class VipActivity extends BaseActivity implements View.OnClickListener {
 
             case R.id.root_head_right_text:
                 startActivity(new Intent(VipActivity.this, VipSRActivity.class));
+                break;
+
+            case R.id.tv_info:
+
+                String url = "http://shop.party-queen.com/Shop/Notice/protocol.html";
+
+                Intent intent = new Intent(VipActivity.this, WebViewActivity.class);
+                intent.putExtra("url", url);
+                intent.putExtra("web_title", "");
+                startActivity(intent);
                 break;
 
         }

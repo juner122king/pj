@@ -184,21 +184,33 @@
 
         </RadioGroup>
 
-        <CheckBox
-            android:id="@+id/cb"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:button="@null"
-            android:drawableLeft="@drawable/radiobutton_zifu"
-            android:drawablePadding="5dp"
-            android:padding="5dp"
-            android:text="同意菲尔南多用户协议"
-            android:textColor="#959595"
-            android:textSize="12sp" />
+            android:orientation="horizontal">
 
-        <!--<View-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="match_parent"/>-->
+            <CheckBox
+                android:id="@+id/cb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@null"
+                android:drawableLeft="@drawable/radiobutton_zifu"
+                android:drawablePadding="5dp"
+                android:padding="5dp"
+                android:text="同意"
+                android:textColor="#959595"
+                android:textSize="12sp" />
+
+
+            <TextView
+                android:id="@+id/tv_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="《菲尔南多用户协议》"
+                android:textColor="#959595"
+                android:textSize="12sp" />
+        </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/ll_zhifu"

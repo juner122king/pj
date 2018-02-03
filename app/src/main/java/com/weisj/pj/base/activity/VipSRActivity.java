@@ -4,10 +4,12 @@ import android.annotation.SuppressLint;
 
 import com.weisj.pj.R;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
+import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -47,7 +49,7 @@ public class VipSRActivity extends BaseActivity implements View.OnClickListener 
     private RadioGroup rg;
     private CheckBox checkBox;
     private TextView tv1, tv5, tv6;
-    private TextView tv_zj21, tv_zj2;
+    private TextView tv_zj21, tv_zj2, tv_info;
     private TextView container;//支付按钮
     private List<CardTypeBean.DataEntity> cardTypes;
     private List<CardBean.DataEntity> cards;
@@ -74,6 +76,7 @@ public class VipSRActivity extends BaseActivity implements View.OnClickListener 
     private void initView(final View view) {
         editText = (EditText) view.findViewById(R.id.tv_2_2);
         tv1 = (TextView) view.findViewById(R.id.tv_youhui);
+        tv_info = (TextView) view.findViewById(R.id.tv_info);
         tv5 = (TextView) view.findViewById(R.id.tv_zj);
         tv_zj21 = (TextView) view.findViewById(R.id.tv_tv_zj21);
         tv_zj2 = (TextView) view.findViewById(R.id.tv_zj2);
@@ -111,6 +114,10 @@ public class VipSRActivity extends BaseActivity implements View.OnClickListener 
             }
         });
         cardPagerAdapter = new CardPagerAdapter();
+
+
+        tv_info.setText(Html.fromHtml("<u>《菲尔南多用户协议》</u>"));
+        tv_info.setOnClickListener(this);
 
     }
 
@@ -302,9 +309,8 @@ public class VipSRActivity extends BaseActivity implements View.OnClickListener 
                     Toast.makeText(VipSRActivity.this, "成功激活实体卡", Toast.LENGTH_SHORT).show();
                     finish();
 //                    setResult(2,intent );
-
-
                     break;
+
 
             }
         }
@@ -334,6 +340,16 @@ public class VipSRActivity extends BaseActivity implements View.OnClickListener 
             case R.id.ll_rhj:
 //                Toast.makeText(this, "优惠劵", Toast.LENGTH_SHORT).show();
                 new VipYHJDialog(this).show();
+                break;
+
+            case R.id.tv_info:
+
+                String url = "http://shop.party-queen.com/Shop/Notice/protocol.html";
+
+                Intent intent = new Intent(VipSRActivity.this, WebViewActivity.class);
+                intent.putExtra("url", url);
+                intent.putExtra("web_title", "");
+                startActivity(intent);
                 break;
 
 
