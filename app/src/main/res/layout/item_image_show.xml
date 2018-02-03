@@ -4,12 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.weisj.fx.view.FastImageView
+    <com.weisj.pj.view.FastImageView
         android:id="@+id/image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-         />
+        android:scaleType="centerCrop" />
 
     <View
         android:id="@+id/image_select_background"
@@ -22,7 +21,7 @@
         android:id="@+id/image_checkbox"
         android:layout_width="38dp"
         android:layout_height="38dp"
-        android:src="@drawable/choose_image_checkbox_selector"
         android:layout_alignParentRight="true"
-        android:padding="10dp" />
+        android:padding="10dp"
+        android:src="@drawable/choose_image_checkbox_selector" />
 </RelativeLayout>

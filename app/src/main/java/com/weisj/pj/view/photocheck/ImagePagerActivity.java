@@ -24,19 +24,7 @@ import java.util.List;
 
 /**
  * ============================================================
- * <p/>
- * 版 权 ： 百变美金 版权所有 (c) 2015
- * <p/>
- * 作 者 : 周章成
- * <p/>
- * 版 本 ： 3.7
- * <p/>
- * 创建日期 ： 2015-7-28 下午3:16:25
- * <p/>
- * 描 述 ： 图片放大缩小功能
- * <p/>
- * 修订历史 ：
- * <p/>
+ *
  * ============================================================
  **/
 public class ImagePagerActivity extends FragmentActivity implements View.OnClickListener, ViewPager.OnPageChangeListener {

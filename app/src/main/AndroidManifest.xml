@@ -66,6 +66,10 @@
             android:label="登录"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".view.photocheck.ImagePagerActivity"
+            android:screenOrientation="portrait" />
+
 
         <activity
             android:name=".view.chooseimage.ChooseImageActivity"
