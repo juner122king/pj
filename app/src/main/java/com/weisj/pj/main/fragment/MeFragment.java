@@ -22,11 +22,13 @@ import com.weisj.pj.base.BaseFragment;
 //import com.weisj.pj.base.activity.UserInfoActivity;
 //import com.weisj.pj.base.activity.WalletActivity;
 //import com.weisj.pj.base.activity.WebActivity;
+import com.weisj.pj.base.activity.AgentOrderActivity;
 import com.weisj.pj.base.activity.ConsigneeAddressActivity;
 import com.weisj.pj.base.activity.LoginActivity;
 import com.weisj.pj.base.activity.MyCardActivity;
 import com.weisj.pj.base.activity.UserInfoActivity;
 import com.weisj.pj.base.activity.VipActivity;
+import com.weisj.pj.base.activity.WalletActivity;
 import com.weisj.pj.bean.CenterBean;
 import com.weisj.pj.presenter.CenterPresenter;
 import com.weisj.pj.utils.PersonMessagePreferencesUtils;
@@ -47,7 +49,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
     private TextView name, user_lv, user_lv_info, numb1, numb2, numb3, numb4, logout, tv_day;
     private View v_daili, ll_day, ll_date;
 
-    private LinearLayout ll4;
+    private LinearLayout ll4, ll5, ll6;
 
     CenterBean.DataEntity dataEntity;
     String user_head_imag;
@@ -74,6 +76,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
         numb4 = (TextView) view.findViewById(R.id.tv_number4);
         logout = (TextView) view.findViewById(R.id.tv_logout);
         ll4 = (LinearLayout) view.findViewById(R.id.ll4);
+        ll5 = (LinearLayout) view.findViewById(R.id.ll5);
+        ll6 = (LinearLayout) view.findViewById(R.id.ll6);
 
         ll_day = view.findViewById(R.id.ll_day);
         v_daili = view.findViewById(R.id.tv_daili);
@@ -86,6 +90,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
         user_lv.setOnClickListener(this);
         v_daili.setOnClickListener(this);
         ll4.setOnClickListener(this);
+        ll5.setOnClickListener(this);
+        ll6.setOnClickListener(this);
 
 
     }
@@ -134,6 +140,18 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
             case R.id.ll4:
                 startActivity(new Intent(this.getContext(), MyCardActivity.class));
                 break;
+
+            case R.id.ll5:
+                startActivity(new Intent(this.getContext(), WalletActivity.class));
+                break;
+
+            case R.id.ll6:
+                Intent intent2 = new Intent(this.getContext(), AgentOrderActivity.class);
+                intent2.putExtra("agent_id", dataEntity.getAgent_id());
+
+                startActivity(intent2);
+                break;
+
             case R.id.image_head:
                 if (dataEntity != null) {
                     PreferencesUtils.putBoolean(GETHINTIMAGECLICK, true);
@@ -186,7 +204,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
             ll_day.setVisibility(View.VISIBLE);
             tv_day.setText(String.valueOf(dataEntity.getLeft_days()));
             ll_date.setVisibility(View.VISIBLE);
-
+            view_dl.setVisibility(View.GONE);
 
         } else if (dataEntity.getGroup_id() == 0) {
             user_lv_info.setText("您还不是会员");
@@ -196,6 +214,15 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
             ll_day.setVisibility(View.INVISIBLE);
 //            view_dl.setVisibility(View.INVISIBLE);
             ll_date.setVisibility(View.INVISIBLE);
+            view_dl.setVisibility(View.GONE);
+        } else if (dataEntity.getGroup_id() == 2) {
+            user_lv_info.setText("您是代理商");
+            user_lv.setVisibility(View.INVISIBLE);
+            v_daili.setVisibility(View.INVISIBLE);
+            ll_day.setVisibility(View.VISIBLE);
+            tv_day.setText(String.valueOf(dataEntity.getLeft_days()));
+            ll_date.setVisibility(View.VISIBLE);
+            view_dl.setVisibility(View.VISIBLE);
         }
 
 

@@ -28,22 +28,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:text="兑现银票"
+                    android:text="提现金额"
                     android:textColor="#AAAAAA"
                     android:textSize="13dp" />
 
-                <com.weisj.fx.view.ClearEditText
+                <com.weisj.pj.view.ClearEditText
                     android:id="@+id/whitdraw_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#FFFFFF"
                     android:digits="0123456789"
-                    android:hint="0"
+                    android:hint="请输入提现金额"
                     android:inputType="phone"
                     android:paddingRight="15dp"
                     android:singleLine="true"
                     android:textColor="#333333"
-                    android:textSize="34dp" />
+                    android:textSize="15sp" />
 
             </LinearLayout>
 
@@ -69,7 +69,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="3dp"
-                        android:text="兑现到 "
+                        android:text="提现到 "
                         android:textColor="#666666"
                         android:textSize="15dp" />
 
@@ -78,8 +78,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="3dp"
-                        android:text="银行卡"
-                        android:textColor="#b7ce2a"
+                        android:text="微信"
+                        android:textColor="@color/cEc115a"
                         android:textSize="15dp" />
                 </LinearLayout>
 
@@ -101,7 +101,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="15dp"
-                android:text="兑现比例： 50银票=1元 \n兑现金额只能为50的整数\n兑现金额将在七个工作日内完成"
+                android:text="兑现金额将在七个工作日内完成"
                 android:textColor="#666666"
                 android:textSize="13dp" />
 
@@ -113,7 +113,7 @@
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
                 android:alpha="0.5"
-                android:background="@drawable/rolegold_yuanjiao"
+                android:background="@drawable/red_0radio"
                 android:text="提现"
                 android:textColor="#ffffff"
                 android:textSize="18dp" />

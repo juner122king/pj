@@ -186,21 +186,21 @@ public class GoodDetailActivity extends BaseActivity implements IGoodDetailView,
 //                    }
 //                }
 //                break;
-//            case R.id.good_image_linear:
-//                Intent intent = new Intent(this, GoodImageDetailActivity.class);
-//                intent.putExtra("goodId", getGoodId());
-//                startActivity(intent);
-//                break;
+            case R.id.good_image_linear:
+                Intent intent = new Intent(this, GoodImageDetailActivity.class);
+                intent.putExtra("goodId", getGoodId());
+                startActivity(intent);
+                break;
 //
 //
             case R.id.tv_gp_more:
-                Intent intent = new Intent(GoodDetailActivity.this, GoodPointActivity.class);
+                Intent intent2 = new Intent(GoodDetailActivity.this, GoodPointActivity.class);
 
-                intent.putExtra("pic_url", goodDetail.getData().getImages().get(0));
-                intent.putExtra("title", goodDetail.getData().getGoodsName());
-                intent.putExtra("jq", goodDetail.getData().getPrice());
+                intent2.putExtra("pic_url", goodDetail.getData().getImages().get(0));
+                intent2.putExtra("title", goodDetail.getData().getGoodsName());
+                intent2.putExtra("jq", goodDetail.getData().getPrice());
 
-                startActivity(intent);
+                startActivity(intent2);
 
                 break;
             case R.id.tv_b1:
@@ -214,7 +214,6 @@ public class GoodDetailActivity extends BaseActivity implements IGoodDetailView,
                 break;
 
             case R.id.tv_b2:
-//                startActivity(new Intent(this, GoodPointActivity.class));
                 Toast.makeText(GoodDetailActivity.this, "暂不开放", Toast.LENGTH_SHORT).show();
 
                 break;

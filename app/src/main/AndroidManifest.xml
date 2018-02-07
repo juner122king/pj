@@ -55,22 +55,17 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
-
         <activity
             android:name=".base.activity.UserInfoActivity"
             android:label="个人设置"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".base.activity.LoginActivity"
             android:label="登录"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".view.photocheck.ImagePagerActivity"
             android:screenOrientation="portrait" />
-
-
         <activity
             android:name=".view.chooseimage.ChooseImageActivity"
             android:label="本地图片"
@@ -146,6 +141,32 @@
             android:name=".base.activity.MyShowActivity"
             android:label="发布晒图"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".base.activity.WalletActivity"
+            android:label="我的钱包"
+            android:screenOrientation="portrait" />
+      <activity
+            android:name=".base.activity.AgentOrderActivity"
+            android:label="代理订单"
+            android:screenOrientation="portrait" />
+
+
+        <activity
+            android:name=".base.activity.BindingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".base.activity.ModifyPayPasswordActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".base.activity.PayPasswordActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".base.activity.WhitDrawalActivity"
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"

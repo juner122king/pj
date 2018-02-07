@@ -87,8 +87,16 @@ public class CenterBean {
         private int group_id;
         private int left_days;
         private int agent_order_num;
+        private String agent_id;
         private boolean is_buy_card;
 
+        public String getAgent_id() {
+            return agent_id;
+        }
+
+        public void setAgent_id(String agent_id) {
+            this.agent_id = agent_id;
+        }
 
         public String getCommission() {
             return commission;

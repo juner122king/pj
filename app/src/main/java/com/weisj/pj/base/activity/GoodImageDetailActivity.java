@@ -1,10 +1,13 @@
 package com.weisj.pj.base.activity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.weisj.pj.R;
 import com.weisj.pj.adapter.ItemGoodDetailAdapter;
@@ -21,7 +24,7 @@ import java.util.ArrayList;
 /**
  * Created by Administrator on 2016/8/4 0004.
  */
-public class GoodImageDetailActivity extends BaseActivity implements IGoodDetailView, AdapterView.OnItemClickListener {
+public class GoodImageDetailActivity extends BaseActivity implements IGoodDetailView, AdapterView.OnItemClickListener, View.OnClickListener {
     private ListView listView;
     private ItemGoodDetailAdapter adapter;
     private GoodDetailPresenter presenter;
@@ -39,6 +42,11 @@ public class GoodImageDetailActivity extends BaseActivity implements IGoodDetail
         listView.setOnItemClickListener(this);
         presenter = new GoodDetailPresenter(this, this);
         presenter.getImageData();
+
+        view.findViewById(R.id.tv_b1).setOnClickListener(this);
+        view.findViewById(R.id.tv_b2).setOnClickListener(this);
+        view.findViewById(R.id.tv_b3).setOnClickListener(this);
+        view.findViewById(R.id.tv_b4).setOnClickListener(this);
     }
 
     @Override
@@ -81,12 +89,13 @@ public class GoodImageDetailActivity extends BaseActivity implements IGoodDetail
 
     @Override
     public void showInfo(String tag) {
-
+        Toast.makeText(this, tag, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void toVipActivity() {
 
+        startActivity(new Intent(this, VipActivity.class));
     }
 
     @Override
@@ -95,5 +104,33 @@ public class GoodImageDetailActivity extends BaseActivity implements IGoodDetail
         intent.putExtra("image_index", position);
         intent.putStringArrayListExtra(CommenString.url, list);
         startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_b1:
+
+                Dialog alertDialog = new AlertDialog.Builder(this).
+                        setTitle("联系客服").
+                        setMessage("400-099-828").
+                        create();
+                alertDialog.show();
+
+                break;
+
+            case R.id.tv_b2:
+                Toast.makeText(GoodImageDetailActivity.this, "暂不开放", Toast.LENGTH_SHORT).show();
+
+                break;
+            case R.id.tv_b3:
+                startActivity(new Intent(this, OrderActivity.class));
+
+
+                break;
+            case R.id.tv_b4:
+                presenter.isBuyCard();
+                break;
+        }
     }
 }

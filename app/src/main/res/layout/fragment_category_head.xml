@@ -154,6 +154,7 @@
                 <RadioButton
 
                     android:id="@+id/rg1_rb2"
+                    android:visibility="gone"
                     style="@style/category_radiobutton"
                     android:text="吊坠" />
 
@@ -217,11 +218,6 @@
                     android:text="不限" />
 
                 <RadioButton
-                    style="@style/category_radiobutton"
-                    android:visibility="invisible" />
-
-                <RadioButton
-
                     style="@style/category_radiobutton"
                     android:visibility="invisible" />
 
