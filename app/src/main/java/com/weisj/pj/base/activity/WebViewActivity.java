@@ -3,6 +3,7 @@ package com.weisj.pj.base.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.KeyEvent;
@@ -11,6 +12,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.weisj.pj.R;
+import com.weisj.pj.utils.PersonMessagePreferencesUtils;
 
 
 public class WebViewActivity extends Activity {
@@ -60,12 +62,9 @@ public class WebViewActivity extends Activity {
     }
 
 
-
-
-
     private void initView() {
 
-        webView = (WebView)findViewById(R.id.webView);
+        webView = (WebView) findViewById(R.id.webView);
     }
 
 
@@ -102,6 +101,8 @@ public class WebViewActivity extends Activity {
     }
 
 
+    private boolean inWrited = false;
+
     private void load() {
         // TODO Auto-generated method stub
         webView.getSettings().setJavaScriptEnabled(true);
@@ -126,8 +127,36 @@ public class WebViewActivity extends Activity {
             }
             webView.loadUrl(oldUrl);
         }
+
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                if (!inWrited) {
+                    setData(webView);
+                    inWrited = true;
+                }
+            }
+        });
+
     }
 
+    private void setData(WebView mWebView) {
+        //1.拼接 JavaScript 代码
+
+        String key = "FRND_MEMBER_ID";
+        String value = PersonMessagePreferencesUtils.getUid();
+        String js = "window.localStorage.setItem(" + key + ",'" + value + "');";
+        String jsUrl = "javascript:(function({ var localStorage = window.localStorage; localStorage.setItem(" + key + ",'" + value + "')})()";
+
+        //2.根据不同版本，使用不同的 API 执行 Js
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            mWebView.evaluateJavascript(js, null);
+        } else {
+            mWebView.loadUrl(jsUrl);
+            mWebView.reload();
+        }
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -1,5 +1,9 @@
 package com.weisj.pj.presenter;
 
+import com.tencent.mm.sdk.modelmsg.SendAuth;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
+import com.weisj.pj.Constant;
 import com.weisj.pj.base.BaseViewState;
 import com.weisj.pj.bean.UserBean;
 import com.weisj.pj.manager.ILoginManager;
@@ -33,6 +37,7 @@ public class LoginPresenter implements IOnManagerListener {
             SystemConfig.showToast("请输入正确手机号");
         }
     }
+
 
 
     @Override

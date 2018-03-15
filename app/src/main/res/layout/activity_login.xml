@@ -136,5 +136,21 @@
 
     </RelativeLayout>
 
+    <TextView
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="--使用微信登录--"
+        android:textColor="@color/color1b1b1b" />
+
+    <ImageView
+        android:id="@+id/iv_weixinlogin"
+        android:layout_gravity="center"
+        android:layout_width="40dp"
+        android:visibility="gone"
+        android:src="@mipmap/icon64_appwx_logo"
+        android:layout_marginTop="10dp"
+        android:layout_height="40dp" />
 
 </LinearLayout>

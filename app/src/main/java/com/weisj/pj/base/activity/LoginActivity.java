@@ -11,6 +11,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.tencent.mm.sdk.modelmsg.SendAuth;
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
+import com.weisj.pj.Constant;
 import com.weisj.pj.MainActivity;
 import com.weisj.pj.R;
 import com.weisj.pj.base.BaseActivity;
@@ -28,12 +32,15 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private long firstTime;
     public static final String BROADCAST_ACTION = "com.zzc.pj";
     private BroadcastReceiver mBroadcastReceiver;
-
+    private IWXAPI wxAPI;
     @Override
     public View initView(Bundle savedInstanceState) {
         View view = mLayoutInflater.inflate(R.layout.activity_login, null);
         rootView.isHintHeadBar(true);
         initView(view);
+
+        wxAPI = WXAPIFactory.createWXAPI(this, Constant.app_wx_appid,true);
+        wxAPI.registerApp(Constant.app_wx_appid);
         return view;
     }
 
@@ -68,6 +75,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     private void initView(View view) {
         view.findViewById(R.id.registerBt).setOnClickListener(this);
+        view.findViewById(R.id.iv_weixinlogin).setOnClickListener(this);
         view.findViewById(R.id.loginBt).setOnClickListener(this);
 //        view.findViewById(R.id.delect).setOnClickListener(this);
         view.findViewById(R.id.forgetPass).setOnClickListener(this);
@@ -103,9 +111,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 presenter.login();
                 KeyboardUtil.closeKeyBoard(this);
                 break;
-//            case R.id.delect:
-//                finish();
-//                break;
+            case R.id.iv_weixinlogin:
+//                SendAuth.Req req = new SendAuth.Req();
+//                req.scope = "snsapi_userinfo";
+//                req.state = String.valueOf(System.currentTimeMillis());
+//                wxAPI.sendReq(req);
+                break;
             case R.id.forgetPass:
                 Intent intent = new Intent(this, RegisterActivity.class);
                 intent.putExtra("type", 1);
