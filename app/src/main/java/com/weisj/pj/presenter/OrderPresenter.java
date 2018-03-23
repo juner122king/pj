@@ -40,7 +40,7 @@ public class OrderPresenter implements IOnManagerListener {
         orderManager.getOrderData(orderState, page, pageNum, this);
     }
 
-    public void deleteOrder(int id) {
+    public void deleteOrder(String id) {
         orderManager.deleteOrder(id, this);
     }
 
@@ -57,12 +57,13 @@ public class OrderPresenter implements IOnManagerListener {
             if (((RecommendBean) data).getCode().equals("1")) {
                 orderView.getRecommendStr(bean.getData());
             }
-        } else if (url.equals(Urls.deleteorder)) {
+        } else if (url.equals(Urls.delToCart)) {
             BaseBean baseBean = (BaseBean) data;
             if (baseBean.getCode().equals("1")) {
-                orderView.deleteOrderSuccess();
+                getcartList();
             } else {
-                orderView.deleteOrderFail();
+                orderView.getCartListFail();
+
             }
         } else if (url.equals(Urls.cartlist)) {
             CartGoodBean cgb = (CartGoodBean) data;

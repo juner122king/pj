@@ -21,9 +21,10 @@
             android:padding="5dp" />
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
+            android:layout_weight="1"
             android:orientation="vertical"
             android:paddingBottom="7dp"
             android:paddingTop="7dp">
@@ -35,7 +36,7 @@
                 android:ellipsize="end"
                 android:lines="2"
                 android:maxLines="2"
-                android:text="标题111111111标题111111111标题111111111111标题111111111"
+                android:text="标题111111111"
                 android:textColor="#313131" />
 
             <TextView
@@ -45,9 +46,9 @@
 
                 android:layout_below="@id/tv_title"
                 android:ellipsize="end"
-                android:lines="2"
-                android:maxLines="2"
-                android:text="标题111111111标题111111111标题111111111111标题111111111"
+                android:lines="1"
+                android:text="标题111111"
+                android:background="@drawable/gr_0radio"
                 android:textColor="#777"
                 android:textSize="13sp" />
 
@@ -73,5 +74,13 @@
                 android:textSize="11sp" />
         </RelativeLayout>
 
+        <CheckBox
+            android:id="@+id/cb"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="#fff"
+            android:button="@null"
+            android:layout_gravity="center"
+            android:drawableRight="@drawable/radiobutton_zifu" />
     </LinearLayout>
 </LinearLayout>

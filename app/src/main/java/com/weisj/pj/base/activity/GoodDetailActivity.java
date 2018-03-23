@@ -69,6 +69,8 @@ public class GoodDetailActivity extends BaseActivity implements IGoodDetailView,
                 ImageLoaderUtils.getInstance().display((ImageView) view, (String) model);
             }
         });
+
+
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         goodname = (TextView) view.findViewById(R.id.good_name);
         tv_sku = (TextView) view.findViewById(R.id.tv_sku);
@@ -101,7 +103,7 @@ public class GoodDetailActivity extends BaseActivity implements IGoodDetailView,
         }
 
         TextViewUtils.setText(goodname, goodDetail.getData().getGoodsName());
-        TextViewUtils.setText(tv_sku, goodDetail.getData().getSku());
+        TextViewUtils.setText(tv_sku, goodDetail.getData().getGoodsName());
 
 
         TextViewUtils.setTextAndleftOther(goodPrice, goodDetail.getData().getPrice(), "市场价:￥");

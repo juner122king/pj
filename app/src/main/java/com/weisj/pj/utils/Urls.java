@@ -147,6 +147,8 @@ public class Urls {
     public static final String getcommissionincome = IP + "/ndfront/member/getcommissionincome?appid=APPID";
     // 删除订单
     public static final String deleteorder = IP + "/ndfront/shoporder/deleteorder?appid=APPID";
+    // 删除首饰盒商品
+    public static final String delToCart = IP + "/ndfront/interface/deltocart?appid=APPID";
     // 公告
     public static final String getarticlelist = IP + "/ndfront/interface/getarticlelist?appid=APPID";
     // 查询我的订单的订单详情

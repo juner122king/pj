@@ -9,7 +9,7 @@
     <com.weisj.pj.view.bgabanner.BGABanner
         android:id="@+id/bagbanner_container"
         android:layout_width="match_parent"
-        android:layout_height="285dp"
+        android:layout_height="360dp"
         app:banner_pageChangeDuration="1000"
         app:banner_pointAutoPlayAble="true"
         app:banner_pointContainerBackground="@android:color/transparent"

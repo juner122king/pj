@@ -13,6 +13,6 @@ public interface IOrderManager {
 
     void getMyRecommend(IOnManagerListener listener);
 
-    void deleteOrder(int id, IOnManagerListener listener);
+    void deleteOrder(String id, IOnManagerListener listener);
     void cartlist( IOnManagerListener listener);
 }

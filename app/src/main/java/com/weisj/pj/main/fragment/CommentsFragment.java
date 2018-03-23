@@ -12,17 +12,13 @@ import android.widget.TextView;
 
 import com.squareup.okhttp.Request;
 import com.weisj.pj.R;
-import com.weisj.pj.adapter.ItemCarListAdapter;
 import com.weisj.pj.adapter.ItemCommentAdapter;
 import com.weisj.pj.base.BaseFragment;
 import com.weisj.pj.base.activity.MyShowActivity;
-import com.weisj.pj.base.activity.VipActivity;
-import com.weisj.pj.bean.CardBean;
 import com.weisj.pj.bean.Comment;
 import com.weisj.pj.utils.OkHttpClientManager;
 import com.weisj.pj.utils.PersonMessagePreferencesUtils;
 import com.weisj.pj.utils.Urls;
-import com.weisj.pj.view.dialog.VipKTDialog;
 
 import java.util.HashMap;
 import java.util.Map;

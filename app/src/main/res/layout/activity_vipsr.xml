@@ -179,6 +179,7 @@
                 android:drawablePadding="10dp"
                 android:drawableRight="@drawable/radiobutton_zifu"
                 android:text="支付宝支付"
+                android:visibility="gone"
                 android:textColor="#434343"
                 android:textSize="14sp" />
 

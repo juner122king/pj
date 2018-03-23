@@ -110,23 +110,23 @@ public class OrderManager implements IOrderManager {
         });
     }
 
-    @Override//删除订单
-    public void deleteOrder(int id, final IOnManagerListener listener) {
+    @Override//删除首饰盒商品
+    public void deleteOrder(String id, final IOnManagerListener listener) {
         Map<String, String> params = new HashMap<>();
         params.put("member_id", PersonMessagePreferencesUtils.getUid());
-        params.put("order_brand_id", String.valueOf(id));
-        OkHttpClientManager.postAsyn(Urls.deleteorder, params, new OkHttpClientManager.ResultCallback<BaseBean>() {
+        params.put("goods_id", id);
+        OkHttpClientManager.postAsyn(Urls.delToCart, params, new OkHttpClientManager.ResultCallback<BaseBean>() {
             @Override
             public void onError(Request request, Exception e) {
-                listener.onFail(e, Urls.deleteorder);
+                listener.onFail(e, Urls.delToCart);
             }
 
             @Override
             public void onResponse(BaseBean response) {
                 if (response != null) {
-                    listener.onSuccess(response, Urls.deleteorder);
+                    listener.onSuccess(response, Urls.delToCart);
                 } else {
-                    listener.onFail(new RuntimeException("null"), Urls.deleteorder);
+                    listener.onFail(new RuntimeException("null"), Urls.delToCart);
                 }
             }
         });

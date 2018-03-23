@@ -223,21 +223,6 @@ public class ItemDistributionCommissionAdapter extends BaseExpandableListAdapter
         }
     }
 
-    private void deleteAlert(final OrderBean.DataEntity dataEntity) {
-        new AlertDialog.Builder(mInflater.getContext()).setTitle("顺丰大当家提示")//设置对话框标题
-                .setMessage("请确认是否删除该订单记录")//设置显示的内容
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {//添加确定按钮
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {//确定按钮的响应事件
-                        view.presenter.deleteOrder(dataEntity.getOrder_brand_id());
-                    }
-                }).setNegativeButton("取消", new DialogInterface.OnClickListener() {//添加返回按钮
-            @Override
-            public void onClick(DialogInterface dialog, int which) {//响应事件
-                dialog.dismiss();
-            }
-        }).show();//在按键响应事件中显示此对话框
-    }
 
 
     private class BrandViewHolder {

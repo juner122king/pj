@@ -1,14 +1,17 @@
 package com.weisj.pj.main.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.weisj.pj.R;
 import com.weisj.pj.adapter.ItemOrderFragmentAdapter;
 import com.weisj.pj.base.BaseFragment;
+import com.weisj.pj.base.activity.MyShowActivity;
 import com.weisj.pj.bean.BaseBean;
 import com.weisj.pj.main.fragment.order.DistributionCommissionView;
 import com.weisj.pj.main.fragment.order.DistributionRecordView;
@@ -21,7 +24,7 @@ import java.util.List;
  * Created by zh on 16/6/21.
  * 首饰盒主页
  */
-public class OrderFragment extends BaseFragment implements View.OnClickListener{
+public class OrderFragment extends BaseFragment implements View.OnClickListener {
     List<View> list = new ArrayList<>();
     private View view;
     private ViewPager viewPager;
@@ -29,6 +32,8 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener{
     private DistributionRecordView recordView;
     private FiltratePopupWindow popupWindow;
     private BaseBean baseBean;
+    private TextView t_r;
+    boolean isZFtype = true;//当前是否为支付状态
 
     @Override
     public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,6 +54,7 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener{
     }
 
     private void initView() {
+        rootView.isHintHeadBar(true);
         commissionView = new DistributionCommissionView(mInflater);
 //        recordView = new DistributionRecordView(mInflater);
         list.add(commissionView.getRootView());
@@ -56,7 +62,8 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener{
         viewPager = (ViewPager) view.findViewById(R.id.view_pager);
         viewPager.setAdapter(new ItemOrderFragmentAdapter(list));
 //        viewPager.addOnPageChangeListener(this);
-
+        t_r = (TextView) view.findViewById(R.id.tv_r);
+        t_r.setOnClickListener(this);
 
     }
 
@@ -74,8 +81,26 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener{
         }
     }
 
+
     @Override
     public void onClick(View v) {
-    }
+        switch (v.getId()) {
 
+            case R.id.tv_r:
+
+                if (isZFtype) {
+                    t_r.setText("完成");
+                    isZFtype = false;
+
+
+                } else {
+                    t_r.setText("编辑");
+                    isZFtype = true;
+                }
+                commissionView.setZFType(isZFtype);
+                break;
+        }
+
+
+    }
 }

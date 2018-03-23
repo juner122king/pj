@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.SparseArray;
+import android.util.SparseBooleanArray;
+import android.util.SparseIntArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ExpandableListView;
@@ -50,9 +53,14 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
     private int state = 0;//0等待买家待选中,1买家已付款,  2卖家已发货，待收货,  12 待评价 -1表示全部  13待归还  14 已完成
     private TextView noDataView;
     private TextView tv_p;//押金
+    private TextView tv_zf_text;//支付按钮文字
     private RecyclerView recyclerView_carlist;
 
+
     public static String yj;
+
+    private boolean isZFtype = true;//当前是否为支付状态
+
 
     public void setWxAndFilterType(int filter_type, String wxName) {
 
@@ -90,6 +98,7 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
         recyclerView_carlist = (RecyclerView) rootView.findViewById(R.id.recyclerView_carlist);
         tv_p = (TextView) rootView.findViewById(R.id.tv_p);
         ll_zhifu = (LinearLayout) rootView.findViewById(R.id.ll_zhifu);
+        tv_zf_text = (TextView) rootView.findViewById(R.id.tv_zf_text);
         tv_p = (TextView) rootView.findViewById(R.id.tv_p);
 
         noDataView = (TextView) rootView.findViewById(R.id.no_data);
@@ -101,6 +110,8 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
         selectView4.setOnClickListener(this);
 
         ll_zhifu.setOnClickListener(this);
+
+
     }
 
     public void hidezhifu() {
@@ -120,6 +131,19 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
     public void changeOrderState(int state) {
         this.state = state;
         presenter.getInitOrderData(state);
+    }
+
+    public void setZFType(boolean isZFtype) {
+
+        if (isZFtype) {
+
+            tv_zf_text.setText("去支付");
+        } else {
+            tv_zf_text.setText("确认删除");
+        }
+
+        this.isZFtype = isZFtype;
+
     }
 
 
@@ -149,10 +173,6 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
         setExpandListView();
     }
 
-//    public void replaceCartData() {
-//        carListAdapter = new ItemCarListAdapter(null);
-//        recyclerView_carlist.setAdapter(carListAdapter);
-//    }
 
     @Override
     public void onClick(View v) {
@@ -204,21 +224,57 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
                 break;
             case R.id.ll_zhifu:
 
-                if (goodBean.getData().size() == 0) {
-                    Toast.makeText(rootRela.getContext(), "首饰盒中暂无商品，请先选择商品加入首饰盒", Toast.LENGTH_SHORT).show();
+                if (isZFtype) {
+
+                    if (goodBean.getData().size() == 0) {
+                        Toast.makeText(rootRela.getContext(), "首饰盒中暂无商品，请先选择商品加入首饰盒", Toast.LENGTH_SHORT).show();
+                    } else {
+
+                        // 跳到品类页面
+                        Intent intent = new Intent(rootView.getContext(), OrderConfirmActivity.class);
+                        intent.putExtra("cartId", cartId);
+                        intent.putExtra("yj", yj);
+
+                        rootView.getContext().startActivity(intent);
+
+                    }
                 } else {
 
-                    // 跳到品类页面
-                    Intent intent = new Intent(rootView.getContext(), OrderConfirmActivity.class);
-                    intent.putExtra("cartId", cartId);
-                    intent.putExtra("yj", yj);
-
-                    rootView.getContext().startActivity(intent);
+                    Toast.makeText(rootRela.getContext(), "删除", Toast.LENGTH_SHORT).show();
+                    presenter.deleteOrder(getDelId());
 
                 }
                 break;
         }
     }
+
+    private String getDelId() {
+        String id = "";
+        List<String> list = new ArrayList();
+        int s = carListAdapter.mCheckStates.size();
+        for (int i = 0; i < s; i++) {
+
+            if (carListAdapter.mCheckStates.get(i) == true) {
+
+                list.add(carListAdapter.getData().get(i).getGoodsId());
+            }
+        }
+
+
+        for (int i = 0; i < list.size(); i++) {
+
+            if (i == 0) {
+                id = list.get(i);
+            } else
+            id = id.concat("," + list.get(i));
+
+
+        }
+
+
+        return id;
+    }
+
 
     @Override
     public void showLoading() {
@@ -335,6 +391,7 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
                 yj = "1000";
             }
         } else {
+            tv_p.setText("￥0");
             noDataView.setOnClickListener(this);
             noDataView.setText("没有选择商品");
             noDataView.setVisibility(View.VISIBLE);
