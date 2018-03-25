@@ -140,9 +140,19 @@ public class OrderConfirmActivity extends BaseActivity implements View.OnClickLi
                     if (response.getCode().equals("0")) {
                         Toast.makeText(OrderConfirmActivity.this, response.getMsg(), Toast.LENGTH_SHORT).show();
                     } else {
-                        WxPayUtils wxPayUtils = new WxPayUtils(OrderConfirmActivity.this);
-                        wxPayUtils.pay(response.getData());
-                        finish();
+
+                        if (response.getData().getIs_use_balace() == "1") {
+                            //后台用余额支付了
+                            Toast.makeText(OrderConfirmActivity.this, "已用余额支付成功", Toast.LENGTH_SHORT).show();
+
+
+                        } else {
+                            WxPayUtils wxPayUtils = new WxPayUtils(OrderConfirmActivity.this);
+                            wxPayUtils.pay(response.getData());
+                            finish();
+
+                        }
+
 
                     }
                 }

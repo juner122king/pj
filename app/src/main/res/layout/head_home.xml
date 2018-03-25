@@ -290,11 +290,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:text="剩余165天 已报名793人"
+                android:text="剩余37天 已报名1人"
                 android:textColor="#ee8274"
                 android:textSize="12sp" />
 
             <TextView
+                android:id="@+id/tv_vip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -304,7 +305,7 @@
                 android:paddingRight="5dp"
                 android:text="立即参与"
                 android:textColor="#fff"
-                android:visibility="invisible" />
+                android:visibility="visible" />
         </RelativeLayout>
 
     </LinearLayout>

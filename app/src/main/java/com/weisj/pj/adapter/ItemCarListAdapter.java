@@ -70,8 +70,6 @@ public class ItemCarListAdapter extends BaseQuickAdapter<CartGoodBean.DataEntity
 
 
         CheckBox checkBox = helper.getView(R.id.cb);
-
-
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -83,27 +81,9 @@ public class ItemCarListAdapter extends BaseQuickAdapter<CartGoodBean.DataEntity
                     mCheckStates.put(position, false);
                     //do something else
                 }
-
-
             }
         });
         checkBox.setChecked(mCheckStates.get(position, false));
-
-//        checkBox.setTag(R.id.cb, position);
-//        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                int pos = (int) buttonView.getTag();
-//                if (isChecked) {
-//                    mCheckStates.put(pos, true);
-//                    //do something
-//                } else {
-//                    mCheckStates.delete(pos);
-//                    //do something else
-//                }
-//            }
-//        });
-//        checkBox.setChecked(mCheckStates.get(position, false));
 
     }
 }

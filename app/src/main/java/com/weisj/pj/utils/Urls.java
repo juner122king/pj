@@ -137,6 +137,14 @@ public class Urls {
     public static final String shareGoodUrl = IP + "/Shop/goods?goods_id=";
     // 查询我的订单
     public static final String myorders = IP + "/ndfront/order/myorders?appid=APPID";
+
+
+    // 还货
+    public static final String returnJewel = IP + "/ndfront/order/returnJewel?appid=APPID";
+    // 确认收货
+    public static final String confirmreceive = IP + "/ndfront/order/confirmreceive?appid=APPID";
+
+
     // 申请商家接口
     public static final String apply_company = IP + "/ndfront/interface/apply_company?appid=APPID";
     // 闪屏广告

@@ -77,17 +77,18 @@
     </LinearLayout>
 
     <View
-        android:background="#999"
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="1px" />
+        android:layout_height="1px"
+        android:layout_marginTop="10dp"
+        android:background="#999"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/tv_but"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="right"
-
+        android:visibility="gone"
         android:paddingTop="10dp"
         android:text="催发货"
         android:textColor="#999" />

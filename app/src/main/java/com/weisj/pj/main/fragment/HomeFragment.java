@@ -57,7 +57,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     public static String shareCity;
 
     private LinearLayout addressLocation, horizontalLinear;
-    View headView;
+    View headView, tv_vip;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -83,8 +83,9 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         tv_acton_title = (TextView) headView.findViewById(R.id.tv_acton_title);
         tv_acton_info = (TextView) headView.findViewById(R.id.tv_acton_info);
         iv_acton = (ImageView) headView.findViewById(R.id.iv_acton);
+        tv_vip = headView.findViewById(R.id.tv_vip);
         Glide.with(getActivity())
-                .load("http://shop.party-queen.com/Public/img/pic/pic-activity2.jpg?v=2")
+                .load("http://shop.party-queen.com/Public/backend/upload/images/2018/03/20180315091656_92411.jpg")
 
 
                 .transform(new GlideRoundTransform(getActivity(), 3))
@@ -97,6 +98,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         headView.findViewById(R.id.home_more).setOnClickListener(this);
         view.findViewById(R.id.root_head_search).setOnClickListener(this);
         iv_acton.setOnClickListener(this);
+        tv_vip.setOnClickListener(this);
         homeBanner = (BGABanner) headView.findViewById(R.id.home_banner);
         homeBanner2 = (BGABanner) headView.findViewById(R.id.home_banner2);
         homeBanner_vip = (ImageView) headView.findViewById(R.id.home_banner_vip);
@@ -134,21 +136,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
                 });
             }
         });
-//        homeBanner_vip.setAdapter(new BGABanner.Adapter() {
-//            @Override
-//            public void fillBannerItem(BGABanner banner, View view, Object model, int position) {
-//                Ad bean = (Ad) model;
-//
-//                Glide.with(getActivity())
-//                        .load(Urls.imageUrl + bean.getAdPic())
-//                        .placeholder(R.mipmap.icon_banner_default)
-//                        .error(R.mipmap.icon_banner_default)
-//
-//                        .fitCenter()
-//                        .transform(new GlideRoundTransform(getActivity(), 3))
-//                        .into((ImageView) view);
-//            }
-//        });
+
         homeBanner2.setAdapter(new BGABanner.Adapter() {
             @Override
             public void fillBannerItem(BGABanner banner, View view, Object model, int position) {
@@ -218,23 +206,6 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     @Override
     public void onResume() {
         super.onResume();
-//        pronvin = CommenString.selectCity;
-//        if (!PreferencesUtils.getBoolean("one_go_app", false)) {
-//            PreferencesUtils.putBoolean("one_go_app", true);
-//            new SelectCityDialog(this.getContext(), this).show();
-//        } else {
-//            if (CommenString.locationState) {
-//                if (!CommenString.selectCity.equals(PreferencesUtils.getString("select_city", ""))) {
-//                    new SelectCityDialog(this.getContext(), this).show();
-//                }
-//            } else {
-//                String city = PreferencesUtils.getString("select_city", "");
-//                if (!city.equals("")) {
-//                    CommenString.selectCity = city;
-//                    pronvin = CommenString.selectCity;
-//                }
-//            }
-//        }
     }
 
     @Override
@@ -413,8 +384,8 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
 
             case R.id.home_banner_vip:
 
-//                intent = new Intent(getContext(), VipActivity.class);
-//                startActivity(intent);
+//              intent = new Intent(getContext(), VipActivity.class);
+//              startActivity(intent);
 
                 startActivityForResult(new Intent(getActivity(), VipActivity.class), MainActivity.HomeTOVip);
                 break;
@@ -426,9 +397,12 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
 
 
             case R.id.iv_acton:
-                toWebViewActivity("http://shop.party-queen.com/Shop/Notice/index.html?id=58&agent_id=8", "千人计划—“最美体验官”火热招募中！");
+                toWebViewActivity("http://shop.party-queen.com/Shop/Notice/index.html?id=58", "千人计划—“最美体验官”火热招募中！");
                 break;
 
+            case R.id.tv_vip:
+                toWebViewActivity("http://shop.party-queen.com/Shop/Notice/index.html?id=58", "千人计划—“最美体验官”火热招募中！");
+                break;
 
 
             case R.id.home_more:

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.okhttp.Request;
 import com.weisj.pj.R;
@@ -77,11 +78,11 @@ public class WalletActivity extends BaseActivity implements View.OnClickListener
             @Override
             public void onResponse(MyWalletBean response) {
                 if (response.getCode().equals("1")) {
-                    all_income.setText("累计收入(元)：" + SystemConfig.moneymulti(response.getData().getAll_income()));
-                    user_money.setText(SystemConfig.moneymulti(response.getData().getUser_money()));
-                    not_confirm_money.setText(SystemConfig.moneymulti(response.getData().getNot_confirm_money()));
-                    withdrawing_money.setText(SystemConfig.moneymulti(response.getData().getWithdrawing_money()));
-                    withdraw_money.setText(SystemConfig.moneymulti(response.getData().getWithdraw_money()));
+                    all_income.setText("累计收入(元)：" + response.getData().getAll_income());
+                    user_money.setText(response.getData().getUser_money());
+                    not_confirm_money.setText(response.getData().getNot_confirm_money());
+                    withdrawing_money.setText(response.getData().getWithdrawing_money());
+                    withdraw_money.setText(response.getData().getWithdraw_money());
                 } else {
                     SystemConfig.showToast(response.getMsg());
                 }
@@ -111,7 +112,9 @@ public class WalletActivity extends BaseActivity implements View.OnClickListener
                     break;
 
                 case R.id.billBt:
-                    startActivity(new Intent(this, BillActivity.class));
+
+                    Toast.makeText(this, "暂不支持", Toast.LENGTH_SHORT).show();
+//                    startActivity(new Intent(this, BillActivity.class));
                     break;
 
                 case R.id.wallet_p://电子协议

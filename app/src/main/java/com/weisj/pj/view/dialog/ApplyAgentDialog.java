@@ -30,7 +30,7 @@ import java.util.Map;
 public class ApplyAgentDialog extends AlertDialog implements View.OnClickListener {
     private Context context;
 
-    private EditText tv_kahao;
+    private EditText tv_kahao, tv_myphone;
     private Handler uiHandler;
 
     public ApplyAgentDialog(Activity context, Handler uiHandler) {
@@ -57,6 +57,7 @@ public class ApplyAgentDialog extends AlertDialog implements View.OnClickListene
         findViewById(R.id.tv_caler).setOnClickListener(this);
         findViewById(R.id.tv_ent).setOnClickListener(this);
         tv_kahao = (EditText) findViewById(R.id.text_kahao);
+        tv_myphone = (EditText) findViewById(R.id.tv_myphone);
 
 
     }
@@ -78,17 +79,17 @@ public class ApplyAgentDialog extends AlertDialog implements View.OnClickListene
                 break;
             case R.id.tv_ent:
                 String phone = tv_kahao.getText().toString();
-                if (Utility.isMobile(phone))
-                    applyAgent(phone);
+                String myphone = tv_myphone.getText().toString();
+                if (Utility.isMobile(phone) && Utility.isMobile(myphone))
+                    applyAgent(phone, myphone);
                 else
                     SystemConfig.showToast("请输入正确的手机号码");
-
 
                 break;
         }
     }
 
-    public void applyAgent(String cellphone) {
+    public void applyAgent(String cellphone, String myphone) {
         cancel();
         Map<String, String> params = new HashMap<>();
         if (PersonMessagePreferencesUtils.getUid() == null) {
@@ -96,6 +97,7 @@ public class ApplyAgentDialog extends AlertDialog implements View.OnClickListene
         }
         params.put("member_id", PersonMessagePreferencesUtils.getUid());
         params.put("cellphone", cellphone);
+        params.put("my_cellphone", myphone);
         OkHttpClientManager.postAsyn(Urls.applyAgent, params, new OkHttpClientManager.ResultCallback<CenterBean>() {
             @Override
             public void onError(Request request, Exception e) {

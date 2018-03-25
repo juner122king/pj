@@ -25,6 +25,7 @@ public class ComfirmPayCardBean implements Serializable {
      * "timestamp": "1516164461",
      * "sign": "E6E6E5F610EE66AE27B29AC4B88886FC",
      * "is_xcx": 0
+     * "is_use_balace":1   后台是否用了余额支付
      * },
      * "desc": null
      * }
@@ -71,6 +72,7 @@ public class ComfirmPayCardBean implements Serializable {
         private String result_msg;
         private String sign;
         private String timestamp;
+        private String is_use_balance;
 
         public String getTimestamp() {
             return timestamp;
@@ -161,6 +163,14 @@ public class ComfirmPayCardBean implements Serializable {
 
         public void setIs_xcx(int is_xcx) {
             this.is_xcx = is_xcx;
+        }
+
+        public String getIs_use_balace() {
+            return is_use_balance;
+        }
+
+        public void setIs_use_balace(String is_use_balace) {
+            this.is_use_balance = is_use_balace;
         }
     }
 }

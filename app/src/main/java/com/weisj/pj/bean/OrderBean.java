@@ -45,6 +45,13 @@ public class OrderBean {
 
     private List<DataEntity> data;
 
+    public void addData(List<DataEntity> newdata) {
+        if (newdata != null)
+            data.addAll(newdata);
+
+
+    }
+
     public void setCode(String code) {
         this.code = code;
     }
@@ -83,6 +90,7 @@ public class OrderBean {
          * is_comment : 0
          * commission_money : 0
          * goods_sn : null
+         * order_id : 126
          */
         private String nickname;
         private int order_brand_id;
@@ -94,6 +102,15 @@ public class OrderBean {
         private String shipping_company_code;
         private String commission_money;
         private int pay_type;
+        private String order_id;
+
+        public String getOrder_id() {
+            return order_id;
+        }
+
+        public void setOrder_id(String order_id) {
+            this.order_id = order_id;
+        }
 
         private List<OrderInfoDomainListEntity> order_info_domain_list;
 

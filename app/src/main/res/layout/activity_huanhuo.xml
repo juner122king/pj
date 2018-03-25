@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f4f4f4"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/ll_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="首饰盒回寄地址："
+                android:textColor="#434343"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="菲尓南多售后 400-0099-828"
+                android:textColor="#434343" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="广东省深圳市福田区车公庙苍松大厦北座1907-1908"
+                android:textColor="#434343" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="7dp"
+            android:layout_marginTop="7dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="32dp"
+                android:layout_marginBottom="2px"
+                android:background="#fff"
+                android:gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="选择快递公司"
+                    android:textSize="15sp"
+                    android:textColor="#434343" />
+
+            </LinearLayout>
+
+            <RadioGroup
+                android:id="@+id/rg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:paddingLeft="20dp"
+                android:paddingRight="10dp">
+
+                <RadioButton
+                    android:id="@+id/rb_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="#fff"
+                    android:button="@null"
+                    android:checked="true"
+                    android:drawablePadding="10dp"
+                    android:drawableRight="@drawable/radiobutton_zifu"
+                    android:text="顺丰快递"
+                    android:textColor="#434343"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#e5e5e5" />
+
+                <RadioButton
+                    android:id="@+id/rb_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="#fff"
+                    android:button="@null"
+                    android:drawablePadding="10dp"
+
+                    android:drawableRight="@drawable/radiobutton_zifu"
+                    android:text="中通快递"
+                    android:textColor="#434343"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#e5e5e5" />
+
+                <RadioButton
+                    android:id="@+id/rb_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="#fff"
+                    android:button="@null"
+                    android:drawablePadding="10dp"
+
+                    android:drawableRight="@drawable/radiobutton_zifu"
+                    android:text="圆通快递"
+                    android:textColor="#434343"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#e5e5e5" />
+
+                <RadioButton
+                    android:id="@+id/rb_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="#fff"
+                    android:button="@null"
+                    android:drawablePadding="10dp"
+
+                    android:drawableRight="@drawable/radiobutton_zifu"
+                    android:text="韵达快递"
+                    android:textColor="#434343"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#e5e5e5" />
+
+                <RadioButton
+                    android:id="@+id/rb_5"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="#fff"
+                    android:button="@null"
+                    android:drawablePadding="10dp"
+
+                    android:drawableRight="@drawable/radiobutton_zifu"
+                    android:text="天天快递"
+                    android:textColor="#434343"
+                    android:textSize="14sp" />
+
+            </RadioGroup>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_jh"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="8dp"
+            android:background="#fff"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <TextView
+                android:id="@+id/tv_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="快递单号"
+                android:textColor="#434343" />
+
+            <EditText
+                android:id="@+id/tv_2_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="请填写您的快递单号"
+                android:inputType="number"
+                android:textColor="#a0a0a0"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/cb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:button="@null"
+            android:checked="true"
+            android:drawableLeft="@drawable/radiobutton_zifu"
+            android:text="还货后押金退至用户余额"
+            android:textColor="#555" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_zhifu"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:background="#fff"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/tv_tv_zj21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:text="实付押金:"
+            android:textColor="#313131"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/tv_zj2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="7dp"
+            android:layout_weight="1"
+            android:text="$0"
+            android:textColor="#f00056"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/tv_zf"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="7dp"
+            android:background="@drawable/shape_gradient_red"
+            android:gravity="center"
+            android:text="提交还货单"
+            android:textColor="#fff" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

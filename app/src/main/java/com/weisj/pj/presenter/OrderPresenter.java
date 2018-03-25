@@ -29,15 +29,18 @@ public class OrderPresenter implements IOnManagerListener {
 
     public void getInitOrderData(int orderState) {
         page = 1;
-//        viewState.showLoading();
-
-        orderManager.getOrderData(orderState, page, pageNum, this);
-//        orderManager.getMyRecommend(this);
+        if (orderState == 1 || orderState == 2) {
+            orderManager.getOrderData1and2(page, pageNum, this);
+        } else
+            orderManager.getOrderData(orderState, page, pageNum, this);
     }
 
     public void getOrderdata(int orderState) {
         page++;
-        orderManager.getOrderData(orderState, page, pageNum, this);
+        if (orderState == 1 || orderState == 2) {
+            orderManager.getOrderData1and2(page, pageNum, this);
+        } else
+            orderManager.getOrderData(orderState, page, pageNum, this);
     }
 
     public void deleteOrder(String id) {

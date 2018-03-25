@@ -220,8 +220,7 @@ public class GoodDetailActivity extends BaseActivity implements IGoodDetailView,
 
                 break;
             case R.id.tv_b3:
-                startActivity(new Intent(this, OrderActivity.class));
-
+//                startActivity(new Intent(this, OrderActivity.class));
 
                 break;
             case R.id.tv_b4:

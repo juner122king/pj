@@ -2,6 +2,8 @@ package com.weisj.pj.main.fragment.order;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
@@ -50,12 +52,12 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
     private ItemCarListAdapter carListAdapter;
     private AbPullToRefreshView refreshView;
     public OrderPresenter presenter;
-    private int state = 0;//0等待买家待选中,1买家已付款,  2卖家已发货，待收货,  12 待评价 -1表示全部  13待归还  14 已完成
+    private int state = 0;//0等待买家待选中,  order_state=1未发货未签收；order_state=2已发货未签收,  12 待评价 -1表示全部  3待归还  14 已完成
     private TextView noDataView;
     private TextView tv_p;//押金
     private TextView tv_zf_text;//支付按钮文字
     private RecyclerView recyclerView_carlist;
-
+    private View view_delete;//删除选择按钮
 
     public static String yj;
 
@@ -138,6 +140,7 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
         if (isZFtype) {
 
             tv_zf_text.setText("去支付");
+
         } else {
             tv_zf_text.setText("确认删除");
         }
@@ -156,10 +159,7 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
             expandableListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
                 @Override
                 public boolean onGroupClick(ExpandableListView parent, View v, int groupPosition, long id) {
-//                    OrderBean.DataEntity orderData = dataList.get(groupPosition);
-//                    Intent intent = new Intent(inflater.getContext(), OrderDetailActivity.class);
-//                    intent.putExtra("orderId", orderData.getOrder_brand_id());
-//                    inflater.getContext().startActivity(intent);
+
                     return true;
                 }
             });
@@ -187,11 +187,11 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
                 recyclerView_carlist.setVisibility(View.VISIBLE);
                 expandableListView.setVisibility(View.GONE);
                 break;
-            case R.id.order_commission_no_send:
+            case R.id.order_commission_no_send:   //  包含  OrderState = 1  OrderState = 2 ,的数据
                 lastView.setSelected(false);
                 v.setSelected(true);
                 lastView = selectView2;
-                changeOrderState(1);
+                changeOrderState(2);
                 hidezhifu();
                 refresh_view.setVisibility(View.VISIBLE);
                 recyclerView_carlist.setVisibility(View.GONE);
@@ -200,7 +200,7 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
                 lastView.setSelected(false);
                 v.setSelected(true);
                 lastView = selectView3;
-                changeOrderState(13);
+                changeOrderState(3);
                 hidezhifu();
                 refresh_view.setVisibility(View.VISIBLE);
                 recyclerView_carlist.setVisibility(View.GONE);
@@ -260,13 +260,12 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
             }
         }
 
-
         for (int i = 0; i < list.size(); i++) {
 
             if (i == 0) {
                 id = list.get(i);
             } else
-            id = id.concat("," + list.get(i));
+                id = id.concat("," + list.get(i));
 
 
         }

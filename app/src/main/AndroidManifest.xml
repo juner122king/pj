@@ -141,32 +141,30 @@
             android:name=".base.activity.MyShowActivity"
             android:label="发布晒图"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".base.activity.WalletActivity"
             android:label="我的钱包"
             android:screenOrientation="portrait" />
-      <activity
+        <activity
             android:name=".base.activity.AgentOrderActivity"
             android:label="代理订单"
             android:screenOrientation="portrait" />
-
-
+        <activity
+            android:name=".base.activity.HuanhuoActivity"
+            android:label="还货"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".base.activity.BindingActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".base.activity.ModifyPayPasswordActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".base.activity.PayPasswordActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".base.activity.WhitDrawalActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
@@ -179,10 +177,9 @@
                 <data android:scheme="wx3d41218648b9bdac" />
             </intent-filter>
         </activity>
-
         <activity
-            android:exported="true"
-            android:name=".wxapi.WXEntryActivity"/>
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true" />
 
         <service android:name=".view.dialog.DownloadService" />
 
