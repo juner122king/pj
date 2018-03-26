@@ -2,19 +2,23 @@ package com.weisj.pj.base.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
 import com.squareup.okhttp.Request;
 import com.weisj.pj.R;
+import com.weisj.pj.adapter.ItemAgentOrderAdapter;
 import com.weisj.pj.adapter.ItemCommentAdapter;
 import com.weisj.pj.base.BaseActivity;
+import com.weisj.pj.bean.AgentOrder;
 import com.weisj.pj.bean.Comment;
 import com.weisj.pj.utils.OkHttpClientManager;
 import com.weisj.pj.utils.Urls;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -37,6 +41,13 @@ public class AgentOrderActivity extends BaseActivity implements View.OnClickList
         return view;
     }
 
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+        getdata("3");
+    }
+
     private void initView(final View view) {
         agent_id = getIntent().getStringExtra("agent_id");
 
@@ -44,6 +55,7 @@ public class AgentOrderActivity extends BaseActivity implements View.OnClickList
         tv2 = (TextView) view.findViewById(R.id.tv2);
         tv3 = (TextView) view.findViewById(R.id.tv3);
         recyclerView = (RecyclerView) view.findViewById(R.id.rv);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         tv_notdata = (TextView) view.findViewById(R.id.tv_notdata);
 
@@ -100,9 +112,10 @@ public class AgentOrderActivity extends BaseActivity implements View.OnClickList
 
     }
 
-    private void showData() {
+    private void showData(List<AgentOrder.DataBean> list) {
         recyclerView.setVisibility(View.VISIBLE);
         tv_notdata.setVisibility(View.GONE);
+
 
     }
 
@@ -112,7 +125,7 @@ public class AgentOrderActivity extends BaseActivity implements View.OnClickList
         params.put("order_state", order_state);
 
 
-        OkHttpClientManager.postAsyn(Urls.getCardOrdersByAgentId, params, new OkHttpClientManager.ResultCallback<Comment>() {
+        OkHttpClientManager.postAsyn(Urls.getCardOrdersByAgentId, params, new OkHttpClientManager.ResultCallback<AgentOrder>() {
             @Override
             public void onError(Request request, Exception e) {
                 showNotData();
@@ -120,7 +133,7 @@ public class AgentOrderActivity extends BaseActivity implements View.OnClickList
 
 
             @Override
-            public void onResponse(Comment response) {
+            public void onResponse(AgentOrder response) {
 
                 String code = response.getCode();
                 if (code.equals("0") || response.getData().size() == 0) {
@@ -128,9 +141,10 @@ public class AgentOrderActivity extends BaseActivity implements View.OnClickList
 
                 } else {
                     //弹出成功窗口
-                    showData();
-//                    adapter = new ItemCommentAdapter(response.getData());
-//                    recyclerView.setAdapter(adapter);
+                    showData(response.getData());
+                    ItemAgentOrderAdapter adapter = new ItemAgentOrderAdapter(response.getData());
+                    recyclerView.setAdapter(adapter);
+                    recyclerView.setVisibility(View.VISIBLE);
                 }
             }
         });

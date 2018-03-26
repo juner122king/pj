@@ -49,60 +49,71 @@ public class OrderManager implements IOrderManager {
     @Override
     public void getOrderData1and2(final int page, final int pageNum, final IOnManagerListener listener) {
 
-//        Map<String, String> params = new HashMap<>();
-//        params.put("member_id", PersonMessagePreferencesUtils.getUid());
-//        params.put("order_state", "1");
-//        params.put("page", String.valueOf(page));
-//        params.put("page_num", String.valueOf(pageNum));
-//
-//        OkHttpClientManager.postAsyn(Urls.myorders, params, new OkHttpClientManager.ResultCallback<OrderBean>() {
-//            @Override
-//            public void onError(Request request, Exception e) {
-//                listener.onFail(e, Urls.myorders);
-//            }
-//
-//            @Override
-//            public void onResponse(OrderBean response) {
-//                if (response != null) {
-//
-//                    final List<OrderBean.DataEntity> dataEntities = response.getData();
-//                    Map<String, String> params = new HashMap<>();
-//                    params.put("member_id", PersonMessagePreferencesUtils.getUid());
-//                    params.put("order_state", "2");
-//                    params.put("page", String.valueOf(page));
-//                    params.put("page_num", String.valueOf(pageNum));
-//                    OkHttpClientManager.postAsyn(Urls.myorders, params, new OkHttpClientManager.ResultCallback<OrderBean>() {
-//                        @Override
-//                        public void onError(Request request, Exception e) {
-//                            listener.onFail(e, Urls.myorders);
-//                        }
-//
-//                        @Override
-//                        public void onResponse(OrderBean response2) {
-//
-//                            response2.addData(dataEntities);
-//
-//
-//                            if (response2 != null) {
-//
-//
-//                                listener.onSuccess(response2, Urls.myorders + "&page=" + page);
-//
-//                            } else {
-//                                listener.onFail(new RuntimeException("null"), Urls.myorders);
-//                            }
-//                        }
-//                    });
-//
-//                } else {
-//                    listener.onFail(new RuntimeException("null"), Urls.myorders);
-//                }
-//            }
-//        });
+        Map<String, String> params = new HashMap<>();
+        params.put("member_id", PersonMessagePreferencesUtils.getUid());
+        params.put("order_state", "1");
+        params.put("page", String.valueOf(page));
+        params.put("page_num", String.valueOf(pageNum));
+
+        OkHttpClientManager.postAsyn(Urls.myorders, params, new OkHttpClientManager.ResultCallback<OrderBean>() {
+            @Override
+            public void onError(Request request, Exception e) {
+                listener.onFail(e, Urls.myorders);
+            }
+
+            @Override
+            public void onResponse(OrderBean response) {
+                if (response != null) {
+
+                    if (response.getCode().equals("1") && response.getData().size() != 0) {
+
+                        listener.onSuccess(response, Urls.myorders + "&page=" + page);
 
 
+                    } else {
+                        getOrderData2(page, pageNum, listener);
+
+                    }
+
+                } else {
+                    getOrderData2(page, pageNum, listener);
+
+
+                }
+            }
+        });
     }
 
+    public void getOrderData2(final int page, final int pageNum, final IOnManagerListener listener) {
+
+        Map<String, String> params = new HashMap<>();
+        params.put("member_id", PersonMessagePreferencesUtils.getUid());
+        params.put("order_state", "2");
+        params.put("page", String.valueOf(page));
+        params.put("page_num", String.valueOf(pageNum));
+
+        OkHttpClientManager.postAsyn(Urls.myorders, params, new OkHttpClientManager.ResultCallback<OrderBean>() {
+            @Override
+            public void onError(Request request, Exception e) {
+                listener.onFail(e, Urls.myorders);
+            }
+
+            @Override
+            public void onResponse(OrderBean response) {
+                if (response != null) {
+
+
+                    listener.onSuccess(response, Urls.myorders + "&page=" + page);
+
+
+                } else {
+                    listener.onFail(new RuntimeException("null"), Urls.myorders);
+
+
+                }
+            }
+        });
+    }
 
     @Override
     public void cartlist(final IOnManagerListener listener) {

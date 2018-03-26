@@ -143,8 +143,6 @@ public class ItemDistributionCommissionAdapter extends BaseExpandableListAdapter
                             public void onResponse(BaseBean response) {
                                 if (response != null) {
                                     Toast.makeText(MyApplication.getContext(), "签收成功！", Toast.LENGTH_SHORT).show();
-
-
                                 }
                             }
                         });
@@ -162,7 +160,7 @@ public class ItemDistributionCommissionAdapter extends BaseExpandableListAdapter
                     public void onClick(View v) {
                         Intent intent = new Intent(MyApplication.getContext(), HuanhuoActivity.class);
                         intent.putExtra("order_id", data.getOrder_id());
-                        intent.putExtra("consignee_id", data.getOrder_id());
+                        intent.putExtra("consignee_id", "195530");
 
 
                         MyApplication.getContext().startActivity(intent);
@@ -205,13 +203,10 @@ public class ItemDistributionCommissionAdapter extends BaseExpandableListAdapter
         }
         final OrderBean.DataEntity.OrderInfoDomainListEntity childData = (OrderBean.DataEntity.OrderInfoDomainListEntity) getChild(groupPosition, childPosition);
         if (childData != null) {
-            OrderBean.DataEntity dataEntity = (OrderBean.DataEntity) getGroup(groupPosition);
+//            OrderBean.DataEntity dataEntity = (OrderBean.DataEntity) getGroup(groupPosition);
             ImageLoaderUtils.getInstance().display(viewHolder.goodImage, childData.getSpec_pic());
 
 
-            Glide.with(viewHolder.goodImage.getContext())
-                    .load(childData.getSpec_pic())
-                    .into(viewHolder.goodImage);
             TextViewUtils.setText(viewHolder.goodName, childData.getGoods_name());
             TextViewUtils.setText(viewHolder.spec_name, childData.getSpec_name());
             TextViewUtils.setTextAndleftOther(viewHolder.goodPrice, childData.getPrice(), "￥");
@@ -231,16 +226,9 @@ public class ItemDistributionCommissionAdapter extends BaseExpandableListAdapter
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bottom_linear:
-//                OrderBean.DataEntity dataEntity = (OrderBean.DataEntity) v.getTag();
-//                Intent intent = new Intent(mInflater.getContext(), CheckLogisticsActivity.class);
-//                intent.putExtra("orderId", dataEntity.getOrder_brand_id());
-//                intent.putExtra("orderType", dataEntity.getOrder_brand_state());
-//                mInflater.getContext().startActivity(intent);
+
                 break;
-//            case R.id.order_delete_bt:
-//                OrderBean.DataEntity data = (OrderBean.DataEntity) v.getTag();
-//                deleteAlert(data);
-//                break;
+
         }
     }
 

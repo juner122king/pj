@@ -105,9 +105,9 @@ public class HuanhuoActivity extends BaseActivity implements View.OnClickListene
 
             @Override
             public void onResponse(BaseBean response) {
-                if (response != null) {
+                if (response != null && response.getCode().equals("1")) {
 
-
+                    Toast.makeText(HuanhuoActivity.this, "提交还货单成功！", Toast.LENGTH_SHORT).show();
                 }
             }
         });

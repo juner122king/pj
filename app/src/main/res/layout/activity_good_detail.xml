@@ -73,6 +73,7 @@
             android:paddingTop="8dp"
             android:text="首饰盒"
             android:textColor="#a1a1a1"
+            android:visibility="gone"
             android:textSize="11sp" />
 
         <TextView
