@@ -129,7 +129,10 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
 
     public void getcart() {
 //        replaceCartData();
-        presenter.getcartList();
+        if (lastView == selectView1)
+            presenter.getcartList();
+
+
     }
 
     public void changeOrderState(int state) {

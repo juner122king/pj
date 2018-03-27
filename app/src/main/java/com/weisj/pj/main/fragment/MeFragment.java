@@ -216,7 +216,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
         if (dataEntity.getGroup_id() == 1) {
             user_lv_info.setText("会员");
             user_lv.setText("续费");
-            user_lv.setVisibility(View.INVISIBLE);
+            user_lv.setVisibility(View.VISIBLE);
             v_daili.setVisibility(View.VISIBLE);
             ll_day.setVisibility(View.VISIBLE);
             tv_day.setText(String.valueOf(dataEntity.getLeft_days()));

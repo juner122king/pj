@@ -65,6 +65,15 @@ public class WebViewActivity extends Activity {
     private void initView() {
 
         webView = (WebView) findViewById(R.id.webView);
+        webView.getSettings().setDomStorageEnabled(true);
+        webView.getSettings().setAppCacheMaxSize(1024 * 1024 * 8);
+        String appCachePath = getApplicationContext().getCacheDir().getAbsolutePath();
+        webView.getSettings().setAppCachePath(appCachePath);
+        webView.getSettings().setAllowFileAccess(true);
+        webView.getSettings().setAppCacheEnabled(true);
+        webView.getSettings().setJavaScriptEnabled(true);
+
+
     }
 
 
@@ -131,31 +140,29 @@ public class WebViewActivity extends Activity {
         webView.setWebViewClient(new WebViewClient() {
             @Override
             public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
                 if (!inWrited) {
-                    setData(webView);
+                    setData();
                     inWrited = true;
                 }
+
             }
         });
 
     }
 
-    private void setData(WebView mWebView) {
+    private void setData() {
+
         //1.拼接 JavaScript 代码
 
         String key = "FRND_MEMBER_ID";
-        String value = PersonMessagePreferencesUtils.getUid();
-        String js = "window.localStorage.setItem(" + key + ",'" + value + "');";
-        String jsUrl = "javascript:(function({ var localStorage = window.localStorage; localStorage.setItem(" + key + ",'" + value + "')})()";
+        String val = PersonMessagePreferencesUtils.getUid();
 
-        //2.根据不同版本，使用不同的 API 执行 Js
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            mWebView.evaluateJavascript(js, null);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.KITKAT) {
+            webView.evaluateJavascript("localStorage.setItem('"+ key +"','"+ val +"');", null);
         } else {
-            mWebView.loadUrl(jsUrl);
-            mWebView.reload();
+            webView.loadUrl("javascript:localStorage.setItem('"+ key +"','"+ val +"');");
         }
+
     }
 
     @Override
