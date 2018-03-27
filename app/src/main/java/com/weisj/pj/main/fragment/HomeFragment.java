@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.squareup.okhttp.Request;
 import com.weisj.pj.MainActivity;
 import com.weisj.pj.R;
 import com.weisj.pj.adapter.ItemHomeUserCommentAdapter;
@@ -25,11 +26,14 @@ import com.weisj.pj.base.activity.SearchActivity;
 import com.weisj.pj.base.activity.SearchListActivity;
 import com.weisj.pj.base.activity.VipActivity;
 import com.weisj.pj.base.activity.WebViewActivity;
+import com.weisj.pj.bean.ActivityBean;
 import com.weisj.pj.bean.Ad;
 import com.weisj.pj.bean.Comment;
+import com.weisj.pj.bean.HomeBanner;
 import com.weisj.pj.bean.HomeBean;
 import com.weisj.pj.presenter.HomePresenter;
 import com.weisj.pj.utils.CommenString;
+import com.weisj.pj.utils.OkHttpClientManager;
 import com.weisj.pj.utils.TextViewUtils;
 import com.weisj.pj.utils.Urls;
 import com.weisj.pj.view.abpullrefresh.AbPullToRefreshView;
@@ -49,7 +53,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     //    private String pronvin = CommenString.selectCity;
     private RecyclerView recyclerView;//最底部的recyclerView
     private ItemHomeUserCommentAdapter adapter_comment;
-    private TextView placeName, tv_acton_title, tv_acton_info;
+    private TextView placeName, tv_acton_title, tv_acton_info, tv_dayandcon;
     private ImageView iv_acton, homeBanner_vip;
     private BGABanner homeBanner, homeBanner2;
 
@@ -63,6 +67,8 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         homePresenter = new HomePresenter(this, this);
+
+
     }
 
 
@@ -83,13 +89,8 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
         tv_acton_title = (TextView) headView.findViewById(R.id.tv_acton_title);
         tv_acton_info = (TextView) headView.findViewById(R.id.tv_acton_info);
         iv_acton = (ImageView) headView.findViewById(R.id.iv_acton);
+        tv_dayandcon = (TextView) headView.findViewById(R.id.tv_dayandcon);
         tv_vip = headView.findViewById(R.id.tv_vip);
-        Glide.with(getActivity())
-                .load("http://shop.party-queen.com/Public/backend/upload/images/2018/03/20180315091656_92411.jpg")
-
-
-                .transform(new GlideRoundTransform(getActivity(), 3))
-                .into(iv_acton);
 
 
         placeName = (TextView) view.findViewById(R.id.root_place);
@@ -200,6 +201,7 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
 //
 
         placeName.setText(CommenString.selectCity);
+
 
     }
 
@@ -353,6 +355,29 @@ public class HomeFragment extends BaseFragment implements AdapterView.OnItemClic
                 horizontalLinear.addView(view);
             }
         }
+
+
+    }
+
+    @Override
+    public void getActivitys(ActivityBean bean) {
+
+        ActivityBean.DataEntity bean1 = bean.getData().get(0);
+
+
+        Glide.with(getActivity())
+                .load(bean1.getActivityPic())
+                .transform(new GlideRoundTransform(getActivity(), 3))
+                .into(iv_acton);
+
+        Long l1 = Long.valueOf(bean1.getStartTime());
+        Long l2 = Long.valueOf(bean1.getEndTime());
+        Long l3 = Long.valueOf(bean1.getCreateTime());
+
+        String day = String.valueOf((l2 - System.currentTimeMillis()) / (1000 * 3600 * 24));
+
+        tv_dayandcon.setText("剩余" + day + "天 已报名" + bean1.getAttendCount() + "人");
+        tv_acton_title.setText(bean1.getActivityName());
 
 
     }

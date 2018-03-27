@@ -1,5 +1,8 @@
 package com.weisj.pj.presenter;
 
+import android.widget.Toast;
+
+import com.weisj.pj.MyApplication;
 import com.weisj.pj.base.BaseViewState;
 import com.weisj.pj.bean.BaseBean;
 import com.weisj.pj.bean.CartGoodBean;
@@ -63,6 +66,7 @@ public class OrderPresenter implements IOnManagerListener {
         } else if (url.equals(Urls.delToCart)) {
             BaseBean baseBean = (BaseBean) data;
             if (baseBean.getCode().equals("1")) {
+                Toast.makeText(MyApplication.getContext(), "删除成功", Toast.LENGTH_SHORT).show();
                 getcartList();
             } else {
                 orderView.getCartListFail();

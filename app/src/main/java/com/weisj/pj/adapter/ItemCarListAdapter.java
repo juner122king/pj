@@ -3,6 +3,7 @@ package com.weisj.pj.adapter;
 import android.support.annotation.Nullable;
 import android.util.SparseBooleanArray;
 import android.util.SparseIntArray;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -27,11 +28,15 @@ public class ItemCarListAdapter extends BaseQuickAdapter<CartGoodBean.DataEntity
 
     List<CartGoodBean.DataEntity> data;
     public SparseBooleanArray mCheckStates;
+    boolean isdelete;
 
-    public ItemCarListAdapter(@Nullable List<CartGoodBean.DataEntity> data) {
+    public ItemCarListAdapter(CartGoodBean cartGoodBean) {
 
-        super(R.layout.item_cart, data);
-        this.data = data;
+        super(R.layout.item_cart, cartGoodBean.getData());
+
+
+        this.isdelete = cartGoodBean.isIsdelet();
+        this.data = cartGoodBean.getData();
         mCheckStates = new SparseBooleanArray(data.size());
         for (int i = 0; i < data.size(); i++) {
             mCheckStates.put(i, false);
@@ -40,23 +45,19 @@ public class ItemCarListAdapter extends BaseQuickAdapter<CartGoodBean.DataEntity
 
     }
 
+    public void setIsdelete(boolean isdelete) {
+        this.isdelete = isdelete;
+    }
+
     @Override
     protected void convert(BaseViewHolder helper, CartGoodBean.DataEntity item) {
-//        helper.setText(R.id.tv_title, item.getGoodsName());
-//        helper.setText(R.id.tv_title2, item.getUnit());
-//        helper.setText(R.id.tv_jiage, "￥" + item.getPrice());
-//
-//        Glide.with(mContext)
-//                .load(Urls.imageUrl + item.getImg1())
-//                .crossFade()
-//                .transform(new GlideRoundTransform(mContext, 3)).
-//                into((ImageView) helper.getView(R.id.iv));
 
 
     }
 
     @Override
     public void onBindViewHolder(BaseViewHolder helper, final int position) {
+
 
         helper.setText(R.id.tv_title, data.get(position).getGoodsName());
         helper.setText(R.id.tv_title2, data.get(position).getUnit());
@@ -85,5 +86,10 @@ public class ItemCarListAdapter extends BaseQuickAdapter<CartGoodBean.DataEntity
         });
         checkBox.setChecked(mCheckStates.get(position, false));
 
+
+        if (!isdelete)
+            checkBox.setVisibility(View.VISIBLE);
+        else
+            checkBox.setVisibility(View.INVISIBLE);
     }
 }

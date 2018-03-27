@@ -26,9 +26,11 @@ import com.weisj.pj.base.activity.AgentOrderActivity;
 import com.weisj.pj.base.activity.ConsigneeAddressActivity;
 import com.weisj.pj.base.activity.LoginActivity;
 import com.weisj.pj.base.activity.MyCardActivity;
+import com.weisj.pj.base.activity.PayPasswordActivity;
 import com.weisj.pj.base.activity.UserInfoActivity;
 import com.weisj.pj.base.activity.VipActivity;
 import com.weisj.pj.base.activity.WalletActivity;
+import com.weisj.pj.base.activity.WhitDrawalActivity;
 import com.weisj.pj.bean.CenterBean;
 import com.weisj.pj.presenter.CenterPresenter;
 import com.weisj.pj.utils.PersonMessagePreferencesUtils;
@@ -46,8 +48,8 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
     private CenterPresenter presenter;
     private final String GETHINTIMAGECLICK = "isClickImage";
     private ImageView iv_head;
-    private TextView name, user_lv, user_lv_info, numb1, numb2, numb3, numb4, logout, tv_day;
-    private View v_daili, ll_day, ll_date;
+    private TextView name, user_lv, user_lv_info, numb1, numb2, numb3, numb4, tv_number6, logout, tv_day;
+    private View v_daili, ll_day, ll_date, ll_yue;
 
     private LinearLayout ll4, ll5, ll6;
 
@@ -74,6 +76,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
         numb2 = (TextView) view.findViewById(R.id.tv_number2);
         numb3 = (TextView) view.findViewById(R.id.tv_number3);
         numb4 = (TextView) view.findViewById(R.id.tv_number4);
+        tv_number6 = (TextView) view.findViewById(R.id.tv_number6);
         logout = (TextView) view.findViewById(R.id.tv_logout);
         ll4 = (LinearLayout) view.findViewById(R.id.ll4);
         ll5 = (LinearLayout) view.findViewById(R.id.ll5);
@@ -81,6 +84,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
 
         ll_day = view.findViewById(R.id.ll_day);
         v_daili = view.findViewById(R.id.tv_daili);
+        ll_yue = view.findViewById(R.id.ll_yue);
         ll_date = view.findViewById(R.id.ll_date);
         user_lv = (TextView) view.findViewById(R.id.loginBt);
         tv_day = (TextView) view.findViewById(R.id.tv_day);
@@ -89,6 +93,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
         iv_head.setOnClickListener(this);
         user_lv.setOnClickListener(this);
         v_daili.setOnClickListener(this);
+        ll_yue.setOnClickListener(this);
         ll4.setOnClickListener(this);
         ll5.setOnClickListener(this);
         ll6.setOnClickListener(this);
@@ -174,6 +179,17 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
 
                 new ApplyAgentDialog(view.getContext()).show();
                 break;
+            case R.id.ll_yue:
+
+//                if (PreferencesUtils.getInt("has_set_pay_password", 0) == 0) {
+//                    startActivity(new Intent(this.getContext(), PayPasswordActivity.class));
+//                    PreferencesUtils.putBoolean("has_reset_password", true);
+//                } else {
+//                    Intent intent = new Intent(this.getContext(), WhitDrawalActivity.class);
+//                    intent.putExtra("money", "0");
+//                    startActivity(intent);
+//                }
+//                break;
 
         }
     }
@@ -188,6 +204,7 @@ public class MeFragment extends BaseFragment implements View.OnClickListener, IC
         numb2.setText(dataEntity.getCurrent_money());
         numb3.setText(String.valueOf(dataEntity.getCupon_num()));
         numb4.setText(String.valueOf(dataEntity.getCard_num()));
+        tv_number6.setText(String.valueOf(dataEntity.getAgent_order_num()));
 
 
         Glide.with(getActivity())

@@ -35,6 +35,17 @@ public class CartGoodBean {
      */
     private String code;
     private String msg;
+
+    boolean isdelet;
+
+    public boolean isIsdelet() {
+        return isdelet;
+    }
+
+    public void setIsdelet(boolean isdelet) {
+        this.isdelet = isdelet;
+    }
+
     private List<DataEntity> data;
 
     public String getCode() {
@@ -71,7 +82,6 @@ public class CartGoodBean {
         String goodsId;
         String goodsName;
         String img1;
-
 
         public String getCartId() {
             return cartId;

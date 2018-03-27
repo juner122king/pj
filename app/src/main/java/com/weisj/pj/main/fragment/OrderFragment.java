@@ -2,6 +2,8 @@ package com.weisj.pj.main.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +37,21 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener 
     private TextView t_r;
     boolean isZFtype = true;//当前是否为支付状态
 
+    private Handler myHandler = new Handler() {
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 1:
+                    t_r.setVisibility(View.VISIBLE);
+
+                    break;
+                case 2:
+                    t_r.setVisibility(View.INVISIBLE);
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    };
+
     @Override
     public View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
@@ -49,13 +66,14 @@ public class OrderFragment extends BaseFragment implements View.OnClickListener 
     public void onResume() {
         super.onResume();
         commissionView.getcart();
-
-
+        t_r.setText("编辑");
+        isZFtype = true;
+        commissionView.setZFType(isZFtype);
     }
 
     private void initView() {
         rootView.isHintHeadBar(true);
-        commissionView = new DistributionCommissionView(mInflater);
+        commissionView = new DistributionCommissionView(mInflater, myHandler);
 //        recordView = new DistributionRecordView(mInflater);
         list.add(commissionView.getRootView());
 //        list.add(recordView.getRootView());

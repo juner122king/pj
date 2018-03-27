@@ -62,16 +62,18 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
     public static String yj;
 
     private boolean isZFtype = true;//当前是否为支付状态
-
+    Handler myHandler;
 
     public void setWxAndFilterType(int filter_type, String wxName) {
 
         presenter.getcartList();
     }
 
-    public DistributionCommissionView(LayoutInflater inflater) {
+    public DistributionCommissionView(LayoutInflater inflater, Handler myHandler) {
         this.inflater = inflater;
         initView();
+        this.myHandler = myHandler;
+
     }
 
     public View getRootView() {
@@ -147,6 +149,11 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
 
         this.isZFtype = isZFtype;
 
+        if (carListAdapter != null) {
+
+            carListAdapter.setIsdelete(isZFtype);
+            carListAdapter.notifyDataSetChanged();
+        }
     }
 
 
@@ -176,6 +183,8 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
 
     @Override
     public void onClick(View v) {
+
+        Message message;
         switch (v.getId()) {
             case R.id.order_commission_no_pay:
                 lastView.setSelected(false);
@@ -186,6 +195,12 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
                 refresh_view.setVisibility(View.GONE);
                 recyclerView_carlist.setVisibility(View.VISIBLE);
                 expandableListView.setVisibility(View.GONE);
+
+                message = new Message();
+                message.what = 1;
+                myHandler.sendMessage(message);
+
+
                 break;
             case R.id.order_commission_no_send:   //  包含  OrderState = 1  OrderState = 2 ,的数据
                 lastView.setSelected(false);
@@ -195,6 +210,10 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
                 hidezhifu();
                 refresh_view.setVisibility(View.VISIBLE);
                 recyclerView_carlist.setVisibility(View.GONE);
+
+                message = new Message();
+                message.what = 2;
+                myHandler.sendMessage(message);
                 break;
             case R.id.order_commission_no_receive:
                 lastView.setSelected(false);
@@ -205,6 +224,10 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
                 refresh_view.setVisibility(View.VISIBLE);
                 recyclerView_carlist.setVisibility(View.GONE);
 
+
+                message = new Message();
+                message.what = 2;
+                myHandler.sendMessage(message);
                 break;
             case R.id.order_commission_no_evaluate:
                 lastView.setSelected(false);
@@ -214,7 +237,9 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
                 hidezhifu();
                 refresh_view.setVisibility(View.VISIBLE);
                 recyclerView_carlist.setVisibility(View.GONE);
-
+                message = new Message();
+                message.what = 2;
+                myHandler.sendMessage(message);
                 break;
 
             case R.id.no_data:
@@ -230,6 +255,7 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
                         Toast.makeText(rootRela.getContext(), "首饰盒中暂无商品，请先选择商品加入首饰盒", Toast.LENGTH_SHORT).show();
                     } else {
 
+
                         // 跳到品类页面
                         Intent intent = new Intent(rootView.getContext(), OrderConfirmActivity.class);
                         intent.putExtra("cartId", cartId);
@@ -240,7 +266,7 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
                     }
                 } else {
 
-                    Toast.makeText(rootRela.getContext(), "删除", Toast.LENGTH_SHORT).show();
+
                     presenter.deleteOrder(getDelId());
 
                 }
@@ -394,11 +420,10 @@ public class DistributionCommissionView implements View.OnClickListener, BaseVie
             noDataView.setOnClickListener(this);
             noDataView.setText("没有选择商品");
             noDataView.setVisibility(View.VISIBLE);
-
-
         }
         recyclerView_carlist.setLayoutManager(new LinearLayoutManager(rootView.getContext()));
-        carListAdapter = new ItemCarListAdapter(cartGoodBean.getData());
+        cartGoodBean.setIsdelet(isZFtype);
+        carListAdapter = new ItemCarListAdapter(cartGoodBean);
         carListAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {

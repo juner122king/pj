@@ -54,6 +54,10 @@ public class Urls {
     public static final String searchByProperties = IP + "/ndfront/property/searchByProperties?appid=APPID";
 
 
+    // 活动接口
+    public static final String getActivitysInHome = IP + "/ndfront/card/getActivitysInHome?appid=APPID";
+
+
     //返回所有类型的卡信息
     public static final String getAllCardTypes = IP + "/ndfront/card/getAllCardTypes?appid=APPID";
 

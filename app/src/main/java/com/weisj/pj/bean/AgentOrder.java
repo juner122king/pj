@@ -71,7 +71,15 @@ public class AgentOrder {
         String buyCardHeaderPic;//头像
         String createTime;//时间
         String payTime;//后时间
+        String cardStatus;//状态
 
+        public String getCardStatus() {
+            return cardStatus;
+        }
+
+        public void setCardStatus(String cardStatus) {
+            this.cardStatus = cardStatus;
+        }
 
         public String getCardTypeName() {
             return cardTypeName;
@@ -105,11 +113,11 @@ public class AgentOrder {
             this.payMoney = payMoney;
         }
 
-        public String getCardStatus() {
+        public String getCardNum() {
             return cardNum;
         }
 
-        public void setCardStatus(String cardStatus) {
+        public void setCardNum(String cardStatus) {
             this.cardNum = cardStatus;
         }
 

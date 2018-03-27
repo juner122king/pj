@@ -1,5 +1,6 @@
 package com.weisj.pj.viewinterface;
 
+import com.weisj.pj.bean.ActivityBean;
 import com.weisj.pj.bean.HomeBean;
 
 /**
@@ -8,6 +9,6 @@ import com.weisj.pj.bean.HomeBean;
 public interface IHomeView {
 
     void getData(HomeBean homeBean);
-
+    void getActivitys(ActivityBean bean);
 
 }

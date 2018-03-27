@@ -2,6 +2,7 @@ package com.weisj.pj.presenter;
 
 
 import com.weisj.pj.base.BaseViewState;
+import com.weisj.pj.bean.ActivityBean;
 import com.weisj.pj.bean.HomeBean;
 import com.weisj.pj.manager.IHomeManager;
 import com.weisj.pj.manager.impl.HomeManager;
@@ -31,8 +32,9 @@ public class HomePresenter implements IOnManagerListener {
             viewState.showLoading();
         }
         iHomeManager.getHomeInfo(this);
-//        iHomeManager.getHomeBanner(this);
+        iHomeManager.getActivitysInHome(this);
     }
+
 
 
     @Override
@@ -45,6 +47,14 @@ public class HomePresenter implements IOnManagerListener {
             } else {
                 viewState.showNoNetWork();
             }
+        }if(url.equals(Urls.getActivitysInHome)){
+
+            ActivityBean bean = (ActivityBean) data;
+            if (bean.getCode().equals("1")) {
+                viewState.showLoadFinish();
+                iHomeView.getActivitys(bean);
+            }
+
         }
     }
 

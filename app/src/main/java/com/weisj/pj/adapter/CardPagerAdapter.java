@@ -105,7 +105,6 @@ public class CardPagerAdapter extends PagerAdapter implements CardAdapter {
 
                 .crossFade()
                 .fitCenter()
-//                .transform(new GlideRoundTransform(getActivity(), 3))
                 .into(imageView);
 
 

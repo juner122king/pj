@@ -49,7 +49,7 @@ public class OrderActivity extends BaseActivity implements View.OnClickListener 
     }
 
     private void initView() {
-        commissionView = new DistributionCommissionView(mLayoutInflater);
+        commissionView = new DistributionCommissionView(mLayoutInflater,null);
 //        recordView = new DistributionRecordView(mInflater);
         list.add(commissionView.getRootView());
 //        list.add(recordView.getRootView());

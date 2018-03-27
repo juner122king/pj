@@ -7,8 +7,10 @@ import com.weisj.pj.manager.listener.IOnManagerListener;
  */
 public interface IHomeManager {
 
-    void getHomeInfo( IOnManagerListener onHomeListener);
+    void getHomeInfo(IOnManagerListener onHomeListener);
 
     void getHomeBanner(IOnManagerListener onHomeListener);
+
+    void getActivitysInHome(IOnManagerListener onHomeListener);
 
 }
